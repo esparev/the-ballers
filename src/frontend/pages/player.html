@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BEISMICH • Jugador</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        background-color: #090030;
+      }
+      main {
+        height: 100%;
+        /* margin: 60px; */
+      }
+      h1 {
+        padding-bottom: 14px;
+        font-family: 'Rubik';
+        font-size: 4rem;
+        font-weight: bold;
+      }
+      h2 {
+        padding-bottom: 14px;
+        font-family: 'Rubik';
+        padding-bottom: 14px;
+        font-family: 'Rubik';
+        font-size: 2.6rem;
+      }
+      h3 {
+        padding-bottom: 14px;
+        font-family: 'Rubik';
+        font-size: 2rem;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+        width: auto;
+        padding: 0 60px;
+        background-color: #090030;
+      }
+
+      .header--logo {
+        height: 80px;
+        border-radius: 0 0 12px 12px;
+        overflow: hidden;
+      }
+      .header--logo img {
+        height: inherit;
+        object-fit: contain;
+      }
+
+      .header__nav-list {
+        display: flex;
+        height: auto;
+        width: auto;
+        align-items: center;
+        list-style: none;
+      }
+      .header__nav-list--item a {
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+        margin: 0 20px;
+      }
+      .header__nav-list--item a:hover {
+        transition: 0.3s;
+        color: #ffb700;
+      }
+      .header__nav-list--item a:last-child {
+        display: inline-block;
+        width: 100%;
+      }
+      .header__nav-list--item a img:hover {
+        transition: 0.3s;
+        filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+          brightness(101%) contrast(112%);
+      }
+
+      .cover {
+        display: flex;
+        align-items: center;
+        width: auto;
+        height: 200px;
+        margin: 60px 0 20px 0;
+        overflow: hidden;
+        background-image: url('../assets/static/sport-background.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .cover--image {
+        width: 280px;
+        margin-left: 60px;
+        object-fit: contain;
+        transform: rotate(345deg);
+      }
+
+      .player {
+        width: auto;
+        margin: 0 60px;
+      }
+      .player__container {
+        display: flex;
+        align-items: center;
+        width: auto;
+      }
+      .player__container--image {
+        width: 150px;
+        margin-right: 60px;
+        filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+          brightness(101%) contrast(112%);
+      }
+      .player__container p {
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        color: white;
+      }
+      .player__info--name {
+        color: white;
+      }
+      .player__info-about {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: auto;
+      }
+      .player__info-about p {
+        margin: 4px 40px 4px 0;
+      }
+
+      .players {
+        width: auto;
+        margin: 40px 60px;
+      }
+      .players__container--title {
+        color: white;
+      }
+      .more-players {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .more-players__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        margin: 0 20px;
+      }
+      .more-players__card--image {
+        width: 150px;
+        padding-bottom: 20px;
+        filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+          brightness(101%) contrast(112%);
+      }
+      .more-players__card--name {
+        text-align: center;
+        color: white;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: end;
+        padding-top: 14px;
+      }
+      .button {
+        height: 40px;
+        width: fit-content;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 20px;
+        font-family: 'Rubik';
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        outline: none;
+      }
+      .gray-button {
+        background-color: #676767;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="header--logo" href="./home.html">
+        <img src="../assets/static/beismich-logo.png" alt="Logo BEISMICH" />
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-list--item">
+            <a href="./news.html">Noticias</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="./tournaments.html">Torneos</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="./leagues.html">Ligas</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="#">Conócenos</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="">
+              <img src="../assets/icons/user-icon.svg" alt="Usuario" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="cover">
+        <img
+          class="cover--image"
+          src="../assets/static/cupatizio-logo.png"
+          alt="Portada"
+        />
+      </section>
+
+      <section class="player">
+        <div class="player__container">
+          <img
+            class="player__container--image"
+            src="../assets/icons/user-icon.svg"
+            alt="Foto del jugador"
+          />
+          <div class="player__info">
+            <h1 class="player__info--name">Nombre Jugador</h1>
+            <div class="player__info-about">
+              <p><strong>Nombre Equipo: </strong>Nombre Equipo</p>
+              <p><strong>Posición de juego: </strong>Posición</p>
+              <p><strong>Fecha de Nacimiento: </strong>Día Mes Año</p>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button
+            class="button gray-button"
+            onclick="location.href='./edit-player.html'"
+          >
+            Editar Jugador
+          </button>
+        </div>
+      </section>
+
+      <section class="players">
+        <div class="players__container">
+          <h2 class="players__container--title">Más Jugadores</h2>
+          <div class="more-players">
+            <a class="more-players__card" href="./player.html">
+              <img
+                class="more-players__card--image"
+                src="../assets/icons/user-icon.svg"
+                alt="Foto del jugador"
+              />
+              <h3 class="more-players__card--name">Nombre Jugador</h3>
+            </a>
+            <a class="more-players__card" href="./player.html">
+              <img
+                class="more-players__card--image"
+                src="../assets/icons/user-icon.svg"
+                alt="Foto del jugador"
+              />
+              <h3 class="more-players__card--name">Nombre Jugador</h3>
+            </a>
+            <a class="more-players__card" href="./player.html">
+              <img
+                class="more-players__card--image"
+                src="../assets/icons/user-icon.svg"
+                alt="Foto del jugador"
+              />
+              <h3 class="more-players__card--name">Nombre Jugador</h3>
+            </a>
+            <a class="more-players__card" href="./player.html">
+              <img
+                class="more-players__card--image"
+                src="../assets/icons/user-icon.svg"
+                alt="Foto del jugador"
+              />
+              <h3 class="more-players__card--name">Nombre Jugador</h3>
+            </a>
+            <a class="more-players__card" href="./player.html">
+              <img
+                class="more-players__card--image"
+                src="../assets/icons/user-icon.svg"
+                alt="Foto del jugador"
+              />
+              <h3 class="more-players__card--name">Nombre Jugador</h3>
+            </a>
+            <a class="more-players__card" href="./player.html">
+              <img
+                class="more-players__card--image"
+                src="../assets/icons/user-icon.svg"
+                alt="Foto del jugador"
+              />
+              <h3 class="more-players__card--name">Nombre Jugador</h3>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

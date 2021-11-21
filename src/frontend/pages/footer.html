@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      footer {
+        border-top: 4px solid #ffb700;
+        height: 80px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url('../assets/static/halftone-background.png');
+      }
+      .footer__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: inherit;
+        width: auto;
+        padding: 0 60px;
+        background: rgb(255, 183, 0);
+        background: linear-gradient(
+          0deg,
+          rgba(255, 183, 0, 1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+      .footer__container p {
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .footer__container-info {
+        width: 40%;
+      }
+      .footer__container-socials {
+        width: 20%;
+        text-align: center;
+      }
+      .footer__container-socials img {
+        width: 40px;
+      }
+      
+      .beismich p {
+        text-align: end;
+      }
+    </style>
+  </head>
+  <body>
+    <footer>
+      <div class="footer__container">
+        <div class="footer__container-info made-by">
+          <p>Hecho por Integra • 2021</p>
+        </div>
+        <div class="footer__container-socials">
+          <img src="../assets/icons/facebook-icon.svg" alt="">
+        </div>
+        <div class="footer__container-info beismich">
+          <p>Asociación de Beisbolistas Michoacanos</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

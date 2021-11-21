@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BEISMICH • Nueva Liga</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        background-color: #090030;
+      }
+      main {
+        height: 100%;
+        width: auto;
+        margin: 60px;
+      }
+      h1 {
+        font-family: 'Rubik';
+        font-size: 4rem;
+        font-weight: bold;
+        padding-bottom: 14px;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+        width: auto;
+        padding: 0 60px;
+        background-color: #090030;
+      }
+
+      .header--logo {
+        height: 80px;
+        border-radius: 0 0 12px 12px;
+        overflow: hidden;
+      }
+      .header--logo img {
+        height: inherit;
+        object-fit: contain;
+      }
+
+      .header__nav-list {
+        display: flex;
+        height: auto;
+        width: auto;
+        align-items: center;
+        list-style: none;
+      }
+      .header__nav-list--item a {
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+        margin: 0 20px;
+      }
+      .header__nav-list--item a:hover {
+        transition: 0.3s;
+        color: #ffb700;
+      }
+      .header__nav-list--item a:last-child {
+        display: inline-block;
+        width: 100%;
+      }
+      .header__nav-list--item a img:hover {
+        transition: 0.3s;
+        filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+          brightness(101%) contrast(112%);
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+      }
+      .form--title {
+        color: white;
+      }
+      .label {
+        margin-top: 14px;
+        margin-bottom: 8px;
+        color: white;
+        opacity: 50%;
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      .form--input-text,
+      .input {
+        height: 32px;
+        max-width: 600px;
+        margin: 14px 0;
+        border: none;
+        border-bottom: 4px solid #ffb700;
+        caret-color: #ffb700;
+        color: white;
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        font-weight: bold;
+        background-color: #090030;
+      }
+      .form--input-text {
+        width: 100%;
+      }
+      .form--input-text::placeholder,
+      .input::placeholder {
+        color: white;
+        opacity: 50%;
+      }
+      .form--input-text:focus,
+      .input:focus {
+        outline: none;
+      }
+      .input-age {
+        width: 50px;
+        margin: 0 12px;
+        text-align: center;
+      }
+      .empty {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .form__image-square {
+        height: 372px;
+        max-width: 372px;
+        border: 4px dashed #ffb700;
+      }
+      .form__image-labels {
+        display: grid;
+        place-content: center;
+        height: inherit;
+      }
+      .form__image--input {
+        display: none;
+      }
+      .form__image--label,
+      .form__image--label-button {
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        opacity: 50%;
+      }
+      .form__image--label-button {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .button-container {
+        display: flex;
+        justify-content: end;
+        margin-top: 28px;
+      }
+      .button {
+        height: 40px;
+        width: fit-content;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 20px;
+        font-family: 'Rubik';
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        outline: none;
+      }
+      .yellow-button {
+        background-color: #ffb700;
+      }
+
+      .drop-zone__over {
+        border-style: solid;
+      }
+      .drop-zone--label {
+        display: none;
+      }
+      .drop-zone--thumb {
+        height: 100%;
+        max-width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .drop-zone--thumb::after {
+        content: attr(data-label);
+      }
+
+      @media (max-width: 640px) {
+        main {
+          width: initial;
+          margin: 20px;
+        }
+        .form__image {
+          height: 280px;
+          width: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="header--logo" href="./home.html">
+        <img src="../assets/static/beismich-logo.png" alt="Logo BEISMICH" />
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-list--item">
+            <a href="./news.html">Noticias</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="./tournaments.html">Torneos</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="./leagues.html">Ligas</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="#">Conócenos</a>
+          </li>
+          <li class="header__nav-list--item">
+            <a href="">
+              <img src="../assets/icons/user-icon.svg" alt="Usuario" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <form action="" class="form">
+        <h1 class="form--title">Agregar Nueva Liga</h1>
+        <input
+          class="form--input-text"
+          type="text"
+          placeholder="Nombre *"
+          required
+        />
+        <input
+          class="form--input-text"
+          type="text"
+          placeholder="Nombre del responsable"
+        />
+        <input
+          class="form--input-text"
+          type="num"
+          maxlength="10"
+          placeholder="Teléfono del responsable"
+        />
+        <select class="form--input-text empty" name="location" id="location">
+          <option selected value="">Localidad</option>
+          <option value="Acuitzio">Acuitzio</option>
+          <option value="Aguililla">Aguililla</option>
+          <option value="Álvaro Obregón">Álvaro Obregón</option>
+          <option value="Angamacutiro">Angamacutiro</option>
+          <option value="Apatzingán">Apatzingán</option>
+          <option value="Ario">Ario</option>
+          <option value="Arteaga">Arteaga</option>
+          <option value="Buenavista">Buenavista</option>
+          <option value="Charo">Charo</option>
+          <option value="Chavinda">Chavinda</option>
+          <option value="Cherán">Cherán</option>
+          <option value="Chilchota">Chilchota</option>
+          <option value="Coahuayana">Coahuayana</option>
+          <option value="Coalcomán">Coalcomán</option>
+          <option value="Cojumatlán de Régules">Cojumatlán de Régules</option>
+          <option value="Cotija">Cotija</option>
+          <option value="Cuitzeo">Cuitzeo</option>
+          <option value="Gabriel Zamora">Gabriel Zamora</option>
+          <option value="Hidalgo">Hidalgo</option>
+          <option value="Huandacareo">Huandacareo</option>
+          <option value="Huetamo">Huetamo</option>
+          <option value="Indaparapeo">Indaparapeo</option>
+          <option value="Ixtlán">Ixtlán</option>
+          <option value="Jacona">Jacona</option>
+          <option value="Jiquilpan">Jiquilpan</option>
+          <option value="José Sixto Verduzco">José Sixto Verduzco</option>
+          <option value="Jungapeo">Jungapeo</option>
+          <option value="La Huacana">La Huacana</option>
+          <option value="La Piedad">La Piedad</option>
+          <option value="Lázaro Cárdenas">Lázaro Cárdenas</option>
+          <option value="Los Reyes">Los Reyes</option>
+          <option value="Madero">Madero</option>
+          <option value="Maravatío">Maravatío</option>
+          <option value="Marcos Castellanos">Marcos Castellanos</option>
+          <option value="Morelia">Morelia</option>
+          <option value="Múgica">Múgica</option>
+          <option value="Nahuatzen">Nahuatzen</option>
+          <option value="Nahuatzen">Nahuatzen</option>
+          <option value="Nuevo Parangaricutiro">Nuevo Parangaricutiro</option>
+          <option value="Pajacuarán">Pajacuarán</option>
+          <option value="Panindícuaro">Panindícuaro</option>
+          <option value="Paracho">Paracho</option>
+          <option value="Pátzcuaro">Pátzcuaro</option>
+          <option value="Peribán">Peribán</option>
+          <option value="Purépero">Purépero</option>
+          <option value="Purúandiro">Purúandiro</option>
+          <option value="Queréndaro">Queréndaro</option>
+          <option value="Quiroga">Quiroga</option>
+          <option value="Quiroga">Quiroga</option>
+          <option value="Sahuayo">Sahuayo</option>
+          <option value="Salvador Escalante">Salvador Escalante</option>
+          <option value="Santa Ana Maya">Santa Ana Maya</option>
+          <option value="Tacámbaro">Tacámbaro</option>
+          <option value="Tancítaro">Tancítaro</option>
+          <option value="Tangamandapio">Tangamandapio</option>
+          <option value="Tangancícuaro">Tangancícuaro</option>
+          <option value="Tanhuato">Tanhuato</option>
+          <option value="Taretan">Taretan</option>
+          <option value="Tarímbaro">Tarímbaro</option>
+          <option value="Tepalcatepec">Tepalcatepec</option>
+          <option value="Tingambato">Tingambato</option>
+          <option value="Tingüindín">Tingüindín</option>
+          <option value="Tocumbo">Tocumbo</option>
+          <option value="Turicato">Turicato</option>
+          <option value="Tuxpan">Tuxpan</option>
+          <option value="Uruapan">Uruapan</option>
+          <option value="Venustiano Carranza">Venustiano Carranza</option>
+          <option value="Vista Hermosa">Vista Hermosa</option>
+          <option value="Yurécuaro">Yurécuaro</option>
+          <option value="Zacapu">Zacapu</option>
+          <option value="Zamora">Zamora</option>
+          <option value="Zinapécuaro">Zinapécuaro</option>
+          <option value="Ziracuaretiro">Ziracuaretiro</option>
+          <option value="Zitácuaro">Zitácuaro</option>
+        </select>
+        <label class="label">Dirección</label>
+        <input class="form--input-text" type="text" placeholder="Calle" />
+        <input
+          class="form--input-text"
+          type="tel"
+          maxlength="5"
+          placeholder="C.P."
+        />
+        <input class="form--input-text" type="text" placeholder="Colonia" />
+        <label class="label">Rango de edad</label>
+        <div>
+          <label class="label">De</label>
+          <input
+            class="form--input-text input-age"
+            type="tel"
+            maxlength="2"
+            placeholder="00"
+          />
+          <label class="label">hasta</label>
+          <input
+            class="form--input-text input-age"
+            type="tel"
+            maxlength="2"
+            placeholder="00"
+          />
+          <label class="label">años</label>
+        </div>
+
+        <label class="form--label label">Logo del Liga</label>
+        <div class="form__image form__image-square">
+          <input
+            class="form__image--input form__image-square--input"
+            type="file"
+            id="file"
+          />
+          <div class="form__image-labels form__image-square-labels">
+            <span
+              class="
+                form__image--label form__image-square--label
+                drop-zone--prompt
+              "
+              >Arrastra una imagen</span
+            >
+            <span
+              class="
+                form__image--label-button form__image-square--label-button
+                drop-zone--prompt
+              "
+              >O haz clic aquí para subir una imagen</span
+            >
+          </div>
+        </div>
+        <div class="button-container">
+          <button
+            class="button yellow-button"
+            onclick="location.href='./league-teams.html'"
+          >
+            Agregar Liga
+          </button>
+        </div>
+      </form>
+    </main>
+  </body>
+  <script type="text/javascript">
+    // Opaque date placeholder until it has been modified
+    var el = document.getElementById('location');
+    el.onchange = function () {
+      if (el.value === '') {
+        el.classList.add('empty');
+      } else {
+        el.classList.remove('empty');
+      }
+    };
+
+    // Select closest container for the input
+    document.querySelectorAll('.form__image--input').forEach((inputElement) => {
+      const dropZoneElement = inputElement.closest('.form__image');
+
+      dropZoneElement.addEventListener('click', (e) => {
+        inputElement.click();
+      });
+
+      inputElement.addEventListener('change', (e) => {
+        if (inputElement.files.length) {
+          updateThumbnail(dropZoneElement, inputElement.files[0]);
+        }
+      });
+
+      /* Event listener when file is being dragged over the drop zone
+      Activates CSS indicator to let the user know that they have
+      dragged the item over the drop zone  */
+      dropZoneElement.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZoneElement.classList.add('drop-zone__over');
+      });
+
+      // Events
+      ['dragleave', 'dragend'].forEach((type) => {
+        dropZoneElement.addEventListener(type, (e) => {
+          dropZoneElement.classList.remove('drop-zone__over');
+        });
+      });
+
+      // Event listener after the file has been dropped on the drop zone
+      dropZoneElement.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (e.dataTransfer.files.length) {
+          inputElement.files = e.dataTransfer.files;
+          updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+        }
+
+        dropZoneElement.classList.remove('drop-zone__over');
+      });
+    });
+
+    /**
+     * Updates thumbnail when the user has dragged and dropped the image
+     * on the drop zone
+     */
+    function updateThumbnail(dropZoneElement, file) {
+      let thumbnailElement =
+        dropZoneElement.querySelectorAll('.drop-zone--thumb');
+
+      if (dropZoneElement.querySelector('.drop-zone--prompt')) {
+        dropZoneElement
+          .querySelector('.form__image-labels')
+          .classList.add('drop-zone--label');
+        dropZoneElement.querySelector('.form__image--label').remove();
+        dropZoneElement.querySelector('.form__image--label-button').remove();
+      }
+
+      if (thumbnailElement) {
+        thumbnailElement = document.createElement('div');
+        thumbnailElement.classList.add('drop-zone--thumb');
+        dropZoneElement.appendChild(thumbnailElement);
+      }
+
+      // Show thumbnail for image file
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+        };
+      } else {
+        thumbnailElement.style.backgroundImage = null;
+      }
+    }
+  </script>
+</html>
