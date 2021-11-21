@@ -96,7 +96,6 @@
         font-size: 1.8rem;
         font-weight: bold;
       }
-      .form--input-text,
       .input {
         height: 32px;
         max-width: 600px;
@@ -110,15 +109,10 @@
         font-weight: bold;
         background-color: #090030;
       }
-      .form--input-text {
-        width: 100%;
-      }
-      .form--input-text::placeholder,
       .input::placeholder {
         color: white;
         opacity: 50%;
       }
-      .form--input-text:focus,
       .input:focus {
         outline: none;
       }
@@ -238,23 +232,23 @@
       <form action="" class="form">
         <h1 class="form--title">Agregar Nueva Liga</h1>
         <input
-          class="form--input-text"
+          class="input"
           type="text"
           placeholder="Nombre *"
           required
         />
         <input
-          class="form--input-text"
+          class="input"
           type="text"
           placeholder="Nombre del responsable"
         />
         <input
-          class="form--input-text"
+          class="input"
           type="num"
           maxlength="10"
           placeholder="Teléfono del responsable"
         />
-        <select class="form--input-text empty" name="location" id="location">
+        <select class="input empty" name="location" id="location">
           <option selected value="">Localidad</option>
           <option value="Acuitzio">Acuitzio</option>
           <option value="Aguililla">Aguililla</option>
@@ -332,26 +326,26 @@
           <option value="Zitácuaro">Zitácuaro</option>
         </select>
         <label class="label">Dirección</label>
-        <input class="form--input-text" type="text" placeholder="Calle" />
+        <input class="input" type="text" placeholder="Calle" />
         <input
-          class="form--input-text"
+          class="input"
           type="tel"
           maxlength="5"
           placeholder="C.P."
         />
-        <input class="form--input-text" type="text" placeholder="Colonia" />
+        <input class="input" type="text" placeholder="Colonia" />
         <label class="label">Rango de edad</label>
         <div>
           <label class="label">De</label>
           <input
-            class="form--input-text input-age"
+            class="input input-age"
             type="tel"
             maxlength="2"
             placeholder="00"
           />
           <label class="label">hasta</label>
           <input
-            class="form--input-text input-age"
+            class="input input-age"
             type="tel"
             maxlength="2"
             placeholder="00"
