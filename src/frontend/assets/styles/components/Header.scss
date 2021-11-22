@@ -1,0 +1,75 @@
+@import '../Vars.scss';
+
+// H E A D E R
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  width: auto;
+  padding: 0 60px;
+  background-color: $midnight;
+}
+
+// Header logo
+.header--logo {
+  height: 80px;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+.header--logo img {
+  height: inherit;
+  object-fit: contain;
+}
+
+// Header burger menu
+.header--burger-menu {
+  display: none;
+}
+
+// Header nav
+.header__nav-list {
+  display: flex;
+  height: auto;
+  width: auto;
+  align-items: center;
+  list-style: none;
+}
+.header__nav-list--item a {
+  font-family: $rubik-font;
+  font-size: $small;
+  font-weight: bold;
+  color: $white;
+  margin: 0 20px;
+}
+.header__nav-list--item a:hover {
+  transition: 0.3s;
+  color: $yellow;
+}
+.header__nav-list--item a:last-child {
+  display: inline-block;
+  width: 100%;
+}
+.header__nav-list--item a img:hover {
+  transition: 0.3s;
+  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+    brightness(101%) contrast(112%);
+}
+
+@media only screen and (max-width: 728px) {
+  // H E A D E R
+  header {
+    padding: 0 20px;
+  }
+  .header__nav-list {
+    display: none;
+  }
+  .header--burger-menu {
+    display: initial;
+    height: 10vh;
+  }
+  .header--burger-menu img {
+    height: 10vh;
+    width: 30px;
+  }
+}

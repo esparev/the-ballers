@@ -62,6 +62,10 @@
         object-fit: contain;
       }
 
+      .header--burger-menu {
+        display: none;
+      }
+
       .header__nav-list {
         display: flex;
         height: auto;
@@ -88,6 +92,23 @@
         transition: 0.3s;
         filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
           brightness(101%) contrast(112%);
+      }
+
+      @media (max-width: 728px) {
+        header {
+          padding: 0 20px;
+        }
+        .header__nav-list {
+          display: none;
+        }
+        .header--burger-menu {
+          display: initial;
+          height: 10vh;
+        }
+        .header--burger-menu img {
+          height: 10vh;
+          width: 40px;
+        }
       }
 
       .admin {
@@ -180,27 +201,32 @@
       <a class="header--logo" href="./home.html">
         <img src="../assets/static/beismich-logo.png" alt="Logo BEISMICH" />
       </a>
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-list--item">
-            <a href="./news.html">Noticias</a>
-          </li>
-          <li class="header__nav-list--item">
-            <a href="./tournaments.html">Torneos</a>
-          </li>
-          <li class="header__nav-list--item">
-            <a href="./leagues.html">Ligas</a>
-          </li>
-          <li class="header__nav-list--item">
-            <a href="#">Conócenos</a>
-          </li>
-          <li class="header__nav-list--item">
-            <a href="">
-              <img src="../assets/icons/user-icon.svg" alt="Usuario" />
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div>
+        <a class="header--burger-menu" href="">
+          <img src="../assets/icons/burger-menu-icon.svg" alt="Menu">
+        </a>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-list--item">
+              <a href="./news.html">Noticias</a>
+            </li>
+            <li class="header__nav-list--item">
+              <a href="./tournaments.html">Torneos</a>
+            </li>
+            <li class="header__nav-list--item">
+              <a href="./leagues.html">Ligas</a>
+            </li>
+            <li class="header__nav-list--item">
+              <a href="#">Conócenos</a>
+            </li>
+            <li class="header__nav-list--item">
+              <a href="">
+                <img src="../assets/icons/user-icon.svg" alt="Usuario" />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <main>

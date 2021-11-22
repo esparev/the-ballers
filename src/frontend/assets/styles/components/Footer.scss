@@ -1,0 +1,74 @@
+@import '../Vars.scss';
+
+// F O O T E R
+footer {
+  border-top: 4px solid #ffb700;
+  height: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('../../static/halftone-background.png');
+}
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: inherit;
+  width: auto;
+  padding: 0 60px;
+  background: rgb(255, 183, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 183, 0, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+// Footer text
+.footer__container p {
+  font-family: $rubik-font;
+  font-size: $small;
+  font-weight: bold;
+  color: $white;
+}
+
+.footer__container-info {
+  width: 40%;
+}
+
+// Footer socials
+.footer__container-socials {
+  width: 20%;
+  text-align: center;
+}
+.footer__container-socials img {
+  width: 40px;
+}
+
+// Footer beismich
+.beismich p {
+  text-align: end;
+}
+
+@media only screen and (max-width: 728px) {
+  footer {
+    height: auto;
+  }
+  .footer__container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    place-content: center;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  .footer__container div {
+    width: auto;
+    margin: 4px 0;
+  }
+  .made-by {
+    grid-row: 3;
+  }
+  .beismich p {
+    text-align: center;
+  }
+}

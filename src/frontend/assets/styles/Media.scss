@@ -1,0 +1,42 @@
+@import './Vars.scss';
+
+@media only screen and (max-width: 728px) {
+  // H E A D E R
+  header {
+    padding: 0 20px;
+  }
+  .header__nav-list {
+    display: none;
+  }
+  .header--burger-menu {
+    display: initial;
+    height: 10vh;
+  }
+  .header--burger-menu img {
+    height: 10vh;
+    width: 40px;
+  }
+
+  // F O O T E R
+  footer {
+    height: auto;
+  }
+  .footer__container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    place-content: center;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  .footer__container div {
+    width: auto;
+    margin: 4px 0;
+  }
+  .made-by {
+    grid-row: 3;
+  }
+  .beismich p {
+    text-align: center;
+  }
+}

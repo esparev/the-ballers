@@ -56,9 +56,33 @@
       .footer__container-socials img {
         width: 40px;
       }
-      
+
       .beismich p {
         text-align: end;
+      }
+
+      @media only screen and (max-width: 728px) {
+        footer {
+          height: auto;
+        }
+        .footer__container {
+          display: grid;
+          grid-template-rows: 1fr 1fr 1fr;
+          justify-items: center;
+          height: auto;
+          padding: 20px;
+          text-align: center;
+        }
+        .footer__container div {
+          width: auto;
+          margin: 4px 0;
+        }
+        .made-by {
+          grid-row: 3;
+        }
+        .beismich p {
+          text-align: center;
+        }
       }
     </style>
   </head>
@@ -69,7 +93,7 @@
           <p>Hecho por Integra • 2021</p>
         </div>
         <div class="footer__container-socials">
-          <img src="../assets/icons/facebook-icon.svg" alt="">
+          <img src="../assets/icons/facebook-icon.svg" alt="" />
         </div>
         <div class="footer__container-info beismich">
           <p>Asociación de Beisbolistas Michoacanos</p>
