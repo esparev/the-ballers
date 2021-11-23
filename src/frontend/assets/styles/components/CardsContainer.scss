@@ -1,0 +1,15 @@
+@import '../Vars.scss';
+
+.cards__container {
+  padding: 60px;
+  background-color: $midnight;
+}
+.cards__container--title {
+  color: $white;
+}
+
+@media only screen and (max-width: 834px) {
+  .cards__container {
+    padding: 30px;
+  }
+}

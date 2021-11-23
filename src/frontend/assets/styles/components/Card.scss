@@ -1,0 +1,89 @@
+@import '../Vars.scss';
+
+.card {
+  display: flex;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: $white;
+  overflow: hidden;
+}
+.card--image {
+  height: inherit;
+  width: 100%;
+  max-width: 400px;
+  min-width: 220px;
+  object-fit: cover;
+}
+.card__info-container {
+  height: auto;
+  width: auto;
+  padding: 40px;
+}
+.card--description {
+  padding: 14px 0;
+  font-family: $roboto-font;
+  font-size: $normal-des;
+}
+.card--link {
+  display: inline-block;
+  color: $yellow;
+}
+
+.card__about {
+  display: flex;
+  font-family: $roboto-font;
+  font-size: $normal-des;
+  color: $gray;
+}
+.card__about p {
+  padding-right: 8px;
+}
+.card--category {
+  letter-spacing: 2px;
+  font-family: $roboto-font;
+  font-size: $normal-des;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+@media only screen and (max-width: 1340px) {
+  h1 {
+    font-size: $big-mob;
+  }
+  .card {
+    height: 260px;
+  }
+  .card__info-container {
+    padding: 20px;
+  }
+  .card--description {
+    font-size: $normal-mob;
+  }
+  .card__about {
+    font-size: $normal-mob;
+  }
+  .card--category {
+    font-size: $normal-mob;
+  }
+  .button {
+    height: 32px;
+    font-size: $normal-mob;
+  }
+}
+
+@media only screen and (max-width: 834px) {
+  h2 {
+    font-size: $medium-mob;
+  }
+  .card {
+    display: inline-block;
+    height: auto;
+  }
+  .card--image {
+    height: 200px;
+  }
+}

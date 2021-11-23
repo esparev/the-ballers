@@ -36,7 +36,7 @@
       a {
         text-decoration: none;
       }
-      
+
       header {
         display: flex;
         justify-content: space-between;
@@ -100,13 +100,14 @@
       }
       .news__card--image {
         height: inherit;
-        object-fit: contain;
-        background-color: #090030;
+        width: 100%;
+        min-width: 220px;
+        object-fit: cover;
       }
       .news__card-info {
         height: auto;
-        width: 100%;
-        margin: 40px;
+        width: auto;
+        padding: 40px;
       }
       .news--description {
         padding: 14px 0;
@@ -140,11 +141,11 @@
       .button {
         height: 40px;
         width: fit-content;
-        padding: 12px 24px;
+        padding: 0 24px;
         border: none;
         border-radius: 20px;
         font-family: 'Rubik';
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: bold;
         color: white;
         cursor: pointer;
@@ -153,10 +154,51 @@
       .yellow-button {
         background-color: #ffb700;
       }
+
+      @media only screen and (max-width: 1340px) {
+        h1 {
+          font-size: 3.4rem;
+        }
+        h2 {
+          font-size: 2.6rem;
+        }
+        .news__card {
+          height: 260px;
+        }
+        .news__card-info {
+          padding: 20px;
+        }
+        .news--description {
+          font-size: 1.2rem;
+        }
+        .card-category {
+          font-size: 1.2rem;
+        }
+        .button {
+          height: 32px;
+          font-size: 1.2rem;
+        }
+      }
+
+      @media only screen and (max-width: 834px) {
+        main {
+          margin: 40px;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        .news__card {
+          display: inline-block;
+          height: auto;
+        }
+        .news__card--image {
+          height: 200px;
+        }
+      }
     </style>
   </head>
   <body>
-    <header>
+    <!-- <header>
       <a class="header--logo" href="./home.html">
         <img src="../assets/static/beismich-logo.png" alt="Logo BEISMICH" />
       </a>
@@ -181,7 +223,7 @@
           </li>
         </ul>
       </nav>
-    </header>
+    </header> -->
 
     <main>
       <div class="news">

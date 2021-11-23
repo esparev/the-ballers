@@ -26,7 +26,7 @@ footer {
 // Footer text
 .footer__container p {
   font-family: $rubik-font;
-  font-size: $small;
+  font-size: $normal-des;
   font-weight: bold;
   color: $white;
 }
@@ -49,7 +49,7 @@ footer {
   text-align: end;
 }
 
-@media only screen and (max-width: 728px) {
+@media only screen and (max-width: 834px) {
   footer {
     height: auto;
   }
