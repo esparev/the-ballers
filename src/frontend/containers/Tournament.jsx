@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import Articles from '../components/Articles.jsx';
+import ButtonContainer from './ButtonContainer.jsx';
+import GrayButton from '../components/GrayButton.jsx';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
@@ -20,7 +22,9 @@ const Tournament = () => {
             alt=''
           />
         </div>
+
         <h1 class='article--title'>Torneo de Liga TELMEX</h1>
+
         <div class='article--info'>
           <p>Asociación de Beisbolistas Michoacanos</p>
           <p>•</p>
@@ -34,6 +38,7 @@ const Tournament = () => {
             https://docs.google.com/document/d/1nBUzVIkWIdFPszrIoaqkcxLeSa-kz1QAqHFxK41E_MA/edit
           </a>
         </p>
+
         <div class='article__share'>
           <p>Compartir:</p>
           <div class='article__icons'>
@@ -57,11 +62,12 @@ const Tournament = () => {
           </div>
         </div>
 
-        <div class='button-container'>
-          <a class='button gray-button' href='./edit-news.html'>
-            Editar Torneo
-          </a>
-        </div>
+        <ButtonContainer>
+          <GrayButton
+            name='Editar Torneo'
+            route='/torneos/torneo/editar-torneo'
+          />
+        </ButtonContainer>
       </section>
 
       <section class='more-articles'>

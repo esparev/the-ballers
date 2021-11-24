@@ -1,4 +1,5 @@
 import React from 'react';
+import YellowButton from './YellowButton.jsx';
 import '../assets/styles/components/Articles.scss';
 
 const Articles = (props) => {
@@ -11,6 +12,7 @@ const Articles = (props) => {
         src='https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg'
         alt='Portada del tema'
       />
+
       <div className='more-articles__card-info'>
         <div className='card__info'>
           <h2 className='more-articles__card--title'>{title}</h2>
@@ -20,9 +22,8 @@ const Articles = (props) => {
             <p className='card--category'>{category}</p>
           </div>
         </div>
-        <button className='more-articles__card--button button yellow-button'>
-          Ver más
-        </button>
+        
+        <YellowButton name='Ver más' route='/pending' />
       </div>
     </div>
   );

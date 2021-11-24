@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import NewsCard from '../components/Card.jsx';
+import ButtonContainer from './ButtonContainer.jsx';
+import YellowButton from '../components/YellowButton.jsx';
 import '../assets/styles/components/CardsContainer.scss';
 
 const News = () => {
@@ -11,6 +13,7 @@ const News = () => {
     <main>
       <div className='cards__container'>
         <h1 className='cards__container--title'>Torneos</h1>
+        
         <NewsCard
           title='Torneo de Liga TELMEX'
           date='Octubre 26, 2021'
@@ -32,14 +35,10 @@ const News = () => {
           link='https://docs.google.com/document/d/1nBUzVIkWIdFPszrIoaqkcxLeSa-kz1QAqHFxK41E_MA/edit'
           route='/torneos/torneo'
         />
-        <div className='button-container'>
-          <button
-            className='button yellow-button'
-            onClick="location.href='./create-news.html'"
-          >
-            Nuevo Torneo
-          </button>
-        </div>
+
+        <ButtonContainer>
+          <YellowButton name='Nuevo Torneo' route='/torneos/nuevo-torneo' />
+        </ButtonContainer>
       </div>
     </main>
   );

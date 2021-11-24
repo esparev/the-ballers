@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import YellowButton from './YellowButton.jsx';
 import '../assets/styles/components/Card.scss';
 
 const Card = (props) => {
@@ -12,6 +12,7 @@ const Card = (props) => {
         src='https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg'
         alt=''
       />
+      
       <div className='card__info-container'>
         <div className='card__info'>
           <h2 className='card__info--title'>{title}</h2>
@@ -25,9 +26,8 @@ const Card = (props) => {
             <a className='card--link'>{link}</a>
           </p>
         </div>
-        <Link className='button yellow-button' to={route}>
-          Ver más
-        </Link>
+
+        <YellowButton name='Ver más' route={route} />
       </div>
     </div>
   );

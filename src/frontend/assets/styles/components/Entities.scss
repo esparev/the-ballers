@@ -1,0 +1,14 @@
+@import '../Vars.scss';
+
+.entities {
+  padding: 60px;
+}
+.entities--title {
+  color: $white;
+}
+
+@media only screen and (max-width: 834px) {
+  .entities {
+    padding: 20px;
+  }
+}

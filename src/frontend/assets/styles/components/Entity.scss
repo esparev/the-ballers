@@ -1,0 +1,20 @@
+@import '../Vars.scss';
+
+.entity {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.entity a:focus {
+  outline: none;
+}
+.entity--image {
+  width: 250px;
+}
+.entity--name {
+  font-family: $rubik-font;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: $white;
+}

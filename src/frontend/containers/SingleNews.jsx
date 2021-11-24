@@ -1,5 +1,7 @@
 import React from 'react';
 import Articles from '../components/Articles.jsx';
+import ButtonContainer from './ButtonContainer.jsx';
+import GrayButton from '../components/GrayButton.jsx';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
@@ -16,9 +18,11 @@ const SingleNews = () => {
             alt=''
           />
         </div>
+
         <h1 class='article--title'>
           BEISMICH manda liga de Morelia al mundial
         </h1>
+
         <div class='article--info'>
           <p>Asociación de Beisbolistas Michoacanos</p>
           <p>•</p>
@@ -35,6 +39,7 @@ const SingleNews = () => {
           sed tincidunt et ipsum interdum in in. Sed cras sagittis nec sed nam.
           Nisl interdum sit tincidunt fringilla facilisis.
         </p>
+        
         <div class='article__share'>
           <p>Compartir:</p>
           <div class='article__icons'>
@@ -58,11 +63,12 @@ const SingleNews = () => {
           </div>
         </div>
 
-        <div class='button-container'>
-          <a class='button gray-button' href='./edit-news.html'>
-            Editar Noticia
-          </a>
-        </div>
+        <ButtonContainer>
+          <GrayButton
+            name='Editar Noticia'
+            route='/noticias/noticia/editar-noticia'
+          />
+        </ButtonContainer>
       </section>
 
       <section class='more-articles'>

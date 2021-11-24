@@ -24,6 +24,7 @@
 }
 .more-articles__card--info {
   display: flex;
+  flex-wrap: wrap;
   font-family: $roboto-font;
   font-size: $normal-des;
   color: $gray;

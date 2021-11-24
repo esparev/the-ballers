@@ -2,11 +2,12 @@
 
 // F O O T E R
 footer {
-  border-top: 4px solid #ffb700;
   height: 80px;
+  margin-top: 40px;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url('../../static/halftone-background.png');
+  border-top: 4px solid #ffb700;
 }
 .footer__container {
   display: flex;
@@ -30,7 +31,6 @@ footer {
   font-weight: bold;
   color: $white;
 }
-
 .footer__container-info {
   width: 40%;
 }
