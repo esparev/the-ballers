@@ -10,40 +10,38 @@ const Admins = () => {
     <main className='admins'>
       <div className='players-coach'>
         <section className='actors'>
+          <h2 className='actors--title'>Administradores</h2>
           <div className='actors__container'>
-            <h2 className='actors__container--title'>Administradores</h2>
-            <div className='more-actors'>
-              <Actor
-                name='Nombre Administrador'
-                image={userIcon}
-                route='/admins/admin'
-              />
-              <Actor
-                name='Nombre Administrador'
-                image={userIcon}
-                route='/admins/admin'
-              />
-              <Actor
-                name='Nombre Administrador'
-                image={userIcon}
-                route='/admins/admin'
-              />
-              <Actor
-                name='Nombre Administrador'
-                image={userIcon}
-                route='/admins/admin'
-              />
-              <Actor
-                name='Nombre Administrador'
-                image={userIcon}
-                route='/admins/admin'
-              />
-              <Actor
-                name='Nombre Administrador'
-                image={userIcon}
-                route='/admins/admin'
-              />
-            </div>
+            <Actor
+              name='Nombre Administrador'
+              image={userIcon}
+              route='/admins/admin'
+            />
+            <Actor
+              name='Nombre Administrador'
+              image={userIcon}
+              route='/admins/admin'
+            />
+            <Actor
+              name='Nombre Administrador'
+              image={userIcon}
+              route='/admins/admin'
+            />
+            <Actor
+              name='Nombre Administrador'
+              image={userIcon}
+              route='/admins/admin'
+            />
+            <Actor
+              name='Nombre Administrador'
+              image={userIcon}
+              route='/admins/admin'
+            />
+            <Actor
+              name='Nombre Administrador'
+              image={userIcon}
+              route='/admins/admin'
+            />
           </div>
         </section>
       </div>

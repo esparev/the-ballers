@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Articles from '../components/Articles.jsx';
+import Article from '../components/Article.jsx';
 import ButtonContainer from './ButtonContainer.jsx';
 import GrayButton from '../components/GrayButton.jsx';
 import '../assets/styles/components/Article.scss';
@@ -72,12 +72,12 @@ const Tournament = () => {
 
       <section class='more-articles'>
         <h2 class='more-articles--title'>Más Torneos</h2>
-        <Articles
+        <Article
           title='Torneo de Liga TELMEX'
           date='Octubre 26, 2021'
           category='Torneo'
         />
-        <Articles
+        <Article
           title='Torneo de Liga TELMEX'
           date='Octubre 26, 2021'
           category='Torneo'

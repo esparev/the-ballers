@@ -10,11 +10,11 @@ footer {
   border-top: 4px solid #ffb700;
 }
 .footer__container {
+  height: inherit;
+  width: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: inherit;
-  width: auto;
   padding: 0 60px;
   background: rgb(255, 183, 0);
   background: linear-gradient(
@@ -54,10 +54,10 @@ footer {
     height: auto;
   }
   .footer__container {
+    height: auto;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     place-content: center;
-    height: auto;
     padding: 20px;
     text-align: center;
   }

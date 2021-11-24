@@ -1,10 +1,10 @@
 @import '../Vars.scss';
 
 .card {
-  display: flex;
-  align-items: center;
   height: 300px;
   width: 100%;
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
   border-radius: 12px;
   background-color: $white;
@@ -34,17 +34,17 @@
 .card__about {
   display: flex;
   font-family: $roboto-font;
-  font-size: $normal-des;
+  font-size: $normal-mob;
   color: $gray;
 }
 .card__about p {
   padding-right: 8px;
 }
 .card--category {
-  letter-spacing: 2px;
   font-family: $roboto-font;
-  font-size: $normal-des;
+  font-size: $normal-mob;
   font-weight: bold;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: $gray;
 }

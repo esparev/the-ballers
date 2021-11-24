@@ -1,5 +1,5 @@
 import React from 'react';
-import Articles from '../components/Articles.jsx';
+import Article from '../components/Article.jsx';
 import ButtonContainer from './ButtonContainer.jsx';
 import GrayButton from '../components/GrayButton.jsx';
 import '../assets/styles/components/Article.scss';
@@ -73,12 +73,12 @@ const SingleNews = () => {
 
       <section class='more-articles'>
         <h2 class='more-articles--title'>Más Noticias</h2>
-        <Articles
+        <Article
           title='BEISMICH manda liga de Morelia al mundial'
           date='Octubre 26, 2021'
           category='Noticia'
         />
-        <Articles
+        <Article
           title='BEISMICH manda liga de Morelia al mundial'
           date='Octubre 26, 2021'
           category='Noticia'

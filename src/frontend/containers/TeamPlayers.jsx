@@ -33,46 +33,44 @@ const TeamPlayers = () => {
 
       <div className='players-coach'>
         <section className='actors'>
+          <h2 className='actors--title'>Jugadores</h2>
           <div className='actors__container'>
-            <h2 className='actors__container--title'>Jugadores</h2>
-            <div className='more-actors'>
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-            </div>
+            <Actor
+              name='Nombre Jugador'
+              image={userIcon}
+              position='Posición'
+              route='/ligas/liga/equipo/jugador'
+            />
+            <Actor
+              name='Nombre Jugador'
+              image={userIcon}
+              position='Posición'
+              route='/ligas/liga/equipo/jugador'
+            />
+            <Actor
+              name='Nombre Jugador'
+              image={userIcon}
+              position='Posición'
+              route='/ligas/liga/equipo/jugador'
+            />
+            <Actor
+              name='Nombre Jugador'
+              image={userIcon}
+              position='Posición'
+              route='/ligas/liga/equipo/jugador'
+            />
+            <Actor
+              name='Nombre Jugador'
+              image={userIcon}
+              position='Posición'
+              route='/ligas/liga/equipo/jugador'
+            />
+            <Actor
+              name='Nombre Jugador'
+              image={userIcon}
+              position='Posición'
+              route='/ligas/liga/equipo/jugador'
+            />
           </div>
         </section>
 
@@ -91,8 +89,14 @@ const TeamPlayers = () => {
       </div>
 
       <ButtonContainer>
-        <YellowButton name='Nuevo Jugador/Entrenador' route='/ligas/liga/equipo/nuevo-jugador-entrenador-pending' />
-        <GrayButton name='Editar Equipo' route='/ligas/liga/equipo/editar-equipo' />
+        <YellowButton
+          name='Nuevo Jugador/Entrenador'
+          route='/ligas/liga/equipo/nuevo-jugador-entrenador-pending'
+        />
+        <GrayButton
+          name='Editar Equipo'
+          route='/ligas/liga/equipo/editar-equipo'
+        />
       </ButtonContainer>
     </main>
   );

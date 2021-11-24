@@ -36,11 +36,11 @@
 .actors {
   width: auto;
 }
-.actors__container--title {
+.actors--title {
   font-size: $medium-des;
   color: $white;
 }
-.more-actors {
+.actors__container {
   margin-top: 20px;
 }
 
@@ -63,7 +63,7 @@
     flex-direction: column;
     justify-content: center;
   }
-  .actors__container--title {
+  .actors--title {
     text-align: center;
   }
 }

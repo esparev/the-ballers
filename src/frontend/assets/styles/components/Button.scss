@@ -6,9 +6,9 @@
   justify-content: end;
 }
 .button {
-  display: block;
   height: 40px;
   width: fit-content;
+  display: block;
   margin-top: 16px;
   margin-right: 16px;
   padding: 8px 24px;
@@ -32,21 +32,8 @@
 }
 
 @media only screen and (max-width: 1340px) {
-  .button-container {
-    justify-content: end;
-  }
   .button {
     height: 32px;
-    margin-right: 16px;
     font-size: $normal-mob;
-  }
-}
-
-@media only screen and (max-width: 834px) {
-  .button-container {
-    justify-content: center;
-  }
-  .button {
-    margin-right: 0;
   }
 }

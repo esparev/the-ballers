@@ -9,7 +9,10 @@ import Tournament from '../containers/Tournament.jsx';
 import Leagues from '../containers/Leagues.jsx';
 import LeagueTeams from '../containers/LeagueTeams.jsx';
 import TeamPlayers from '../containers/TeamPlayers.jsx';
+import PlayerContainer from '../containers/PlayerContainer.jsx';
+import CoachContainer from '../containers/CoachContainer.jsx';
 import Admins from '../containers/Admins.jsx';
+import AdminContainer from '../containers/AdminContainer.jsx';
 
 const App = () => {
   return (
@@ -24,7 +27,10 @@ const App = () => {
           <Route exact path='/ligas' component={Leagues} />
           <Route exact path='/ligas/liga' component={LeagueTeams} />
           <Route exact path='/ligas/liga/equipo' component={TeamPlayers} />
+          <Route exact path='/ligas/liga/equipo/jugador' component={PlayerContainer} />
+          <Route exact path='/ligas/liga/equipo/entrenador' component={CoachContainer} />
           <Route exact path='/admins' component={Admins} />
+          <Route exact path='/admins/admin' component={AdminContainer} />
         </Layout>
       </Switch>
     </BrowserRouter>

@@ -1,0 +1,67 @@
+@import '../Vars.scss';
+
+.cover {
+  height: 200px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  margin: 60px 0 20px 0;
+  overflow: hidden;
+  background-image: url('../../static/sport-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.cover--image {
+  width: 280px;
+  margin-left: 60px;
+  object-fit: contain;
+  transform: rotate(345deg);
+}
+.actor {
+  width: auto;
+  margin: 0 60px;
+}
+.actor__container {
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.actor__container--image {
+  width: 150px;
+  margin-right: 60px;
+  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+    brightness(101%) contrast(112%);
+}
+.actor__container p {
+  font-family: $rubik-font;
+  font-size: $normal-des;
+  color: $white;
+}
+.actor__info--name {
+  color: $white;
+}
+.actor__info-about {
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.actor__info-about p {
+  margin: 4px 40px 4px 0;
+}
+
+.actors {
+  width: auto;
+  margin: 40px 60px;
+}
+.actors__container--title {
+  color: $white;
+}
+.more-actors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,20 @@
+@import '../Vars.scss';
+
+.more-actors__card {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 20px;
+}
+.more-actors__card--image {
+  width: 150px;
+  padding-bottom: 20px;
+  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+    brightness(101%) contrast(112%);
+}
+.more-actors__card--name {
+  text-align: center;
+  color: $white;
+}

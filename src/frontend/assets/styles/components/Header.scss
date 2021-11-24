@@ -2,11 +2,11 @@
 
 // H E A D E R
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 10vh;
   width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 60px;
   background-color: $midnight;
 }
@@ -23,11 +23,11 @@ header {
 }
 
 .header__menu {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: center;
   height: 10vh;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  justify-content: center;
 }
 
 // Header burger menu
@@ -37,26 +37,26 @@ header {
 
 // Header nav
 .header__nav-list {
-  display: flex;
   height: auto;
   width: auto;
+  display: flex;
   align-items: center;
   list-style: none;
 }
 .header__nav-list--item a {
+  margin: 0 20px;
   font-family: $rubik-font;
   font-size: $normal-des;
   font-weight: bold;
   color: $white;
-  margin: 0 20px;
 }
 .header__nav-list--item a:hover {
   transition: 0.3s;
   color: $yellow;
 }
 .header__nav-list--item a:last-child {
-  display: inline-block;
   width: 100%;
+  display: inline-block;
 }
 .header__nav-list--item a img {
   width: 40px;
@@ -69,11 +69,11 @@ header {
 
 @media only screen and (max-width: 834px) {
   .header__nav {
+    height: auto;
+    width: auto;
     display: none;
     position: absolute;
     top: 10vh;
-    height: auto;
-    width: auto;
     padding: 20px 40px;
     padding-left: 0;
     border-radius: 12px;
@@ -95,8 +95,8 @@ header {
       brightness(103%) contrast(100%);
   }
   .header--burger-menu {
-    display: initial;
     height: 10vh;
+    display: initial;
     cursor: pointer;
   }
   .header--burger-menu img {

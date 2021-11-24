@@ -6,16 +6,16 @@ const Actor = (props) => {
   const { name, image, position, route } = props;
 
   return (
-    <Link className='more-actors__card' to={route}>
+    <Link className='actor__card' to={route}>
       <img
-        className='more-actors__card--image'
+        className='actor__card--image'
         src={image}
         alt='Foto del jugador'
       />
-      <div className='more-actors__card-info'>
-        <h3 className='more-actors__card-info--name'>{name}</h3>
+      <div className='actor__card-info'>
+        <h3 className='actor__card-info--name'>{name}</h3>
         {position ? (
-          <p className='more-actors__card--position'>{position}</p>
+          <p className='actor__card--position'>{position}</p>
         ) : null}
       </div>
     </Link>
