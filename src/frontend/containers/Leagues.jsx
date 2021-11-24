@@ -21,11 +21,23 @@ const Leagues = () => {
         <h1 className='entities--title'>Ligas de BEISMICH</h1>
 
         <EntityContainer>
-          <Entity name='Liga Purepechas' logo={purepechasLogo} />
-          <Entity name='Liga Amigos del Cupatizio' logo={cupatizioLogo} />
-          <Entity name='Liga Ariense' logo={arienseLogo} />
-          <Entity name='Liga Purepecha' logo={lbpLogo} />
-          <Entity name='Liga Pequeña Tarasca' logo={tarascaLogo} />
+          <Entity
+            name='Liga Purepechas'
+            logo={purepechasLogo}
+            route='/ligas/liga'
+          />
+          <Entity
+            name='Liga Amigos del Cupatizio'
+            logo={cupatizioLogo}
+            route='/ligas/liga'
+          />
+          <Entity name='Liga Ariense' logo={arienseLogo} route='/ligas/liga' />
+          <Entity name='Liga Purepecha' logo={lbpLogo} route='/ligas/liga' />
+          <Entity
+            name='Liga Pequeña Tarasca'
+            logo={tarascaLogo}
+            route='/ligas/liga'
+          />
         </EntityContainer>
 
         <ButtonContainer>

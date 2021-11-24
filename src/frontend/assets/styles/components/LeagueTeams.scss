@@ -1,0 +1,49 @@
+@import '../Vars.scss';
+
+.league-teams {
+  padding: 60px;
+}
+.league__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.league--image {
+  width: 200px;
+  margin-right: 20px;
+}
+.league--title {
+  color: $white;
+}
+.league__info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+.league__info p {
+  margin: 12px 0;
+  font-family: $rubik-font;
+  font-size: $normal-des;
+  color: $white;
+}
+
+.teams--title {
+  color: $white;
+}
+
+@media only screen and (max-width: 834px) {
+  .league-teams {
+    padding: 20px;
+  }
+  .league__main {
+    justify-content: center;
+    text-align: center;
+  }
+  .league__info {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}

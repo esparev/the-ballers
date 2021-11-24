@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/styles/components/Entity.scss';
 
 const Entity = (props) => {
-  const { name, logo } = props;
+  const { name, logo, route } = props;
   return (
     <div className='entity'>
-      <a href='#'>
+      <Link to={route}>
         <img className='entity--image' src={logo} alt={name} />
-      </a>
+      </Link>
       <p className='entity--name'>{name}</p>
     </div>
   );

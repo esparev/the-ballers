@@ -7,6 +7,7 @@ import SingleNews from '../containers/SingleNews.jsx';
 import Tournaments from '../containers/Tournaments.jsx';
 import Tournament from '../containers/Tournament.jsx';
 import Leagues from '../containers/Leagues.jsx';
+import LeagueTeams from '../containers/LeagueTeams.jsx';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path='/torneos' component={Tournaments} />
           <Route exact path='/torneos/torneo' component={Tournament} />
           <Route exact path='/ligas' component={Leagues} />
+          <Route exact path='/ligas/liga' component={LeagueTeams} />
         </Layout>
       </Switch>
     </BrowserRouter>
