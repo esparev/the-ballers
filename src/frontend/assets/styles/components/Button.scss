@@ -32,8 +32,12 @@
 }
 
 @media only screen and (max-width: 1340px) {
+  .button-container {
+    justify-content: end;
+  }
   .button {
     height: 32px;
+    margin-right: 16px;
     font-size: $normal-mob;
   }
 }

@@ -1,5 +1,6 @@
 @import '../Vars.scss';
 
+.admins,
 .team-players {
   padding: 60px;
 }
@@ -44,6 +45,7 @@
 }
 
 @media only screen and (max-width: 834px) {
+  .admins,
   .team-players {
     padding: 20px;
   }
