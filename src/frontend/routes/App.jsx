@@ -9,10 +9,10 @@ import Tournament from '../containers/Tournament.jsx';
 import Leagues from '../containers/Leagues.jsx';
 import LeagueTeams from '../containers/LeagueTeams.jsx';
 import TeamPlayers from '../containers/TeamPlayers.jsx';
-import PlayerContainer from '../containers/PlayerContainer.jsx';
-import CoachContainer from '../containers/CoachContainer.jsx';
+import PlayerContainer from '../containers/Player.jsx';
+import CoachContainer from '../containers/Coach.jsx';
 import Admins from '../containers/Admins.jsx';
-import AdminContainer from '../containers/AdminContainer.jsx';
+import AdminContainer from '../containers/Admin.jsx';
 
 const App = () => {
   return (

@@ -79,6 +79,7 @@ header {
     border-radius: 12px;
     background-color: $white;
     box-shadow: -6px 14px 12px 3px rgba($color: $black, $alpha: 0.5);
+    z-index: 1;
   }
   .header__nav-list {
     display: initial;

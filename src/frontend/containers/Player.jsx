@@ -6,7 +6,7 @@ import '../assets/styles/components/ActorContainer.scss';
 import cupatizioLogo from '../assets/static/cupatizio-logo.png';
 import userIcon from '../assets/icons/user-icon.svg';
 
-const PlayerContainer = () => {
+const Player = () => {
   return (
     <main>
       <section class='cover'>
@@ -85,4 +85,4 @@ const PlayerContainer = () => {
   );
 };
 
-export default PlayerContainer;
+export default Player;

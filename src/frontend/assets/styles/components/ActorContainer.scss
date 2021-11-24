@@ -25,6 +25,7 @@
 .actor__container {
   width: auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 .actor__container--image {
@@ -64,4 +65,29 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+
+@media only screen and (max-width: 836px) {
+  .cover {
+    justify-content: center;
+  }
+  .cover--image {
+    margin-left: 0;
+  }
+  .actor__container {
+    justify-content: center;
+  }
+  .actor__container--image {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .actor__info {
+    text-align: center;
+  }
+  .actor__info-about p {
+    margin-right: 0;
+  }
+  .actors__container--title {
+    text-align: center;
+  }
 }

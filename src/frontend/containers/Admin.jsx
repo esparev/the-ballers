@@ -5,7 +5,7 @@ import GrayButton from '../components/GrayButton';
 import '../assets/styles/components/ActorContainer.scss';
 import userIcon from '../assets/icons/user-icon.svg';
 
-const AdminContainer = () => {
+const Admin = () => {
   return (
     <main>
       <section class='actor'>
@@ -74,4 +74,4 @@ const AdminContainer = () => {
   );
 };
 
-export default AdminContainer;
+export default Admin;

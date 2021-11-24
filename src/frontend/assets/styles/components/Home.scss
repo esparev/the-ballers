@@ -61,6 +61,9 @@
 }
 
 @media only screen and (max-width: 1340px) {
+  .slider__sidebar {
+    width: 40%;
+  }
   .news-tournaments {
     display: block;
   }
@@ -79,9 +82,9 @@
   }
   .slider {
     height: 300px;
-    border-radius: 0;
   }
   .slider__sidebar {
+    width: 100%;
     background-color: rgba(9, 0, 48, 0.45);
   }
   .slider__sidebar--title {

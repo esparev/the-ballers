@@ -6,7 +6,7 @@ import '../assets/styles/components/ActorContainer.scss';
 import cupatizioLogo from '../assets/static/cupatizio-logo.png';
 import userIcon from '../assets/icons/user-icon.svg';
 
-const CoachContainer = () => {
+const Coach = () => {
   return (
     <main>
       <section class='cover'>
@@ -82,4 +82,4 @@ const CoachContainer = () => {
   );
 };
 
-export default CoachContainer;
+export default Coach;
