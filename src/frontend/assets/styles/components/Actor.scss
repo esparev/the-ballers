@@ -1,0 +1,41 @@
+@import '../Vars.scss';
+
+.more-actors__card {
+  display: flex;
+  align-items: center;
+  width: auto;
+  padding-bottom: 20px;
+}
+.more-actors__card--image {
+  width: 150px;
+  padding-right: 20px;
+  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+    brightness(101%) contrast(112%);
+}
+.more-actors__card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.more-actors__card-info--name {
+  text-align: center;
+  color: $white;
+}
+.more-actors__card--position {
+  font-family: $rubik-font;
+  font-size: $normal-des;
+  color: $white;
+}
+
+@media only screen and (max-width: 834px) {
+  .more-actors__card {
+    flex-direction: column;
+  }
+  .more-actors__card--image {
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+  .more-actors__card-info {
+    text-align: center;
+  }
+}

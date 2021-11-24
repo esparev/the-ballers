@@ -2,6 +2,7 @@
 
 .button-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: end;
 }
 .button {
@@ -34,5 +35,14 @@
   .button {
     height: 32px;
     font-size: $normal-mob;
+  }
+}
+
+@media only screen and (max-width: 834px) {
+  .button-container {
+    justify-content: center;
+  }
+  .button {
+    margin-right: 0;
   }
 }

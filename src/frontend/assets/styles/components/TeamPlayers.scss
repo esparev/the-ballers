@@ -1,52 +1,67 @@
 @import '../Vars.scss';
 
-.league-teams {
+.team-players {
   padding: 60px;
 }
-.league__main {
+.team__main {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
-.league--image {
+.team--image {
   width: 200px;
   margin-right: 20px;
 }
-.league--title {
+.team--title {
   color: $white;
 }
-.league__info {
+.team__info {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   margin: 40px 0;
 }
-.league__info p {
+.team__info p {
   margin: 12px 0;
   font-family: $rubik-font;
   font-size: $normal-des;
   color: $white;
 }
-
-.teams--title {
+.players-coach {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.actors {
+  width: auto;
+}
+.actors__container--title {
+  font-size: $medium-des;
   color: $white;
+}
+.more-actors {
+  margin-top: 20px;
 }
 
 @media only screen and (max-width: 834px) {
-  .league-teams {
+  .team-players {
     padding: 20px;
   }
-  .league__main {
+  .team__main {
+    justify-content: center;
+  }
+  .team--image {
+    margin: 0;
+  }
+  .team__info {
     justify-content: center;
     text-align: center;
   }
-  .league--image {
-    margin: 0;
-  }
-  .league__info {
+  .players-coach {
     flex-direction: column;
     justify-content: center;
+  }
+  .actors__container--title {
     text-align: center;
   }
 }
