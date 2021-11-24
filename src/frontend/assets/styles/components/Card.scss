@@ -15,6 +15,7 @@
   width: 100%;
   max-width: 400px;
   min-width: 220px;
+  border-radius: 12px;
   object-fit: cover;
 }
 .card__info-container {
@@ -25,7 +26,7 @@
 .card--description {
   padding: 14px 0;
   font-family: $roboto-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
 }
 .card--link {
   display: inline-block;
@@ -34,7 +35,7 @@
 .card__about {
   display: flex;
   font-family: $roboto-font;
-  font-size: $normal-mob;
+  font-size: $small-desk;
   color: $gray;
 }
 .card__about p {
@@ -42,7 +43,7 @@
 }
 .card--category {
   font-family: $roboto-font;
-  font-size: $normal-mob;
+  font-size: $small-desk;
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -50,11 +51,11 @@
 }
 
 @media only screen and (max-width: 1340px) {
-  h1 {
-    font-size: $big-mob;
-  }
   .card {
     height: 260px;
+  }
+  .card--image {
+    max-width: none;
   }
   .card__info-container {
     padding: 20px;
@@ -70,10 +71,7 @@
   }
 }
 
-@media only screen and (max-width: 834px) {
-  h2 {
-    font-size: $medium-mob;
-  }
+@media only screen and (max-width: 836px) {
   .card {
     display: inline-block;
     height: auto;

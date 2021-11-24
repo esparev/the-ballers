@@ -15,7 +15,7 @@
   border: none;
   border-radius: 20px;
   font-family: $rubik-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   font-weight: bold;
   color: $white;
   cursor: pointer;
@@ -31,7 +31,7 @@
   background-color: $gray;
 }
 
-@media only screen and (max-width: 1340px) {
+@media only screen and (max-width: 836px) {
   .button {
     height: 32px;
     font-size: $normal-mob;

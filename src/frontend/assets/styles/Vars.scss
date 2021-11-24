@@ -1,6 +1,8 @@
 // V A R I A B L E S
+// Font families
 $rubik-font: 'Rubik', sans-serif;
 $roboto-font: 'Roboto', sans-serif;
+// Colors
 $white: #ffffff;
 $black: #000000;
 $yellow: #ffb700;
@@ -8,9 +10,12 @@ $red: #fa0000;
 $green: #00b800;
 $gray: #676767;
 $midnight: #090030;
-$big-des: 4rem;
-$medium-des: 2.6rem;
-$normal-des: 1.8rem;
-$big-mob: 3.4rem;
-$medium-mob: 2rem;
+// Desktop font sizes
+$primary-desk: 4rem;
+$secondary-desk: 2.6rem;
+$normal-desk: 1.8rem;
+$small-desk: 1.4rem;
+// Mobile font sizes
+$primary-mob: 3.4rem;
+$secondary-mob: 2rem;
 $normal-mob: 1.2rem;

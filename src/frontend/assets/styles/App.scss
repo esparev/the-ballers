@@ -18,18 +18,27 @@ main {
 h1 {
   padding-bottom: 16px;
   font-family: $rubik-font;
-  font-size: $big-des;
+  font-size: $primary-desk;
 }
 h2 {
   padding-bottom: 16px;
   font-family: $rubik-font;
-  font-size: $medium-des;
+  font-size: $secondary-desk;
 }
 h3 {
   padding-bottom: 16px;
   font-family: $rubik-font;
-  font-size: 2rem;
+  font-size: $secondary-mob;
 }
 a {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 836px) {
+  h1 {
+    font-size: $primary-mob;
+  }
+  h2 {
+    font-size: $secondary-mob;
+  }
 }

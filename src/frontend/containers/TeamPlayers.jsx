@@ -75,15 +75,13 @@ const TeamPlayers = () => {
         </section>
 
         <section className='actors'>
+          <h2 className='actors--title'>Entrenador</h2>
           <div className='actors__container'>
-            <h2 className='actors__container--title'>Entrenador</h2>
-            <div className='more-actors'>
-              <Actor
-                name='Nombre Entrenador'
-                image={userIcon}
-                route='/ligas/liga/equipo/entrenador'
-              />
-            </div>
+            <Actor
+              name='Nombre Entrenador'
+              image={userIcon}
+              route='/ligas/liga/equipo/entrenador'
+            />
           </div>
         </section>
       </div>

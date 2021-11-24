@@ -46,7 +46,7 @@ header {
 .header__nav-list--item a {
   margin: 0 20px;
   font-family: $rubik-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   font-weight: bold;
   color: $white;
 }
@@ -67,7 +67,7 @@ header {
     brightness(101%) contrast(112%);
 }
 
-@media only screen and (max-width: 834px) {
+@media only screen and (max-width: 836px) {
   .header__nav {
     height: auto;
     width: auto;

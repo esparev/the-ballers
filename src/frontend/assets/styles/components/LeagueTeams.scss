@@ -25,7 +25,7 @@
 .league__info p {
   margin: 12px 0;
   font-family: $rubik-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   color: $white;
 }
 
@@ -33,7 +33,7 @@
   color: $white;
 }
 
-@media only screen and (max-width: 834px) {
+@media only screen and (max-width: 836px) {
   .league-teams {
     padding: 20px;
   }

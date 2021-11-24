@@ -27,7 +27,7 @@ footer {
 // Footer text
 .footer__container p {
   font-family: $rubik-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   font-weight: bold;
   color: $white;
 }
@@ -49,7 +49,7 @@ footer {
   text-align: end;
 }
 
-@media only screen and (max-width: 834px) {
+@media only screen and (max-width: 836px) {
   footer {
     height: auto;
   }
@@ -64,6 +64,9 @@ footer {
   .footer__container div {
     width: auto;
     margin: 4px 0;
+  }
+  .footer__container p {
+    font-size: $normal-mob;
   }
   .made-by {
     grid-row: 3;

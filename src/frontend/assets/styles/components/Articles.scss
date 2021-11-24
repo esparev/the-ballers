@@ -19,14 +19,14 @@
 .more-articles__card--title {
   padding-bottom: 16px;
   font-family: $rubik-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   text-transform: uppercase;
 }
 .more-articles__card--info {
   display: flex;
   flex-wrap: wrap;
   font-family: $roboto-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   color: $gray;
 }
 .card__about p {
@@ -34,7 +34,7 @@
 }
 .card--category {
   font-family: $roboto-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -54,13 +54,7 @@
   }
 }
 
-@media only screen and (max-width: 834px) {
-  h1 {
-    font-size: $big-mob;
-  }
-  h2 {
-    font-size: $medium-mob;
-  }
+@media only screen and (max-width: 836px) {
   .more-articles__card {
     display: block;
   }

@@ -23,11 +23,11 @@
 }
 .actor__card--position {
   font-family: $rubik-font;
-  font-size: $normal-des;
+  font-size: $normal-desk;
   color: $white;
 }
 
-@media only screen and (max-width: 834px) {
+@media only screen and (max-width: 836px) {
   .actor__card {
     flex-direction: column;
   }

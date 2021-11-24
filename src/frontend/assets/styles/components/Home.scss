@@ -1,0 +1,96 @@
+@import '../Vars.scss';
+
+.slider__container {
+  padding: 60px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../static/halftone-background.png');
+}
+.slider {
+  height: 500px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg');
+  overflow: hidden;
+}
+.slider__sidebar {
+  height: 100%;
+  width: 40%;
+  padding: 20px;
+  background-color: rgba(9, 0, 48, 0.7);
+}
+.slider__sidebar--title {
+  color: $white;
+}
+.slider__sidebar--line {
+  width: 35%;
+  border-bottom: 4px solid $white;
+  color: $white;
+}
+.slider__sidebar--summary {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-family: $roboto-font;
+  font-size: $normal-desk;
+  color: $white;
+}
+.leagues--title {
+  color: $white;
+}
+.news-tournaments {
+  display: flex;
+  padding: 0 60px;
+}
+.news {
+  width: 80%;
+  margin-top: 60px;
+  padding-right: 60px;
+}
+.news--title {
+  color: $white;
+}
+.tournaments {
+  width: 20%;
+  margin-top: 60px;
+}
+.tournaments--title {
+  color: $white;
+}
+
+@media only screen and (max-width: 1340px) {
+  .news-tournaments {
+    display: block;
+  }
+  .news {
+    width: 100%;
+    padding-right: 0;
+  }
+  .tournaments {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 836px) {
+  .slider__container {
+    padding: 20px 0;
+  }
+  .slider {
+    height: 300px;
+    border-radius: 0;
+  }
+  .slider__sidebar {
+    background-color: rgba(9, 0, 48, 0.45);
+  }
+  .slider__sidebar--title {
+    font-size: 3rem;
+  }
+  .slider__sidebar--summary {
+    font-size: $normal-mob;
+  }
+  .news-tournaments {
+    padding: 0 20px;
+  }
+}
