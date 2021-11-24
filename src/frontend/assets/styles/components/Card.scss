@@ -31,7 +31,6 @@
   display: inline-block;
   color: $yellow;
 }
-
 .card__about {
   display: flex;
   font-family: $roboto-font;
@@ -67,10 +66,6 @@
     font-size: $normal-mob;
   }
   .card--category {
-    font-size: $normal-mob;
-  }
-  .button {
-    height: 32px;
     font-size: $normal-mob;
   }
 }

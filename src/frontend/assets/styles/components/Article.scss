@@ -1,0 +1,122 @@
+@import '../Vars.scss';
+
+.article__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+}
+.article {
+  width: 80%;
+  padding-right: 60px;
+  margin-bottom: 20px;
+}
+.article--title {
+  color: $white;
+}
+.article__cover {
+  width: 100%;
+  height: 45%;
+  padding-bottom: 16px;
+}
+.article__cover--image {
+  max-height: 100%;
+  width: inherit;
+  border-radius: 16px;
+  object-fit: cover;
+}
+.article--info {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  font-family: $roboto-font;
+  font-size: $normal-des;
+  color: $white;
+  opacity: 50%;
+}
+.article--info p {
+  padding-right: 8px;
+}
+.article--line {
+  width: 20%;
+  border-bottom: 4px solid $white;
+}
+.article--description {
+  padding: 16px 0;
+  font-family: $roboto-font;
+  font-size: $normal-des;
+  color: $white;
+}
+.article__share {
+  display: flex;
+  align-items: center;
+}
+.article__share p {
+  font-family: $rubik-font;
+  font-size: 2rem;
+  font-weight: bold;
+  color: $white;
+}
+.article__icons {
+  height: 52px;
+  margin-top: 16px;
+  padding-left: 16px;
+}
+.share-icon {
+  width: 52px;
+  padding-right: 16px;
+  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
+    brightness(101%) contrast(112%);
+}
+.more-articles {
+  width: 20%;
+}
+.more-articles--title {
+  color: $white;
+}
+
+@media only screen and (max-width: 1340px) {
+  .article__container {
+    display: block;
+  }
+  .article {
+    width: 100%;
+    padding: 0;
+  }
+  .article__cover {
+    height: 300px;
+  }
+  .article__cover--image {
+    max-height: 100%;
+  }
+  .more-articles {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 834px) {
+  .article__container {
+    padding: 20px;
+  }
+  .article__cover {
+    height: auto;
+  }
+  .article--title {
+    font-size: $medium-mob;
+  }
+  .article--info {
+    font-size: $normal-mob;
+  }
+  .article--description {
+    font-size: $normal-mob;
+  }
+  .article__share p {
+    font-size: $normal-des;
+  }
+  .article__share {
+    display: block;
+    padding-left: 0;
+  }
+  .article__icons {
+    padding-left: 0;
+  }
+}

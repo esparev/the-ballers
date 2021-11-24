@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/styles/components/Card.scss';
 
 const Card = (props) => {
-  const { title, date, category, description, link } = props;
+  const { title, date, category, description, link, route } = props;
 
   return (
     <div className='card'>
@@ -24,12 +25,9 @@ const Card = (props) => {
             <a className='card--link'>{link}</a>
           </p>
         </div>
-        <button
-          className='button yellow-button'
-          onClick="location.href='./individual-news.html'"
-        >
+        <Link className='button yellow-button' to={route}>
           Ver más
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -36,12 +36,12 @@ const Header = () => {
               <Link to='/ligas'>Ligas</Link>
             </li>
             <li className='header__nav-list--item'>
-              <Link to='/'>Conócenos</Link>
+              <Link to='/conocenos'>Conócenos</Link>
             </li>
             <li className='header__nav-list--item'>
-              <Link to='/'>
+              <a href='#'>
                 <img src={userIcon} alt='Usuario' />
-              </Link>
+              </a>
             </li>
           </ul>
         </nav>

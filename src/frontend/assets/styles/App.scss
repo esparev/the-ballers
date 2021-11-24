@@ -9,21 +9,24 @@
 html {
   font-size: 62.5%;
 }
+body {
+  background-color: $midnight;
+}
 main {
   width: auto;
 }
 h1 {
-  padding-bottom: 14px;
+  padding-bottom: 16px;
   font-family: $rubik-font;
   font-size: $big-des;
 }
 h2 {
-  padding-bottom: 14px;
+  padding-bottom: 16px;
   font-family: $rubik-font;
   font-size: $medium-des;
 }
 h3 {
-  padding-bottom: 14px;
+  padding-bottom: 16px;
   font-family: $rubik-font;
   font-size: 2rem;
 }
@@ -34,13 +37,14 @@ a {
 .button-container {
   display: flex;
   justify-content: end;
-  margin-top: 28px;
 }
 .button {
+  display: block;
   height: 40px;
   width: fit-content;
-  margin-left: 12px;
-  padding: 0 24px;
+  margin-top: 16px;
+  margin-right: 16px;
+  padding: 8px 24px;
   border: none;
   border-radius: 20px;
   font-family: $rubik-font;
@@ -58,4 +62,11 @@ a {
 }
 .gray-button {
   background-color: $gray;
+}
+
+@media only screen and (max-width: 1340px) {
+  .button {
+    height: 32px;
+    font-size: $normal-mob;
+  }
 }
