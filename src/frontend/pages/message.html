@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        background-color: #090030;
+        height: 100vh;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      .main-message {
+        position: fixed;
+        height: 100vh;
+        display: flex;
+        align-items: end;
+        padding: 60px;
+      }
+      .message__card {
+        height: fit-content;
+        width: 580px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-radius: 12px;
+        background-color: white;
+        z-index: 1;
+      }
+      .message__container {
+        display: flex;
+        align-items: center;
+      }
+      .message__container--icon {
+        width: 28px;
+        filter: invert(90%) sepia(90%) saturate(8090%) hue-rotate(359deg)
+          brightness(115%) contrast(119%);
+      }
+      .message__container--message {
+        font-family: 'Rubik';
+        font-size: 1.8rem;
+        font-weight: bold;
+        padding: 0 20px;
+      }
+      .message--close {
+        width: 12px;
+        display: block;
+        filter: invert(65%) sepia(70%) saturate(10%) hue-rotate(312deg)
+          brightness(100%) contrast(105%);
+      }
+
+      @media only screen and (max-width: 660px) {
+        .main-message {
+          padding: 20px;
+        }
+        .message__card {
+          width: 100%;
+        }
+        .message__container--message {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-message">
+      <div class="message__card">
+        <div class="message__container">
+          <img
+            class="message__container--icon"
+            src="../assets/icons/check-icon.svg"
+          />
+          <p class="message__container--message">
+            ¡Ups!, Hubo un error al eliminar el administrador
+          </p>
+        </div>
+        <a class="message-close-button" onclick="">
+          <img
+            class="message--close"
+            src="../assets/icons/crossed-icon.svg"
+            alt="Cerrar"
+          />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+@import '../Vars.scss';
+
+.main-message {
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  top: 1px;
+  align-items: end;
+  padding: 60px;
+  z-index: 1;
+}
+.message__card {
+  height: fit-content;
+  width: 580px;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: $white;
+  z-index: 1;
+}
+.message__container {
+  display: flex;
+  align-items: center;
+}
+.message__container--icon {
+  width: 28px;
+}
+.success-icon {
+  filter: invert(40%) sepia(80%) saturate(2408%) hue-rotate(91deg)
+    brightness(83.5%) contrast(107%);
+}
+.error-icon {
+  filter: invert(90%) sepia(90%) saturate(8090%) hue-rotate(359deg)
+    brightness(115%) contrast(119%);
+}
+.message__container--message {
+  font-family: $rubik-font;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0 20px;
+}
+.message--close {
+  width: 12px;
+  display: block;
+  filter: invert(65%) sepia(70%) saturate(10%) hue-rotate(312deg)
+    brightness(100%) contrast(105%);
+}
+
+@media only screen and (max-width: 660px) {
+  .main-message {
+    padding: 20px;
+  }
+  .message__card {
+    width: 85%;
+  }
+  .message__container--message {
+    font-size: 1.3rem;
+  }
+}

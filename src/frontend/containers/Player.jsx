@@ -1,5 +1,6 @@
 import React from 'react';
 import MoreActors from '../components/MoreActors.jsx';
+import Message from '../components/Message.jsx';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
 import '../assets/styles/components/ActorContainer.scss';
@@ -9,6 +10,7 @@ import userIcon from '../assets/icons/user-icon.svg';
 const Player = () => {
   return (
     <main>
+      <Message message='¡Jugador registrado con exito!' messageStatus='error' />
       <section class='cover'>
         <img class='cover--image' src={cupatizioLogo} alt='Portada' />
       </section>
