@@ -8,9 +8,14 @@ import cupatizioLogo from '../assets/static/cupatizio-logo.png';
 import userIcon from '../assets/icons/user-icon.svg';
 
 const Player = () => {
+  const showMessage = () => {
+    var main = document.getElementById('app');
+    var message = document.getElementById('message');
+    main.append(<Message />);
+  };
+
   return (
     <main>
-      <Message message='¡Jugador registrado con exito!' messageStatus='error' />
       <section class='cover'>
         <img class='cover--image' src={cupatizioLogo} alt='Portada' />
       </section>
