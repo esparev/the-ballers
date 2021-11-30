@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import YellowButton from '../components/YellowButton.jsx';
-import '../assets/styles/components/CreateNews.scss';
+import '../assets/styles/components/CreateEntity.scss';
 
 const CreateTournament = () => {
   useEffect(() => {

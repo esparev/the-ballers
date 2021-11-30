@@ -3,7 +3,6 @@ import EntityContainer from './EntityContainer.jsx';
 import Entity from '../components/Entity.jsx';
 import Article from '../components/Article.jsx';
 import Card from '../components/Card.jsx';
-import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import '../assets/styles/App.scss';
 import '../assets/styles/components/Home.scss';

@@ -43,6 +43,16 @@
   color: $white;
   opacity: 50%;
 }
+.empty {
+  color: rgba(255, 255, 255, 0.5);
+}
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.empty::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 50%;
+}
 .form--input-text {
   width: 100%;
 }
@@ -58,6 +68,11 @@
 .form__image {
   height: 300px;
   max-width: 600px;
+  border: 4px dashed $yellow;
+}
+.form__image-square {
+  height: 372px;
+  max-width: 372px;
   border: 4px dashed $yellow;
 }
 .form__image-labels {
@@ -111,9 +126,12 @@
     font-size: $normal-mob;
   }
   .form__image {
-    // height: 300px;
     height: calc(90vw / 2);
     width: 100%;
+  }
+  .form__image {
+    height: 280px;
+    width: 280px;
   }
   .form__image--label,
   .form__image--label-button {

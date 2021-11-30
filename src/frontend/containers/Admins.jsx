@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Actor from '../components/Actor.jsx';
 import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
@@ -6,6 +6,10 @@ import '../assets/styles/components/TeamPlayers.scss';
 import userIcon from '../assets/icons/user-icon.svg';
 
 const Admins = () => {
+  useEffect(() => {
+    document.title = 'BEISMICH • Administradores';
+  }, []);
+
   return (
     <main className='admins'>
       <div className='players-coach'>

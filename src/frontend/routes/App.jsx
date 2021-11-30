@@ -11,6 +11,7 @@ import CreateTournament from '../containers/CreateTournament.jsx';
 import Leagues from '../containers/Leagues.jsx';
 import LeagueTeams from '../containers/LeagueTeams.jsx';
 import TeamPlayers from '../containers/TeamPlayers.jsx';
+import CreatePlayer from '../containers/CreatePlayer.jsx';
 import PlayerContainer from '../containers/Player.jsx';
 import CoachContainer from '../containers/Coach.jsx';
 import Admins from '../containers/Admins.jsx';
@@ -31,6 +32,7 @@ const App = () => {
           <Route exact path='/ligas' component={Leagues} />
           <Route exact path='/ligas/liga' component={LeagueTeams} />
           <Route exact path='/ligas/liga/equipo' component={TeamPlayers} />
+          <Route exact path='/ligas/liga/equipo/nuevo-jugador' component={CreatePlayer} />
           <Route exact path='/ligas/liga/equipo/jugador' component={PlayerContainer} />
           <Route exact path='/ligas/liga/equipo/entrenador' component={CoachContainer} />
           <Route exact path='/admins' component={Admins} />

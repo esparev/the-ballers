@@ -1,32 +1,31 @@
 import React, { useEffect } from 'react';
+import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import '../assets/styles/components/CreateEntity.scss';
 
-const CreateNews = () => {
+const CreatePlayer = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Publicar Noticia';
+    document.title = 'BEISMICH • Nuevo Jugador';
 
-    var elTxtA;
-    var elIn;
-    /**
-     * Counts the characters that have been captured in the input
-     */
-    function countCharacters(e) {
-      var textEnteredTxtA, currentTxtA, counterTxtA;
-      var textEnteredIn, currentIn, counterIn;
-      textEnteredTxtA = document.getElementById('textarea').value;
-      textEnteredIn = document.getElementById('input').value;
-      counterTxtA = textEnteredTxtA.length;
-      counterIn = textEnteredIn.length;
-      currentTxtA = document.getElementById('textarea-current');
-      currentIn = document.getElementById('input-current');
-      currentTxtA.textContent = counterTxtA;
-      currentIn.textContent = counterIn;
-    }
-    elTxtA = document.getElementById('textarea');
-    elTxtA.addEventListener('keyup', countCharacters, false);
-    elIn = document.getElementById('input');
-    elIn.addEventListener('keyup', countCharacters, false);
+    // Opaque date placeholder until it has been modified
+    var dateEl = document.getElementById('date');
+    dateEl.onchange = function () {
+      if (dateEl.value === '') {
+        dateEl.classList.add('empty');
+      } else {
+        dateEl.classList.remove('empty');
+      }
+    };
+
+    // Opaque select placeholder until it has been modified
+    var posEl = document.getElementById('positions');
+    posEl.onchange = function () {
+      if (posEl.value === '') {
+        posEl.classList.add('empty');
+      } else {
+        posEl.classList.remove('empty');
+      }
+    };
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -108,60 +107,76 @@ const CreateNews = () => {
   return (
     <main className='create-container'>
       <form className='form' action=''>
-        <h1 className='form--title'>Publicar Nueva Noticia</h1>
-        <div>
-          <input
-            className='form--input-text'
-            type='text'
-            id='input'
-            placeholder='Titulo *'
-            required
-          />
-          <div className='input-count' id='input-count'>
-            <span id='input-current'>0</span>
-            <span id='input-maximum'>/255</span>
-          </div>
-        </div>
-        <div>
-          <textarea
-            className='form--input-text'
-            type='text'
-            id='textarea'
-            name='textarea'
-            placeholder='Descripción *'
-            maxLength='255'
-            required
-          ></textarea>
-          <div className='input-count' id='textarea-count'>
-            <span id='textarea-current'>0</span>
-            <span id='textarea-maximum'>/255</span>
-          </div>
-        </div>
-        <label className='form--label label' htmlFor='file'>
-          Portada de la noticia
+        <h1 className='form--title'>Agregar Nuevo Jugador</h1>
+        <input
+          className='form--input-text'
+          type='text'
+          placeholder='Nombre *'
+          required
+        />
+        <select
+          className='form--input-text empty'
+          name='positions'
+          id='positions'
+        >
+          <option selected value=''>
+            Posición
+          </option>
+          <option value='Pitcher'>Pitcher</option>
+          <option value='Catcher'>Catcher</option>
+          <option value='Primera Base'>Primera base</option>
+          <option value='Segunda Base'>Segunda base</option>
+          <option value='Tercera Base'>Tercera base</option>
+          <option value='Campocorto'>Campocorto</option>
+          <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
+          <option value='Jardinero Central'>Jardinero central</option>
+          <option value='Jardinero Derecho'>Jardinero derecho</option>
+          <option value='Bateador'>Bateador</option>
+        </select>
+        <label className='form--label label' for='date'>
+          Fecha de nacimiento
         </label>
+        <input
+          className='form--input-text empty'
+          type='date'
+          id='date'
+          placeholder='Fecha de nacimiento'
+        />
 
-        <div className='form__image'>
+        <label className='form--label label' for=''>
+          Foto del Jugador
+        </label>
+        <div className='form__image form__image-square'>
           <input
-            className='form__image--input'
-            name='file'
+            className='form__image--input form__image-square--input'
             type='file'
             id='file'
           />
-          <div className='form__image-labels'>
-            <span className='form__image--label drop-zone--prompt'>
+          <div className='form__image-labels form__image-square-labels'>
+            <span
+              className='
+                form__image--label form__image-square--label
+                drop-zone--prompt
+              '
+            >
               Arrastra una imagen
             </span>
-            <span className='form__image--label-button drop-zone--prompt'>
+            <span
+              className='
+                form__image--label-button form__image-square--label-button
+                drop-zone--prompt
+              '
+            >
               O haz clic aquí para subir una imagen
             </span>
           </div>
         </div>
-
-        <YellowButton name='Publicar Noticia' route='/noticias/noticia' />
+        <ButtonContainer>
+          <YellowButton name='Agregar Jugador' />
+        </ButtonContainer>
       </form>
     </main>
   );
 };
 
-export default CreateNews;
+export default CreatePlayer;

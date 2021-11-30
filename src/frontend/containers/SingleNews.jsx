@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Article from '../components/Article.jsx';
 import ButtonContainer from './ButtonContainer.jsx';
 import GrayButton from '../components/GrayButton.jsx';
@@ -8,6 +8,10 @@ import facebookIcon from '../assets/icons/facebook-icon.svg';
 import twitterIcon from '../assets/icons/twitter-icon.svg';
 
 const SingleNews = () => {
+  useEffect(() => {
+    document.title = 'BEISMICH • Noticia';
+  }, []);
+
   return (
     <main className='article__container'>
       <section className='article'>

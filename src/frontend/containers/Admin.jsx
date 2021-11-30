@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors.jsx';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
@@ -6,6 +6,10 @@ import '../assets/styles/components/ActorContainer.scss';
 import userIcon from '../assets/icons/user-icon.svg';
 
 const Admin = () => {
+  useEffect(() => {
+    document.title = 'BEISMICH • Administrador';
+  }, []);
+
   return (
     <main>
       <section className='actor'>

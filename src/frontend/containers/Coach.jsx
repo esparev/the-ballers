@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors.jsx';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
@@ -7,6 +7,10 @@ import cupatizioLogo from '../assets/static/cupatizio-logo.png';
 import userIcon from '../assets/icons/user-icon.svg';
 
 const Coach = () => {
+  useEffect(() => {
+    document.title = 'BEISMICH • Entrenador';
+  }, []);
+
   return (
     <main>
       <section className='cover'>

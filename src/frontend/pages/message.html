@@ -23,77 +23,93 @@
       }
 
       .main-message {
-        position: fixed;
         height: 100vh;
-        display: flex;
-        align-items: end;
-        padding: 60px;
-      }
-      .message__card {
-        height: fit-content;
-        width: 580px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 16px;
-        border-radius: 12px;
-        background-color: white;
-        z-index: 1;
+        width: 100vw;
+        display: grid;
+        position: fixed;
+        place-content: center;
       }
       .message__container {
         display: flex;
+        width: fit-content;
         align-items: center;
+        flex-direction: column;
+        padding: 40px 60px;
+        border-radius: 20px;
+        text-align: center;
+        background-color: white;
       }
-      .message__container--icon {
-        width: 28px;
-        filter: invert(90%) sepia(90%) saturate(8090%) hue-rotate(359deg)
-          brightness(115%) contrast(119%);
-      }
-      .message__container--message {
+      .message__container--title {
         font-family: 'Rubik';
+        font-size: 4rem;
+      }
+      .message__container--text {
+        margin: 12px 0;
+        font-family: 'Roboto';
+        font-size: 1.8rem;
+        color: #676767;
+      }
+      .buttons__container {
+        display: flex;
+      }
+      a {
+        height: 40px;
+        width: fit-content;
+        display: block;
+        margin-top: 16px;
+        margin-right: 16px;
+        padding: 8px 24px;
+        border: none;
+        border-radius: 20px;
+        font-family: 'Roboto';
         font-size: 1.8rem;
         font-weight: bold;
-        padding: 0 20px;
+        color: white;
+        cursor: pointer;
+        outline: none;
       }
-      .message--close {
-        width: 12px;
-        display: block;
-        filter: invert(65%) sepia(70%) saturate(10%) hue-rotate(312deg)
-          brightness(100%) contrast(105%);
+      .yellow-button {
+        background-color: #ffb700;
+      }
+      .gray-button {
+        background-color: #676767;
       }
 
       @media only screen and (max-width: 660px) {
-        .main-message {
+        .message__container {
           padding: 20px;
         }
-        .message__card {
-          width: 100%;
+        .message__container--title {
+          font-size: 2rem;
         }
-        .message__container--message {
-          font-size: 1.3rem;
+        .message__container--text {
+          font-size: 1.2rem;
+        }
+        .buttons__container {
+          align-items: center;
+          flex-direction: column;
+        }
+        a {
+          height: 32px;
+          font-size: 1.2rem;
         }
       }
     </style>
   </head>
   <body>
     <div class="main-message">
-      <div class="message__card">
-        <div class="message__container">
-          <img
-            class="message__container--icon"
-            src="../assets/icons/check-icon.svg"
-          />
-          <p class="message__container--message">
-            ¡Ups!, Hubo un error al eliminar el administrador
-          </p>
+      <div class="message__container">
+        <h1 class="message__container--title">
+          ¿Desea agregar a un Jugador o un Entrenador?
+        </h1>
+        <p class="message__container--text">
+          Elija si decide agregar a un jugador o a un entrenador
+        </p>
+        <div class="buttons__container">
+          <a class="yellow-button" href="./create-player.html">Jugador</a>
+          <a class="yellow-button" href="./create-coach.html">Entrenador</a>
+          <a class="gray-button" onclick="">Cancelar</a>
         </div>
-        <a class="message-close-button" onclick="">
-          <img
-            class="message--close"
-            src="../assets/icons/crossed-icon.svg"
-            alt="Cerrar"
-          />
-        </a>
       </div>
     </div>
   </body>
