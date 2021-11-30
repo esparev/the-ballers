@@ -8,16 +8,16 @@ import userIcon from '../assets/icons/user-icon.svg';
 const Admin = () => {
   return (
     <main>
-      <section class='actor'>
-        <div class='actor__container'>
+      <section className='actor'>
+        <div className='actor__container'>
           <img
-            class='actor__container--image'
+            className='actor__container--image'
             src={userIcon}
             alt='Foto del administrador'
           />
-          <div class='actor__info'>
-            <h1 class='actor__info--name'>Nombre Administrador</h1>
-            <div class='actor__info-about'>
+          <div className='actor__info'>
+            <h1 className='actor__info--name'>Nombre Administrador</h1>
+            <div className='actor__info-about'>
               <p>
                 <strong>Correo electrónico: </strong>admin@mail.com
               </p>
@@ -25,10 +25,10 @@ const Admin = () => {
           </div>
         </div>
 
-        <section class='actors'>
-          <div class='actors__container'>
-            <h2 class='actors__container--title'>Más Administradores</h2>
-            <div class='more-actors'>
+        <section className='actors'>
+          <div className='actors__container'>
+            <h2 className='actors__container--title'>Más Administradores</h2>
+            <div className='more-actors'>
               <MoreActors
                 name='Nombre Administrador'
                 image={userIcon}

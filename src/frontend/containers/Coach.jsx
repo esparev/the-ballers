@@ -9,20 +9,20 @@ import userIcon from '../assets/icons/user-icon.svg';
 const Coach = () => {
   return (
     <main>
-      <section class='cover'>
-        <img class='cover--image' src={cupatizioLogo} alt='Portada' />
+      <section className='cover'>
+        <img className='cover--image' src={cupatizioLogo} alt='Portada' />
       </section>
 
-      <section class='actor'>
-        <div class='actor__container'>
+      <section className='actor'>
+        <div className='actor__container'>
           <img
-            class='actor__container--image'
+            className='actor__container--image'
             src={userIcon}
             alt='Foto del entrenador'
           />
-          <div class='actor__info'>
-            <h1 class='actor__info--name'>Nombre Entrenador</h1>
-            <div class='actor__info-about'>
+          <div className='actor__info'>
+            <h1 className='actor__info--name'>Nombre Entrenador</h1>
+            <div className='actor__info-about'>
               <p>
                 <strong>Nombre Equipo: </strong>Nombre Equipo
               </p>
@@ -33,10 +33,10 @@ const Coach = () => {
           </div>
         </div>
 
-        <section class='actors'>
-          <div class='actors__container'>
-            <h2 class='actors__container--title'>Más Entrenadores</h2>
-            <div class='more-actors'>
+        <section className='actors'>
+          <div className='actors__container'>
+            <h2 className='actors__container--title'>Más Entrenadores</h2>
+            <div className='more-actors'>
               <MoreActors
                 name='Nombre Entrenador'
                 image={userIcon}

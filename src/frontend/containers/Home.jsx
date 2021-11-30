@@ -60,9 +60,9 @@ const Home = () => {
         </EntityContainer>
       </section>
 
-      <section class='news-tournaments'>
-        <section class='news'>
-          <h2 class='news--title'>Noticias</h2>
+      <section className='news-tournaments'>
+        <section className='news'>
+          <h2 className='news--title'>Noticias</h2>
           <Card
             title='BEISMICH manda liga de Morelia al mundial'
             date='Octubre 26, 2021'
@@ -85,8 +85,8 @@ const Home = () => {
             route='/noticias/noticia'
           />
         </section>
-        <section class='tournaments'>
-          <h2 class='tournaments--title'>Torneos</h2>
+        <section className='tournaments'>
+          <h2 className='tournaments--title'>Torneos</h2>
           <Article
             title='Torneo de TELMEX'
             date='Octubre 26, 2021'

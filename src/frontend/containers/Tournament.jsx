@@ -14,50 +14,50 @@ const Tournament = () => {
 
   return (
     <main className='article__container'>
-      <section class='article'>
-        <div class='article__cover'>
+      <section className='article'>
+        <div className='article__cover'>
           <img
-            class='article__cover--image cover-image'
+            className='article__cover--image cover-image'
             src='https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg'
             alt=''
           />
         </div>
 
-        <h1 class='article--title'>Torneo de Liga TELMEX</h1>
+        <h1 className='article--title'>Torneo de Liga TELMEX</h1>
 
-        <div class='article--info'>
+        <div className='article--info'>
           <p>Asociación de Beisbolistas Michoacanos</p>
           <p>•</p>
           <p>Octubre 26, 2021</p>
         </div>
 
-        <hr class='article--line' />
+        <hr className='article--line' />
 
-        <p class='article--description'>
+        <p className='article--description'>
           <a className='card--link'>
             https://docs.google.com/document/d/1nBUzVIkWIdFPszrIoaqkcxLeSa-kz1QAqHFxK41E_MA/edit
           </a>
         </p>
 
-        <div class='article__share'>
+        <div className='article__share'>
           <p>Compartir:</p>
-          <div class='article__icons'>
+          <div className='article__icons'>
             <a href='#'>
               <img
-                class='share-icon'
+                className='share-icon'
                 src={facebookIcon}
                 alt='Compartir en Facebook'
               />
             </a>
             <a href='#'>
               <img
-                class='share-icon'
+                className='share-icon'
                 src={twitterIcon}
                 alt='Compartir en Twitter'
               />
             </a>
             <a href='#'>
-              <img class='share-icon' src={linkIcon} alt='Copiar enlace' />
+              <img className='share-icon' src={linkIcon} alt='Copiar enlace' />
             </a>
           </div>
         </div>
@@ -70,8 +70,8 @@ const Tournament = () => {
         </ButtonContainer>
       </section>
 
-      <section class='more-articles'>
-        <h2 class='more-articles--title'>Más Torneos</h2>
+      <section className='more-articles'>
+        <h2 className='more-articles--title'>Más Torneos</h2>
         <Article
           title='Torneo de Liga TELMEX'
           date='Octubre 26, 2021'

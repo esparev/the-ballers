@@ -1,0 +1,122 @@
+@import '../Vars.scss';
+
+.create-container {
+  padding: 60px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form--title {
+  color: $white;
+}
+.label {
+  margin-top: 14px;
+  margin-bottom: 8px;
+  font-family: $rubik-font;
+  font-size: $normal-desk;
+  font-weight: bold;
+  color: $white;
+  opacity: 50%;
+}
+.form--input-text,
+.input {
+  height: 32px;
+  max-width: 600px;
+  margin: 14px 0;
+  border: none;
+  border-bottom: 4px solid $yellow;
+  caret-color: $yellow;
+  font-family: $rubik-font;
+  font-size: $normal-desk;
+  font-weight: bold;
+  color: $white;
+  background-color: $midnight;
+}
+.input-count {
+  max-width: 600px;
+  display: flex;
+  justify-content: end;
+  font-family: $rubik-font;
+  font-size: $normal-desk;
+  font-weight: bold;
+  color: $white;
+  opacity: 50%;
+}
+.form--input-text {
+  width: 100%;
+}
+.form--input-text::placeholder,
+.input::placeholder {
+  color: $white;
+  opacity: 50%;
+}
+.form--input-text:focus,
+.input:focus {
+  outline: none;
+}
+.form__image {
+  height: 300px;
+  max-width: 600px;
+  border: 4px dashed $yellow;
+}
+.form__image-labels {
+  height: inherit;
+  display: grid;
+  place-content: center;
+}
+.form__image--input {
+  display: none;
+}
+.form__image--label,
+.form__image--label-button {
+  font-family: $rubik-font;
+  font-size: $normal-desk;
+  font-weight: bold;
+  text-align: center;
+  color: $white;
+  opacity: 50%;
+}
+.form__image--label-button {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.drop-zone__over {
+  border-style: solid;
+}
+.drop-zone--label {
+  display: none;
+}
+.drop-zone--thumb {
+  height: 100%;
+  max-width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.drop-zone--thumb::after {
+  content: attr(data-label);
+}
+
+@media only screen and (max-width: 836px) {
+  .create-container {
+    padding: 20px;
+  }
+  .form--input-text {
+    font-size: $normal-mob;
+  }
+  .input-count {
+    font-size: $normal-mob;
+  }
+  .label {
+    font-size: $normal-mob;
+  }
+  .form__image {
+    // height: 300px;
+    height: calc(90vw / 2);
+    width: 100%;
+  }
+  .form__image--label,
+  .form__image--label-button {
+    font-size: $normal-mob;
+  }
+}

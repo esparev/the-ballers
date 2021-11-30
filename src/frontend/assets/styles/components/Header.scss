@@ -49,6 +49,7 @@ header {
   font-size: $normal-desk;
   font-weight: bold;
   color: $white;
+  outline: none;
 }
 .header__nav-list--item a:hover {
   transition: 0.3s;

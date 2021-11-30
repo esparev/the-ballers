@@ -10,28 +10,28 @@ import twitterIcon from '../assets/icons/twitter-icon.svg';
 const SingleNews = () => {
   return (
     <main className='article__container'>
-      <section class='article'>
-        <div class='article__cover'>
+      <section className='article'>
+        <div className='article__cover'>
           <img
-            class='article__cover--image cover-image'
+            className='article__cover--image cover-image'
             src='https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg'
             alt=''
           />
         </div>
 
-        <h1 class='article--title'>
+        <h1 className='article--title'>
           BEISMICH manda liga de Morelia al mundial
         </h1>
 
-        <div class='article--info'>
+        <div className='article--info'>
           <p>Asociación de Beisbolistas Michoacanos</p>
           <p>•</p>
           <p>Octubre 26, 2021</p>
         </div>
 
-        <hr class='article--line' />
+        <hr className='article--line' />
 
-        <p class='article--description'>
+        <p className='article--description'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies
           quis egestas aliquet leo amet, eget. Sit vitae amet, sollicitudin ac
           placerat. Pellentesque in enim fusce enim sit mi turpis sed. Sagittis,
@@ -40,25 +40,25 @@ const SingleNews = () => {
           Nisl interdum sit tincidunt fringilla facilisis.
         </p>
         
-        <div class='article__share'>
+        <div className='article__share'>
           <p>Compartir:</p>
-          <div class='article__icons'>
+          <div className='article__icons'>
             <a href='#'>
               <img
-                class='share-icon'
+                className='share-icon'
                 src={facebookIcon}
                 alt='Compartir en Facebook'
               />
             </a>
             <a href='#'>
               <img
-                class='share-icon'
+                className='share-icon'
                 src={twitterIcon}
                 alt='Compartir en Twitter'
               />
             </a>
             <a href='#'>
-              <img class='share-icon' src={linkIcon} alt='Copiar enlace' />
+              <img className='share-icon' src={linkIcon} alt='Copiar enlace' />
             </a>
           </div>
         </div>
@@ -71,8 +71,8 @@ const SingleNews = () => {
         </ButtonContainer>
       </section>
 
-      <section class='more-articles'>
-        <h2 class='more-articles--title'>Más Noticias</h2>
+      <section className='more-articles'>
+        <h2 className='more-articles--title'>Más Noticias</h2>
         <Article
           title='BEISMICH manda liga de Morelia al mundial'
           date='Octubre 26, 2021'

@@ -37,7 +37,7 @@ const News = () => {
         />
         
         <ButtonContainer>
-          <YellowButton name='Nueva Noticia' route='/noticia/nueva-noticia' />
+          <YellowButton name='Nueva Noticia' route='/noticias/nueva-noticia' />
         </ButtonContainer>
       </div>
     </main>
