@@ -10,6 +10,7 @@ import twitterIcon from '../assets/icons/twitter-icon.svg';
 const Tournament = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Torneo';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

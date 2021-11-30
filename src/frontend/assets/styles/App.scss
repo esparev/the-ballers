@@ -34,6 +34,8 @@ a {
   text-decoration: none;
 }
 
+@import './components/Button.scss';
+
 @media only screen and (max-width: 836px) {
   h1 {
     font-size: $primary-mob;

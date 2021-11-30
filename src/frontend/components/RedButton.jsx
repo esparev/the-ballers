@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const RedButton = (props) => {
-  const { name, route } = props;
+  const { name, onClick } = props;
 
   return (
-    <Link className='button red-button' to={route}>
+    <a className='button red-button' onClick={onClick}>
       {name}
-    </Link>
+    </a>
   );
 };
 

@@ -10,6 +10,7 @@ import userIcon from '../assets/icons/user-icon.svg';
 const Player = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Jugador';
+    window.scrollTo(0, 0);
   }, []);
 
   const showMessage = () => {

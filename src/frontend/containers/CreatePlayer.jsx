@@ -6,6 +6,7 @@ import '../assets/styles/components/CreateEntity.scss';
 const CreatePlayer = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Nuevo Jugador';
+    window.scrollTo(0, 0);
 
     // Opaque date placeholder until it has been modified
     var dateEl = document.getElementById('date');
@@ -108,18 +109,9 @@ const CreatePlayer = () => {
     <main className='create-container'>
       <form className='form' action=''>
         <h1 className='form--title'>Agregar Nuevo Jugador</h1>
-        <input
-          className='form--input-text'
-          type='text'
-          placeholder='Nombre *'
-          required
-        />
-        <select
-          className='form--input-text empty'
-          name='positions'
-          id='positions'
-        >
-          <option selected value=''>
+        <input className='input' type='text' placeholder='Nombre *' required />
+        <select className='input empty' name='positions' id='positions'>
+          <option defaultValue value=''>
             Posición
           </option>
           <option value='Pitcher'>Pitcher</option>
@@ -133,17 +125,17 @@ const CreatePlayer = () => {
           <option value='Jardinero Derecho'>Jardinero derecho</option>
           <option value='Bateador'>Bateador</option>
         </select>
-        <label className='form--label label' for='date'>
+        <label className='form--label label' htmlFor='date'>
           Fecha de nacimiento
         </label>
         <input
-          className='form--input-text empty'
+          className='input empty'
           type='date'
           id='date'
           placeholder='Fecha de nacimiento'
         />
 
-        <label className='form--label label' for=''>
+        <label className='form--label label' htmlFor='file'>
           Foto del Jugador
         </label>
         <div className='form__image form__image-square'>

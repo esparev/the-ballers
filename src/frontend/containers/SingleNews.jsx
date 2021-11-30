@@ -10,6 +10,7 @@ import twitterIcon from '../assets/icons/twitter-icon.svg';
 const SingleNews = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Noticia';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

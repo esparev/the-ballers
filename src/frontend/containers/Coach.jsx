@@ -9,6 +9,7 @@ import userIcon from '../assets/icons/user-icon.svg';
 const Coach = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Entrenador';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

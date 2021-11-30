@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
+import RedButton from '../components/RedButton.jsx';
 import '../assets/styles/components/CreateEntity.scss';
 
-const CreateNews = () => {
+const EditNews = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Publicar Noticia';
+    document.title = 'BEISMICH • Editar Noticia';
     window.scrollTo(0, 0);
 
     var elTxtA;
@@ -110,7 +111,7 @@ const CreateNews = () => {
   return (
     <main className='create-container'>
       <form className='form' action=''>
-        <h1 className='form--title'>Publicar Nueva Noticia</h1>
+        <h1 className='form--title'>Editar Noticia</h1>
         <div>
           <input
             className='input'
@@ -161,11 +162,12 @@ const CreateNews = () => {
         </div>
 
         <ButtonContainer>
-          <YellowButton name='Publicar Noticia' route='/noticias/noticia' />
+          <YellowButton name='Guardar Cambios' route='/noticias/noticia' />
+          <RedButton name='Eliminar Noticia' />
         </ButtonContainer>
       </form>
     </main>
   );
 };
 
-export default CreateNews;
+export default EditNews;

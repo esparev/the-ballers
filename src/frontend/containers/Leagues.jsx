@@ -13,6 +13,7 @@ import tarascaLogo from '../assets/static/tarasca-logo.png';
 const Leagues = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Ligas';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
+import RedButton from '../components/RedButton.jsx';
 import '../assets/styles/components/CreateEntity.scss';
 
-const CreateNews = () => {
+const EditTournament = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Publicar Noticia';
+    document.title = 'BEISMICH • Editar Torneo';
     window.scrollTo(0, 0);
 
     var elTxtA;
@@ -110,7 +111,7 @@ const CreateNews = () => {
   return (
     <main className='create-container'>
       <form className='form' action=''>
-        <h1 className='form--title'>Publicar Nueva Noticia</h1>
+        <h1 className='form--title'>Editar Torneo</h1>
         <div>
           <input
             className='input'
@@ -127,7 +128,7 @@ const CreateNews = () => {
         <div>
           <textarea
             className='input'
-            type='text'
+            type='link'
             id='textarea'
             name='textarea'
             placeholder='Descripción *'
@@ -141,7 +142,7 @@ const CreateNews = () => {
         </div>
 
         <label className='form--label label' htmlFor='file'>
-          Portada de la noticia
+          Portada del torneo
         </label>
         <div className='form__image'>
           <input
@@ -161,11 +162,12 @@ const CreateNews = () => {
         </div>
 
         <ButtonContainer>
-          <YellowButton name='Publicar Noticia' route='/noticias/noticia' />
+          <YellowButton name='Guardar Cambios' route='/torneos/torneo' />
+          <RedButton name='Eliminar Torneo' />
         </ButtonContainer>
       </form>
     </main>
   );
 };
 
-export default CreateNews;
+export default EditTournament;

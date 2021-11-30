@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import EntityContainer from './EntityContainer.jsx';
 import Entity from '../components/Entity.jsx';
+import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
+import GrayButton from '../components/GrayButton.jsx';
 import '../assets/styles/components/LeagueTeams.scss';
 import cupatizioLogo from '../assets/static/cupatizio-logo.png';
 import unknownTeamLogo from '../assets/icons/unknown-team-icon.png';
-import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
 
 const LeagueTeams = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Liga';
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -74,6 +76,7 @@ const LeagueTeams = () => {
 
       <ButtonContainer>
         <YellowButton name='Nuevo Equipo' route='/ligas/liga/nuevo-equipo' />
+        <GrayButton name='Editar Liga' route='/ligas/liga/editar-liga' />
       </ButtonContainer>
     </main>
   );

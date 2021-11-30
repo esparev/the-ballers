@@ -19,10 +19,10 @@
   color: $white;
   opacity: 50%;
 }
-.form--input-text,
 .input {
   height: 32px;
   max-width: 600px;
+  width: 100%;
   margin: 14px 0;
   border: none;
   border-bottom: 4px solid $yellow;
@@ -43,6 +43,11 @@
   color: $white;
   opacity: 50%;
 }
+.input-age {
+  width: 50px;
+  margin: 0 12px;
+  text-align: center;
+}
 .empty {
   color: rgba(255, 255, 255, 0.5);
 }
@@ -53,15 +58,10 @@
   filter: invert(1);
   opacity: 50%;
 }
-.form--input-text {
-  width: 100%;
-}
-.form--input-text::placeholder,
 .input::placeholder {
   color: $white;
   opacity: 50%;
 }
-.form--input-text:focus,
 .input:focus {
   outline: none;
 }
@@ -116,7 +116,7 @@
   .create-container {
     padding: 20px;
   }
-  .form--input-text {
+  .input {
     font-size: $normal-mob;
   }
   .input-count {

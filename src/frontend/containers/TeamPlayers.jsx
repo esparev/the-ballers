@@ -11,6 +11,7 @@ import userIcon from '../assets/icons/user-icon.svg';
 const TeamPlayers = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Equipo';
+    window.scrollTo(0, 0);
 
     /**
      * Hides the message
@@ -55,7 +56,6 @@ const TeamPlayers = () => {
               name='Entrenador'
               route='/ligas/liga/equipo/nuevo-entrenador'
             />
-            {/* <GrayButton name='Cancelar' route='/ligas/liga/equipo' /> */}
             <a className='button gray-button' onClick={toggleMessage}>
               Cancelar
             </a>

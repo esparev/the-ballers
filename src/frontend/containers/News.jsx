@@ -7,6 +7,7 @@ import '../assets/styles/components/CardsContainer.scss';
 const News = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Noticias';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

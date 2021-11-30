@@ -15,6 +15,7 @@ import tarascaLogo from '../assets/static/tarasca-logo.png';
 const Home = () => {
   useEffect(() => {
     document.title = 'BEISMICH';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

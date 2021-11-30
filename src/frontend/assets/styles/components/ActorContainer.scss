@@ -19,8 +19,7 @@
   transform: rotate(345deg);
 }
 .actor {
-  width: auto;
-  margin: 0 60px;
+  padding: 60px;
 }
 .actor__container {
   width: auto;
@@ -73,6 +72,9 @@
   }
   .cover--image {
     margin-left: 0;
+  }
+  .actor {
+    padding: 20px;
   }
   .actor__container {
     justify-content: center;

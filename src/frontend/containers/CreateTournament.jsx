@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import '../assets/styles/components/CreateEntity.scss';
 
 const CreateTournament = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Publicar Torneo';
+    window.scrollTo(0, 0);
 
     var elTxtA;
     var elIn;
@@ -111,7 +113,7 @@ const CreateTournament = () => {
         <h1 className='form--title'>Publicar Nuevo Torneo</h1>
         <div>
           <input
-            className='form--input-text'
+            className='input'
             type='text'
             id='input'
             placeholder='Titulo *'
@@ -124,7 +126,7 @@ const CreateTournament = () => {
         </div>
         <div>
           <textarea
-            className='form--input-text'
+            className='input'
             type='link'
             id='textarea'
             name='textarea'
@@ -137,10 +139,10 @@ const CreateTournament = () => {
             <span id='textarea-maximum'>/255</span>
           </div>
         </div>
+
         <label className='form--label label' htmlFor='file'>
           Portada del torneo
         </label>
-
         <div className='form__image'>
           <input
             className='form__image--input'
@@ -158,7 +160,9 @@ const CreateTournament = () => {
           </div>
         </div>
 
-        <YellowButton name='Publicar Torneo' route='/torneos/torneo' />
+        <ButtonContainer>
+          <YellowButton name='Publicar Torneo' route='/torneos/torneo' />
+        </ButtonContainer>
       </form>
     </main>
   );

@@ -8,6 +8,7 @@ import userIcon from '../assets/icons/user-icon.svg';
 const Admins = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Administradores';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

@@ -3,32 +3,10 @@ import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import '../assets/styles/components/CreateEntity.scss';
 
-const CreateNews = () => {
+const CreateTeam = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Publicar Noticia';
+    document.title = 'BEISMICH • Nuevo Equipo';
     window.scrollTo(0, 0);
-
-    var elTxtA;
-    var elIn;
-    /**
-     * Counts the characters that have been captured in the input
-     */
-    function countCharacters(e) {
-      var textEnteredTxtA, currentTxtA, counterTxtA;
-      var textEnteredIn, currentIn, counterIn;
-      textEnteredTxtA = document.getElementById('textarea').value;
-      textEnteredIn = document.getElementById('input').value;
-      counterTxtA = textEnteredTxtA.length;
-      counterIn = textEnteredIn.length;
-      currentTxtA = document.getElementById('textarea-current');
-      currentIn = document.getElementById('input-current');
-      currentTxtA.textContent = counterTxtA;
-      currentIn.textContent = counterIn;
-    }
-    elTxtA = document.getElementById('textarea');
-    elTxtA.addEventListener('keyup', countCharacters, false);
-    elIn = document.getElementById('input');
-    elIn.addEventListener('keyup', countCharacters, false);
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -110,62 +88,44 @@ const CreateNews = () => {
   return (
     <main className='create-container'>
       <form className='form' action=''>
-        <h1 className='form--title'>Publicar Nueva Noticia</h1>
-        <div>
-          <input
-            className='input'
-            type='text'
-            id='input'
-            placeholder='Titulo *'
-            required
-          />
-          <div className='input-count' id='input-count'>
-            <span id='input-current'>0</span>
-            <span id='input-maximum'>/255</span>
-          </div>
-        </div>
-        <div>
-          <textarea
-            className='input'
-            type='text'
-            id='textarea'
-            name='textarea'
-            placeholder='Descripción *'
-            maxLength='255'
-            required
-          ></textarea>
-          <div className='input-count' id='textarea-count'>
-            <span id='textarea-current'>0</span>
-            <span id='textarea-maximum'>/255</span>
-          </div>
-        </div>
+        <h1 className='form--title'>Agregar Nuevo Equipo</h1>
+        <input className='input' type='text' placeholder='Nombre *' required />
+        <input className='input' type='text' placeholder='Nombre del manager' />
 
         <label className='form--label label' htmlFor='file'>
-          Portada de la noticia
+          Logo del equipo
         </label>
-        <div className='form__image'>
+        <div className='form__image form__image-square'>
           <input
-            className='form__image--input'
-            name='file'
+            className='form__image--input form__image-square--input'
             type='file'
             id='file'
           />
-          <div className='form__image-labels'>
-            <span className='form__image--label drop-zone--prompt'>
+          <div className='form__image-labels form__image-square-labels'>
+            <span
+              className='
+                form__image--label form__image-square--label
+                drop-zone--prompt
+              '
+            >
               Arrastra una imagen
             </span>
-            <span className='form__image--label-button drop-zone--prompt'>
+            <span
+              className='
+                form__image--label-button form__image-square--label-button
+                drop-zone--prompt
+              '
+            >
               O haz clic aquí para subir una imagen
             </span>
           </div>
         </div>
-
         <ButtonContainer>
-          <YellowButton name='Publicar Noticia' route='/noticias/noticia' />
+          <YellowButton name='Agregar Equipo' />
         </ButtonContainer>
       </form>
     </main>
   );
 };
 
-export default CreateNews;
+export default CreateTeam;
