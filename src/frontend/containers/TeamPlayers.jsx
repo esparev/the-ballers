@@ -7,6 +7,7 @@ import '../assets/styles/components/TeamPlayers.scss';
 import '../assets/styles/components/FeedbackMessage.scss';
 import unknownTeamLogo from '../assets/icons/unknown-team-icon.png';
 import userIcon from '../assets/icons/user-icon.svg';
+import toggleMessage from '../functions/toggleMessage.js';
 
 const TeamPlayers = () => {
   useEffect(() => {
@@ -24,18 +25,6 @@ const TeamPlayers = () => {
     };
     hideMessage();
   }, []);
-
-  /**
-   * Toggles the message's display style between none and grid
-   */
-  const toggleMessage = () => {
-    var message = document.getElementById('feedback-message');
-    if (message.style.display === '' || message.style.display === 'none') {
-      message.style.display = 'grid';
-    } else {
-      message.style.display = 'none';
-    }
-  };
 
   return (
     <>

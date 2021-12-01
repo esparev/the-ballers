@@ -71,7 +71,7 @@ const Admin = () => {
         <ButtonContainer>
           <GrayButton
             name='Editar Administrador'
-            route='/admins/admin/editar-administrador'
+            route='/admins/admin/editar-admin'
           />
         </ButtonContainer>
       </section>

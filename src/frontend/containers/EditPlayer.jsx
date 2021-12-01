@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import RedButton from '../components/RedButton.jsx';
+import DeleteMessage from '../components/DeleteMessage.jsx';
 import '../assets/styles/components/CreateEntity.scss';
+import toggleMessage from '../functions/toggleMessage.js';
+import updateThumbnail from '../functions/updateThumbnail.js';
 
 const EditPlayer = () => {
   useEffect(() => {
@@ -59,107 +62,81 @@ const EditPlayer = () => {
         dropZoneElement.classList.remove('drop-zone__over');
       });
     });
-
-    /**
-     * Updates thumbnail when the user has dragged and dropped the image
-     * on the drop zone
-     */
-    function updateThumbnail(dropZoneElement, file) {
-      let thumbnailElement =
-        dropZoneElement.querySelectorAll('.drop-zone--thumb');
-
-      if (dropZoneElement.querySelector('.drop-zone--prompt')) {
-        dropZoneElement
-          .querySelector('.form__image-labels')
-          .classList.add('drop-zone--label');
-        dropZoneElement.querySelector('.form__image--label').remove();
-        dropZoneElement.querySelector('.form__image--label-button').remove();
-      }
-
-      if (thumbnailElement) {
-        thumbnailElement = document.createElement('div');
-        thumbnailElement.classList.add('drop-zone--thumb');
-        dropZoneElement.appendChild(thumbnailElement);
-      }
-
-      // Show thumbnail for image file
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-        };
-      } else {
-        thumbnailElement.style.backgroundImage = null;
-      }
-    }
   }, []);
 
   return (
-    <main className='create-container'>
-      <form className='form' action=''>
-        <h1 className='form--title'>Editar Jugador</h1>
-        <input className='input' type='text' placeholder='Nombre *' required />
-        <select className='input empty' name='positions' id='positions'>
-          <option defaultValue value=''>
-            Posición
-          </option>
-          <option value='Pitcher'>Pitcher</option>
-          <option value='Catcher'>Catcher</option>
-          <option value='Primera Base'>Primera base</option>
-          <option value='Segunda Base'>Segunda base</option>
-          <option value='Tercera Base'>Tercera base</option>
-          <option value='Campocorto'>Campocorto</option>
-          <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
-          <option value='Jardinero Central'>Jardinero central</option>
-          <option value='Jardinero Derecho'>Jardinero derecho</option>
-          <option value='Bateador'>Bateador</option>
-        </select>
-        <label className='form--label label' htmlFor='date'>
-          Fecha de nacimiento
-        </label>
-        <input
-          className='input empty'
-          type='date'
-          id='date'
-          placeholder='Fecha de nacimiento'
-        />
+    <>
+      <DeleteMessage entity='jugador' />
 
-        <label className='form--label label' htmlFor='file'>
-          Foto del Jugador
-        </label>
-        <div className='form__image form__image-square'>
+      <main className='create-container'>
+        <form className='form' action=''>
+          <h1 className='form--title'>Editar Jugador</h1>
           <input
-            className='form__image--input form__image-square--input'
-            type='file'
-            id='file'
+            className='input'
+            type='text'
+            placeholder='Nombre *'
+            required
           />
-          <div className='form__image-labels form__image-square-labels'>
-            <span
-              className='
+          <select className='input empty' name='positions' id='positions'>
+            <option defaultValue value=''>
+              Posición
+            </option>
+            <option value='Pitcher'>Pitcher</option>
+            <option value='Catcher'>Catcher</option>
+            <option value='Primera Base'>Primera base</option>
+            <option value='Segunda Base'>Segunda base</option>
+            <option value='Tercera Base'>Tercera base</option>
+            <option value='Campocorto'>Campocorto</option>
+            <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
+            <option value='Jardinero Central'>Jardinero central</option>
+            <option value='Jardinero Derecho'>Jardinero derecho</option>
+            <option value='Bateador'>Bateador</option>
+          </select>
+          <label className='form--label label' htmlFor='date'>
+            Fecha de nacimiento
+          </label>
+          <input
+            className='input empty'
+            type='date'
+            id='date'
+            placeholder='Fecha de nacimiento'
+          />
+
+          <label className='form--label label' htmlFor='file'>
+            Foto del Jugador
+          </label>
+          <div className='form__image form__image-square'>
+            <input
+              className='form__image--input form__image-square--input'
+              type='file'
+              id='file'
+            />
+            <div className='form__image-labels form__image-square-labels'>
+              <span
+                className='
                 form__image--label form__image-square--label
                 drop-zone--prompt
               '
-            >
-              Arrastra una imagen
-            </span>
-            <span
-              className='
+              >
+                Arrastra una imagen
+              </span>
+              <span
+                className='
                 form__image--label-button form__image-square--label-button
                 drop-zone--prompt
               '
-            >
-              O haz clic aquí para subir una imagen
-            </span>
+              >
+                O haz clic aquí para subir una imagen
+              </span>
+            </div>
           </div>
-        </div>
-        <ButtonContainer>
-          <YellowButton name='Guardar Cambios' />
-          <RedButton name='Eliminar Jugador' />
-        </ButtonContainer>
-      </form>
-    </main>
+          <ButtonContainer>
+            <YellowButton name='Guardar Cambios' />
+            <RedButton name='Eliminar Jugador' onClick={toggleMessage} />
+          </ButtonContainer>
+        </form>
+      </main>
+    </>
   );
 };
 

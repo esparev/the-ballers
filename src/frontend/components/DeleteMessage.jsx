@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import '../assets/styles/components/FeedbackMessage.scss';
+import toggleMessage from '../functions/toggleMessage';
 
 const DeleteMessage = (props) => {
   const { entity } = props;
@@ -16,18 +17,6 @@ const DeleteMessage = (props) => {
     };
     hideMessage();
   }, []);
-
-  /**
-   * Toggles the message's display style between none and grid
-   */
-  const toggleMessage = () => {
-    var message = document.getElementById('feedback-message');
-    if (message.style.display === '' || message.style.display === 'none') {
-      message.style.display = 'grid';
-    } else {
-      message.style.display = 'none';
-    }
-  };
 
   return (
     <div className='feedback-message' id='feedback-message'>

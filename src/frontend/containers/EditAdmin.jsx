@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import RedButton from '../components/RedButton.jsx';
+import DeleteMessage from '../components/DeleteMessage.jsx';
 import '../assets/styles/components/CreateEntity.scss';
+import toggleMessage from '../functions/toggleMessage.js';
+import updateThumbnail from '../functions/updateThumbnail.js';
 
 const EditAdmin = () => {
   useEffect(() => {
@@ -49,100 +52,69 @@ const EditAdmin = () => {
         dropZoneElement.classList.remove('drop-zone__over');
       });
     });
-
-    /**
-     * Updates thumbnail when the user has dragged and dropped the image
-     * on the drop zone
-     */
-    function updateThumbnail(dropZoneElement, file) {
-      let thumbnailElement =
-        dropZoneElement.querySelectorAll('.drop-zone--thumb');
-
-      if (dropZoneElement.querySelector('.drop-zone--prompt')) {
-        dropZoneElement
-          .querySelector('.form__image-labels')
-          .classList.add('drop-zone--label');
-        dropZoneElement.querySelector('.form__image--label').remove();
-        dropZoneElement.querySelector('.form__image--label-button').remove();
-      }
-
-      if (thumbnailElement) {
-        thumbnailElement = document.createElement('div');
-        thumbnailElement.classList.add('drop-zone--thumb');
-        dropZoneElement.appendChild(thumbnailElement);
-      }
-
-      // Show thumbnail for image file
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-        };
-      } else {
-        thumbnailElement.style.backgroundImage = null;
-      }
-    }
   }, []);
 
   return (
-    <main className='create-container'>
-      <form className='form' action=''>
-        <h1 className='form--title'>Editar Administrador</h1>
-        <input
-          className='input'
-          type='text'
-          placeholder='Nombre *'
-          required
-        />
-        <input
-          className='input'
-          type='email'
-          placeholder='Correo electrónico *'
-          required
-        />
-        <input
-          className='input'
-          type='password'
-          placeholder='Contraseña *'
-          required
-        />
+    <>
+      <DeleteMessage entity='administrador' />
 
-        <label className='form--label label' htmlFor='file'>
-          Foto del Administrador
-        </label>
-        <div className='form__image form__image-square'>
+      <main className='create-container'>
+        <form className='form' action=''>
+          <h1 className='form--title'>Editar Administrador</h1>
           <input
-            className='form__image--input form__image-square--input'
-            type='file'
-            id='file'
+            className='input'
+            type='text'
+            placeholder='Nombre *'
+            required
           />
-          <div className='form__image-labels form__image-square-labels'>
-            <span
-              className='
+          <input
+            className='input'
+            type='email'
+            placeholder='Correo electrónico *'
+            required
+          />
+          <input
+            className='input'
+            type='password'
+            placeholder='Contraseña *'
+            required
+          />
+
+          <label className='form--label label' htmlFor='file'>
+            Foto del Administrador
+          </label>
+          <div className='form__image form__image-square'>
+            <input
+              className='form__image--input form__image-square--input'
+              type='file'
+              id='file'
+            />
+            <div className='form__image-labels form__image-square-labels'>
+              <span
+                className='
                 form__image--label form__image-square--label
                 drop-zone--prompt
               '
-            >
-              Arrastra una imagen
-            </span>
-            <span
-              className='
+              >
+                Arrastra una imagen
+              </span>
+              <span
+                className='
                 form__image--label-button form__image-square--label-button
                 drop-zone--prompt
               '
-            >
-              O haz clic aquí para subir una imagen
-            </span>
+              >
+                O haz clic aquí para subir una imagen
+              </span>
+            </div>
           </div>
-        </div>
-        <ButtonContainer>
-          <YellowButton name='Guardar Cambios' />
-          <RedButton name='Eliminar Administrador' />
-        </ButtonContainer>
-      </form>
-    </main>
+          <ButtonContainer>
+            <YellowButton name='Guardar Cambios' />
+            <RedButton name='Eliminar Administrador' onClick={toggleMessage} />
+          </ButtonContainer>
+        </form>
+      </main>
+    </>
   );
 };
 

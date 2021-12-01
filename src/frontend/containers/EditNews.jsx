@@ -2,33 +2,21 @@ import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import RedButton from '../components/RedButton.jsx';
+import DeleteMessage from '../components/DeleteMessage.jsx';
 import '../assets/styles/components/CreateEntity.scss';
+import toggleMessage from '../functions/toggleMessage.js';
+import countCharacters from '../functions/countCharacters.js';
+import updateThumbnail from '../functions/updateThumbnail.js';
 
 const EditNews = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Editar Noticia';
     window.scrollTo(0, 0);
 
-    var elTxtA;
-    var elIn;
-    /**
-     * Counts the characters that have been captured in the input
-     */
-    function countCharacters(e) {
-      var textEnteredTxtA, currentTxtA, counterTxtA;
-      var textEnteredIn, currentIn, counterIn;
-      textEnteredTxtA = document.getElementById('textarea').value;
-      textEnteredIn = document.getElementById('input').value;
-      counterTxtA = textEnteredTxtA.length;
-      counterIn = textEnteredIn.length;
-      currentTxtA = document.getElementById('textarea-current');
-      currentIn = document.getElementById('input-current');
-      currentTxtA.textContent = counterTxtA;
-      currentIn.textContent = counterIn;
-    }
-    elTxtA = document.getElementById('textarea');
+    var elTxtA = document.getElementById('textarea');
+    var elIn = document.getElementById('input');
+
     elTxtA.addEventListener('keyup', countCharacters, false);
-    elIn = document.getElementById('input');
     elIn.addEventListener('keyup', countCharacters, false);
 
     // Select closest container for the input
@@ -71,102 +59,71 @@ const EditNews = () => {
         dropZoneElement.classList.remove('drop-zone__over');
       });
     });
-
-    /**
-     * Updates thumbnail when the user has dragged and dropped the image
-     * on the drop zone
-     */
-    function updateThumbnail(dropZoneElement, file) {
-      let thumbnailElement =
-        dropZoneElement.querySelectorAll('.drop-zone--thumb');
-
-      if (dropZoneElement.querySelector('.drop-zone--prompt')) {
-        dropZoneElement
-          .querySelector('.form__image-labels')
-          .classList.add('drop-zone--label');
-        dropZoneElement.querySelector('.form__image--label').remove();
-        dropZoneElement.querySelector('.form__image--label-button').remove();
-      }
-
-      if (thumbnailElement) {
-        thumbnailElement = document.createElement('div');
-        thumbnailElement.classList.add('drop-zone--thumb');
-        dropZoneElement.appendChild(thumbnailElement);
-      }
-
-      // Show thumbnail for image file
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-        };
-      } else {
-        thumbnailElement.style.backgroundImage = null;
-      }
-    }
   }, []);
 
   return (
-    <main className='create-container'>
-      <form className='form' action=''>
-        <h1 className='form--title'>Editar Noticia</h1>
-        <div>
-          <input
-            className='input'
-            type='text'
-            id='input'
-            placeholder='Titulo *'
-            required
-          />
-          <div className='input-count' id='input-count'>
-            <span id='input-current'>0</span>
-            <span id='input-maximum'>/255</span>
-          </div>
-        </div>
-        <div>
-          <textarea
-            className='input'
-            type='text'
-            id='textarea'
-            name='textarea'
-            placeholder='Descripción *'
-            maxLength='255'
-            required
-          ></textarea>
-          <div className='input-count' id='textarea-count'>
-            <span id='textarea-current'>0</span>
-            <span id='textarea-maximum'>/255</span>
-          </div>
-        </div>
+    <>
+      <DeleteMessage entity='noticia' />
 
-        <label className='form--label label' htmlFor='file'>
-          Portada de la noticia
-        </label>
-        <div className='form__image'>
-          <input
-            className='form__image--input'
-            name='file'
-            type='file'
-            id='file'
-          />
-          <div className='form__image-labels'>
-            <span className='form__image--label drop-zone--prompt'>
-              Arrastra una imagen
-            </span>
-            <span className='form__image--label-button drop-zone--prompt'>
-              O haz clic aquí para subir una imagen
-            </span>
+      <main className='create-container'>
+        <form className='form' action=''>
+          <h1 className='form--title'>Editar Noticia</h1>
+          <div>
+            <input
+              className='input'
+              type='text'
+              id='input'
+              placeholder='Titulo *'
+              required
+            />
+            <div className='input-count' id='input-count'>
+              <span id='input-current'>0</span>
+              <span id='input-maximum'>/255</span>
+            </div>
           </div>
-        </div>
+          <div>
+            <textarea
+              className='input'
+              type='text'
+              id='textarea'
+              name='textarea'
+              placeholder='Descripción *'
+              maxLength='255'
+              required
+            ></textarea>
+            <div className='input-count' id='textarea-count'>
+              <span id='textarea-current'>0</span>
+              <span id='textarea-maximum'>/255</span>
+            </div>
+          </div>
 
-        <ButtonContainer>
-          <YellowButton name='Guardar Cambios' route='/noticias/noticia' />
-          <RedButton name='Eliminar Noticia' />
-        </ButtonContainer>
-      </form>
-    </main>
+          <label className='form--label label' htmlFor='file'>
+            Portada de la noticia
+          </label>
+          <div className='form__image'>
+            <input
+              className='form__image--input'
+              name='file'
+              type='file'
+              id='file'
+            />
+            <div className='form__image-labels'>
+              <span className='form__image--label drop-zone--prompt'>
+                Arrastra una imagen
+              </span>
+              <span className='form__image--label-button drop-zone--prompt'>
+                O haz clic aquí para subir una imagen
+              </span>
+            </div>
+          </div>
+
+          <ButtonContainer>
+            <YellowButton name='Guardar Cambios' route='/noticias/noticia' />
+            <RedButton name='Eliminar Noticia' onClick={toggleMessage} />
+          </ButtonContainer>
+        </form>
+      </main>
+    </>
   );
 };
 

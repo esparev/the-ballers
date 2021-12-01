@@ -38,7 +38,7 @@ const App = () => {
           <Route exact path='/noticias' component={News} />
           <Route exact path='/noticias/noticia' component={SingleNews} />
           <Route exact path='/noticias/nueva-noticia' component={CreateNews} />
-          <Route exact path='/noticias/editar-noticia' component={EditNews} />
+          <Route exact path='/noticias/noticia/editar-noticia' component={EditNews} />
           {/* Tournaments routes */}
           <Route exact path='/torneos' component={Tournaments} />
           <Route exact path='/torneos/torneo' component={Tournament} />
