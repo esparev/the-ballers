@@ -36,12 +36,39 @@ header {
 }
 
 // Header nav
+.nav {
+  display: block;
+}
 .header__nav-list {
   height: auto;
   width: auto;
   display: flex;
   align-items: center;
   list-style: none;
+}
+.header__nav-admin {
+  height: auto;
+  width: auto;
+  position: absolute;
+  top: 10vh;
+  right: 1px;
+  margin-right: 60px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: $white;
+  box-shadow: -6px 14px 12px 3px rgba($color: $black, $alpha: 0.5);
+  z-index: 1;
+}
+.admin-nav {
+  display: none;
+}
+.header__nav-admin li a {
+  margin: 10px 0;
+  color: $black;
+  text-align: end;
+}
+.user-list {
+  padding-right: 0;
 }
 .header__nav-list--item a {
   margin: 0 20px;
@@ -59,6 +86,9 @@ header {
   width: 100%;
   display: inline-block;
 }
+.header__nav-list--image {
+  display: block;
+}
 .header__nav-list--item a img {
   width: 40px;
 }
@@ -72,19 +102,38 @@ header {
   .header__nav {
     height: auto;
     width: auto;
-    display: none;
     position: absolute;
     top: 10vh;
-    padding: 20px 40px;
-    padding-left: 0;
+    padding: 20px;
     border-radius: 12px;
     background-color: $white;
     box-shadow: -6px 14px 12px 3px rgba($color: $black, $alpha: 0.5);
     z-index: 1;
   }
+  .nav {
+    display: none;
+  }
   .header__nav-list {
     display: initial;
     text-align: end;
+  }
+  .header__nav-admin {
+    display: block;
+    position: initial;
+    top: initial;
+    right: initial;
+    margin-right: initial;
+    padding: initial;
+    border-radius: initial;
+    background-color: initial;
+    box-shadow: initial;
+    z-index: initial;
+  }
+  .header__nav-admin li a {
+    margin: initial;
+  }
+  .user-list {
+    padding-right: 20px;
   }
   .header__nav-list--item {
     margin: 20px 0;
@@ -92,9 +141,8 @@ header {
   .header__nav-list--item a {
     color: $black;
   }
-  .header__nav-list--item a img {
-    filter: invert(100%) sepia(92%) saturate(3%) hue-rotate(318deg)
-      brightness(103%) contrast(100%);
+  .header__nav-list--image {
+    display: none;
   }
   .header--burger-menu {
     height: 10vh;
@@ -115,7 +163,11 @@ header {
     min-width: 100vw;
     right: 0;
   }
+  .header__nav-admin li a,
   .header__nav-list {
     text-align: center;
+  }
+  .user-list {
+    padding-right: 32px;
   }
 }
