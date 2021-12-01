@@ -27,6 +27,7 @@ import Admins from '../containers/Admins.jsx';
 import AdminContainer from '../containers/Admin.jsx';
 import CreateAdmin from '../containers/CreateAdmin.jsx';
 import EditAdmin from '../containers/EditAdmin.jsx';
+import Login from '../containers/Login.jsx';
 import NotFound from '../containers/NotFound.jsx';
 
 const App = () => {
@@ -70,7 +71,8 @@ const App = () => {
           {/* Other routes */}
           {/* <Route exact path='/perfil' component={Profile} /> */}
           {/* <Route exact path='/conocenos' component={About} /> */}
-          {/* <Route exact path='/iniciar-sesion' component={Login} /> */}
+          {/* <Route exact path='/unete' component={JoinLeague} /> */}
+          <Route exact path='/iniciar-sesion' component={Login} />
           <Route path='*' component={NotFound} />
         </Switch>
       </Layout>

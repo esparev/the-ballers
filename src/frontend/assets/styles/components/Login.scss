@@ -1,0 +1,187 @@
+@import '../Vars.scss';
+
+.login-list {
+  color: $black;
+}
+.main-login {
+  height: 90vh;
+}
+.greeting {
+  height: 5vh;
+  padding: 0 20px;
+}
+.greeting-register {
+  grid-row: 1;
+}
+.greeting--title {
+  padding-top: 16px;
+  font-family: $rubik-font;
+  font-size: 2.4rem;
+  text-align: start;
+  color: $white;
+}
+.greeting--message {
+  display: none;
+}
+.greeting-desktop {
+  display: none;
+}
+.login-main {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: $white;
+  border-radius: 12px 12px 0 0;
+}
+.login {
+  height: 76vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+.login__greet {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  text-align: start;
+}
+.login__greet--title {
+  font-family: $rubik-font;
+  font-size: 2.4rem;
+}
+.login__greet-desktop {
+  display: none;
+}
+.login__form {
+  width: 100%;
+  max-width: 300px;
+}
+.login__form--name,
+.login__form--email,
+.login__form--password {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-icon {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: 0;
+  margin-right: 12px;
+  cursor: pointer;
+  background-image: url('../../icons/private-icon.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+.view-icon {
+  background-image: url('../../icons/view-icon.png');
+}
+.login--forgot-password {
+  width: 90%;
+  max-width: 300px;
+  text-align: end;
+}
+.login--forgot-password,
+.login__greet--message {
+  font-family: $roboto-font;
+  font-size: $small-desk;
+  font-weight: bold;
+  color: $gray;
+}
+.form--input-text {
+  height: 32px;
+  width: 100%;
+  max-width: 600px;
+  margin: 14px 0;
+  border: none;
+  border-bottom: 4px solid $yellow;
+  caret-color: $yellow;
+  font-family: $rubik-font;
+  font-size: $normal-desk;
+  font-weight: bold;
+  color: $black;
+}
+.form--input-text::placeholder {
+  color: $gray;
+  opacity: 100%;
+}
+.form--input-text:focus {
+  outline: none;
+}
+.login__form--button {
+  height: 40px;
+  width: 100%;
+  max-width: 600px;
+  padding: 12px 24px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 20px;
+  font-family: $rubik-font;
+  font-size: $normal-desk;
+  font-weight: bold;
+  background-color: $yellow;
+  color: $white;
+  cursor: pointer;
+  outline: none;
+}
+.login--mobile {
+  margin-top: 30px;
+}
+
+@media only screen and (min-width: 836px) {
+  .main-login {
+    display: flex;
+  }
+  .login-main {
+    height: auto;
+  }
+  .greeting {
+    display: none;
+  }
+  .greeting-desktop {
+    height: 90vh;
+    width: 40%;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .greeting--title {
+    font-size: $primary-desk;
+    text-align: center;
+  }
+  .greeting--message {
+    display: block;
+    margin-top: 8px;
+    font-family: $roboto-font;
+    font-size: $normal-mob;
+    color: $white;
+  }
+  .login__greet {
+    display: none;
+  }
+  .login__greet-desktop {
+    display: block;
+    margin-bottom: 40px;
+  }
+  .login__greet--title {
+    font-size: $primary-desk;
+  }
+  .login--forgot-password {
+    text-align: center;
+  }
+  .login-main {
+    width: 60%;
+    margin-top: 0;
+    border-radius: 0;
+  }
+}

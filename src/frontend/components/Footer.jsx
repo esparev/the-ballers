@@ -3,7 +3,7 @@ import '../assets/styles/components/Footer.scss';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
 
 const Footer = () => (
-  <footer>
+  <footer id='footer'>
     <div className='footer__container'>
       <div className='footer__container-info made-by'>
         <p>Hecho por Integra • 2021</p>

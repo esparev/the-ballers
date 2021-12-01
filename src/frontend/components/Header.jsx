@@ -37,39 +37,27 @@ const Header = () => {
   };
 
   return (
-    <header className='main-header'>
+    <header className='main-header' id='header'>
       <Link className='header--logo' to='/'>
         <img src={beismichLogo} alt='Logo BEISMICH' />
       </Link>
       <div className='header__menu'>
-        <a
-          className='header--burger-menu'
-          onClick={menuDisplay}
-          onChange={menuDisplay}
-        >
+        <a className='header--burger-menu' onClick={menuDisplay}>
           <img src={burgerMenuIcon} alt='Menu' />
         </a>
         <nav className='header__nav nav' id='nav'>
           <ul className='header__nav-list'>
             <li className='header__nav-list--item user-list'>
-              <Link to='/noticias' onClick={menuDisplay}>
-                Noticias
-              </Link>
+              <Link to='/noticias'>Noticias</Link>
             </li>
             <li className='header__nav-list--item user-list'>
-              <Link to='/torneos' onClick={menuDisplay}>
-                Torneos
-              </Link>
+              <Link to='/torneos'>Torneos</Link>
             </li>
             <li className='header__nav-list--item user-list'>
-              <Link to='/ligas' onClick={menuDisplay}>
-                Ligas
-              </Link>
+              <Link to='/ligas'>Ligas</Link>
             </li>
             <li className='header__nav-list--item user-list'>
-              <Link to='/conocenos-pending' onClick={menuDisplay}>
-                Conócenos
-              </Link>
+              <Link to='/conocenos-pending'>Conócenos</Link>
             </li>
             <li className='header__nav-list--item header__nav-list--image'>
               <a onClick={adminDisplay}>
@@ -78,19 +66,13 @@ const Header = () => {
             </li>
             <div className='header__nav-admin admin-nav' id='admin-nav'>
               <li className='header__nav-list--item'>
-                <Link to='/perfil' onClick={adminDisplay}>
-                  Perfil
-                </Link>
+                <Link to='/perfil'>Perfil</Link>
               </li>
               <li className='header__nav-list--item'>
-                <Link to='/admins' onClick={adminDisplay}>
-                  Administradores
-                </Link>
+                <Link to='/admins'>Administradores</Link>
               </li>
               <li className='header__nav-list--item'>
-                <Link to='/iniciar-sesion' onClick={adminDisplay}>
-                  Iniciar sesión
-                </Link>
+                <Link to='/iniciar-sesion'>Iniciar sesión</Link>
               </li>
             </div>
           </ul>
