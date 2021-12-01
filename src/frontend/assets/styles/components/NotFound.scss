@@ -1,0 +1,44 @@
+@import '../Vars.scss';
+
+.not-found-main {
+  padding: 15vh 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.not-found__container {
+  display: flex;
+}
+.not-found__container--four {
+  font-family: $rubik-font;
+  font-size: 25rem;
+  font-weight: bold;
+  color: $white;
+}
+.not-found__container--baseball {
+  width: 200px;
+  margin: 0 20px;
+}
+.not-found--message {
+  font-family: $rubik-font;
+  font-size: $primary-desk;
+  font-weight: bold;
+  text-align: center;
+  color: $white;
+}
+
+@media only screen and (max-width: 836px) {
+  .not-found-main {
+    padding: 30vh 20px;
+  }
+  .not-found__container--four {
+    font-size: 10rem;
+  }
+  .not-found__container--baseball {
+    width: 80px;
+    margin: 0 10px;
+  }
+  .not-found--message {
+    font-size: $primary-mob;
+  }
+}

@@ -27,12 +27,13 @@ import Admins from '../containers/Admins.jsx';
 import AdminContainer from '../containers/Admin.jsx';
 import CreateAdmin from '../containers/CreateAdmin.jsx';
 import EditAdmin from '../containers/EditAdmin.jsx';
+import NotFound from '../containers/NotFound.jsx';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Layout>
+      <Layout>
+        <Switch>
           <Route exact path='/' component={Home} />
           {/* News routes */}
           <Route exact path='/noticias' component={News} />
@@ -67,11 +68,12 @@ const App = () => {
           <Route exact path='/admins/nuevo-admin' component={CreateAdmin} />
           <Route exact path='/admins/admin/editar-admin' component={EditAdmin} />
           {/* Other routes */}
-          {/* <Route exact path='perfil' component={Profile} /> */}
-          {/* <Route exact path='conocenos' component={About} /> */}
-          {/* <Route component={NotFound} /> */}
-        </Layout>
-      </Switch>
+          {/* <Route exact path='/perfil' component={Profile} /> */}
+          {/* <Route exact path='/conocenos' component={About} /> */}
+          {/* <Route exact path='/iniciar-sesion' component={Login} /> */}
+          <Route path='*' component={NotFound} />
+        </Switch>
+      </Layout>
     </BrowserRouter>
   );
 };
