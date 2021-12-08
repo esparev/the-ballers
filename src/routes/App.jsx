@@ -73,6 +73,8 @@ const App = () => {
           {/* <Route exact path='/conocenos' component={About} /> */}
           {/* <Route exact path='/unete' component={JoinLeague} /> */}
           <Route exact path='/iniciar-sesion' component={Login} />
+          {/* <Route exact path='/recuperar' component={Recovery} /> */}
+          {/* <Route exact path='/cambiar-contra' component={ChangePassword} /> */}
           <Route path='*' component={NotFound} />
         </Switch>
       </Layout>
