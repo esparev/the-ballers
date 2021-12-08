@@ -27,7 +27,11 @@ import Admins from '../containers/Admins.jsx';
 import AdminContainer from '../containers/Admin.jsx';
 import CreateAdmin from '../containers/CreateAdmin.jsx';
 import EditAdmin from '../containers/EditAdmin.jsx';
+import About from '../containers/About.jsx';
 import Login from '../containers/Login.jsx';
+import Recovery from '../containers/Recovery.jsx';
+import SendMail from '../containers/SendMail.jsx';
+import ChangePassword from '../containers/ChangePassword.jsx';
 import NotFound from '../containers/NotFound.jsx';
 
 const App = () => {
@@ -70,11 +74,12 @@ const App = () => {
           <Route exact path='/admins/admin/editar-admin' component={EditAdmin} />
           {/* Other routes */}
           {/* <Route exact path='/perfil' component={Profile} /> */}
-          {/* <Route exact path='/conocenos' component={About} /> */}
+          <Route exact path='/conocenos' component={About} />
           {/* <Route exact path='/unete' component={JoinLeague} /> */}
           <Route exact path='/iniciar-sesion' component={Login} />
-          {/* <Route exact path='/recuperar' component={Recovery} /> */}
-          {/* <Route exact path='/cambiar-contra' component={ChangePassword} /> */}
+          <Route exact path='/recuperar-contraseña' component={Recovery} />
+          <Route exact path='/enviar-correo' component={SendMail} />
+          <Route exact path='/cambiar-contraseña' component={ChangePassword} />
           <Route path='*' component={NotFound} />
         </Switch>
       </Layout>

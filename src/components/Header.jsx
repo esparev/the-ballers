@@ -57,7 +57,7 @@ const Header = () => {
               <Link to='/ligas'>Ligas</Link>
             </li>
             <li className='header__nav-list--item user-list'>
-              <Link to='/conocenos-pending'>Conócenos</Link>
+              <Link to='/conocenos'>Conócenos</Link>
             </li>
             <li className='header__nav-list--item header__nav-list--image'>
               <a onClick={adminDisplay}>

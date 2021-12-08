@@ -1,0 +1,37 @@
+@import '../Vars.scss';
+
+.about {
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.who--title,
+.pros--title {
+  text-align: center;
+  color: $white;
+}
+.about--description {
+  font-family: $roboto-font;
+  font-size: $normal-desk;
+  text-align: center;
+  color: $white;
+}
+.about section {
+  padding: 0 15%;
+}
+.pros {
+  margin-top: 40px;
+}
+
+@media only screen and (max-width: 836px) {
+  .about {
+    padding: 20px;
+  }
+  .about--description {
+    font-size: $normal-mob;
+  }
+  .about section {
+    padding: 0;
+  }
+}

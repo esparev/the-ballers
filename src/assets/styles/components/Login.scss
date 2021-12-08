@@ -83,6 +83,12 @@
 .view-icon {
   background-image: url('../../icons/view-icon.png');
 }
+.new-view-icon {
+  background-image: url('../../icons/view-icon.png');
+}
+.confirm-view-icon {
+  background-image: url('../../icons/view-icon.png');
+}
 .login--forgot-password {
   width: 90%;
   max-width: 300px;
@@ -115,6 +121,17 @@
 .form--input-text:focus {
   outline: none;
 }
+.password-match,
+.password-mismatch {
+  font-size: $normal-desk;
+  font-weight: bold;
+}
+.password-match {
+  color: $green;
+}
+.password-mismatch {
+  color: $red;
+}
 .login__form--button {
   height: 40px;
   width: 100%;
@@ -130,6 +147,9 @@
   color: $white;
   cursor: pointer;
   outline: none;
+}
+.login__form--button a {
+  color: $white;
 }
 .login--mobile {
   margin-top: 30px;

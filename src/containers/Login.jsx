@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/styles/components/Login.scss';
-import viewIcon from '../assets/icons/view-icon.png';
-import privateIcon from '../assets/icons/private-icon.png';
 
 const Login = () => {
   useEffect(() => {
@@ -56,21 +55,20 @@ const Login = () => {
                 className='login__form--input form--input-text'
                 type='password'
                 id='password'
+                minLength='8'
                 placeholder='Contraseña'
               />
               <span
                 className='login__form--password-icon input-icon'
                 id='password-icon'
-                // src={privateIcon}
-                // alt='Icono contraseña'
                 onClick={togglePassword}
               ></span>
             </div>
             <button className='login__form--button'>Iniciar Sesión</button>
           </form>
-          <a className='login--forgot-password' href='#'>
+          <Link className='login--forgot-password' to='/recuperar-contraseña'>
             ¿Olvidaste tu contraseña?
-          </a>
+          </Link>
         </section>
       </main>
     </div>

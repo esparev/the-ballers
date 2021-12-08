@@ -11,6 +11,7 @@
   "author": "Integra",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb": "^19.0.0",
     "eslint-plugin-import": "^2.25.3",
@@ -44,6 +45,6 @@
     "webpack-dev-server": "^4.5.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   }
 }
