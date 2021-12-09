@@ -1,59 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../assets/styles/components/Login.scss';
 
 const ChangePassword = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Nueva Contraseña';
-    // var matchMessage;
-
-    // /**
-    //  * Verifies if the passwords match
-    //  */
-    // const passwordsMatch = () => {
-    //   var newPasswd = document.getElementById('new-password');
-    //   var confirmPasswd = document.getElementById('confirm-password');
-
-    //   if (confirmPasswd.value === '') {
-    //     matchMessage = null;
-    //   }
-    //   if (confirmPasswd.value !== newPasswd.value) {
-    //     console.log('malo');
-    //     matchMessage = (
-    //       <p className='password-mismatch'>Las contraseñas no coinciden</p>
-    //     );
-    //   } else {
-    //     console.log('bueno');
-    //     matchMessage = (
-    //       <p className='password-match'>Las contraseñas coinciden</p>
-    //     );
-    //   }
-    // };
-    // confirmPasswd.addEventListener('keyup', passwordsMatch, false);
   }, []);
+
+  const form = useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(form.current);
+    const data = {
+      password: formData.get('password'),
+    };
+    console.log(data);
+  };
 
   /**
    * Toggles the password input type between password and type when pressed
    * on the eye icon
    */
   const togglePassword = () => {
-    var newPasswd = document.getElementById('new-password');
-    var confirmPasswd = document.getElementById('confirm-password');
-    var newPasswdIcon = document.getElementById('new-password-icon');
-    var confirmPasswdIcon = document.getElementById('confirm-password-icon');
+    var passwd = document.getElementById('password');
+    var passwdIcon = document.getElementById('password-icon');
 
-    if (newPasswd.type === 'password') {
-      newPasswd.type = 'text';
-      newPasswdIcon.classList.add('new-view-icon');
+    if (passwd.type === 'password') {
+      passwd.type = 'text';
+      passwdIcon.classList.add('new-view-icon');
     } else {
-      newPasswd.type = 'password';
-      newPasswdIcon.classList.remove('new-view-icon');
-    }
-    if (confirmPasswd.type === 'password') {
-      confirmPasswd.type = 'text';
-      confirmPasswdIcon.classList.add('confirm-view-icon');
-    } else {
-      confirmPasswd.type = 'password';
-      confirmPasswdIcon.classList.remove('confirm-view-icon');
+      passwd.type = 'password';
+      passwdIcon.classList.remove('new-view-icon');
     }
   };
 
@@ -80,37 +57,28 @@ const ChangePassword = () => {
               Ingrese una nueva contraseña para su cuenta
             </p>
           </div>
-          <form className='login__form' action=''>
+          <form className='login__form' ref={form}>
             <div className='login__form--password'>
               <input
                 className='login__form--input form--input-text'
                 type='password'
-                id='new-password'
+                id='password'
                 minLength='8'
                 placeholder='Nueva contraseña'
               />
               <span
                 className='login__form--password-icon input-icon'
-                id='new-password-icon'
+                id='password-icon'
                 onClick={togglePassword}
               ></span>
             </div>
-            <div className='login__form--password'>
-              <input
-                className='login__form--input form--input-text'
-                type='password'
-                id='confirm-password'
-                minLength='8'
-                placeholder='Confirmar nueva contraseña'
-              />
-              <span
-                className='login__form--password-icon input-icon'
-                id='confirm-password-icon'
-                onClick={togglePassword}
-              ></span>
-            </div>
-            {/* {matchMessage} */}
-            <button className='login__form--button'>Confirmar</button>
+            <button
+              type='submit'
+              className='login__form--button'
+              onClick={handleSubmit}
+            >
+              Confirmar
+            </button>
           </form>
         </section>
       </main>

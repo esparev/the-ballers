@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import '../assets/styles/components/CreateEntity.scss';
@@ -51,18 +51,49 @@ const CreateLeague = () => {
     });
   }, []);
 
+  const form = useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(form.current);
+    const data = {
+      name: formData.get('name'),
+      responsable: formData.get('responsable'),
+      phone: formData.get('phone'),
+      ageStart: formData.get('ageStart'),
+      ageEnd: formData.get('ageEnd'),
+      logo: formData.get('logo'),
+      address: {
+        streetName: formData.get('streetName'),
+        streetNumber: formData.get('streetNumber'),
+        zipCode: formData.get('zipCode'),
+        suburb: formData.get('suburb'),
+        location: formData.get('location'),
+      },
+    };
+    console.log(data);
+  };
+
   return (
     <main className='create-container'>
-      <form className='form' action=''>
+      <form className='form' ref={form}>
         <h1 className='form--title'>Agregar Nueva Liga</h1>
-        <input className='input' type='text' placeholder='Nombre *' required />
         <input
           className='input'
+          name='name'
+          type='text'
+          placeholder='Nombre *'
+          required
+        />
+        <input
+          className='input'
+          name='responsable'
           type='text'
           placeholder='Nombre del responsable'
         />
         <input
           className='input'
+          name='phone'
           type='num'
           maxLength='10'
           placeholder='Teléfono del responsable'
@@ -147,14 +178,37 @@ const CreateLeague = () => {
           <option value='Zitácuaro'>Zitácuaro</option>
         </select>
         <label className='label'>Dirección</label>
-        <input className='input' type='text' placeholder='Calle' />
-        <input className='input' type='tel' maxLength='5' placeholder='C.P.' />
-        <input className='input' type='text' placeholder='Colonia' />
+        <input
+          className='input'
+          name='streetName'
+          type='text'
+          placeholder='Calle'
+        />
+        <input
+          className='input'
+          name='streetNumber'
+          type='num'
+          placeholder='Número'
+        />
+        <input
+          className='input'
+          name='zipCode'
+          type='tel'
+          maxLength='5'
+          placeholder='C.P.'
+        />
+        <input
+          className='input'
+          name='suburb'
+          type='text'
+          placeholder='Colonia'
+        />
         <label className='label'>Rango de edad</label>
         <div>
           <label className='label'>De</label>
           <input
             className='input input-age'
+            name='ageStart'
             type='tel'
             maxLength='2'
             placeholder='00'
@@ -162,6 +216,7 @@ const CreateLeague = () => {
           <label className='label'>hasta</label>
           <input
             className='input input-age'
+            name='ageEnd'
             type='tel'
             maxLength='2'
             placeholder='00'
@@ -175,6 +230,7 @@ const CreateLeague = () => {
         <div className='form__image form__image-square'>
           <input
             className='form__image--input form__image-square--input'
+            name='logo'
             type='file'
             id='file'
           />
@@ -198,7 +254,7 @@ const CreateLeague = () => {
           </div>
         </div>
         <ButtonContainer>
-          <YellowButton name='Agregar Liga' />
+          <YellowButton name='Agregar Liga' onClick={handleSubmit} />
         </ButtonContainer>
       </form>
     </main>

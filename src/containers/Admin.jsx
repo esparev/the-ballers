@@ -5,7 +5,7 @@ import GrayButton from '../components/GrayButton';
 import '../assets/styles/components/ActorContainer.scss';
 import userIcon from '../assets/icons/user-icon.svg';
 
-const Admin = () => {
+const Admin = ({admin}) => {
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';
     window.scrollTo(0, 0);
@@ -17,14 +17,14 @@ const Admin = () => {
         <div className='actor__container'>
           <img
             className='actor__container--image'
-            src={userIcon}
+            src={admin.image}
             alt='Foto del administrador'
           />
           <div className='actor__info'>
-            <h1 className='actor__info--name'>Nombre Administrador</h1>
+            <h1 className='actor__info--name'>{admin.name}</h1>
             <div className='actor__info-about'>
               <p>
-                <strong>Correo electrónico: </strong>admin@mail.com
+                <strong>Correo electrónico: </strong>{admin.email}
               </p>
             </div>
           </div>

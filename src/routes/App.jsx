@@ -1,38 +1,38 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Layout from '../components/Layout.jsx';
-import Home from '../containers/Home.jsx';
-import News from '../containers/News.jsx';
-import SingleNews from '../containers/SingleNews.jsx';
-import CreateNews from '../containers/CreateNews.jsx';
-import EditNews from '../containers/EditNews.jsx';
-import Tournaments from '../containers/Tournaments.jsx';
-import Tournament from '../containers/Tournament.jsx';
-import CreateTournament from '../containers/CreateTournament.jsx';
-import EditTournament from '../containers/EditTournament.jsx';
-import Leagues from '../containers/Leagues.jsx';
-import LeagueTeams from '../containers/LeagueTeams.jsx';
-import CreateLeague from '../containers/CreateLeague.jsx';
-import EditLeague from '../containers/EditLeague.jsx';
-import TeamPlayers from '../containers/TeamPlayers.jsx';
-import CreateTeam from '../containers/CreateTeam.jsx';
-import EditTeam from '../containers/EditTeam.jsx';
-import CreatePlayer from '../containers/CreatePlayer.jsx';
-import EditPlayer from '../containers/EditPlayer.jsx';
-import CreateCoach from '../containers/CreateCoach.jsx';
-import EditCoach from '../containers/EditCoach.jsx';
-import PlayerContainer from '../containers/Player.jsx';
-import CoachContainer from '../containers/Coach.jsx';
-import Admins from '../containers/Admins.jsx';
-import AdminContainer from '../containers/Admin.jsx';
-import CreateAdmin from '../containers/CreateAdmin.jsx';
-import EditAdmin from '../containers/EditAdmin.jsx';
-import About from '../containers/About.jsx';
-import Login from '../containers/Login.jsx';
-import Recovery from '../containers/Recovery.jsx';
-import SendMail from '../containers/SendMail.jsx';
-import ChangePassword from '../containers/ChangePassword.jsx';
-import NotFound from '../containers/NotFound.jsx';
+import Layout from '../components/Layout';
+import Home from '../containers/Home';
+import News from '../containers/News';
+import SingleNews from '../containers/SingleNews';
+import CreateNews from '../containers/CreateNews';
+import EditNews from '../containers/EditNews';
+import Tournaments from '../containers/Tournaments';
+import Tournament from '../containers/Tournament';
+import CreateTournament from '../containers/CreateTournament';
+import EditTournament from '../containers/EditTournament';
+import Leagues from '../containers/Leagues';
+import LeagueTeams from '../containers/LeagueTeams';
+import CreateLeague from '../containers/CreateLeague';
+import EditLeague from '../containers/EditLeague';
+import TeamPlayers from '../containers/TeamPlayers';
+import CreateTeam from '../containers/CreateTeam';
+import EditTeam from '../containers/EditTeam';
+import CreatePlayer from '../containers/CreatePlayer';
+import EditPlayer from '../containers/EditPlayer';
+import CreateCoach from '../containers/CreateCoach';
+import EditCoach from '../containers/EditCoach';
+import PlayerContainer from '../containers/Player';
+import CoachContainer from '../containers/Coach';
+import Admins from '../containers/Admins';
+import AdminContainer from '../containers/Admin';
+import CreateAdmin from '../containers/CreateAdmin';
+import EditAdmin from '../containers/EditAdmin';
+import About from '../containers/About';
+import Login from '../containers/Login';
+import Recovery from '../containers/Recovery';
+import SendMail from '../containers/SendMail';
+import ChangePassword from '../containers/ChangePassword';
+import NotFound from '../containers/NotFound';
 
 const App = () => {
   return (
@@ -52,7 +52,7 @@ const App = () => {
           <Route exact path='/torneos/torneo/editar-torneo' component={EditTournament} />
           {/* Leagues routes */}
           <Route exact path='/ligas' component={Leagues} />
-          <Route exact path='/ligas/liga' component={LeagueTeams} />
+          <Route exact path='/ligas/liga/:id' component={LeagueTeams} />
           <Route exact path='/ligas/nueva-liga' component={CreateLeague} />
           <Route exact path='/ligas/liga/editar-liga' component={EditLeague} />
           {/* Teams routes */}

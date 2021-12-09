@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import Actor from '../components/Actor.jsx';
-import ButtonContainer from './ButtonContainer.jsx';
-import YellowButton from '../components/YellowButton.jsx';
+import Actor from '../components/Actor';
+import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
+import useGetAdmins from '../hooks/useGetAdmins';
 import '../assets/styles/components/TeamPlayers.scss';
-import userIcon from '../assets/icons/user-icon.svg';
+// import userIcon from '../assets/icons/user-icon.svg';
+
+const API = 'https://beismich.herokuapp.com/api/v1/admins';
 
 const Admins = () => {
   useEffect(() => {
@@ -11,42 +14,23 @@ const Admins = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const admins = useGetAdmins(API);
+
   return (
     <main className='admins'>
       <div className='players-coach'>
         <section className='actors'>
           <h2 className='actors--title'>Administradores</h2>
           <div className='actors__container'>
-            <Actor
-              name='Nombre Administrador'
-              image={userIcon}
-              route='/admins/admin'
-            />
-            <Actor
-              name='Nombre Administrador'
-              image={userIcon}
-              route='/admins/admin'
-            />
-            <Actor
-              name='Nombre Administrador'
-              image={userIcon}
-              route='/admins/admin'
-            />
-            <Actor
-              name='Nombre Administrador'
-              image={userIcon}
-              route='/admins/admin'
-            />
-            <Actor
-              name='Nombre Administrador'
-              image={userIcon}
-              route='/admins/admin'
-            />
-            <Actor
-              name='Nombre Administrador'
-              image={userIcon}
-              route='/admins/admin'
-            />
+            {admins.map((admin) => (
+              <Actor
+                admin={admin}
+                key={admin.id}
+                name={admin.name}
+                image={admin.image}
+                route='/admins/admin'
+              />
+            ))}
           </div>
         </section>
       </div>

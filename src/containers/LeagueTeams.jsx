@@ -8,7 +8,9 @@ import '../assets/styles/components/LeagueTeams.scss';
 import cupatizioLogo from '../assets/static/cupatizio-logo.png';
 import unknownTeamLogo from '../assets/icons/unknown-team-icon.png';
 
-const LeagueTeams = () => {
+const LeagueTeams = (props) => {
+  const { id } = props.match.params;
+  
   useEffect(() => {
     document.title = 'BEISMICH • Liga';
     window.scrollTo(0, 0);

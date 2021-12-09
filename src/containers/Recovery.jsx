@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/styles/components/Login.scss';
 
@@ -6,6 +6,17 @@ const Recovery = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Recuperar contraseña';
   }, []);
+
+  const form = useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(form.current);
+    const data = {
+      email: formData.get('email'),
+    };
+    console.log(data);
+  };
 
   return (
     <div className='main-login'>
@@ -34,14 +45,17 @@ const Recovery = () => {
             <div className='login__form--email'>
               <input
                 className='login__form--input form--input-text'
+                name='email'
                 type='email'
                 placeholder='Correo electrónico'
               />
             </div>
-            <button className='login__form--button'>
-              <Link to='/enviar-correo'>
-                Enviar
-              </Link>
+            <button
+              type='submit'
+              className='login__form--button'
+              onClick={handleSubmit}
+            >
+              <Link to='/enviar-correo'>Enviar</Link>
             </button>
           </form>
           <Link className='login--forgot-password' to='/iniciar-sesion'>

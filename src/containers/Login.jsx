@@ -1,11 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loginRequest } from '../actions';
 import '../assets/styles/components/Login.scss';
 
-const Login = () => {
+const Login = (props) => {
   useEffect(() => {
     document.title = 'BEISMICH • Iniciar Sesión';
   }, []);
+
+  const [form, setValues] = useState({
+    email: '',
+  });
+
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.loginRequest(form);
+    props.history.push('/');
+  };
 
   const togglePassword = () => {
     var passwd = document.getElementById('password');
@@ -42,21 +61,25 @@ const Login = () => {
               ¡Hola!, inicia sesión para continuar
             </p>
           </div>
-          <form className='login__form' action=''>
+          <form className='login__form' onSubmit={handleSubmit}>
             <div className='login__form--email'>
               <input
                 className='login__form--input form--input-text'
+                name='email'
                 type='email'
                 placeholder='Correo electrónico'
+                onChange={handleInput}
               />
             </div>
             <div className='login__form--password'>
               <input
                 className='login__form--input form--input-text'
+                name='password'
                 type='password'
                 id='password'
                 minLength='8'
                 placeholder='Contraseña'
+                onChange={handleInput}
               />
               <span
                 className='login__form--password-icon input-icon'
@@ -64,7 +87,9 @@ const Login = () => {
                 onClick={togglePassword}
               ></span>
             </div>
-            <button className='login__form--button'>Iniciar Sesión</button>
+            <button type='submit' className='login__form--button'>
+              Iniciar Sesión
+            </button>
           </form>
           <Link className='login--forgot-password' to='/recuperar-contraseña'>
             ¿Olvidaste tu contraseña?
@@ -75,4 +100,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = {
+  loginRequest,
+};
+
+export default connect(null, mapDispatchToProps)(Login);
