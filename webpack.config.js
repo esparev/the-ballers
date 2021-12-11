@@ -1,14 +1,29 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+
+require('dotenv').config();
+
+const isDev = process.env.ENV === 'development';
+const entry = ['./src/frontend/index.js'];
+
+if (isDev) {
+  entry.push(
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true'
+  );
+}
 
 module.exports = {
-  mode: 'production',
-  entry: './src/index.js',
+  entry,
+  mode: process.env.ENV,
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'src/server/public'),
+    filename: isDev ? 'assets/app.js' : 'assets/app-[fullhash].js',
+    assetModuleFilename: 'assets/static/[hash][ext][query]',
     publicPath: '/',
   },
   resolve: {
@@ -24,14 +39,6 @@ module.exports = {
         },
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-        ],
-      },
-      {
         test: /\.(s*)css$/,
         use: [
           {
@@ -43,20 +50,62 @@ module.exports = {
       },
       {
         test: /\.(png|gif|jpg|jpeg|svg)$/,
-        type: 'asset',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/static/[md5:hash].[ext]',
+            },
+          },
+        ],
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
-    }),
+    isDev ? new webpack.HotModuleReplacementPlugin() : () => {},
+    isDev
+      ? () => {}
+      : new CompressionWebpackPlugin({
+          test: /\.js$|\.css$/,
+          filename: '[path][base].gz',
+        }),
+    isDev ? () => {} : new WebpackManifestPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'assets/[name].css',
+      filename: isDev ? 'assets/app.css' : 'assets/app-[fullhash].css',
     }),
     new CleanWebpackPlugin(),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+    // Vendor files
+    splitChunks: {
+      chunks: 'async', // Asynchronous chunks
+      // Cache group to make vendor files
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all', // Take all chunks
+          reuseExistingChunk: true,
+          priority: 1, // Max priority to all chunks
+          filename: isDev ? 'assets/vendor.js' : 'assets/vendor-[fullhash].js',
+          enforce: true, // Will do always
+          /**
+           * Tests chunks
+           * @param {*} module
+           * @param {*} chunks
+           * @returns chunk that's not called 'vendors' and its contained in node_modules
+           */
+          test(module, chunks) {
+            // Obtain chunk name
+            const name = module.nameForCondition && module.nameForCondition();
+            return (chunk) =>
+              chunk.name !== 'vendors' && /[\\/]__node_modules[\\/]/.test(name);
+          },
+        },
+      },
+    },
+  },
   devServer: {
     historyApiFallback: true,
   },
