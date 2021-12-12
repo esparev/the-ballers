@@ -9,21 +9,78 @@ const Login = (props) => {
     document.title = 'BEISMICH • Iniciar Sesión';
   }, []);
 
-  const [form, setValues] = useState({
-    email: '',
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // const [data, setData] = useState(null);
 
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
+  // const login = () => {
+  //   axios({
+  //     method: 'post',
+  //     data: {
+  //       username: loginEmail,
+  //       password: loginPassword,
+  //     },
+  //     withCredentials: true,
+  //     url: 'https://beismich.herokuapp.com/api/v1/auth/iniciar-sesion',
+  //   }).then((res) => console.log(res));
+  // };
+
+  // const getUser = () => {
+  //   axios({
+  //     method: 'get',
+  //     withCredentials: true,
+  //     url: 'https://beismich.herokuapp.com/api/v1/admins',
+  //   }).then((res) => {
+  //     setData(res.data);
+  //     console.log(res.data);
+  //   });
+  // };
+
+  // console.log(getUser);
+
+  // const [form, setValues] = useState({
+  //   email: '',
+  // });
+
+  // const handleInput = (event) => {
+  //   setValues({
+  //     ...form,
+  //     [event.target.name]: event.target.value,
+  //   });
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginRequest(form);
-    props.history.push('/');
+    const adminLogin = { email, password };
+
+    fetch('https://beismich.herokuapp.com/api/v1/auth/iniciar-sesion', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': [
+          'Origin',
+          'X-Requested-With',
+          'Content-Type',
+          'Accept',
+          'authorization',
+        ],
+        'Access-Control-Allow-Methods': [
+          'PUT',
+          'GET',
+          'POST',
+          'DELETE',
+          'OPTIONS',
+        ],
+      },
+      body: JSON.stringify(adminLogin),
+      credentials: 'include',
+    }).then(() => {
+      console.log('Welcome back');
+      console.log(adminLogin);
+    });
+    // props.loginRequest(form);
+    // props.history.push('/');
   };
 
   const togglePassword = () => {
@@ -68,7 +125,7 @@ const Login = (props) => {
                 name='email'
                 type='email'
                 placeholder='Correo electrónico'
-                onChange={handleInput}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className='login__form--password'>
@@ -79,7 +136,7 @@ const Login = (props) => {
                 id='password'
                 minLength='8'
                 placeholder='Contraseña'
-                onChange={handleInput}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <span
                 className='login__form--password-icon input-icon'
