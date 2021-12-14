@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginAdmin } from '../actions';
+import axios from 'axios';
 import '../assets/styles/components/Login.scss';
+import { config } from '../../server/config';
 
 const Login = (props) => {
   useEffect(() => {
@@ -11,6 +13,7 @@ const Login = (props) => {
 
   const [form, setValues] = useState({
     email: '',
+    password: '',
   });
 
   const handleInput = (event) => {
@@ -18,6 +21,17 @@ const Login = (props) => {
       ...form,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const login = async () => {
+    await axios
+      .post(`${config.apiUrl}/auth/iniciar-sesion`)
+      .then((response) => {
+        setValues({ data: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleSubmit = (event) => {
