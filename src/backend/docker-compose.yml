@@ -1,0 +1,25 @@
+# services to run
+services:
+  # postgres service
+  postgres:
+    # image of postgres
+    image: postgres:13
+    # environment variables
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    # port config
+    ports:
+     - ${DB_PORT}:${DB_PORT}
+    # add persistency to the container
+    volumes:
+      - /postgres_data:/var/lib/postgresql/data
+  # pgadmin service
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - 5050:80
