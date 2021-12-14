@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const boom = require('@hapi/boom');
 const AdminsService = require('./admins.service');
 const service = new AdminsService();
-const { config } = require('../config/config');
+const { config } = require('../config');
 
 /**
  * Service layer with CRUD methods

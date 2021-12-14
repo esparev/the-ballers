@@ -14,7 +14,7 @@ services:
      - ${DB_PORT}:${DB_PORT}
     # add persistency to the container
     volumes:
-      - /postgres_data:/var/lib/postgresql/data
+      - /src/backend/postgres_data:/var/lib/postgresql/data
   # pgadmin service
   pgadmin:
     image: dpage/pgadmin4

@@ -1,7 +1,9 @@
 const express = require('express');
+const webpack = require('webpack');
 const routerApi = require('./routes');
 const cors = require('cors');
 const passport = require('passport');
+const { config } = require('./config');
 require('./utils/auth');
 
 const {
@@ -15,10 +17,23 @@ const {
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Home route
-app.get('/', (req, res) => {
-	res.send('BEISMICH API');
-});
+if (config.dev) {
+	console.log('Development config');
+	const webpackConfig = require('../../webpack.config.dev');
+	const webpackDevMiddleware = require('webpack-dev-middleware');
+	const webpackHotMiddleware = require('webpack-hot-middleware');
+
+	const compiler = webpack(webpackConfig);
+	const serverConfig = {
+		serverSideRender: true,
+		publicPath: webpackConfig.output.publicPath,
+	};
+
+	app.use(webpackDevMiddleware(compiler, serverConfig));
+	app.use(webpackHotMiddleware(compiler));
+} else {
+	console.log('Production config');
+}
 
 // Middlewares
 app.use(passport.initialize());
