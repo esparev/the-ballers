@@ -44,7 +44,7 @@ const SingleNews = () => {
           sed tincidunt et ipsum interdum in in. Sed cras sagittis nec sed nam.
           Nisl interdum sit tincidunt fringilla facilisis.
         </p>
-        
+
         <div className='article__share'>
           <p>Compartir:</p>
           <div className='article__icons'>
@@ -67,13 +67,15 @@ const SingleNews = () => {
             </a>
           </div>
         </div>
-
-        <ButtonContainer>
-          <GrayButton
-            name='Editar Noticia'
-            route='/noticias/noticia/editar-noticia'
-          />
-        </ButtonContainer>
+        
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <GrayButton
+              name='Editar Noticia'
+              route='/noticias/noticia/editar-noticia'
+            />
+          </ButtonContainer>
+        ) : null}
       </section>
 
       <section className='more-articles'>

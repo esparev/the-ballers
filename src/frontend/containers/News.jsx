@@ -36,10 +36,15 @@ const News = () => {
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies quis egestas aliquet leo amet, eget. Sit vitae amet, sollicitudin ac placerat. Pellentesque in enim fusce enim sit mi turpis sed. Sagittis, ac eget enim duis venenatis netus elementum nisi elit. Ac, vel viverra sed tincidunt et ipsum interdum in in. Sed cras sagittis nec sed nam. Nisl interdum sit tincidunt fringilla facilisis.'
           route='/noticias/noticia'
         />
-        
-        <ButtonContainer>
-          <YellowButton name='Nueva Noticia' route='/noticias/nueva-noticia' />
-        </ButtonContainer>
+
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <YellowButton
+              name='Nueva Noticia'
+              route='/noticias/nueva-noticia'
+            />
+          </ButtonContainer>
+        ) : null}
       </div>
     </main>
   );

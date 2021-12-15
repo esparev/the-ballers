@@ -129,15 +129,17 @@ const TeamPlayers = () => {
           </section>
         </div>
 
-        <ButtonContainer>
-          <a className='button yellow-button' onClick={toggleMessage}>
-            Nuevo Jugador/Entrenador
-          </a>
-          <GrayButton
-            name='Editar Equipo'
-            route='/ligas/liga/equipo/editar-equipo'
-          />
-        </ButtonContainer>
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <a className='button yellow-button' onClick={toggleMessage}>
+              Nuevo Jugador/Entrenador
+            </a>
+            <GrayButton
+              name='Editar Equipo'
+              route='/ligas/liga/equipo/editar-equipo'
+            />
+          </ButtonContainer>
+        ) : null}
       </main>
     </>
   );

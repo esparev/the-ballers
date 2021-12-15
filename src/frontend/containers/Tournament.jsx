@@ -62,13 +62,15 @@ const Tournament = () => {
             </a>
           </div>
         </div>
-
-        <ButtonContainer>
-          <GrayButton
-            name='Editar Torneo'
-            route='/torneos/torneo/editar-torneo'
-          />
-        </ButtonContainer>
+        
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <GrayButton
+              name='Editar Torneo'
+              route='/torneos/torneo/editar-torneo'
+            />
+          </ButtonContainer>
+        ) : null}
       </section>
 
       <section className='more-articles'>

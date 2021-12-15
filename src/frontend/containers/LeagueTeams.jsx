@@ -10,7 +10,7 @@ import unknownTeamLogo from '../assets/icons/unknown-team-icon.png';
 
 const LeagueTeams = (props) => {
   const { id } = props.match.params;
-  
+
   useEffect(() => {
     document.title = 'BEISMICH • Liga';
     window.scrollTo(0, 0);
@@ -76,10 +76,12 @@ const LeagueTeams = (props) => {
         </EntityContainer>
       </section>
 
-      <ButtonContainer>
-        <YellowButton name='Nuevo Equipo' route='/ligas/liga/nuevo-equipo' />
-        <GrayButton name='Editar Liga' route='/ligas/liga/editar-liga' />
-      </ButtonContainer>
+      {localStorage.getItem('id') ? (
+        <ButtonContainer>
+          <YellowButton name='Nuevo Equipo' route='/ligas/liga/nuevo-equipo' />
+          <GrayButton name='Editar Liga' route='/ligas/liga/editar-liga' />
+        </ButtonContainer>
+      ) : null}
     </main>
   );
 };

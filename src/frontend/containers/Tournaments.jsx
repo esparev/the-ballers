@@ -14,7 +14,7 @@ const News = () => {
     <main>
       <div className='cards__container'>
         <h1 className='cards__container--title'>Torneos</h1>
-        
+
         <NewsCard
           title='Torneo de Liga TELMEX'
           date='Octubre 26, 2021'
@@ -37,9 +37,11 @@ const News = () => {
           route='/torneos/torneo'
         />
 
-        <ButtonContainer>
-          <YellowButton name='Nuevo Torneo' route='/torneos/nuevo-torneo' />
-        </ButtonContainer>
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <YellowButton name='Nuevo Torneo' route='/torneos/nuevo-torneo' />
+          </ButtonContainer>
+        ) : null}
       </div>
     </main>
   );

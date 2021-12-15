@@ -76,12 +76,14 @@ const Coach = () => {
           </div>
         </section>
 
-        <ButtonContainer>
-          <GrayButton
-            name='Editar Entrenador'
-            route='/ligas/liga/equipo/entrenador/editar-entrenador'
-          />
-        </ButtonContainer>
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <GrayButton
+              name='Editar Entrenador'
+              route='/ligas/liga/equipo/entrenador/editar-entrenador'
+            />
+          </ButtonContainer>
+        ) : null}
       </section>
     </main>
   );
