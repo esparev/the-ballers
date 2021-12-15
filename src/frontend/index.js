@@ -10,7 +10,7 @@ const store = createStore(reducer, composeEnhancers());
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App isLogged={localStorage.getItem('id')} />
   </Provider>,
   document.getElementById('app')
 );

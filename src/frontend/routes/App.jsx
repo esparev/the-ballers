@@ -34,7 +34,7 @@ import SendMail from '../containers/SendMail';
 import ChangePassword from '../containers/ChangePassword';
 import NotFound from '../containers/NotFound';
 
-const App = () => {
+const App = ({ isLogged }) => {
   return (
     <BrowserRouter>
       <Layout>
@@ -43,35 +43,35 @@ const App = () => {
           {/* News routes */}
           <Route exact path='/noticias' component={News} />
           <Route exact path='/noticias/noticia' component={SingleNews} />
-          <Route exact path='/noticias/nueva-noticia' component={CreateNews} />
-          <Route exact path='/noticias/noticia/editar-noticia' component={EditNews} />
+          <Route exact path='/noticias/nueva-noticia' component={isLogged ? CreateNews : NotFound} />
+          <Route exact path='/noticias/noticia/editar-noticia' component={isLogged ? EditNews : NotFound} />
           {/* Tournaments routes */}
           <Route exact path='/torneos' component={Tournaments} />
           <Route exact path='/torneos/torneo' component={Tournament} />
-          <Route exact path='/torneos/nuevo-torneo' component={CreateTournament} />
-          <Route exact path='/torneos/torneo/editar-torneo' component={EditTournament} />
+          <Route exact path='/torneos/nuevo-torneo' component={isLogged ? CreateTournament : NotFound} />
+          <Route exact path='/torneos/torneo/editar-torneo' component={isLogged ? EditTournament : NotFound} />
           {/* Leagues routes */}
           <Route exact path='/ligas' component={Leagues} />
           <Route exact path='/ligas/liga/:id' component={LeagueTeams} />
-          <Route exact path='/ligas/nueva-liga' component={CreateLeague} />
-          <Route exact path='/ligas/liga/editar-liga' component={EditLeague} />
+          <Route exact path='/ligas/nueva-liga' component={isLogged ? CreateLeague : NotFound} />
+          <Route exact path='/ligas/liga/editar-liga' component={isLogged ? EditLeague : NotFound} />
           {/* Teams routes */}
           <Route exact path='/ligas/liga/equipo' component={TeamPlayers} />
-          <Route exact path='/ligas/liga/nuevo-equipo' component={CreateTeam} />
-          <Route exact path='/ligas/liga/equipo/editar-equipo' component={EditTeam} />
+          <Route exact path='/ligas/liga/nuevo-equipo' component={isLogged ? CreateTeam : NotFound} />
+          <Route exact path='/ligas/liga/equipo/editar-equipo' component={isLogged ? EditTeam : NotFound} />
           {/* Player routes */}
           <Route exact path='/ligas/liga/equipo/jugador' component={PlayerContainer} />
-          <Route exact path='/ligas/liga/equipo/nuevo-jugador' component={CreatePlayer} />
-          <Route exact path='/ligas/liga/equipo/jugador/editar-jugador' component={EditPlayer} />
+          <Route exact path='/ligas/liga/equipo/nuevo-jugador' component={isLogged ? CreatePlayer : NotFound} />
+          <Route exact path='/ligas/liga/equipo/jugador/editar-jugador' component={isLogged ? EditPlayer : NotFound} />
           {/* Coach routes */}
           <Route exact path='/ligas/liga/equipo/entrenador' component={CoachContainer} />
-          <Route exact path='/ligas/liga/equipo/nuevo-entrenador' component={CreateCoach} />
-          <Route exact path='/ligas/liga/equipo/entrenador/editar-entrenador' component={EditCoach} />
+          <Route exact path='/ligas/liga/equipo/nuevo-entrenador' component={isLogged ? CreateCoach : NotFound} />
+          <Route exact path='/ligas/liga/equipo/entrenador/editar-entrenador' component={isLogged ? EditCoach : NotFound} />
           {/* Admins routes */}
-          <Route exact path='/admins' component={Admins} />
-          <Route exact path='/admins/admin' component={AdminContainer} />
-          <Route exact path='/admins/nuevo-admin' component={CreateAdmin} />
-          <Route exact path='/admins/admin/editar-admin' component={EditAdmin} />
+          <Route exact path='/admins' component={isLogged ? Admins : NotFound} />
+          <Route exact path='/admins/admin' component={isLogged ? AdminContainer : NotFound} />
+          <Route exact path='/admins/nuevo-admin' component={isLogged ? CreateAdmin : NotFound} />
+          <Route exact path='/admins/admin/editar-admin' component={isLogged ? EditAdmin : NotFound} />
           {/* Other routes */}
           {/* <Route exact path='/perfil' component={Profile} /> */}
           <Route exact path='/conocenos' component={About} />
