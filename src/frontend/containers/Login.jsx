@@ -1,86 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginRequest } from '../actions';
+import axios from 'axios';
 import '../assets/styles/components/Login.scss';
 
-const Login = (props) => {
+const API = 'https://beismich.herokuapp.com/api/v1';
+
+const Login = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Iniciar Sesión';
   }, []);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // const [data, setData] = useState(null);
+  const [form, setValues] = useState({
+    email: '',
+    password: '',
+  });
 
-  // const login = () => {
-  //   axios({
-  //     method: 'post',
-  //     data: {
-  //       username: loginEmail,
-  //       password: loginPassword,
-  //     },
-  //     withCredentials: true,
-  //     url: 'https://beismich.herokuapp.com/api/v1/auth/iniciar-sesion',
-  //   }).then((res) => console.log(res));
-  // };
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-  // const getUser = () => {
-  //   axios({
-  //     method: 'get',
-  //     withCredentials: true,
-  //     url: 'https://beismich.herokuapp.com/api/v1/admins',
-  //   }).then((res) => {
-  //     setData(res.data);
-  //     console.log(res.data);
-  //   });
-  // };
-
-  // console.log(getUser);
-
-  // const [form, setValues] = useState({
-  //   email: '',
-  // });
-
-  // const handleInput = (event) => {
-  //   setValues({
-  //     ...form,
-  //     [event.target.name]: event.target.value,
-  //   });
-  // };
+  const login = async (url, data) => {
+    await axios
+      .post(url, data)
+      .then((res) => {
+        localStorage['id'] = res.data.admin.id;
+        localStorage['name'] = res.data.admin.name;
+        localStorage['email'] = res.data.admin.email;
+        localStorage['image'] = res.data.admin.image;
+        localStorage['role'] = res.data.admin.role;
+        localStorage['token'] = res.data.token;
+        window.location.href = '/';
+      })
+      .catch((error) => {
+        console.log('error');
+        console.log(error);
+      });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const adminLogin = { email, password };
-
-    fetch('https://beismich.herokuapp.com/api/v1/auth/iniciar-sesion', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Headers': [
-          'Origin',
-          'X-Requested-With',
-          'Content-Type',
-          'Accept',
-          'authorization',
-        ],
-        'Access-Control-Allow-Methods': [
-          'PUT',
-          'GET',
-          'POST',
-          'DELETE',
-          'OPTIONS',
-        ],
-      },
-      body: JSON.stringify(adminLogin),
-      credentials: 'include',
-    }).then(() => {
-      console.log('Welcome back');
-      console.log(adminLogin);
-    });
-    // props.loginRequest(form);
-    // props.history.push('/');
+    login(`${API}/auth/iniciar-sesion`, form);
   };
 
   const togglePassword = () => {
@@ -125,7 +87,7 @@ const Login = (props) => {
                 name='email'
                 type='email'
                 placeholder='Correo electrónico'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleInput}
               />
             </div>
             <div className='login__form--password'>
@@ -136,7 +98,7 @@ const Login = (props) => {
                 id='password'
                 minLength='8'
                 placeholder='Contraseña'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleInput}
               />
               <span
                 className='login__form--password-icon input-icon'
@@ -157,8 +119,4 @@ const Login = (props) => {
   );
 };
 
-const mapDispatchToProps = {
-  loginRequest,
-};
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

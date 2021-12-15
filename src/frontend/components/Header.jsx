@@ -18,6 +18,11 @@ const Header = () => {
     nav.addEventListener('resize', menuDesktop);
   }, []);
 
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = '/iniciar-sesion';
+  };
+
   const adminDisplay = () => {
     var adminNav = document.getElementById('admin-nav');
     if (adminNav.style.display === 'none' || adminNav.style.display === '') {
@@ -65,15 +70,28 @@ const Header = () => {
               </a>
             </li>
             <div className='header__nav-admin admin-nav' id='admin-nav'>
-              <li className='header__nav-list--item'>
-                <Link to='/perfil'>Perfil</Link>
-              </li>
-              <li className='header__nav-list--item'>
-                <Link to='/admins'>Administradores</Link>
-              </li>
-              <li className='header__nav-list--item'>
-                <Link to='/iniciar-sesion'>Iniciar sesión</Link>
-              </li>
+              {localStorage.getItem('id') ? (
+                <>
+                  <li className='header__nav-list--item'>
+                    <Link to='/perfil'>Perfil</Link>
+                  </li>
+                  <li className='header__nav-list--item'>
+                    <Link to='/admins'>Administradores</Link>
+                  </li>
+                </>
+              ) : null}
+
+              {localStorage.getItem('id') ? (
+                <li className='header__nav-list--item'>
+                  <Link to='/iniciar-sesion' onClick={logout}>
+                    Cerrar sesión
+                  </Link>
+                </li>
+              ) : (
+                <li className='header__nav-list--item'>
+                  <Link to='/iniciar-sesion'>Iniciar sesión</Link>
+                </li>
+              )}
             </div>
           </ul>
         </nav>
