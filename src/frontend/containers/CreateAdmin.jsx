@@ -124,7 +124,7 @@ const CreateAdmin = () => {
         </form>
       </main>
 
-      {/* <Helmet>
+      <Helmet>
         <script
           defer
           src='https://cdn.jsdelivr.net/gh/esparev/imgur-image-uploader@51df632ab052887e42e88a55fbb3c1eeef613c87/imgur.js'
@@ -135,7 +135,7 @@ const CreateAdmin = () => {
           src='https://cdn.jsdelivr.net/gh/esparev/imgur-image-uploader@master/upload.js'
           type='text/javascript'
         ></script>
-      </Helmet> */}
+      </Helmet>
     </>
   );
 };
