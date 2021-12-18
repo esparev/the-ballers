@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import ButtonContainer from './ButtonContainer.jsx';
-import YellowButton from '../components/YellowButton.jsx';
-import { Helmet } from 'react-helmet';
+import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
+import ImageUploader from '../functions/ImageUploader';
+import axios from 'axios';
 import '../assets/styles/components/CreateEntity.scss';
-import updateThumbnail from '../functions/updateThumbnail.js';
+import updateThumbnail from '../functions/updateThumbnail';
 
 const CreateAdmin = () => {
   useEffect(() => {
@@ -13,13 +14,6 @@ const CreateAdmin = () => {
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
       const dropZoneElement = inputElement.closest('.form__image');
-
-      /**
-       * Adds click event to the image drop zone
-       */
-      dropZoneElement.addEventListener('click', (e) => {
-        inputElement.click();
-      });
 
       /**
        * Updates the image thumbnail after change is detected in the
@@ -42,25 +36,13 @@ const CreateAdmin = () => {
       });
 
       /**
-       * Events listener when the file isn't being drag
+       * Event listener when the file isn't being dragged
        */
       ['dragleave', 'dragend'].forEach((type) => {
         dropZoneElement.addEventListener(type, (e) => {
           dropZoneElement.classList.remove('drop-zone__over');
         });
       });
-
-      // Event listener after the file has been dropped on the drop zone
-      // dropZoneElement.addEventListener('drop', (e) => {
-      //   e.preventDefault();
-
-      //   if (e.dataTransfer.files.length) {
-      //     inputElement.files = e.dataTransfer.files;
-      //     updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-      //   }
-
-      //   dropZoneElement.classList.remove('drop-zone__over');
-      // });
     });
   }, []);
 
@@ -126,19 +108,7 @@ const CreateAdmin = () => {
         </form>
       </main>
 
-      {/* Imgur Image Uploader API scripts */}
-      <Helmet>
-        <script
-          defer
-          src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@6e81d570de9d3a9d8ca1f38c4daeee17edccf1e7/imgur.js'
-          type='text/javascript'
-        ></script>
-        <script
-          defer
-          src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@6e81d570de9d3a9d8ca1f38c4daeee17edccf1e7/upload.js'
-          type='text/javascript'
-        ></script>
-      </Helmet>
+      <ImageUploader />
     </>
   );
 };
