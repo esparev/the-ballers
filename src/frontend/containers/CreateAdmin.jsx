@@ -3,52 +3,54 @@ import ButtonContainer from './ButtonContainer.jsx';
 import YellowButton from '../components/YellowButton.jsx';
 import { Helmet } from 'react-helmet';
 import '../assets/styles/components/CreateEntity.scss';
-// import updateThumbnail from '../functions/updateThumbnail.js';
+import updateThumbnail from '../functions/updateThumbnail.js';
 
 const CreateAdmin = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Nuevo Administrador';
     window.scrollTo(0, 0);
 
-    //? Select closest container for the input
-    // document.querySelectorAll('.form__image--input').forEach((inputElement) => {
-      // const dropZoneElement = inputElement.closest('.form__image');
+    // Select closest container for the input
+    document.querySelectorAll('.form__image--input').forEach((inputElement) => {
+      const dropZoneElement = inputElement.closest('.form__image');
 
       /**
-       *? Adds click event to the image drop zone
+       * Adds click event to the image drop zone
        */
-      // dropZoneElement.addEventListener('click', (e) => {
-      //   inputElement.click();
-      // });
+      dropZoneElement.addEventListener('click', (e) => {
+        inputElement.click();
+      });
 
       /**
-       *? Updates the image thumbnail after change is detected in the
+       * Updates the image thumbnail after change is detected in the
        * image drop zone
        */
-      // inputElement.addEventListener('change', (e) => {
-      //   if (inputElement.files.length) {
-      //     updateThumbnail(dropZoneElement, inputElement.files[0]);
-      //   }
-      // });
+      inputElement.addEventListener('change', (e) => {
+        if (inputElement.files.length) {
+          updateThumbnail(dropZoneElement, inputElement.files[0]);
+        }
+      });
 
       /**
        * Event listener when file is being dragged over the drop zone
-       *? Activates CSS indicator to let the user know that they have
+       * Activates CSS indicator to let the user know that they have
        * dragged the item over the drop zone
        */
-      // dropZoneElement.addEventListener('dragover', (e) => {
-      //   e.preventDefault();
-      //   dropZoneElement.classList.add('drop-zone__over');
-      // });
+      dropZoneElement.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZoneElement.classList.add('drop-zone__over');
+      });
 
-      //? Events
-      // ['dragleave', 'dragend'].forEach((type) => {
-      //   dropZoneElement.addEventListener(type, (e) => {
-      //     dropZoneElement.classList.remove('drop-zone__over');
-      //   });
-      // });
+      /**
+       * Events listener when the file isn't being drag
+       */
+      ['dragleave', 'dragend'].forEach((type) => {
+        dropZoneElement.addEventListener(type, (e) => {
+          dropZoneElement.classList.remove('drop-zone__over');
+        });
+      });
 
-      //? Event listener after the file has been dropped on the drop zone
+      // Event listener after the file has been dropped on the drop zone
       // dropZoneElement.addEventListener('drop', (e) => {
       //   e.preventDefault();
 
@@ -59,7 +61,7 @@ const CreateAdmin = () => {
 
       //   dropZoneElement.classList.remove('drop-zone__over');
       // });
-    // });
+    });
   }, []);
 
   return (
@@ -124,15 +126,16 @@ const CreateAdmin = () => {
         </form>
       </main>
 
+      {/* Imgur Image Uploader API scripts */}
       <Helmet>
         <script
           defer
-          src='https://cdn.jsdelivr.net/gh/esparev/imgur-image-uploader@51df632ab052887e42e88a55fbb3c1eeef613c87/imgur.js'
+          src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@6e81d570de9d3a9d8ca1f38c4daeee17edccf1e7/imgur.js'
           type='text/javascript'
         ></script>
         <script
           defer
-          src='https://cdn.jsdelivr.net/gh/esparev/imgur-image-uploader@master/upload.js'
+          src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@6e81d570de9d3a9d8ca1f38c4daeee17edccf1e7/upload.js'
           type='text/javascript'
         ></script>
       </Helmet>
