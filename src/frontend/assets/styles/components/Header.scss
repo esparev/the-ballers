@@ -70,6 +70,7 @@ header {
 .user-list {
   padding-right: 0;
 }
+.header__nav-list--admin a,
 .header__nav-list--item a {
   margin: 0 20px;
   font-family: $rubik-font;
@@ -89,13 +90,21 @@ header {
 .header__nav-list--image {
   display: block;
 }
+.header__nav-list--admin a img,
 .header__nav-list--item a img {
+  display: block;
   width: 40px;
+  height: 40px;
+  border-radius: 100px;
 }
 .header__nav-list--item a img:hover {
   transition: 0.3s;
   filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
     brightness(101%) contrast(112%);
+}
+.header__nav-list--admin a img:hover {
+  transition: 0.3s;
+  border: 3px $yellow solid;
 }
 
 @media only screen and (max-width: 836px) {

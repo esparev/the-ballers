@@ -64,11 +64,19 @@ const Header = () => {
             <li className='header__nav-list--item user-list'>
               <Link to='/conocenos'>Conócenos</Link>
             </li>
-            <li className='header__nav-list--item header__nav-list--image'>
-              <a onClick={adminDisplay}>
-                <img src={userIcon} alt='Usuario' />
-              </a>
-            </li>
+            {localStorage.getItem('image') ? (
+              <li className='header__nav-list--admin header__nav-list--image'>
+                <a onClick={adminDisplay}>
+                  <img src={localStorage.getItem('image')} alt='Usuario' />
+                </a>
+              </li>
+            ) : (
+              <li className='header__nav-list--item header__nav-list--image'>
+                <a onClick={adminDisplay}>
+                  <img src={userIcon} alt='Usuario' />
+                </a>
+              </li>
+            )}
             <div className='header__nav-admin admin-nav' id='admin-nav'>
               {localStorage.getItem('id') ? (
                 <>
