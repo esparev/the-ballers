@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import MoreActors from '../components/MoreActors.jsx';
-import Message from '../components/Message.jsx';
+import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
 import '../assets/styles/components/ActorContainer.scss';
@@ -12,12 +11,6 @@ const Player = () => {
     document.title = 'BEISMICH • Jugador';
     window.scrollTo(0, 0);
   }, []);
-
-  const showMessage = () => {
-    var main = document.getElementById('app');
-    var message = document.getElementById('message');
-    main.append(<Message />);
-  };
 
   return (
     <main>
