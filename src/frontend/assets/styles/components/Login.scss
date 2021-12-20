@@ -101,6 +101,15 @@
   font-weight: bold;
   color: $gray;
 }
+.login--wrong-login {
+  display: none;
+  max-width: 300px;
+  margin-top: 60px;
+  font-family: $rubik-font;
+  font-size: $normal-desk;
+  font-weight: bold;
+  color: $red;
+}
 .form--input-text {
   height: 32px;
   width: 100%;

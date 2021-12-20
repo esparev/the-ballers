@@ -162,6 +162,7 @@ const CreateAdmin = () => {
             type='password'
             placeholder='Contraseña *'
             autoComplete='off'
+            minLength='8'
             required
             onChange={handleInput}
           />

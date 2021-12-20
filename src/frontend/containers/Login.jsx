@@ -26,6 +26,8 @@ const Login = () => {
     await axios
       .post(url, data)
       .then((res) => {
+        const wrongLogin = document.getElementById('wrong-login');
+        wrongLogin.style.display = 'block';
         localStorage.setItem('id', res.data.admin.id);
         localStorage.setItem('name', res.data.admin.name);
         localStorage.setItem('email', res.data.admin.email);
@@ -37,9 +39,9 @@ const Login = () => {
         localStorage.setItem('team logo', 'https://i.imgur.com/chid3RN.png');
         window.location.href = '/';
       })
-      .catch((error) => {
-        console.log('error');
-        console.log(error);
+      .catch(() => {
+        const wrongLogin = document.getElementById('wrong-login');
+        wrongLogin.style.display = 'block';
       });
   };
 
@@ -116,6 +118,9 @@ const Login = () => {
           <Link className='login--forgot-password' to='/recuperar-contraseña'>
             ¿Olvidaste tu contraseña?
           </Link>
+          <p className='login--wrong-login' id='wrong-login'>
+            El correo o la contraseña son incorrectos, intente nuevamente
+          </p>
         </section>
       </main>
     </div>
