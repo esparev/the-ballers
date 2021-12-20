@@ -29,11 +29,11 @@ const TeamPlayers = () => {
   return (
     <>
       <div className='feedback-message' id='feedback-message'>
-        <div className='message__container'>
-          <h1 className='message__container--title'>
+        <div className='feedback-message__container'>
+          <h1 className='feedback-message__container--title'>
             ¿Desea agregar a un Jugador o un Entrenador?
           </h1>
-          <p className='message__container--text'>
+          <p className='feedback-message__container--text'>
             Elija si decide agregar a un jugador o a un entrenador
           </p>
           <div className='buttons__container'>

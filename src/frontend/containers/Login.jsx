@@ -26,12 +26,15 @@ const Login = () => {
     await axios
       .post(url, data)
       .then((res) => {
-        localStorage['id'] = res.data.admin.id;
-        localStorage['name'] = res.data.admin.name;
-        localStorage['email'] = res.data.admin.email;
-        localStorage['image'] = res.data.admin.image;
-        localStorage['role'] = res.data.admin.role;
-        localStorage['token'] = res.data.token;
+        localStorage.setItem('id', res.data.admin.id);
+        localStorage.setItem('name', res.data.admin.name);
+        localStorage.setItem('email', res.data.admin.email);
+        localStorage.setItem('image', res.data.admin.image);
+        localStorage.setItem('role', res.data.admin.role);
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('actor image', 'https://i.imgur.com/CFJ2k8J.png');
+        localStorage.setItem('league logo', 'https://i.imgur.com/PEZQ6jS.png');
+        localStorage.setItem('team logo', 'https://i.imgur.com/chid3RN.png');
         window.location.href = '/';
       })
       .catch((error) => {

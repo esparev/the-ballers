@@ -12,7 +12,7 @@ const ImageUploader = () => {
       ></script>
       <script
         defer
-        src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@6e81d570de9d3a9d8ca1f38c4daeee17edccf1e7/upload.js'
+        src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@1181ca97745ed0351535b0a56a8274b0e2520018/upload.js'
         type='text/javascript'
       ></script>
     </Helmet>

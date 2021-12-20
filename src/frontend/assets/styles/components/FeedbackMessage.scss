@@ -11,7 +11,7 @@
   z-index: 1;
   top: 0;
 }
-.message__container {
+.feedback-message__container {
   display: flex;
   width: fit-content;
   align-items: center;
@@ -21,11 +21,11 @@
   text-align: center;
   background-color: $white;
 }
-.message__container--title {
+.feedback-message__container--title {
   font-family: $rubik-font;
   font-size: $primary-desk;
 }
-.message__container--text {
+.feedback-message__container--text {
   margin: 12px 0;
   font-family: $roboto-font;
   font-size: $normal-desk;
@@ -36,13 +36,13 @@
 }
 
 @media only screen and (max-width: 660px) {
-  .message__container {
+  .feedback-message__container {
     padding: 20px;
   }
-  .message__container--title {
+  .feedback-message__container--title {
     font-size: 2rem;
   }
-  .message__container--text {
+  .feedback-message__container--text {
     font-size: $normal-mob;
   }
   .buttons__container {

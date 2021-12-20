@@ -4,23 +4,15 @@ import crossIcon from '../assets/icons/crossed-icon.svg';
 import successIcon from '../assets/icons/check-icon.svg';
 
 const Message = (props) => {
-  const { message, messageStatus, onLoad } = props;
-
-  const hideMessage = () => {
-    var main = document.getElementById('app');
-    var message = document.getElementById('message');
-    if (message.style.display === 'flex') {
-      main.remove(message);
-    }
-  };
+  const { message, messageStatus } = props;
 
   const closeMessage = () => {
     var message = document.getElementById('message');
-    message.remove('div');
+    message.style.display = 'none';
   };
 
   return (
-    <div className='main-message' id='message' onLoad={onLoad | hideMessage}>
+    <div className='main-message' id='message'>
       <div className='message__card'>
         <div className='message__container'>
           {messageStatus === 'success' ? (

@@ -20,17 +20,17 @@ const DeleteMessage = (props) => {
 
   return (
     <div className='feedback-message' id='feedback-message'>
-      <div className='message__container'>
+      <div className='feedback-message__container'>
         {entity === 'liga' || entity === 'noticia' ? (
-          <h1 className='message__container--title'>
+          <h1 className='feedback-message__container--title'>
             ¿Está seguro de eliminar la {entity}?
           </h1>
         ) : (
-          <h1 className='message__container--title'>
+          <h1 className='feedback-message__container--title'>
             ¿Está seguro de eliminar el {entity}?
           </h1>
         )}
-        <p className='message__container--text'>
+        <p className='feedback-message__container--text'>
           Esta acción es permanente y no podrás restaurar esta información
         </p>
         <div className='buttons__container'>
