@@ -55,7 +55,7 @@ const CreateAdmin = () => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    form.image = localStorage.getItem('actor image');
+    form.image = localStorage.getItem('uploaded image');
   };
 
   /**
@@ -92,30 +92,17 @@ const CreateAdmin = () => {
     await axios
       .post(url, data, config)
       .then((res) => {
-        console.log('res', res);
-        console.log('FORM', form);
         ReactDOM.render(
           <Message
-            message='¡Administrador registrado con exito!'
+            message='¡Administrador registrado con éxito!'
             messageStatus='success'
           />,
           document.getElementById('message-container')
         );
-        // Changes the default actor image if its different from the default one
-        if (
-          localStorage.getItem('actor image') !==
-          'https://i.imgur.com/CFJ2k8J.png'
-        ) {
-          localStorage.setItem(
-            'actor image',
-            'https://i.imgur.com/CFJ2k8J.png'
-          );
-        }
+
+        localStorage.removeItem('uploaded image');
       })
       .catch((error) => {
-        console.log('error', error);
-        console.log('FORM', form);
-
         ReactDOM.render(
           <Message
             message='¡Ups!, Hubo un error al registrar el administrador'
@@ -123,6 +110,8 @@ const CreateAdmin = () => {
           />,
           document.getElementById('message-container')
         );
+
+        localStorage.removeItem('uploaded image');
       });
   };
 
