@@ -13,12 +13,12 @@ const API = 'https://beismich.herokuapp.com/api/v1/noticias';
 
 const SingleNews = (props) => {
   const { id } = props.match.params;
-  
+
   moment.locale('es');
   const news = useGetNews(`${API}/${id}`);
   const newsCollection = useGetNews(API);
   localStorage.setItem('selected news', news.id);
-  
+
   /**
    * Sorts the array of objects by recent date
    * @param {*} arr - array of objects

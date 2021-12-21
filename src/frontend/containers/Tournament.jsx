@@ -1,13 +1,27 @@
-import React, { useEffect } from 'react';
-import Article from '../components/Article.jsx';
-import ButtonContainer from './ButtonContainer.jsx';
-import GrayButton from '../components/GrayButton.jsx';
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import Article from '../components/Article';
+import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
+import useGetTournaments from '../hooks/useGetTournaments';
+import sortByDate from '../functions/sortByDate';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
 import twitterIcon from '../assets/icons/twitter-icon.svg';
 
-const Tournament = () => {
+const API = 'https://beismich.herokuapp.com/api/v1/torneos';
+
+const Tournament = (props) => {
+  const { id } = props.match.params;
+
+  moment.locale('es');
+  const tournament = useGetTournaments(`${API}/${id}`);
+  const tournaments = useGetTournaments(API);
+  localStorage.setItem('selected tournament', tournament.id);
+  sortByDate(tournaments);
+  tournaments.slice(0, 3);
+
   useEffect(() => {
     document.title = 'BEISMICH • Torneo';
     window.scrollTo(0, 0);
@@ -19,25 +33,27 @@ const Tournament = () => {
         <div className='article__cover'>
           <img
             className='article__cover--image cover-image'
-            src='https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg'
-            alt=''
+            src={tournament.cover}
+            alt='Imagen del torneo'
           />
         </div>
 
-        <h1 className='article--title'>Torneo de Liga TELMEX</h1>
+        <h1 className='article--title'>{tournament.title}</h1>
 
         <div className='article--info'>
-          <p>Asociación de Beisbolistas Michoacanos</p>
+          <p>{tournament.author}</p>
           <p>•</p>
-          <p>Octubre 26, 2021</p>
+          <p>
+            {moment(tournament.createdAt).format(
+              'DD [de] MMMM [de] YYYY, h:mm a'
+            )}
+          </p>
         </div>
 
         <hr className='article--line' />
 
         <p className='article--description'>
-          <a className='card--link'>
-            https://docs.google.com/document/d/1nBUzVIkWIdFPszrIoaqkcxLeSa-kz1QAqHFxK41E_MA/edit
-          </a>
+          <a className='card--link'>{tournament.link}</a>
         </p>
 
         <div className='article__share'>
@@ -62,12 +78,12 @@ const Tournament = () => {
             </a>
           </div>
         </div>
-        
+
         {localStorage.getItem('id') ? (
           <ButtonContainer>
             <GrayButton
               name='Editar Torneo'
-              route='/torneos/torneo/editar-torneo'
+              route={`/torneos/torneo/${tournament.id}/editar-torneo`}
             />
           </ButtonContainer>
         ) : null}
@@ -75,16 +91,18 @@ const Tournament = () => {
 
       <section className='more-articles'>
         <h2 className='more-articles--title'>Más Torneos</h2>
-        <Article
-          title='Torneo de Liga TELMEX'
-          date='Octubre 26, 2021'
-          category='Torneo'
-        />
-        <Article
-          title='Torneo de Liga TELMEX'
-          date='Octubre 26, 2021'
-          category='Torneo'
-        />
+
+        {tournaments.map((tournament) => (
+          <Article
+            tournament={tournament}
+            key={tournament.id}
+            title={tournament.title}
+            cover={tournament.cover}
+            date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
+            category='Torneo'
+            route={`/torneos/torneo/${tournament.id}`}
+          />
+        ))}
       </section>
     </main>
   );
