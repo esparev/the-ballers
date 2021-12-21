@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
 import RedButton from '../components/RedButton';
 import DeleteMessage from '../components/DeleteMessage';
 import ImageUploader from '../functions/ImageUploader';

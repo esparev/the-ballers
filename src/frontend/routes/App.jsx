@@ -47,7 +47,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/noticias/noticia/:id/editar-noticia' component={isLogged ? EditNews : NotFound} />
           {/* Tournaments routes */}
           <Route exact path='/torneos' component={Tournaments} />
-          <Route exact path='/torneos/torneo' component={Tournament} />
+          <Route exact path='/torneos/torneo/:id' component={Tournament} />
           <Route exact path='/torneos/nuevo-torneo' component={isLogged ? CreateTournament : NotFound} />
           <Route exact path='/torneos/torneo/editar-torneo' component={isLogged ? EditTournament : NotFound} />
           {/* Leagues routes */}

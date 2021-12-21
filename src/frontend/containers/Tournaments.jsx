@@ -1,41 +1,45 @@
 import React, { useEffect } from 'react';
-import NewsCard from '../components/Card.jsx';
-import ButtonContainer from './ButtonContainer.jsx';
-import YellowButton from '../components/YellowButton.jsx';
+import moment from 'moment';
+import TournamentCard from '../components/Card';
+import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
+import useGetTournaments from '../hooks/useGetTournaments';
+import sortByDate from '../functions/sortByDate';
 import '../assets/styles/components/CardsContainer.scss';
 
-const News = () => {
+const API = 'https://beismich.herokuapp.com/api/v1/torneos';
+
+const Tournaments = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Torneos';
     window.scrollTo(0, 0);
   }, []);
+
+  moment.locale('es');
+  const tournaments = useGetTournaments(API);
+  sortByDate(tournaments);
 
   return (
     <main>
       <div className='cards__container'>
         <h1 className='cards__container--title'>Torneos</h1>
 
-        <NewsCard
-          title='Torneo de Liga TELMEX'
-          date='Octubre 26, 2021'
-          category='Torneo'
-          link='https://docs.google.com/document/d/1nBUzVIkWIdFPszrIoaqkcxLeSa-kz1QAqHFxK41E_MA/edit'
-          route='/torneos/torneo'
-        />
-        <NewsCard
-          title='Torneo de Liga TELMEX'
-          date='Octubre 26, 2021'
-          category='Torneo'
-          link='https://docs.google.com/document/d/1nBUzVIkWIdFPszrIoaqkcxLeSa-kz1QAqHFxK41E_MA/edit'
-          route='/torneos/torneo'
-        />
-        <NewsCard
-          title='Torneo de Liga TELMEX'
-          date='Octubre 26, 2021'
-          category='Torneo'
-          link='https://docs.google.com/document/d/1nBUzVIkWIdFPszrIoaqkcxLeSa-kz1QAqHFxK41E_MA/edit'
-          route='/torneos/torneo'
-        />
+        {tournaments.map((tournament) => (
+          <TournamentCard
+            tournament={tournament}
+            key={tournament.id}
+            title={tournament.title}
+            cover={tournament.cover}
+            date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
+            category='Torneo'
+            link={
+              tournament.link.length > 255
+                ? `${tournament.link.substring(0, 255)}...`
+                : tournament.link
+            }
+            route={`/torneos/torneo/${tournament.id}`}
+          />
+        ))}
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
@@ -47,4 +51,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Tournaments;
