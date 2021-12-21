@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
-import ButtonContainer from './ButtonContainer.jsx';
-import YellowButton from '../components/YellowButton.jsx';
-import RedButton from '../components/RedButton.jsx';
-import DeleteMessage from '../components/DeleteMessage.jsx';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import Message from '../components/Message';
+import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
+import RedButton from '../components/RedButton';
+import DeleteMessage from '../components/DeleteMessage';
+import ImageUploader from '../functions/ImageUploader';
+import axios from 'axios';
 import '../assets/styles/components/CreateEntity.scss';
-import toggleMessage from '../functions/toggleMessage.js';
-import countCharacters from '../functions/countCharacters.js';
-import updateThumbnail from '../functions/updateThumbnail.js';
+import toggleMessage from '../functions/toggleMessage';
+import countCharacters from '../functions/countCharacters';
+import updateThumbnail from '../functions/updateThumbnail';
+
+const API = 'https://beismich.herokuapp.com/api/v1';
 
 const EditNews = () => {
   useEffect(() => {
@@ -23,58 +29,175 @@ const EditNews = () => {
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
       const dropZoneElement = inputElement.closest('.form__image');
 
-      dropZoneElement.addEventListener('click', (e) => {
-        inputElement.click();
-      });
-
+      /**
+       * Updates the image thumbnail after change is detected in the
+       * image drop zone
+       */
       inputElement.addEventListener('change', (e) => {
         if (inputElement.files.length) {
           updateThumbnail(dropZoneElement, inputElement.files[0]);
         }
       });
 
-      /* Event listener when file is being dragged over the drop zone
-      Activates CSS indicator to let the user know that they have
-      dragged the item over the drop zone  */
+      /**
+       * Event listener when file is being dragged over the drop zone
+       * Activates CSS indicator to let the user know that they have
+       * dragged the item over the drop zone
+       */
       dropZoneElement.addEventListener('dragover', (e) => {
         e.preventDefault();
         dropZoneElement.classList.add('drop-zone__over');
       });
 
-      // Events
+      /**
+       * Event listener when the file isn't being dragged
+       */
       ['dragleave', 'dragend'].forEach((type) => {
         dropZoneElement.addEventListener(type, (e) => {
           dropZoneElement.classList.remove('drop-zone__over');
         });
       });
-
-      // Event listener after the file has been dropped on the drop zone
-      dropZoneElement.addEventListener('drop', (e) => {
-        e.preventDefault();
-        if (e.dataTransfer.files.length) {
-          inputElement.files = e.dataTransfer.files;
-          updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-        }
-
-        dropZoneElement.classList.remove('drop-zone__over');
-      });
     });
   }, []);
 
+  /**
+   * Re assigns the form image value after a storage event
+   * has been dispatched, which means that an image has been
+   * uploaded to the app
+   */
+  window.onstorage = () => {
+    form.cover = localStorage.getItem('uploaded image');
+  };
+
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({});
+
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  /**
+   * Authorization header configuration for API request
+   */
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  };
+
+  /**
+   * Sends a patch request to the URL of the API provided
+   * with the data entered by the user in a form along
+   * with a bearer token included in the headers configuration
+   * @param {*} url - API URL
+   * @param {*} data - body data to post
+   * @param {*} config - headers configuration
+   */
+  const editNews = async (url, data, config) => {
+    await axios
+      .patch(url, data, config)
+      .then((res) => {
+        ReactDOM.render(
+          <Message
+            message='¡Noticia editada con exito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      })
+      .catch((error) => {
+        ReactDOM.render(
+          <Message
+            message='¡Ups!, Hubo un error al editar la noticia'
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      });
+  };
+
+  /**
+   * Sends a delete request to the URL of the API provided
+   * to delete the selected news according to its id along
+   * with a bearer token included in the headers configuration
+   * @param {*} url - API URL
+   * @param {*} config - headers configuration
+   */
+  const deleteNews = async (url, config) => {
+    await axios
+      .delete(url, config)
+      .then((res) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Noticia eliminada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      })
+      .catch((error) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Ups!, Hubo un error al eliminar la noticia'
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    editNews(
+      `${API}/noticias/${localStorage.getItem('selected news')}`,
+      form,
+      config
+    );
+  };
+
+  const handleDelete = () => {
+    deleteNews(
+      `${API}/noticias/${localStorage.getItem('selected news')}`,
+      config
+    );
+  };
+
   return (
     <>
-      <DeleteMessage entity='noticia' />
+      <div id='message-container'></div>
+
+      <DeleteMessage entity='noticia' onClick={handleDelete} />
 
       <main className='create-container'>
-        <form className='form' action=''>
+        <form className='form' onSubmit={handleSubmit}>
           <h1 className='form--title'>Editar Noticia</h1>
           <div>
             <input
               className='input'
+              name='title'
               type='text'
               id='input'
-              placeholder='Titulo *'
-              required
+              placeholder='Titulo'
+              onChange={handleInput}
             />
             <div className='input-count' id='input-count'>
               <span id='input-current'>0</span>
@@ -84,23 +207,23 @@ const EditNews = () => {
           <div>
             <textarea
               className='input'
+              name='description'
               type='text'
               id='textarea'
-              name='textarea'
-              placeholder='Descripción *'
-              maxLength='255'
-              required
+              placeholder='Descripción'
+              maxLength='1000'
+              onChange={handleInput}
             ></textarea>
             <div className='input-count' id='textarea-count'>
               <span id='textarea-current'>0</span>
-              <span id='textarea-maximum'>/255</span>
+              <span id='textarea-maximum'>/1000</span>
             </div>
           </div>
 
           <label className='form--label label' htmlFor='file'>
             Portada de la noticia
           </label>
-          <div className='form__image'>
+          <div className='form__image' id='drop-zone'>
             <input
               className='form__image--input'
               name='file'
@@ -118,11 +241,15 @@ const EditNews = () => {
           </div>
 
           <ButtonContainer>
-            <YellowButton name='Guardar Cambios' route='/noticias/noticia' />
+            <button type='submit' className='button yellow-button'>
+              Guardar Cambios
+            </button>
             <RedButton name='Eliminar Noticia' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>
+
+      <ImageUploader />
     </>
   );
 };

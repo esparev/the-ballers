@@ -108,7 +108,7 @@ const CreateNews = () => {
       .then((res) => {
         ReactDOM.render(
           <Message
-            message='¡Noticia publicada con exito!'
+            message='¡Noticia publicada con éxito!'
             messageStatus='success'
           />,
           document.getElementById('message-container')

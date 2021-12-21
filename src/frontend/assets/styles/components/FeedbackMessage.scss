@@ -8,7 +8,7 @@
   position: fixed;
   place-content: center;
   background-color: rgba($color: $black, $alpha: 0.5);
-  z-index: 1;
+  z-index: 10;
   top: 0;
 }
 .feedback-message__container {

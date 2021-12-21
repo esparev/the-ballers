@@ -3,7 +3,7 @@ import '../assets/styles/components/FeedbackMessage.scss';
 import toggleMessage from '../functions/toggleMessage';
 
 const DeleteMessage = (props) => {
-  const { entity } = props;
+  const { entity, onClick } = props;
 
   useEffect(() => {
     /**
@@ -37,7 +37,7 @@ const DeleteMessage = (props) => {
           <a className='button gray-button' onClick={toggleMessage}>
             Cancelar
           </a>
-          <a className='button red-button' onClick={toggleMessage}>
+          <a className='button red-button' onClick={onClick}>
             Eliminar
           </a>
         </div>
