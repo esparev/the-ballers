@@ -42,7 +42,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/' component={Home} />
           {/* News routes */}
           <Route exact path='/noticias' component={News} />
-          <Route exact path='/noticias/noticia' component={SingleNews} />
+          <Route exact path='/noticias/noticia/:id' component={SingleNews} />
           <Route exact path='/noticias/nueva-noticia' component={isLogged ? CreateNews : NotFound} />
           <Route exact path='/noticias/noticia/editar-noticia' component={isLogged ? EditNews : NotFound} />
           {/* Tournaments routes */}

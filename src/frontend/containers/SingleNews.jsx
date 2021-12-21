@@ -1,13 +1,23 @@
 import React, { useEffect } from 'react';
-import Article from '../components/Article.jsx';
-import ButtonContainer from './ButtonContainer.jsx';
-import GrayButton from '../components/GrayButton.jsx';
+import Article from '../components/Article';
+import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
+import useGetNews from '../hooks/useGetNews';
+import moment from 'moment';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
 import twitterIcon from '../assets/icons/twitter-icon.svg';
 
-const SingleNews = () => {
+const API = 'https://beismich.herokuapp.com/api/v1/noticias';
+
+const SingleNews = (props) => {
+  const { id } = props.match.params;
+  localStorage.setItem('selected news', id);
+
+  moment.locale('es');
+  const news = useGetNews(`${API}/${localStorage.getItem('selected news')}`);
+
   useEffect(() => {
     document.title = 'BEISMICH • Noticia';
     window.scrollTo(0, 0);
@@ -24,26 +34,19 @@ const SingleNews = () => {
           />
         </div>
 
-        <h1 className='article--title'>
-          BEISMICH manda liga de Morelia al mundial
-        </h1>
+        <h1 className='article--title'>{news.title}</h1>
 
         <div className='article--info'>
-          <p>Asociación de Beisbolistas Michoacanos</p>
+          <p>{news.author}</p>
           <p>•</p>
-          <p>Octubre 26, 2021</p>
+          <p>
+            {moment(news.createdAt).format('DD [de] MMMM [de] YYYY, h:mm a')}
+          </p>
         </div>
 
         <hr className='article--line' />
 
-        <p className='article--description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies
-          quis egestas aliquet leo amet, eget. Sit vitae amet, sollicitudin ac
-          placerat. Pellentesque in enim fusce enim sit mi turpis sed. Sagittis,
-          ac eget enim duis venenatis netus elementum nisi elit. Ac, vel viverra
-          sed tincidunt et ipsum interdum in in. Sed cras sagittis nec sed nam.
-          Nisl interdum sit tincidunt fringilla facilisis.
-        </p>
+        <p className='article--description'>{news.description}</p>
 
         <div className='article__share'>
           <p>Compartir:</p>
@@ -67,7 +70,7 @@ const SingleNews = () => {
             </a>
           </div>
         </div>
-        
+
         {localStorage.getItem('id') ? (
           <ButtonContainer>
             <GrayButton

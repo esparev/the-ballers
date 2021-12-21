@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import EntityContainer from './EntityContainer';
 import Entity from '../components/Entity';
 import ButtonContainer from './ButtonContainer';
