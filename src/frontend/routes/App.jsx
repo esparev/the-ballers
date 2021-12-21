@@ -69,9 +69,9 @@ const App = ({ isLogged }) => {
           <Route exact path='/ligas/liga/equipo/entrenador/editar-entrenador' component={isLogged ? EditCoach : NotFound} />
           {/* Admins routes */}
           <Route exact path='/admins' component={isLogged ? Admins : NotFound} />
-          <Route exact path='/admins/admin' component={isLogged ? AdminContainer : NotFound} />
+          <Route exact path='/admins/admin/:id' component={isLogged ? AdminContainer : NotFound} />
           <Route exact path='/admins/nuevo-admin' component={isLogged ? CreateAdmin : NotFound} />
-          <Route exact path='/admins/admin/editar-admin' component={isLogged ? EditAdmin : NotFound} />
+          <Route exact path='/admins/admin/:id/editar-admin' component={isLogged ? EditAdmin : NotFound} />
           {/* Other routes */}
           {/* <Route exact path='/perfil' component={Profile} /> */}
           <Route exact path='/conocenos' component={About} />

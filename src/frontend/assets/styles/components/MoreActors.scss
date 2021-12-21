@@ -10,9 +10,8 @@
 }
 .more-actors__card--image {
   width: 150px;
-  padding-bottom: 20px;
-  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
-    brightness(101%) contrast(112%);
+  margin-bottom: 20px;
+  border-radius: 50%;
 }
 .more-actors__card--name {
   text-align: center;

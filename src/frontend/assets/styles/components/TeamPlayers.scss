@@ -33,12 +33,20 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.admins,
 .actors {
   width: auto;
 }
+.admins--title,
 .actors--title {
   font-size: $secondary-desk;
   color: $white;
+}
+.admins__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: center;
 }
 .actors__container {
   margin-top: 20px;

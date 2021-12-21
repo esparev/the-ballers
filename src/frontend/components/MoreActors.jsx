@@ -10,7 +10,7 @@ const MoreActors = (props) => {
       <img
         className='more-actors__card--image'
         src={image}
-        alt='Foto del jugador'
+        alt='Foto del perfil'
       />
       <h3 className='more-actors__card--name'>{name}</h3>
     </Link>

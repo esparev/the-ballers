@@ -1,26 +1,39 @@
 @import '../Vars.scss';
 
+.admin__card,
 .actor__card {
   width: auto;
   display: flex;
   align-items: center;
   padding-bottom: 20px;
 }
+.admin__card {
+  margin-right: 40px;
+  flex-direction: column;
+  justify-content: center;
+}
+.admin__card--image,
 .actor__card--image {
   width: 150px;
-  padding-right: 20px;
-  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
-    brightness(101%) contrast(112%);
+  margin-right: 20px;
+  border-radius: 50%;
 }
+.admin__card--image {
+  margin-right: 0;
+  margin-bottom: 16px;
+}
+.admin__card-info,
 .actor__card-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+.admin__card-info--name,
 .actor__card-info--name {
   text-align: center;
   color: $white;
 }
+.admin__card--position,
 .actor__card--position {
   font-family: $rubik-font;
   font-size: $normal-desk;
@@ -28,13 +41,16 @@
 }
 
 @media only screen and (max-width: 836px) {
+  .admin__card,
   .actor__card {
     flex-direction: column;
   }
+  .admin__card--image,
   .actor__card--image {
-    padding-right: 0;
-    padding-bottom: 20px;
+    margin-right: 0;
+    margin-bottom: 20px;
   }
+  .admin__card-info,
   .actor__card-info {
     text-align: center;
   }

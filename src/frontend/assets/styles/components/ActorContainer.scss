@@ -30,8 +30,7 @@
 .actor__container--image {
   width: 150px;
   margin-right: 60px;
-  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
-    brightness(101%) contrast(112%);
+  border-radius: 50%;
 }
 .actor__container p {
   font-family: $rubik-font;

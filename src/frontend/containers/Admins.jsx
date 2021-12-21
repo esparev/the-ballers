@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import Actor from '../components/Actor';
+import AdminActor from '../components/AdminActor';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import useGetAdmins from '../hooks/useGetAdmins';
 import '../assets/styles/components/TeamPlayers.scss';
-// import userIcon from '../assets/icons/user-icon.svg';
 
-// const API = 'https://beismich.herokuapp.com/api/v1/admins';
+const API = 'https://beismich.herokuapp.com/api/v1';
 
 const Admins = () => {
   useEffect(() => {
@@ -14,23 +13,23 @@ const Admins = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // const admins = useGetAdmins(API);
+  const admins = useGetAdmins(`${API}/admins`);
 
   return (
     <main className='admins'>
       <div className='players-coach'>
-        <section className='actors'>
-          <h2 className='actors--title'>Administradores</h2>
-          <div className='actors__container'>
-            {/* {admins.map((admin) => (
-              <Actor
+        <section className='admins'>
+          <h2 className='admins--title'>Administradores</h2>
+          <div className='admins__container'>
+            {admins.map((admin) => (
+              <AdminActor
                 admin={admin}
                 key={admin.id}
                 name={admin.name}
                 image={admin.image}
-                route='/admins/admin'
+                route={`/admins/admin/${admin.id}`}
               />
-            ))} */}
+            ))}
           </div>
         </section>
       </div>

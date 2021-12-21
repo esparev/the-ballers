@@ -4,8 +4,17 @@ import axios from 'axios';
 const useGetAdmins = (API) => {
   const [admins, setAdmins] = useState([]);
 
+  /**
+   * Authorization header configuration for API request
+   */
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  };
+
   useEffect(async () => {
-    const response = await axios(API);
+    const response = await axios(API, config);
     setAdmins(response.data);
   }, []);
 

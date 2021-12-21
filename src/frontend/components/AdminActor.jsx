@@ -2,24 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/styles/components/Actor.scss';
 
-const Actor = (props) => {
+const AdminActor = (props) => {
   const { name, image, position, route } = props;
 
   return (
-    <Link className='actor__card' to={route}>
+    <Link className='admin__card' to={route}>
       <img
-        className='actor__card--image'
+        className='admin__card--image'
         src={image}
         alt='Foto de perfil'
       />
-      <div className='actor__card-info'>
-        <h3 className='actor__card-info--name'>{name}</h3>
+      <div className='admin__card-info'>
+        <h3 className='admin__card-info--name'>{name}</h3>
         {position ? (
-          <p className='actor__card--position'>{position}</p>
+          <p className='admin__card--position'>{position}</p>
         ) : null}
       </div>
     </Link>
   );
 };
 
-export default Actor;
+export default AdminActor;
