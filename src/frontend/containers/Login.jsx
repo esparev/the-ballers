@@ -39,9 +39,11 @@ const Login = () => {
         localStorage.setItem('team logo', 'https://i.imgur.com/chid3RN.png');
         window.location.href = '/';
       })
-      .catch(() => {
-        const wrongLogin = document.getElementById('wrong-login');
-        wrongLogin.style.display = 'block';
+      .catch((error) => {
+        if (error) {
+          const wrongLogin = document.getElementById('wrong-login');
+          wrongLogin.style.display = 'block';
+        }
       });
   };
 

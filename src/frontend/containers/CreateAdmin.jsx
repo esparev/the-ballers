@@ -88,6 +88,14 @@ const CreateAdmin = () => {
     },
   };
 
+  /**
+   * Sends a post request to the URL of the API provided
+   * with the data entered by the user in a form along
+   * with a bearer token included in the headers configuration
+   * @param {*} url - API URL
+   * @param {*} data - body data to post
+   * @param {*} config - headers configuration
+   */
   const addAdmin = async (url, data, config) => {
     await axios
       .post(url, data, config)

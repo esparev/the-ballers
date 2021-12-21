@@ -76,12 +76,12 @@ input[type='number'] {
 .form__image {
   height: 300px;
   max-width: 600px;
+  position: relative;
   border: 4px dashed $yellow;
 }
 .form__image-square {
   height: 372px;
   max-width: 372px;
-  position: relative;
   border: 4px dashed $yellow;
 }
 .form__image-labels {

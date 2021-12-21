@@ -1,15 +1,15 @@
 import React from 'react';
-import YellowButton from './YellowButton.jsx';
+import YellowButton from './YellowButton';
 import '../assets/styles/components/Articles.scss';
 
 const Articles = (props) => {
-  const { title, date, category } = props;
+  const { title, cover, date, category, route } = props;
 
   return (
     <div className='more-articles__card'>
       <img
         className='more-articles__card--image'
-        src='https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg'
+        src={cover}
         alt='Portada del tema'
       />
 
@@ -22,8 +22,7 @@ const Articles = (props) => {
             <p className='card--category'>{category}</p>
           </div>
         </div>
-        
-        <YellowButton name='Ver más' route='/pending' />
+        <YellowButton name='Ver más' route={route} />
       </div>
     </div>
   );

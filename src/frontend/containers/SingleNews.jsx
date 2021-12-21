@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
@@ -17,6 +17,20 @@ const SingleNews = (props) => {
 
   moment.locale('es');
   const news = useGetNews(`${API}/${localStorage.getItem('selected news')}`);
+  const newsCollection = useGetNews(API);
+
+  /**
+   * Sorts the array of objects by recent date
+   * @param {*} arr - array of objects
+   */
+  const sortByDate = (arr) => {
+    const sorter = (a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    };
+    arr.sort(sorter);
+  };
+  sortByDate(newsCollection);
+  newsCollection.slice(0, 3);
 
   useEffect(() => {
     document.title = 'BEISMICH • Noticia';
@@ -29,8 +43,8 @@ const SingleNews = (props) => {
         <div className='article__cover'>
           <img
             className='article__cover--image cover-image'
-            src='https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg'
-            alt=''
+            src={news.cover}
+            alt='Imagen de la noticia'
           />
         </div>
 
@@ -83,16 +97,18 @@ const SingleNews = (props) => {
 
       <section className='more-articles'>
         <h2 className='more-articles--title'>Más Noticias</h2>
-        <Article
-          title='BEISMICH manda liga de Morelia al mundial'
-          date='Octubre 26, 2021'
-          category='Noticia'
-        />
-        <Article
-          title='BEISMICH manda liga de Morelia al mundial'
-          date='Octubre 26, 2021'
-          category='Noticia'
-        />
+
+        {newsCollection.map((news) => (
+          <Article
+            news={news}
+            key={news.id}
+            title={news.title}
+            cover={news.cover}
+            date={moment(news.createdAt).format('DD MMMM, YYYY')}
+            category='Noticia'
+            route={`/noticias/noticia/${news.id}`}
+          />
+        ))}
       </section>
     </main>
   );

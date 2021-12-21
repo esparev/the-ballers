@@ -17,6 +17,18 @@ const News = () => {
   moment.locale('es');
   const news = useGetNews(API);
 
+  /**
+   * Sorts the array of objects by recent date
+   * @param {*} arr - array of objects
+   */
+  const sortByDate = (arr) => {
+    const sorter = (a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    };
+    arr.sort(sorter);
+  };
+  sortByDate(news);
+
   return (
     <main>
       <div className='cards__container'>
@@ -27,6 +39,7 @@ const News = () => {
             news={news}
             key={news.id}
             title={news.title}
+            cover={news.cover}
             date={moment(news.createdAt).format('DD MMMM, YYYY')}
             category='Noticia'
             description={
@@ -37,13 +50,6 @@ const News = () => {
             route={`/noticias/noticia/${news.id}`}
           />
         ))}
-        {/* <NewsCard
-          title='BEISMICH manda liga de Morelia al mundial'
-          date='Octubre 26, 2021'
-          category='Noticia'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies quis egestas aliquet leo amet, eget. Sit vitae amet, sollicitudin ac placerat. Pellentesque in enim fusce enim sit mi turpis sed. Sagittis, ac eget enim duis venenatis netus elementum nisi elit. Ac, vel viverra sed tincidunt et ipsum interdum in in. Sed cras sagittis nec sed nam. Nisl interdum sit tincidunt fringilla facilisis.'
-          route='/noticias/noticia'
-        /> */}
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
