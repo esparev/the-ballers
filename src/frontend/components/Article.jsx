@@ -7,11 +7,13 @@ const Articles = (props) => {
 
   return (
     <div className='more-articles__card'>
-      <img
-        className='more-articles__card--image'
-        src={cover}
-        alt='Portada del tema'
-      />
+      {cover ? (
+        <img
+          className='more-articles__card--image'
+          src={cover}
+          alt='Portada del tema'
+        />
+      ) : null}
 
       <div className='more-articles__card-info'>
         <div className='card__info'>

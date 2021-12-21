@@ -7,7 +7,9 @@ const Card = (props) => {
 
   return (
     <div className='card'>
-      <img className='card--image' src={cover} alt='Imagen de portada' />
+      {cover ? (
+        <img className='card--image' src={cover} alt='Imagen de portada' />
+      ) : null}
 
       <div className='card__info-container'>
         <div className='card__info'>

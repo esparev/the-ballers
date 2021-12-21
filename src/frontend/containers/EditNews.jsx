@@ -107,7 +107,7 @@ const EditNews = () => {
       .then((res) => {
         ReactDOM.render(
           <Message
-            message='¡Noticia editada con exito!'
+            message='¡Noticia editada con éxito!'
             messageStatus='success'
           />,
           document.getElementById('message-container')
@@ -225,9 +225,9 @@ const EditNews = () => {
           <div className='form__image' id='drop-zone'>
             <input
               className='form__image--input'
-              name='file'
               type='file'
               id='file'
+              accept='image/*'
             />
             <div className='form__image-labels'>
               <span className='form__image--label drop-zone--prompt'>

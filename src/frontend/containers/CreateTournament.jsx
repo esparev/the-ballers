@@ -71,7 +71,6 @@ const CreateTournament = () => {
   const [form, setValues] = useState({
     title: '',
     link: '',
-    cover: '',
   });
 
   /**

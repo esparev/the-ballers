@@ -30,13 +30,15 @@ const Tournament = (props) => {
   return (
     <main className='article__container'>
       <section className='article'>
-        <div className='article__cover'>
-          <img
-            className='article__cover--image cover-image'
-            src={tournament.cover}
-            alt='Imagen del torneo'
-          />
-        </div>
+        {tournament.cover ? (
+          <div className='article__cover'>
+            <img
+              className='article__cover--image cover-image'
+              src={tournament.cover}
+              alt='Imagen del torneo'
+            />
+          </div>
+        ) : null}
 
         <h1 className='article--title'>{tournament.title}</h1>
 
