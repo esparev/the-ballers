@@ -19,7 +19,14 @@ const Card = (props) => {
           </div>
           <p className='card--description'>
             {description}
-            <a className='card--link'>{link}</a>
+            <a
+              className='card--link'
+              href={link}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {link}
+            </a>
           </p>
         </div>
 

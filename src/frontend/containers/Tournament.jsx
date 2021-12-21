@@ -53,7 +53,14 @@ const Tournament = (props) => {
         <hr className='article--line' />
 
         <p className='article--description'>
-          <a className='card--link'>{tournament.link}</a>
+          <a
+            className='card--link'
+            href={tournament.link}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {tournament.link}
+          </a>
         </p>
 
         <div className='article__share'>

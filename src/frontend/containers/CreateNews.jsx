@@ -117,9 +117,6 @@ const CreateNews = () => {
         localStorage.removeItem('uploaded image');
       })
       .catch((error) => {
-        console.log(error);
-        console.log(form);
-
         ReactDOM.render(
           <Message
             message='¡Ups!, Hubo un error al publicar la noticia'

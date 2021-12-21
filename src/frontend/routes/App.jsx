@@ -49,7 +49,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/torneos' component={Tournaments} />
           <Route exact path='/torneos/torneo/:id' component={Tournament} />
           <Route exact path='/torneos/nuevo-torneo' component={isLogged ? CreateTournament : NotFound} />
-          <Route exact path='/torneos/torneo/editar-torneo' component={isLogged ? EditTournament : NotFound} />
+          <Route exact path='/torneos/torneo/:id/editar-torneo' component={isLogged ? EditTournament : NotFound} />
           {/* Leagues routes */}
           <Route exact path='/ligas' component={Leagues} />
           <Route exact path='/ligas/liga/:id' component={LeagueTeams} />
