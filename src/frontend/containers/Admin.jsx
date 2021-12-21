@@ -60,7 +60,7 @@ const Admin = (props) => {
           {localStorage.getItem('role') === 'hero' ? (
             <GrayButton
               name='Editar Administrador'
-              route='/admins/admin/editar-admin'
+              route={`/admins/admin/${admin.id}/editar-admin`}
             />
           ) : null}
         </ButtonContainer>
