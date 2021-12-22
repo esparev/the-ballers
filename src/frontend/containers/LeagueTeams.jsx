@@ -18,8 +18,6 @@ const LeagueTeams = (props) => {
   const address = useGetAddress(API, id);
   const teams = useGetTeams(API, id);
 
-  console.log(league);
-
   localStorage.setItem('selected league', league.id);
 
   useEffect(() => {
@@ -82,6 +80,8 @@ const LeagueTeams = (props) => {
             <EntityContainer>
               {teams.map((team) => (
                 <Entity
+                  team={team}
+                  key={team.id}
                   name={team.name}
                   logo={team.logo}
                   route={`/ligas/liga/${league.id}/equipo/${team.id}`}

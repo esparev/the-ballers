@@ -1,15 +1,28 @@
 import React, { useEffect } from 'react';
-import Actor from '../components/Actor.jsx';
-import ButtonContainer from './ButtonContainer.jsx';
-import YellowButton from '../components/YellowButton.jsx';
-import GrayButton from '../components/GrayButton.jsx';
+import Actor from '../components/Actor';
+import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
+import GrayButton from '../components/GrayButton';
+import toggleMessage from '../functions/toggleMessage';
+import useGetTeam from '../hooks/useGetTeam';
+import useGetLeagues from '../hooks/useGetLeagues';
+import useGetPlayers from '../hooks/useGetPlayers';
+import useGetCoaches from '../hooks/useGetCoaches';
 import '../assets/styles/components/TeamPlayers.scss';
 import '../assets/styles/components/FeedbackMessage.scss';
-import unknownTeamLogo from '../assets/icons/unknown-team-icon.png';
 import userIcon from '../assets/icons/user-icon.svg';
-import toggleMessage from '../functions/toggleMessage.js';
 
-const TeamPlayers = () => {
+const API = 'https://beismich.herokuapp.com/api/v1';
+
+const TeamPlayers = (props) => {
+  const { leagueId, teamId } = props.match.params;
+
+  const team = useGetTeam(`${API}/equipos/${teamId}`);
+  const league = useGetLeagues(`${API}/ligas/${leagueId}`);
+  const players = useGetPlayers(API, teamId);
+  const coaches = useGetCoaches(API, teamId);
+  localStorage.setItem('selected team', team.id);
+
   useEffect(() => {
     document.title = 'BEISMICH • Equipo';
     window.scrollTo(0, 0);
@@ -57,18 +70,22 @@ const TeamPlayers = () => {
           <div className='team__main'>
             <img
               className='team--image'
-              src={unknownTeamLogo}
+              src={team.logo}
               alt='Logo del equipo'
             />
-            <h1 className='team--title'>Nombre Equipo</h1>
+            <h1 className='team--title'>{team.name}</h1>
           </div>
           <div className='team__info'>
             <div>
+              {team.manager ? (
+                <p>
+                  <strong>Manager: </strong>
+                  {team.manager}
+                </p>
+              ) : null}
               <p>
-                <strong>Manager: </strong>Nombre manager
-              </p>
-              <p>
-                <strong>Liga: </strong>Liga Amigos del Cupatizio
+                <strong>Liga: </strong>
+                {league.name}
               </p>
             </div>
           </div>
@@ -77,55 +94,45 @@ const TeamPlayers = () => {
         <div className='players-coach'>
           <section className='actors'>
             <h2 className='actors--title'>Jugadores</h2>
-            <div className='actors__container'>
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-              <Actor
-                name='Nombre Jugador'
-                image={userIcon}
-                position='Posición'
-                route='/ligas/liga/equipo/jugador'
-              />
-            </div>
+            {players.length > 0 && (
+              <div className='actors__container'>
+                {players.map((player) => (
+                  <Actor
+                    player={player}
+                    key={player.id}
+                    name={player.name}
+                    image={player.image}
+                    position={player.position}
+                    route={`/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}`}
+                  />
+                ))}
+              </div>
+            )}
+            {players.length === 0 && (
+              <h2 className='no-teams'>Este equipo aún no tiene jugadores</h2>
+            )}
           </section>
 
           <section className='actors'>
             <h2 className='actors--title'>Entrenador</h2>
-            <div className='actors__container'>
-              <Actor
-                name='Nombre Entrenador'
-                image={userIcon}
-                route='/ligas/liga/equipo/entrenador'
-              />
-            </div>
+            {coaches.length > 0 && (
+              <div className='actors__container'>
+                {coaches.map((coach) => (
+                  <Actor
+                    coach={coach}
+                    key={coach.id}
+                    name={coach.name}
+                    image={coach.image}
+                    route={`/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}`}
+                  />
+                ))}
+              </div>
+            )}
+            {coaches.length === 0 && (
+              <h2 className='no-teams'>
+                Este equipo aún no tiene entrenadores
+              </h2>
+            )}
           </section>
         </div>
 
