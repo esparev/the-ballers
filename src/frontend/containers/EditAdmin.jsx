@@ -111,7 +111,7 @@ const EditAdmin = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al editar al administrador'
+            message='¡Ups!, Hubo un error al editar el administrador'
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -147,7 +147,7 @@ const EditAdmin = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al eliminar al administrador'
+            message='¡Ups!, Hubo un error al eliminar el administrador'
             messageStatus='error'
           />,
           document.getElementById('message-container')
