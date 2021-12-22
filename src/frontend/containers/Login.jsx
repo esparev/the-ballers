@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/Login.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const Login = () => {
   useEffect(() => {
@@ -49,7 +48,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(`${API}/auth/iniciar-sesion`, form);
+    login(`${envConfig.apiUrl}/auth/iniciar-sesion`, form);
   };
 
   const togglePassword = () => {

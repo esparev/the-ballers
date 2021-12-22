@@ -8,10 +8,9 @@ import DeleteMessage from '../components/DeleteMessage';
 import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { config } from '../utils/constants';
+import { authConfig } from '../utils/constants';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const EditLeague = () => {
   useEffect(() => {
@@ -221,25 +220,25 @@ const EditLeague = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editLeague(
-      `${API}/ligas/${localStorage.getItem('selected league')}`,
+      `${envConfig.apiUrl}/ligas/${localStorage.getItem('selected league')}`,
       leagueForm,
-      config
+      authConfig
     );
     editAddress(
-      `${API}/direcciones/${localStorage.getItem('selected league')}`,
+      `${envConfig.apiUrl}/direcciones/${localStorage.getItem('selected league')}`,
       addressForm,
-      config
+      authConfig
     );
   };
 
   const handleDelete = () => {
     deleteLeague(
-      `${API}/ligas/${localStorage.getItem('selected league')}`,
-      config
+      `${envConfig.apiUrl}/ligas/${localStorage.getItem('selected league')}`,
+      authConfig
     );
     deleteAddress(
-      `${API}/direcciones/${localStorage.getItem('selected league')}`,
-      config
+      `${envConfig.apiUrl}/direcciones/${localStorage.getItem('selected league')}`,
+      authConfig
     );
   };
 

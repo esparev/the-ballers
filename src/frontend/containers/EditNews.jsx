@@ -9,10 +9,9 @@ import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
 import countCharacters from '../utils/functions/countCharacters';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { config } from '../utils/constants';
+import { authConfig } from '../utils/constants';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const EditNews = () => {
   useEffect(() => {
@@ -159,16 +158,16 @@ const EditNews = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editNews(
-      `${API}/noticias/${localStorage.getItem('selected news')}`,
+      `${envConfig.apiUrl}/noticias/${localStorage.getItem('selected news')}`,
       form,
-      config
+      authConfig
     );
   };
 
   const handleDelete = () => {
     deleteNews(
-      `${API}/noticias/${localStorage.getItem('selected news')}`,
-      config
+      `${envConfig.apiUrl}/noticias/${localStorage.getItem('selected news')}`,
+      authConfig
     );
   };
 

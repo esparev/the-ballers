@@ -2,21 +2,20 @@ import React, { useEffect, useState } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
-import useGetLeagues from '../hooks/useGetLeagues';
+import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayer from '../hooks/useGetPlayer';
 import useGetPlayers from '../hooks/useGetPlayers';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const Player = (props) => {
   const { leagueId, teamId, playerId } = props.match.params;
 
-  const league = useGetLeagues(`${API}/ligas/${leagueId}`);
-  const team = useGetTeam(`${API}/equipos/${teamId}`);
-  const player = useGetPlayer(`${API}/jugadores/${playerId}`);
-  const players = useGetPlayers(API, teamId);
+  const league = useGetLeague(envConfig.apiUrl, leagueId);
+  const team = useGetTeam(envConfig.apiUrl, teamId);
+  const player = useGetPlayer(envConfig.apiUrl, playerId);
+  const players = useGetPlayers(envConfig.apiUrl, teamId);
   localStorage.setItem('selected player', player.id);
 
   useEffect(() => {

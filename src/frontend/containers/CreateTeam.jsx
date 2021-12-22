@@ -5,10 +5,9 @@ import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
 import ImageUploader from '../utils/functions/ImageUploader';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { config } from '../utils/constants';
+import { authConfig } from '../utils/constants';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const CreateTeam = () => {
   useEffect(() => {
@@ -117,7 +116,7 @@ const CreateTeam = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTeam(`${API}/equipos`, form, config);
+    addTeam(`${envConfig.apiUrl}/equipos`, form, authConfig);
   };
 
   return (

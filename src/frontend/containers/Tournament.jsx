@@ -3,21 +3,21 @@ import moment from 'moment';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
+import useGetTournament from '../hooks/useGetTournament';
 import useGetTournaments from '../hooks/useGetTournaments';
 import sortByDate from '../utils/functions/sortByDate';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
 import twitterIcon from '../assets/icons/twitter-icon.svg';
 
-const API = 'https://beismich.herokuapp.com/api/v1/torneos';
-
 const Tournament = (props) => {
   const { id } = props.match.params;
 
   moment.locale('es');
-  const tournament = useGetTournaments(`${API}/${id}`);
-  const tournaments = useGetTournaments(API);
+  const tournament = useGetTournament(envConfig.apiUrl, id);
+  const tournaments = useGetTournaments(envConfig.apiUrl);
   localStorage.setItem('selected tournament', tournament.id);
   sortByDate(tournaments);
   tournaments.slice(0, 3);

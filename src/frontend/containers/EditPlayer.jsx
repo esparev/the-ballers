@@ -8,10 +8,9 @@ import DeleteMessage from '../components/DeleteMessage';
 import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { config } from '../utils/constants';
+import { authConfig } from '../utils/constants';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const EditPlayer = () => {
   useEffect(() => {
@@ -162,16 +161,16 @@ const EditPlayer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editPlayer(
-      `${API}/jugadores/${localStorage.getItem('selected player')}`,
+      `${envConfig.apiUrl}/jugadores/${localStorage.getItem('selected player')}`,
       form,
-      config
+      authConfig
     );
   };
 
   const handleDelete = () => {
     deletePlayer(
-      `${API}/jugadores/${localStorage.getItem('selected player')}`,
-      config
+      `${envConfig.apiUrl}/jugadores/${localStorage.getItem('selected player')}`,
+      authConfig
     );
   };
 

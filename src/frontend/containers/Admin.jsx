@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
+import useGetAdmin from '../hooks/useGetAdmin';
 import useGetAdmins from '../hooks/useGetAdmins';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const Admin = (props) => {
   const { id } = props.match.params;
 
-  const admin = useGetAdmins(`${API}/admins/${id}`);
-  const admins = useGetAdmins(`${API}/admins`);
+  const admin = useGetAdmin(envConfig.apiUrl, id);
+  const admins = useGetAdmins(envConfig.apiUrl);
   localStorage.setItem('selected admin', admin.id);
 
   useEffect(() => {

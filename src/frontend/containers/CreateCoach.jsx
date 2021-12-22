@@ -5,10 +5,9 @@ import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
 import ImageUploader from '../utils/functions/ImageUploader';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { config } from '../utils/constants';
+import { authConfig } from '../utils/constants';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const CreateCoach = () => {
   useEffect(() => {
@@ -127,7 +126,7 @@ const CreateCoach = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addCoach(`${API}/entrenadores`, form, config);
+    addCoach(`${envConfig.apiUrl}/entrenadores`, form, authConfig);
   };
 
   return (

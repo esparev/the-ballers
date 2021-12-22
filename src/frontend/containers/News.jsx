@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
+import moment from 'moment';
 import NewsCard from '../components/Card';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import useGetNews from '../hooks/useGetNews';
-import moment from 'moment';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CardsContainer.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1/noticias';
 
 const News = () => {
   useEffect(() => {
@@ -15,7 +14,7 @@ const News = () => {
   }, []);
 
   moment.locale('es');
-  const news = useGetNews(API);
+  const news = useGetNews(envConfig.apiUrl);
 
   /**
    * Sorts the array of objects by recent date

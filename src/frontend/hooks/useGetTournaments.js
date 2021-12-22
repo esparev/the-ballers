@@ -5,7 +5,7 @@ const useGetTournaments = (API) => {
   const [tournaments, setTournaments] = useState([]);
 
   useEffect(async () => {
-    const response = await axios(API);
+    const response = await axios(`${API}/torneos`);
     setTournaments(response.data);
   }, []);
 

@@ -6,10 +6,9 @@ import ButtonContainer from './ButtonContainer';
 import ImageUploader from '../utils/functions/ImageUploader';
 import countCharacters from '../utils/functions/countCharacters';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { config } from '../utils/constants';
+import { authConfig } from '../utils/constants';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const CreateTournament = () => {
   useEffect(() => {
@@ -122,7 +121,7 @@ const CreateTournament = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTournament(`${API}/torneos`, form, config);
+    addTournament(`${envConfig.apiUrl}/torneos`, form, authConfig);
   };
 
   return (

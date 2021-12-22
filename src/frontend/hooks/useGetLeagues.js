@@ -5,7 +5,7 @@ const useGetLeagues = (API) => {
   const [leagues, setLeagues] = useState([]);
 
   useEffect(async () => {
-    const response = await axios(API);
+    const response = await axios(`${API}/ligas`);
     setLeagues(response.data);
   }, []);
 

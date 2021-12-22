@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useGetCoach = (API) => {
+const useGetCoach = (API, coachId) => {
   const [coach, setCoach] = useState([]);
 
   useEffect(async () => {
-    const response = await axios(API);
+    const response = await axios(`${API}/entrenadores/${coachId}`);
     setCoach(response.data);
   }, []);
 

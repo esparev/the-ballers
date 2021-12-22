@@ -9,10 +9,9 @@ import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
 import countCharacters from '../utils/functions/countCharacters';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { config } from '../utils/constants';
+import { authConfig } from '../utils/constants';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const EditTournament = () => {
   useEffect(() => {
@@ -159,16 +158,16 @@ const EditTournament = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editTournament(
-      `${API}/torneos/${localStorage.getItem('selected tournament')}`,
+      `${envConfig.apiUrl}/torneos/${localStorage.getItem('selected tournament')}`,
       form,
-      config
+      authConfig
     );
   };
 
   const handleDelete = () => {
     deleteTournament(
-      `${API}/torneos/${localStorage.getItem('selected tournament')}`,
-      config
+      `${envConfig.apiUrl}/torneos/${localStorage.getItem('selected tournament')}`,
+      authConfig
     );
   };
 

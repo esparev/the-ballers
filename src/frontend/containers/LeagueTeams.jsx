@@ -4,19 +4,18 @@ import Entity from '../components/Entity';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import GrayButton from '../components/GrayButton';
-import useGetLeagues from '../hooks/useGetLeagues';
+import useGetLeague from '../hooks/useGetLeague';
 import useGetAddress from '../hooks/useGetAddress';
 import useGetTeams from '../hooks/useGetTeams';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/LeagueTeams.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const LeagueTeams = (props) => {
   const { id } = props.match.params;
 
-  const league = useGetLeagues(`${API}/ligas/${id}`);
-  const address = useGetAddress(API, id);
-  const teams = useGetTeams(API, id);
+  const league = useGetLeague(envConfig.apiUrl, id);
+  const address = useGetAddress(envConfig.apiUrl, id);
+  const teams = useGetTeams(envConfig.apiUrl, id);
 
   localStorage.setItem('selected league', league.id);
 

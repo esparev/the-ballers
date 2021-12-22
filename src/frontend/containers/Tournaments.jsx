@@ -5,9 +5,8 @@ import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import useGetTournaments from '../hooks/useGetTournaments';
 import sortByDate from '../utils/functions/sortByDate';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/CardsContainer.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1/torneos';
 
 const Tournaments = () => {
   useEffect(() => {
@@ -16,7 +15,7 @@ const Tournaments = () => {
   }, []);
 
   moment.locale('es');
-  const tournaments = useGetTournaments(API);
+  const tournaments = useGetTournaments(envConfig.apiUrl);
   sortByDate(tournaments);
 
   return (

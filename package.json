@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/runtime": "^7.16.5",
     "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb": "^19.0.0",
     "eslint-plugin-import": "^2.25.3",
@@ -38,6 +39,7 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.5.1",
+    "dotenv-webpack": "^7.0.3",
     "file-loader": "^6.2.0",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",

@@ -4,9 +4,8 @@ import Entity from '../components/Entity';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import useGetLeagues from '../hooks/useGetLeagues';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/Entities.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1/ligas';
 
 const Leagues = () => {
   useEffect(() => {
@@ -14,7 +13,7 @@ const Leagues = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const leagues = useGetLeagues(API);
+  const leagues = useGetLeagues(envConfig.apiUrl);
 
   return (
     <main>

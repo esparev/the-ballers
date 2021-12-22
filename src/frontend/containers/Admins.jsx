@@ -3,9 +3,8 @@ import AdminActor from '../components/AdminActor';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import useGetAdmins from '../hooks/useGetAdmins';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const Admins = () => {
   useEffect(() => {
@@ -13,7 +12,7 @@ const Admins = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const admins = useGetAdmins(`${API}/admins`);
+  const admins = useGetAdmins(envConfig.apiUrl);
 
   return (
     <main className='admins'>

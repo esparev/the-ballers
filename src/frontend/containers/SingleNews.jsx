@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
+import useGetSingleNews from '../hooks/useGetSingleNews';
 import useGetNews from '../hooks/useGetNews';
-import moment from 'moment';
+import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
 import twitterIcon from '../assets/icons/twitter-icon.svg';
 
-const API = 'https://beismich.herokuapp.com/api/v1/noticias';
-
 const SingleNews = (props) => {
   const { id } = props.match.params;
 
   moment.locale('es');
-  const news = useGetNews(`${API}/${id}`);
-  const newsCollection = useGetNews(API);
+  const news = useGetSingleNews(envConfig.apiUrl, id);
+  const newsCollection = useGetNews(envConfig.apiUrl);
   localStorage.setItem('selected news', news.id);
 
   /**
