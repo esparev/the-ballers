@@ -98,9 +98,12 @@ const LeagueTeams = (props) => {
           <ButtonContainer>
             <YellowButton
               name='Nuevo Equipo'
-              route='/ligas/liga/nuevo-equipo'
+              route={`/ligas/liga/${league.id}/nuevo-equipo`}
             />
-            <GrayButton name='Editar Liga' route='/ligas/liga/editar-liga' />
+            <GrayButton
+              name='Editar Liga'
+              route={`/ligas/liga/${league.id}/editar-liga`}
+            />
           </ButtonContainer>
         ) : null}
       </main>

@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
-import ButtonContainer from './ButtonContainer.jsx';
-import YellowButton from '../components/YellowButton.jsx';
-import RedButton from '../components/RedButton.jsx';
-import DeleteMessage from '../components/DeleteMessage.jsx';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+import Message from '../components/Message';
+import ButtonContainer from './ButtonContainer';
+import RedButton from '../components/RedButton';
+import DeleteMessage from '../components/DeleteMessage';
+import ImageUploader from '../functions/ImageUploader';
+import toggleMessage from '../functions/toggleMessage';
+import updateThumbnail from '../functions/updateThumbnail';
 import '../assets/styles/components/CreateEntity.scss';
-import toggleMessage from '../functions/toggleMessage.js';
-import updateThumbnail from '../functions/updateThumbnail.js';
+
+const API = 'https://beismich.herokuapp.com/api/v1';
 
 const EditLeague = () => {
   useEffect(() => {
@@ -16,69 +21,273 @@ const EditLeague = () => {
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
       const dropZoneElement = inputElement.closest('.form__image');
 
-      dropZoneElement.addEventListener('click', (e) => {
-        inputElement.click();
-      });
-
+      /**
+       * Updates the image thumbnail after change is detected in the
+       * image drop zone
+       */
       inputElement.addEventListener('change', (e) => {
         if (inputElement.files.length) {
           updateThumbnail(dropZoneElement, inputElement.files[0]);
         }
       });
 
-      /* Event listener when file is being dragged over the drop zone
-      Activates CSS indicator to let the user know that they have
-      dragged the item over the drop zone  */
+      /**
+       * Event listener when file is being dragged over the drop zone
+       * Activates CSS indicator to let the user know that they have
+       * dragged the item over the drop zone
+       */
       dropZoneElement.addEventListener('dragover', (e) => {
         e.preventDefault();
         dropZoneElement.classList.add('drop-zone__over');
       });
 
-      // Events
+      /**
+       * Event listener when the file isn't being dragged
+       */
       ['dragleave', 'dragend'].forEach((type) => {
         dropZoneElement.addEventListener(type, (e) => {
           dropZoneElement.classList.remove('drop-zone__over');
         });
       });
-
-      // Event listener after the file has been dropped on the drop zone
-      dropZoneElement.addEventListener('drop', (e) => {
-        e.preventDefault();
-        if (e.dataTransfer.files.length) {
-          inputElement.files = e.dataTransfer.files;
-          updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-        }
-
-        dropZoneElement.classList.remove('drop-zone__over');
-      });
     });
   }, []);
 
+  /**
+   * Re assigns the form image value after a storage event
+   * has been dispatched, which means that an image has been
+   * uploaded to the app
+   */
+  window.onstorage = () => {
+    leagueForm.cover = localStorage.getItem('uploaded image');
+  };
+
+  /**
+   * Sets the initial values for the league fields
+   */
+  const [leagueForm, setLeagueValues] = useState({});
+  const [addressForm, setAddressValues] = useState({});
+
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleLeagueInput = (event) => {
+    setLeagueValues({
+      ...leagueForm,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const handleAddressInput = (event) => {
+    setAddressValues({
+      ...addressForm,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  /**
+   * Authorization header configuration for API request
+   */
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  };
+
+  /**
+   * Sends a patch request to the URL of the API provided
+   * with the data entered by the user in a form along
+   * with a bearer token included in the headers configuration
+   * @param {*} url - API URL
+   * @param {*} data - body data to post
+   * @param {*} config - headers configuration
+   */
+  const editLeague = async (url, data, config) => {
+    await axios
+      .patch(url, data, config)
+      .then((res) => {
+        ReactDOM.render(
+          <Message
+            message='¡Liga editada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      })
+      .catch((error) => {
+        ReactDOM.render(
+          <Message
+            message='¡Ups!, Hubo un error al editar la liga'
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      });
+  };
+
+  /**
+   * Sends a patch request to the URL of the API provided
+   * with the data entered by the user in a form along
+   * with a bearer token included in the headers configuration
+   * @param {*} url - API URL
+   * @param {*} data - body data to post
+   * @param {*} config - headers configuration
+   */
+  const editAddress = async (url, data, config) => {
+    await axios
+      .patch(url, data, config)
+      .then((res) => {
+        ReactDOM.render(
+          <Message
+            message='¡Liga editada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+      })
+      .catch((error) => {
+        ReactDOM.render(
+          <Message
+            message='¡Ups!, Hubo un error al editar la liga'
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+      });
+  };
+
+  /**
+   * Sends a delete request to the URL of the API provided
+   * to delete the selected league according to its id along
+   * with a bearer token included in the headers configuration
+   * @param {*} url - API URL
+   * @param {*} config - headers configuration
+   */
+  const deleteLeague = async (url, config) => {
+    await axios
+      .delete(url, config)
+      .then((res) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Liga eliminada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      })
+      .catch((error) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Ups!, Hubo un error al eliminar la liga'
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      });
+  };
+  /**
+   * Sends a delete request to the URL of the API provided
+   * to delete the selected news according to its id along
+   * with a bearer token included in the headers configuration
+   * @param {*} url - API URL
+   * @param {*} config - headers configuration
+   */
+  const deleteAddress = async (url, config) => {
+    await axios
+      .delete(url, config)
+      .then((res) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Liga eliminada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+      })
+      .catch((error) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Ups!, Hubo un error al eliminar la liga'
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+      });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    editLeague(
+      `${API}/ligas/${localStorage.getItem('selected league')}`,
+      leagueForm,
+      config
+    );
+    editAddress(
+      `${API}/direcciones/${localStorage.getItem('selected league')}`,
+      addressForm,
+      config
+    );
+  };
+
+  const handleDelete = () => {
+    deleteLeague(
+      `${API}/ligas/${localStorage.getItem('selected league')}`,
+      config
+    );
+    deleteAddress(
+      `${API}/direcciones/${localStorage.getItem('selected league')}`,
+      config
+    );
+  };
+
   return (
     <>
-      <DeleteMessage entity='liga' />
+      <div id='message-container'></div>
+
+      <DeleteMessage entity='liga' onClick={handleDelete} />
 
       <main className='create-container'>
-        <form className='form' action=''>
+        <form className='form' onSubmit={handleSubmit}>
           <h1 className='form--title'>Editar Liga</h1>
           <input
             className='input'
+            name='name'
             type='text'
-            placeholder='Nombre *'
-            required
+            placeholder='Nombre'
+            onChange={handleLeagueInput}
           />
           <input
             className='input'
+            name='responsable'
             type='text'
             placeholder='Nombre del responsable'
+            onChange={handleLeagueInput}
           />
           <input
             className='input'
+            name='phone'
             type='num'
             maxLength='10'
             placeholder='Teléfono del responsable'
+            onChange={handleLeagueInput}
           />
-          <select className='input empty' name='location' id='location'>
+          <select
+            className='input empty'
+            name='location'
+            id='location'
+            onChange={handleAddressInput}
+          >
             <option defaultValue value=''>
               Localidad
             </option>
@@ -158,29 +367,54 @@ const EditLeague = () => {
             <option value='Zitácuaro'>Zitácuaro</option>
           </select>
           <label className='label'>Dirección</label>
-          <input className='input' type='text' placeholder='Calle' />
           <input
             className='input'
+            name='streetName'
+            type='text'
+            placeholder='Calle'
+            onChange={handleAddressInput}
+          />
+          <input
+            className='input'
+            name='streetNumber'
+            type='text'
+            placeholder='Número'
+            onChange={handleAddressInput}
+          />
+          <input
+            className='input'
+            name='zipCode'
             type='tel'
             maxLength='5'
             placeholder='C.P.'
+            onChange={handleAddressInput}
           />
-          <input className='input' type='text' placeholder='Colonia' />
+          <input
+            className='input'
+            type='text'
+            name='suburb'
+            placeholder='Colonia'
+            onChange={handleAddressInput}
+          />
           <label className='label'>Rango de edad</label>
           <div>
             <label className='label'>De</label>
             <input
               className='input input-age'
+              name='ageStart'
               type='tel'
               maxLength='2'
               placeholder='00'
+              onChange={handleLeagueInput}
             />
             <label className='label'>hasta</label>
             <input
               className='input input-age'
+              name='ageEnd'
               type='tel'
               maxLength='2'
               placeholder='00'
+              onChange={handleLeagueInput}
             />
             <label className='label'>años</label>
           </div>
@@ -188,11 +422,12 @@ const EditLeague = () => {
           <label className='form--label label' htmlFor='file'>
             Logo de la liga
           </label>
-          <div className='form__image form__image-square'>
+          <div className='form__image form__image-square' id='drop-zone'>
             <input
               className='form__image--input form__image-square--input'
               type='file'
               id='file'
+              accept='image/*'
             />
             <div className='form__image-labels form__image-square-labels'>
               <span
@@ -214,11 +449,15 @@ const EditLeague = () => {
             </div>
           </div>
           <ButtonContainer>
-            <YellowButton name='Guardar Cambios' />
+            <button type='submit' className='button yellow-button'>
+              Guardar Cambios
+            </button>
             <RedButton name='Eliminar Liga' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>
+
+      <ImageUploader />
     </>
   );
 };

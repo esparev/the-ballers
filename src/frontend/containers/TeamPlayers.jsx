@@ -10,7 +10,6 @@ import useGetPlayers from '../hooks/useGetPlayers';
 import useGetCoaches from '../hooks/useGetCoaches';
 import '../assets/styles/components/TeamPlayers.scss';
 import '../assets/styles/components/FeedbackMessage.scss';
-import userIcon from '../assets/icons/user-icon.svg';
 
 const API = 'https://beismich.herokuapp.com/api/v1';
 
@@ -52,11 +51,11 @@ const TeamPlayers = (props) => {
           <div className='buttons__container'>
             <YellowButton
               name='Jugador'
-              route='/ligas/liga/equipo/nuevo-jugador'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-jugador`}
             />
             <YellowButton
               name='Entrenador'
-              route='/ligas/liga/equipo/nuevo-entrenador'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-entrenador`}
             />
             <a className='button gray-button' onClick={toggleMessage}>
               Cancelar
@@ -143,7 +142,7 @@ const TeamPlayers = (props) => {
             </a>
             <GrayButton
               name='Editar Equipo'
-              route='/ligas/liga/equipo/editar-equipo'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`}
             />
           </ButtonContainer>
         ) : null}
