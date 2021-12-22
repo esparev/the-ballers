@@ -1,15 +1,26 @@
 import React, { useEffect } from 'react';
-import EntityContainer from './EntityContainer.jsx';
-import Entity from '../components/Entity.jsx';
+import EntityContainer from './EntityContainer';
+import Entity from '../components/Entity';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
-import GrayButton from '../components/GrayButton.jsx';
+import GrayButton from '../components/GrayButton';
+import useGetLeagues from '../hooks/useGetLeagues';
+import useGetAddress from '../hooks/useGetAddress';
+import useGetTeams from '../hooks/useGetTeams';
 import '../assets/styles/components/LeagueTeams.scss';
-import cupatizioLogo from '../assets/static/cupatizio-logo.png';
-import unknownTeamLogo from '../assets/icons/unknown-team-icon.png';
+
+const API = 'https://beismich.herokuapp.com/api/v1';
 
 const LeagueTeams = (props) => {
   const { id } = props.match.params;
+
+  const league = useGetLeagues(`${API}/ligas/${id}`);
+  const address = useGetAddress(API, id);
+  const teams = useGetTeams(API, id);
+
+  console.log(league);
+
+  localStorage.setItem('selected league', league.id);
 
   useEffect(() => {
     document.title = 'BEISMICH • Liga';
@@ -17,72 +28,83 @@ const LeagueTeams = (props) => {
   }, []);
 
   return (
-    <main className='league-teams'>
-      <section className='league'>
-        <div className='league__main'>
-          <img className='league--image' src={cupatizioLogo} alt='' />
-          <h1 className='league--title'>Liga Amigos del Cupatizio</h1>
-        </div>
+    <>
+      <div id='message-container'></div>
 
-        <div className='league__info'>
-          <div>
-            <p>
-              <strong>Responsable: </strong>Nombre responsable
-            </p>
-            <p>
-              <strong>Teléfono: </strong>0000000000
-            </p>
+      <main className='league-teams'>
+        <section className='league'>
+          <div className='league__main'>
+            <img
+              className='league--image'
+              src={league.logo}
+              alt={`Logo de ${league.logo}`}
+            />
+            <h1 className='league--title'>{league.name}</h1>
           </div>
-          <div>
-            <p>
-              <strong>Localidad: </strong>Ciudad/Municipio
-            </p>
-            <p>
-              <strong>Dirección: </strong>Calle 00, 00000 Colonia, Mich
-            </p>
+
+          <div className='league__info'>
+            <div>
+              {league.responsable ? (
+                <p>
+                  <strong>Responsable: </strong>
+                  {league.responsable}
+                </p>
+              ) : null}
+              {league.phone ? (
+                <p>
+                  <strong>Teléfono: </strong>
+                  {league.phone}
+                </p>
+              ) : null}
+            </div>
+            <div>
+              <p>
+                <strong>Localidad: </strong>
+                {address.location}
+              </p>
+              <p>
+                <strong>Dirección: </strong>
+                {`${address.streetName} ${address.streetNumber}, ${address.zipCode} ${address.suburb}, Mich.`}
+              </p>
+            </div>
+            <div>
+              <p>
+                <strong>Rango de edad: </strong>
+                {`${league.ageStart} - ${league.ageEnd} años`}
+              </p>
+            </div>
           </div>
-          <div>
-            <p>
-              <strong>Rango de edad: </strong>00 - 00
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className='teams'>
-        <h1 className='teams--title'>Equipos</h1>
+        <section className='teams'>
+          <h1 className='teams--title'>Equipos</h1>
+          {teams.length > 0 && (
+            <EntityContainer>
+              {teams.map((team) => (
+                <Entity
+                  name={team.name}
+                  logo={team.logo}
+                  route={`/ligas/liga/${league.id}/equipo/${team.id}`}
+                />
+              ))}
+            </EntityContainer>
+          )}
+          {teams.length === 0 && (
+            <h2 className='no-teams'>Esta liga aún no tiene equipos</h2>
+          )}
+        </section>
 
-        <EntityContainer>
-          <Entity
-            name='Nombre Equipo'
-            logo={unknownTeamLogo}
-            route='/ligas/liga/equipo'
-          />
-          <Entity
-            name='Nombre Equipo'
-            logo={unknownTeamLogo}
-            route='/ligas/liga/equipo'
-          />
-          <Entity
-            name='Nombre Equipo'
-            logo={unknownTeamLogo}
-            route='/ligas/liga/equipo'
-          />
-          <Entity
-            name='Nombre Equipo'
-            logo={unknownTeamLogo}
-            route='/ligas/liga/equipo'
-          />
-        </EntityContainer>
-      </section>
-
-      {localStorage.getItem('id') ? (
-        <ButtonContainer>
-          <YellowButton name='Nuevo Equipo' route='/ligas/liga/nuevo-equipo' />
-          <GrayButton name='Editar Liga' route='/ligas/liga/editar-liga' />
-        </ButtonContainer>
-      ) : null}
-    </main>
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <YellowButton
+              name='Nuevo Equipo'
+              route='/ligas/liga/nuevo-equipo'
+            />
+            <GrayButton name='Editar Liga' route='/ligas/liga/editar-liga' />
+          </ButtonContainer>
+        ) : null}
+      </main>
+    </>
   );
 };
 

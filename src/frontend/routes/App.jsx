@@ -54,7 +54,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/ligas' component={Leagues} />
           <Route exact path='/ligas/liga/:id' component={LeagueTeams} />
           <Route exact path='/ligas/nueva-liga' component={isLogged ? CreateLeague : NotFound} />
-          <Route exact path='/ligas/liga/editar-liga' component={isLogged ? EditLeague : NotFound} />
+          <Route exact path='/ligas/liga/:id/editar-liga' component={isLogged ? EditLeague : NotFound} />
           {/* Teams routes */}
           <Route exact path='/ligas/liga/equipo' component={TeamPlayers} />
           <Route exact path='/ligas/liga/nuevo-equipo' component={isLogged ? CreateTeam : NotFound} />
