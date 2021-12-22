@@ -107,7 +107,7 @@ const EditTournament = () => {
       .then((res) => {
         ReactDOM.render(
           <Message
-            message='Torneo editado con éxito!'
+            message='¡Torneo editado con éxito!'
             messageStatus='success'
           />,
           document.getElementById('message-container')
