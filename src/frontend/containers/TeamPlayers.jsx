@@ -4,8 +4,8 @@ import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import GrayButton from '../components/GrayButton';
 import toggleMessage from '../functions/toggleMessage';
-import useGetTeam from '../hooks/useGetTeam';
 import useGetLeagues from '../hooks/useGetLeagues';
+import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayers from '../hooks/useGetPlayers';
 import useGetCoaches from '../hooks/useGetCoaches';
 import '../assets/styles/components/TeamPlayers.scss';
@@ -16,8 +16,8 @@ const API = 'https://beismich.herokuapp.com/api/v1';
 const TeamPlayers = (props) => {
   const { leagueId, teamId } = props.match.params;
 
-  const team = useGetTeam(`${API}/equipos/${teamId}`);
   const league = useGetLeagues(`${API}/ligas/${leagueId}`);
+  const team = useGetTeam(`${API}/equipos/${teamId}`);
   const players = useGetPlayers(API, teamId);
   const coaches = useGetCoaches(API, teamId);
   localStorage.setItem('selected team', team.id);
