@@ -5,9 +5,10 @@ import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
 import RedButton from '../components/RedButton';
 import DeleteMessage from '../components/DeleteMessage';
-import ImageUploader from '../functions/ImageUploader';
-import toggleMessage from '../functions/toggleMessage';
-import updateThumbnail from '../functions/updateThumbnail';
+import ImageUploader from '../utils/functions/ImageUploader';
+import toggleMessage from '../utils/functions/toggleMessage';
+import updateThumbnail from '../utils/functions/updateThumbnail';
+import { config } from '../utils/constants';
 import '../assets/styles/components/CreateEntity.scss';
 
 const API = 'https://beismich.herokuapp.com/api/v1';
@@ -82,15 +83,6 @@ const EditLeague = () => {
       ...addressForm,
       [event.target.name]: event.target.value,
     });
-  };
-
-  /**
-   * Authorization header configuration for API request
-   */
-  const config = {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
   };
 
   /**

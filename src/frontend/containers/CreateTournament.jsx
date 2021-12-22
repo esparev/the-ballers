@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
-import ImageUploader from '../functions/ImageUploader';
-import countCharacters from '../functions/countCharacters';
-import updateThumbnail from '../functions/updateThumbnail';
+import ImageUploader from '../utils/functions/ImageUploader';
+import countCharacters from '../utils/functions/countCharacters';
+import updateThumbnail from '../utils/functions/updateThumbnail';
+import { config } from '../utils/constants';
 import '../assets/styles/components/CreateEntity.scss';
 
 const API = 'https://beismich.herokuapp.com/api/v1';
@@ -82,15 +83,6 @@ const CreateTournament = () => {
       ...form,
       [event.target.name]: event.target.value,
     });
-  };
-
-  /**
-   * Authorization header configuration for API request
-   */
-  const config = {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
   };
 
   /**

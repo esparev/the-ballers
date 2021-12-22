@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
-import ImageUploader from '../functions/ImageUploader';
-import axios from 'axios';
+import ImageUploader from '../utils/functions/ImageUploader';
+import updateThumbnail from '../utils/functions/updateThumbnail';
+import { config } from '../utils/constants';
 import '../assets/styles/components/CreateEntity.scss';
-import updateThumbnail from '../functions/updateThumbnail';
 
 const API = 'https://beismich.herokuapp.com/api/v1';
 
@@ -77,15 +78,6 @@ const CreateAdmin = () => {
       ...form,
       [event.target.name]: event.target.value,
     });
-  };
-
-  /**
-   * Authorization header configuration for API request
-   */
-  const config = {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
   };
 
   /**

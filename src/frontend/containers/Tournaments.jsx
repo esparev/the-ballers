@@ -4,7 +4,7 @@ import TournamentCard from '../components/Card';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import useGetTournaments from '../hooks/useGetTournaments';
-import sortByDate from '../functions/sortByDate';
+import sortByDate from '../utils/functions/sortByDate';
 import '../assets/styles/components/CardsContainer.scss';
 
 const API = 'https://beismich.herokuapp.com/api/v1/torneos';

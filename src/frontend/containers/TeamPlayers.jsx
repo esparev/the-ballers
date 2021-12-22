@@ -3,7 +3,7 @@ import Actor from '../components/Actor';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
 import GrayButton from '../components/GrayButton';
-import toggleMessage from '../functions/toggleMessage';
+import toggleMessage from '../utils/functions/toggleMessage';
 import useGetLeagues from '../hooks/useGetLeagues';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayers from '../hooks/useGetPlayers';

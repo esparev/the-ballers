@@ -4,7 +4,7 @@ import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
 import useGetTournaments from '../hooks/useGetTournaments';
-import sortByDate from '../functions/sortByDate';
+import sortByDate from '../utils/functions/sortByDate';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
