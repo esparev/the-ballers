@@ -1,17 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { config } from '../utils/constants';
 
 const useGetAdmins = (API) => {
   const [admins, setAdmins] = useState([]);
-
-  /**
-   * Authorization header configuration for API request
-   */
-  const config = {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  };
 
   useEffect(async () => {
     const response = await axios(API, config);
