@@ -16,26 +16,31 @@ const Admins = () => {
 
   return (
     <main className='admins'>
-      <div className='players-coach'>
-        <section className='admins'>
-          <h2 className='admins--title'>Administradores</h2>
-          <div className='admins__container'>
-            {admins.map((admin) => (
-              <AdminActor
-                admin={admin}
-                key={admin.id}
-                name={admin.name}
-                image={admin.image}
-                route={`/admins/admin/${admin.id}`}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
+      <div className='admins__container-card'>
+        <div className='players-coach'>
+          <section className='admins'>
+            <h2 className='admins--title'>Administradores</h2>
+            <div className='admins__container'>
+              {admins.map((admin) => (
+                <AdminActor
+                  admin={admin}
+                  key={admin.id}
+                  name={admin.name}
+                  image={admin.image}
+                  route={`/admins/admin/${admin.id}`}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
 
-      <ButtonContainer>
-        <YellowButton name='Nuevo Administrador' route='/admins/nuevo-admin' />
-      </ButtonContainer>
+        <ButtonContainer>
+          <YellowButton
+            name='Nuevo Administrador'
+            route='/admins/nuevo-admin'
+          />
+        </ButtonContainer>
+      </div>
     </main>
   );
 };

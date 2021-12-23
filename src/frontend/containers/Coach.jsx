@@ -24,7 +24,7 @@ const Coach = (props) => {
   }, []);
 
   return (
-    <main>
+    <main className='player-coach__container'>
       <section className='cover'>
         <img className='cover--image' src={league.logo} alt='Portada' />
       </section>

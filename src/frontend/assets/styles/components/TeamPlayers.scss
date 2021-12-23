@@ -1,9 +1,5 @@
 @import '../Vars.scss';
 
-.admins,
-.team-players {
-  padding: 60px;
-}
 .team__main {
   display: flex;
   flex-wrap: wrap;
@@ -36,6 +32,9 @@
 .admins,
 .actors {
   width: auto;
+}
+.admins__container-card {
+  height: 95vh;
 }
 .admins--title,
 .actors--title {

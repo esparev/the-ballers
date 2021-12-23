@@ -93,21 +93,6 @@ const Home = () => {
             ))}
           </div>
         </div>
-
-        {/* <section className='slider'>
-          <div className='slider__sidebar'>
-            <h1 className='slider__sidebar--title'>
-              BEISMICH manda liga de Morelia al mundial
-            </h1>
-            <hr className='slider__sidebar--line' />
-            <p className='slider__sidebar--summary'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies
-              quis egestas aliquet leo amet, eget. Sit vitae amet, sollicitudin
-              ac placerat.
-            </p>
-            <YellowButton name='Ver más' route='/noticias/noticia' />
-          </div>
-        </section> */}
       </main>
 
       <section className='entities'>
