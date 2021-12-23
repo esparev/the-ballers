@@ -57,7 +57,9 @@ module.exports = {
       filename: 'assets/[name].css',
     }),
     new CleanWebpackPlugin(),
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
   ],
   devServer: {
     historyApiFallback: true,
