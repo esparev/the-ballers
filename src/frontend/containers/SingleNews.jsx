@@ -16,7 +16,7 @@ const SingleNews = (props) => {
 
   moment.locale('es');
   const news = useGetSingleNews(envConfig.apiUrl, id);
-  const newsCollection = useGetNews(envConfig.apiUrl);
+  let newsCollection = useGetNews(envConfig.apiUrl);
   localStorage.setItem('selected news', news.id);
 
   /**
@@ -30,7 +30,8 @@ const SingleNews = (props) => {
     arr.sort(sorter);
   };
   sortByDate(newsCollection);
-  newsCollection.slice(0, 3);
+
+  newsCollection = newsCollection.slice(0, 3);
 
   useEffect(() => {
     document.title = 'BEISMICH • Noticia';

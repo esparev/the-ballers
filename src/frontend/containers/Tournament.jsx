@@ -16,11 +16,15 @@ const Tournament = (props) => {
   const { id } = props.match.params;
 
   moment.locale('es');
+
   const tournament = useGetTournament(envConfig.apiUrl, id);
-  const tournaments = useGetTournaments(envConfig.apiUrl);
+  let tournaments = useGetTournaments(envConfig.apiUrl);
+
   localStorage.setItem('selected tournament', tournament.id);
+
   sortByDate(tournaments);
-  tournaments.slice(0, 3);
+  
+  tournaments = tournaments.slice(0, 3);
 
   useEffect(() => {
     document.title = 'BEISMICH • Torneo';
