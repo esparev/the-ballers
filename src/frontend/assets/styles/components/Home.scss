@@ -7,23 +7,37 @@
   background-repeat: no-repeat;
   background-image: url('../../static/halftone-background.png');
 }
+.slider__carousel {
+  white-space: nowrap;
+  transition: ease 1000ms;
+}
+.slider--hide-overflow {
+  width: 100%;
+  overflow: hidden;
+}
 .slider {
+  display: inline-block;
+  position: relative;
+  width: 100%;
   height: 500px;
   border-radius: 12px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('https://www.collinsdictionary.com/images/full/baseball_557405302_1000.jpg');
+  background-color: $white;
   overflow: hidden;
 }
 .slider__sidebar {
+  position: absolute;
   height: 100%;
-  width: 40%;
+  width: 50%;
   padding: 20px;
   background-color: rgba(9, 0, 48, 0.7);
+  z-index: 1;
 }
 .slider__sidebar--title {
   color: $white;
+  white-space: normal;
 }
 .slider__sidebar--line {
   width: 35%;
@@ -36,6 +50,15 @@
   font-family: $roboto-font;
   font-size: $normal-desk;
   color: $white;
+  white-space: normal;
+}
+.slider__image {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+}
+.slider__image--img {
+  width: inherit;
 }
 .leagues--title {
   color: $white;
@@ -62,7 +85,7 @@
 
 @media only screen and (max-width: 1340px) {
   .slider__sidebar {
-    width: 40%;
+    width: 50%;
   }
   .news-tournaments {
     display: block;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import moment from 'moment';
 import EntityContainer from './EntityContainer';
 import Entity from '../components/Entity';
@@ -13,12 +13,9 @@ import { envConfig } from '../utils/config';
 import '../assets/styles/App.scss';
 import '../assets/styles/components/Home.scss';
 
-const Home = () => {
-  useEffect(() => {
-    document.title = 'BEISMICH';
-    window.scrollTo(0, 0);
-  }, []);
+const delay = 10000;
 
+const Home = () => {
   moment.locale('es');
 
   let leagues = useGetLeagues(envConfig.apiUrl);
@@ -34,10 +31,70 @@ const Home = () => {
   news = news.slice(0, 9);
   tournaments = tournaments.slice(0, 9);
 
+  const [index, setIndex] = useState(0);
+  const timeoutRef = useRef(null);
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  useEffect(() => {
+    document.title = 'BEISMICH';
+
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>
+        setIndex((prevIndex) =>
+          prevIndex === news.length - 1 ? 0 : prevIndex + 1
+        ),
+      delay
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [index]);
+
   return (
     <>
       <main className='slider__container'>
-        <section className='slider'>
+        <div className='slider--hide-overflow'>
+          <div
+            className='slider__carousel'
+            style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
+          >
+            {news.map((news, index) => (
+              <section className='slider' key={index}>
+                <div className='slider__sidebar'>
+                  <h1 className='slider__sidebar--title'>{news.title}</h1>
+                  <hr className='slider__sidebar--line' />
+                  <p className='slider__sidebar--summary'>
+                    {news.description.length > 100
+                      ? `${news.description.substring(0, 100)}...`
+                      : news.description}
+                  </p>
+                  <YellowButton
+                    name='Ver más'
+                    route={`/noticias/noticia/${news.id}`}
+                  />
+                </div>
+                <div className='slider__image'>
+                  {news.cover ? (
+                    <img
+                      className='slider__image--img'
+                      src={news.cover}
+                      alt='Imagen de la noticia'
+                    />
+                  ) : null}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+
+        {/* <section className='slider'>
           <div className='slider__sidebar'>
             <h1 className='slider__sidebar--title'>
               BEISMICH manda liga de Morelia al mundial
@@ -50,7 +107,7 @@ const Home = () => {
             </p>
             <YellowButton name='Ver más' route='/noticias/noticia' />
           </div>
-        </section>
+        </section> */}
       </main>
 
       <section className='entities'>
