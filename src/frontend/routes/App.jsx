@@ -27,6 +27,7 @@ import Admins from '../containers/Admins';
 import AdminContainer from '../containers/Admin';
 import CreateAdmin from '../containers/CreateAdmin';
 import EditAdmin from '../containers/EditAdmin';
+import Profile from '../containers/Profile';
 import About from '../containers/About';
 import Login from '../containers/Login';
 import Recovery from '../containers/Recovery';
@@ -73,7 +74,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/admins/nuevo-admin' component={isLogged ? CreateAdmin : NotFound} />
           <Route exact path='/admins/admin/:id/editar-admin' component={isLogged ? EditAdmin : NotFound} />
           {/* Other routes */}
-          {/* <Route exact path='/perfil' component={Profile} /> */}
+          <Route exact path='/perfil' component={isLogged ? Profile : NotFound} />
           <Route exact path='/conocenos' component={About} />
           {/* <Route exact path='/unete' component={JoinLeague} /> */}
           <Route exact path='/iniciar-sesion' component={Login} />
