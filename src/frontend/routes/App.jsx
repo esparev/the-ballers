@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, HashRouter } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Home from '../containers/Home';
 import News from '../containers/News';
@@ -37,7 +37,7 @@ import NotFound from '../containers/NotFound';
 
 const App = ({ isLogged }) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Layout>
         <Switch>
           <Route exact path='/' component={Home} />
@@ -84,7 +84,7 @@ const App = ({ isLogged }) => {
           <Route path='*' component={NotFound} />
         </Switch>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
