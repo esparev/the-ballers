@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookie from 'js-cookie';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
@@ -6,6 +7,7 @@ import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetCoach from '../hooks/useGetCoach';
 import useGetCoaches from '../hooks/useGetCoaches';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 
@@ -16,7 +18,8 @@ const Coach = (props) => {
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const coach = useGetCoach(envConfig.apiUrl, coachId);
   const coaches = useGetCoaches(envConfig.apiUrl, teamId);
-  localStorage.setItem('selected coach', coach.id);
+  // localStorage.setItem('selected coach', coach.id);
+  Cookie.set('selected coach', coach.id, cookieConfig);
 
   useEffect(() => {
     document.title = 'BEISMICH • Entrenador';
@@ -68,7 +71,8 @@ const Coach = (props) => {
           </div>
         </section>
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <GrayButton
               name='Editar Entrenador'

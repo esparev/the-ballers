@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import Cookie from 'js-cookie';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
 import useGetTournament from '../hooks/useGetTournament';
 import useGetTournaments from '../hooks/useGetTournaments';
 import sortByDate from '../utils/functions/sortByDate';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
@@ -20,10 +22,11 @@ const Tournament = (props) => {
   const tournament = useGetTournament(envConfig.apiUrl, id);
   let tournaments = useGetTournaments(envConfig.apiUrl);
 
-  localStorage.setItem('selected tournament', tournament.id);
+  // localStorage.setItem('selected tournament', tournament.id);
+  Cookie.set('selected tournament', tournament.id, cookieConfig);
 
   sortByDate(tournaments);
-  
+
   tournaments = tournaments.slice(0, 3);
 
   useEffect(() => {
@@ -92,7 +95,8 @@ const Tournament = (props) => {
           </div>
         </div>
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <GrayButton
               name='Editar Torneo'

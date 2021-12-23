@@ -1,15 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'production',
-  entry: './src/frontend/index.js',
+  entry: './src/server/index.js',
+  target: 'node',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    assetModuleFilename: 'assets/static/[hash][ext][query]',
     publicPath: '/',
   },
   resolve: {
@@ -44,7 +47,14 @@ module.exports = {
       },
       {
         test: /\.(png|gif|jpg|jpeg|svg)$/,
-        type: 'asset',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/static/[md5:hash].[ext]',
+            },
+          },
+        ],
       },
     ],
   },
@@ -55,6 +65,18 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'frontend/assets/static'),
+          to: 'assets/static',
+        },
+        {
+          from: path.resolve(__dirname, 'src', 'frontend/assets/icons'),
+          to: 'assets/static',
+        },
+      ],
     }),
     new CleanWebpackPlugin(),
     new Dotenv(),

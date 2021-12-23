@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
+import Cookie from 'js-cookie';
 import TournamentCard from '../components/Card';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
@@ -40,7 +41,8 @@ const Tournaments = () => {
           />
         ))}
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <YellowButton name='Nuevo Torneo' route='/torneos/nuevo-torneo' />
           </ButtonContainer>

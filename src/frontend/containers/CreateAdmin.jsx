@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Cookie from 'js-cookie';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
 import ImageUploader from '../utils/functions/ImageUploader';
 import updateThumbnail from '../utils/functions/updateThumbnail';
-import { authConfig } from '../utils/constants';
+import { authConfig, cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const CreateAdmin = () => {
   useEffect(() => {
@@ -57,7 +56,8 @@ const CreateAdmin = () => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    form.image = localStorage.getItem('uploaded image');
+    // form.image = localStorage.getItem('uploaded image');
+    form.image = Cookie.get('uploaded image');
   };
 
   /**
@@ -67,7 +67,8 @@ const CreateAdmin = () => {
     name: '',
     email: '',
     password: '',
-    image: localStorage.getItem('actor image'),
+    // image: localStorage.getItem('actor image'),
+    image: Cookie.get('actor image'),
   });
 
   /**
@@ -101,7 +102,8 @@ const CreateAdmin = () => {
           document.getElementById('message-container')
         );
 
-        localStorage.removeItem('uploaded image');
+        // localStorage.removeItem('uploaded image');
+        Cookie.remove('uploaded image');
       })
       .catch((error) => {
         ReactDOM.render(
@@ -112,13 +114,14 @@ const CreateAdmin = () => {
           document.getElementById('message-container')
         );
 
-        localStorage.removeItem('uploaded image');
+        // localStorage.removeItem('uploaded image');
+        Cookie.remove('uploaded image');
       });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addAdmin(`${API}/admins`, form, authConfig);
+    addAdmin(`${envConfig.apiUrl}/admins`, form, authConfig);
   };
 
   return (

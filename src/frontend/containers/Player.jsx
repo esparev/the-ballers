@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookie from 'js-cookie';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
@@ -6,6 +7,7 @@ import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayer from '../hooks/useGetPlayer';
 import useGetPlayers from '../hooks/useGetPlayers';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 
@@ -16,7 +18,8 @@ const Player = (props) => {
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const player = useGetPlayer(envConfig.apiUrl, playerId);
   const players = useGetPlayers(envConfig.apiUrl, teamId);
-  localStorage.setItem('selected player', player.id);
+  // localStorage.setItem('selected player', player.id);
+  Cookie.set('selected player', player.id, cookieConfig);
 
   useEffect(() => {
     document.title = 'BEISMICH • Jugador';
@@ -72,7 +75,8 @@ const Player = (props) => {
           </div>
         </section>
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <GrayButton
               name='Editar Jugador'

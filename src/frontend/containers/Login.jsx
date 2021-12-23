@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { envConfig } from '../utils/config';
+import { cookieConfig } from '../utils/constants';
 import '../assets/styles/components/Login.scss';
 
 const Login = () => {
@@ -27,15 +29,24 @@ const Login = () => {
       .then((res) => {
         const wrongLogin = document.getElementById('wrong-login');
         wrongLogin.style.display = 'block';
-        localStorage.setItem('id', res.data.admin.id);
-        localStorage.setItem('name', res.data.admin.name);
-        localStorage.setItem('email', res.data.admin.email);
-        localStorage.setItem('image', res.data.admin.image);
-        localStorage.setItem('role', res.data.admin.role);
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('actor image', 'https://i.imgur.com/CFJ2k8J.png');
-        localStorage.setItem('league logo', 'https://i.imgur.com/PEZQ6jS.png');
-        localStorage.setItem('team logo', 'https://i.imgur.com/chid3RN.png');
+        Cookies.set('id', res.data.admin.id, cookieConfig);
+        Cookies.set('name', res.data.admin.name, cookieConfig);
+        Cookies.set('email', res.data.admin.email, cookieConfig);
+        Cookies.set('image', res.data.admin.image, cookieConfig);
+        Cookies.set('role', res.data.admin.role, cookieConfig);
+        Cookies.set('token', res.data.admin.token, cookieConfig);
+        Cookies.set('actor image', 'https://i.imgur.com/CFJ2k8J.png', cookieConfig);
+        Cookies.set('league logo', 'https://i.imgur.com/PEZQ6jS.png', cookieConfig);
+        Cookies.set('team logo', 'https://i.imgur.com/chid3RN.png', cookieConfig);
+        // localStorage.setItem('id', res.data.admin.id);
+        // localStorage.setItem('name', res.data.admin.name);
+        // localStorage.setItem('email', res.data.admin.email);
+        // localStorage.setItem('image', res.data.admin.image);
+        // localStorage.setItem('role', res.data.admin.role);
+        // localStorage.setItem('token', res.data.token);
+        // localStorage.setItem('actor image', 'https://i.imgur.com/CFJ2k8J.png');
+        // localStorage.setItem('league logo', 'https://i.imgur.com/PEZQ6jS.png');
+        // localStorage.setItem('team logo', 'https://i.imgur.com/chid3RN.png');
         window.location.href = '/';
       })
       .catch((error) => {

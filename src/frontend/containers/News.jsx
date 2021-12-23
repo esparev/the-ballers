@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
+import Cookie from 'js-cookie';
 import NewsCard from '../components/Card';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
@@ -50,7 +51,8 @@ const News = () => {
           />
         ))}
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <YellowButton
               name='Nueva Noticia'

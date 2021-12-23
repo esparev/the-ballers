@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
+import Cookie from 'js-cookie';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
 import useGetAdmin from '../hooks/useGetAdmin';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 
 const Profile = () => {
-  const id = localStorage.getItem('id');
+  // const id = localStorage.getItem('id');
+  const id = Cookie.get('id');
   const admin = useGetAdmin(envConfig.apiUrl, id);
-  localStorage.setItem('selected admin', id);
+  // localStorage.setItem('selected admin', id);
+  Cookie.set('selected admin', id, cookieConfig);
 
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';

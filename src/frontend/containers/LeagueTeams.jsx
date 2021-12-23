@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Cookie from 'js-cookie';
 import EntityContainer from './EntityContainer';
 import Entity from '../components/Entity';
 import ButtonContainer from './ButtonContainer';
@@ -7,6 +8,7 @@ import GrayButton from '../components/GrayButton';
 import useGetLeague from '../hooks/useGetLeague';
 import useGetAddress from '../hooks/useGetAddress';
 import useGetTeams from '../hooks/useGetTeams';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/LeagueTeams.scss';
 
@@ -17,7 +19,8 @@ const LeagueTeams = (props) => {
   const address = useGetAddress(envConfig.apiUrl, id);
   const teams = useGetTeams(envConfig.apiUrl, id);
 
-  localStorage.setItem('selected league', league.id);
+  // localStorage.setItem('selected league', league.id);
+  Cookie.set('selected league', league.id, cookieConfig);
 
   useEffect(() => {
     document.title = 'BEISMICH • Liga';
@@ -93,7 +96,8 @@ const LeagueTeams = (props) => {
           )}
         </section>
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <YellowButton
               name='Nuevo Equipo'

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import Cookie from 'js-cookie';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
 import useGetSingleNews from '../hooks/useGetSingleNews';
 import useGetNews from '../hooks/useGetNews';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
@@ -17,7 +19,8 @@ const SingleNews = (props) => {
   moment.locale('es');
   const news = useGetSingleNews(envConfig.apiUrl, id);
   let newsCollection = useGetNews(envConfig.apiUrl);
-  localStorage.setItem('selected news', news.id);
+  // localStorage.setItem('selected news', news.id);
+  Cookie.set('selected news', news.id, cookieConfig);
 
   /**
    * Sorts the array of objects by recent date
@@ -86,7 +89,8 @@ const SingleNews = (props) => {
           </div>
         </div>
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <GrayButton
               name='Editar Noticia'

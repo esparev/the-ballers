@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Cookie from 'js-cookie';
 import Actor from '../components/Actor';
 import ButtonContainer from './ButtonContainer';
 import YellowButton from '../components/YellowButton';
@@ -8,6 +9,7 @@ import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayers from '../hooks/useGetPlayers';
 import useGetCoaches from '../hooks/useGetCoaches';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
 import '../assets/styles/components/FeedbackMessage.scss';
@@ -19,7 +21,8 @@ const TeamPlayers = (props) => {
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const players = useGetPlayers(envConfig.apiUrl, teamId);
   const coaches = useGetCoaches(envConfig.apiUrl, teamId);
-  localStorage.setItem('selected team', team.id);
+  // localStorage.setItem('selected team', team.id);
+  Cookie.set('selected team', team.id, cookieConfig);
 
   useEffect(() => {
     document.title = 'BEISMICH • Equipo';
@@ -134,7 +137,8 @@ const TeamPlayers = (props) => {
           </section>
         </div>
 
-        {localStorage.getItem('id') ? (
+        {/* {localStorage.getItem('id') ? ( */}
+        {Cookie.get('id') ? (
           <ButtonContainer>
             <a className='button yellow-button' onClick={toggleMessage}>
               Nuevo Jugador/Entrenador

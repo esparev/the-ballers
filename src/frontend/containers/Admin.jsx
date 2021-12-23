@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import Cookie from 'js-cookie';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
 import useGetAdmin from '../hooks/useGetAdmin';
 import useGetAdmins from '../hooks/useGetAdmins';
+import { cookieConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 
@@ -12,7 +14,8 @@ const Admin = (props) => {
 
   const admin = useGetAdmin(envConfig.apiUrl, id);
   const admins = useGetAdmins(envConfig.apiUrl);
-  localStorage.setItem('selected admin', admin.id);
+  // localStorage.setItem('selected admin', admin.id);
+  Cookie.set('selected admin', admin.id, cookieConfig);
 
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';
@@ -57,7 +60,8 @@ const Admin = (props) => {
         </section>
 
         <ButtonContainer>
-          {localStorage.getItem('role') === 'hero' ? (
+          {/* {localStorage.getItem('role') === 'hero' ? ( */}
+          {Cookie.get('role') === 'hero' ? (
             <GrayButton
               name='Editar Administrador'
               route={`/admins/admin/${admin.id}/editar-admin`}

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Cookie from 'js-cookie';
 import '../assets/styles/components/Header.scss';
 import beismichLogo from '../assets/static/beismich-logo.png';
 import userIcon from '../assets/icons/user-icon.svg';
@@ -64,10 +65,12 @@ const Header = () => {
             <li className='header__nav-list--item user-list'>
               <Link to='/conocenos'>Conócenos</Link>
             </li>
-            {localStorage.getItem('image') ? (
+            {/* {localStorage.getItem('image') ? ( */}
+            {Cookie.get('image') ? (
               <li className='header__nav-list--admin header__nav-list--image'>
                 <a onClick={adminDisplay}>
-                  <img src={localStorage.getItem('image')} alt='Usuario' />
+                  {/* <img src={localStorage.getItem('image')} alt='Usuario' /> */}
+                  <img src={Cookie.get('image')} alt='Usuario' />
                 </a>
               </li>
             ) : (
@@ -78,7 +81,8 @@ const Header = () => {
               </li>
             )}
             <div className='header__nav-admin admin-nav' id='admin-nav'>
-              {localStorage.getItem('id') ? (
+              {/* {localStorage.getItem('id') ? ( */}
+              {Cookie.get('id') ? (
                 <>
                   <li className='header__nav-list--item'>
                     <Link to='/perfil'>Perfil</Link>
@@ -89,7 +93,8 @@ const Header = () => {
                 </>
               ) : null}
 
-              {localStorage.getItem('id') ? (
+              {/* {localStorage.getItem('id') ? ( */}
+              {Cookie.get('id') ? (
                 <li className='header__nav-list--item'>
                   <Link to='/iniciar-sesion' onClick={logout}>
                     Cerrar sesión

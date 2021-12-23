@@ -7,7 +7,7 @@ import App from './routes/App.jsx';
 
 const store = createStore(reducer);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <App isLogged={localStorage.getItem('id')} />
   </Provider>,
