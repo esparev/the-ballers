@@ -12,8 +12,6 @@ import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
 
-const API = 'https://beismich.herokuapp.com/api/v1';
-
 const EditCoach = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Editar Entrenador';
@@ -71,6 +69,17 @@ const EditCoach = () => {
    */
   window.onstorage = () => {
     form.cover = localStorage.getItem('uploaded image');
+
+    ReactDOM.render(
+      <Message message='Subiendo imagen' messageStatus='upload' />,
+      document.getElementById('message-container')
+    );
+    setTimeout(() => {
+      ReactDOM.render(
+        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        document.getElementById('message-container')
+      );
+    }, 1500);
   };
 
   /**
@@ -163,7 +172,7 @@ const EditCoach = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editCoach(
-      `${API}/entrenadores/${localStorage.getItem('selected coach')}`,
+      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem('selected coach')}`,
       form,
       authConfig
     );
@@ -171,7 +180,7 @@ const EditCoach = () => {
 
   const handleDelete = () => {
     deleteCoach(
-      `${API}/entrenadores/${localStorage.getItem('selected coach')}`,
+      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem('selected coach')}`,
       authConfig
     );
   };

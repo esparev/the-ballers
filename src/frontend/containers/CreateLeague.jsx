@@ -57,6 +57,17 @@ const CreateLeague = () => {
    */
   window.onstorage = () => {
     form.logo = localStorage.getItem('uploaded image');
+
+    ReactDOM.render(
+      <Message message='Subiendo imagen' messageStatus='upload' />,
+      document.getElementById('message-container')
+    );
+    setTimeout(() => {
+      ReactDOM.render(
+        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        document.getElementById('message-container')
+      );
+    }, 1500);
   };
 
   /**

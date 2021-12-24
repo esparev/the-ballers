@@ -32,6 +32,10 @@
   filter: invert(40%) sepia(80%) saturate(2408%) hue-rotate(91deg)
     brightness(83.5%) contrast(107%);
 }
+.upload-icon {
+  filter: invert(43%) sepia(0%) saturate(33%) hue-rotate(172deg) brightness(93%)
+    contrast(94%);
+}
 .error-icon {
   filter: invert(90%) sepia(90%) saturate(8090%) hue-rotate(359deg)
     brightness(115%) contrast(119%);
