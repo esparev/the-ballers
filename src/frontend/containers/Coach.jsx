@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
@@ -16,7 +16,12 @@ const Coach = (props) => {
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const coach = useGetCoach(envConfig.apiUrl, coachId);
   const coaches = useGetCoaches(envConfig.apiUrl, teamId);
+
   localStorage.setItem('selected coach', coach.id);
+
+  const loadCoach = () => {
+    window.location.reload();
+  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Entrenador';
@@ -54,7 +59,7 @@ const Coach = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>Más Entrenadores</h2>
-            <div className='more-actors'>
+            <div className='more-actors' onClick={loadCoach}>
               {coaches.map((coach) => (
                 <MoreActors
                   coach={coach}

@@ -3,7 +3,7 @@ import YellowButton from './YellowButton';
 import '../assets/styles/components/Articles.scss';
 
 const Articles = (props) => {
-  const { title, cover, date, category, route } = props;
+  const { title, cover, date, category, route, onClick } = props;
 
   return (
     <div className='more-articles__card'>
@@ -24,7 +24,9 @@ const Articles = (props) => {
             <p className='card--category'>{category}</p>
           </div>
         </div>
-        <YellowButton name='Ver más' route={route} />
+        <div onClick={onClick ? onClick : 0}>
+          <YellowButton name='Ver más' route={route} />
+        </div>
       </div>
     </div>
   );

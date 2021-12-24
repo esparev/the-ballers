@@ -16,7 +16,12 @@ const Player = (props) => {
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const player = useGetPlayer(envConfig.apiUrl, playerId);
   const players = useGetPlayers(envConfig.apiUrl, teamId);
+
   localStorage.setItem('selected player', player.id);
+
+  const loadPlayer = () => {
+    window.location.reload();
+  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Jugador';
@@ -58,7 +63,7 @@ const Player = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>Más Jugadores</h2>
-            <div className='more-actors'>
+            <div className='more-actors' onClick={loadPlayer}>
               {players.map((player) => (
                 <MoreActors
                   player={player}

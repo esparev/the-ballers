@@ -30,6 +30,10 @@ const SingleNews = (props) => {
 
   newsCollection = newsCollection.slice(0, 3);
 
+  const loadNews = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Noticia';
     window.scrollTo(0, 0);
@@ -161,6 +165,7 @@ const SingleNews = (props) => {
               date={moment(news.createdAt).format('DD MMMM, YYYY')}
               category='Noticia'
               route={`/noticias/noticia/${news.id}`}
+              onClick={loadNews}
             />
           ))}
         </section>

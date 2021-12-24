@@ -29,6 +29,10 @@ const Tournament = (props) => {
 
   tournaments = tournaments.slice(0, 3);
 
+  const loadTournament = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Torneo';
     window.scrollTo(0, 0);
@@ -186,6 +190,7 @@ const Tournament = (props) => {
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
               category='Torneo'
               route={`/torneos/torneo/${tournament.id}`}
+              onClick={loadTournament}
             />
           ))}
         </section>

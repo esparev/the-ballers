@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import GrayButton from '../components/GrayButton';
@@ -12,7 +12,12 @@ const Admin = (props) => {
 
   const admin = useGetAdmin(envConfig.apiUrl, id);
   const admins = useGetAdmins(envConfig.apiUrl);
+
   localStorage.setItem('selected admin', admin.id);
+
+  const loadAdmin = () => {
+    window.location.reload();
+  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';
@@ -42,7 +47,7 @@ const Admin = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>Más Administradores</h2>
-            <div className='more-actors'>
+            <div className='more-actors' onClick={loadAdmin}>
               {admins.map((admin) => (
                 <MoreActors
                   admin={admin}
