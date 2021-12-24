@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import moment from 'moment';
+import Message from '../components/Message';
 import Helmet from 'react-helmet';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
@@ -7,6 +9,7 @@ import GrayButton from '../components/GrayButton';
 import useGetSingleNews from '../hooks/useGetSingleNews';
 import useGetNews from '../hooks/useGetNews';
 import sortByDate from '../utils/functions/sortByDate';
+import urlEncode from '../utils/functions/urlEncode';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
@@ -17,7 +20,7 @@ const SingleNews = (props) => {
   const { id } = props.match.params;
 
   moment.locale('es');
-  
+
   const news = useGetSingleNews(envConfig.apiUrl, id);
   let newsCollection = useGetNews(envConfig.apiUrl);
 
@@ -31,6 +34,19 @@ const SingleNews = (props) => {
     document.title = 'BEISMICH • Noticia';
     window.scrollTo(0, 0);
   }, []);
+
+  /**
+   * Copies the URL of the page into the user's
+   * clipboard
+   */
+  const copyLink = () => {
+    navigator.clipboard.writeText(window.location);
+
+    ReactDOM.render(
+      <Message message='Enlace copiado' messageStatus='success' />,
+      document.getElementById('message-container')
+    );
+  };
 
   const articleStructuredData = {
     '@context': 'https://schema.org',
@@ -58,30 +74,7 @@ const SingleNews = (props) => {
 
   return (
     <>
-      <Helmet>
-        <meta property='og:locale' content='es_ES' />
-        <meta property='og:type' content='article' />
-        <meta property='og:title' content={news.title} />
-        <meta property='og:description' content={news.description} />
-        <meta property='og:url' content={window.location} />
-        <meta property='og:site_name' content='BEISMICH' />
-        <meta property='article:author' content={news.author} />
-        <meta
-          property='article:publisher'
-          content='https://www.facebook.com/BEISMICH'
-        />
-        <meta property='og:image' content={news.cover} />
-
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:title' content={news.title} />
-        <meta name='twitter:description' content={news.description} />
-        <meta name='twitter:domain' content='BEISMICH' />
-        <meta name='twitter:image:src' content={news.cover} />
-
-        <script type='application/ld+json'>
-          {JSON.stringify(articleStructuredData)}
-        </script>
-      </Helmet>
+      <div id='message-container'></div>
 
       <main className='article__container'>
         <section className='article'>
@@ -110,21 +103,33 @@ const SingleNews = (props) => {
           <div className='article__share'>
             <p>Compartir:</p>
             <div className='article__icons'>
-              <a href='#'>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${urlEncode(
+                  window.location.toString()
+                )}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <img
                   className='share-icon'
                   src={facebookIcon}
                   alt='Compartir en Facebook'
                 />
               </a>
-              <a href='#'>
+              <a
+                href={`https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fbeismich.netlify.app%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=%C2%A1Mira+esta+noticia%21&url=${urlEncode(
+                  window.location.toString()
+                )}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <img
                   className='share-icon'
                   src={twitterIcon}
                   alt='Compartir en Twitter'
                 />
               </a>
-              <a href='#'>
+              <a onClick={copyLink}>
                 <img
                   className='share-icon'
                   src={linkIcon}
@@ -160,6 +165,32 @@ const SingleNews = (props) => {
           ))}
         </section>
       </main>
+
+      <Helmet>
+        {/* Facebook og tags */}
+        <meta property='og:locale' content='es_ES' />
+        <meta property='og:type' content='article' />
+        <meta property='og:title' content={news.title} />
+        <meta property='og:description' content={news.description} />
+        <meta property='og:url' content={window.location} />
+        <meta property='og:site_name' content='BEISMICH' />
+        <meta property='article:author' content={news.author} />
+        <meta
+          property='article:publisher'
+          content='https://www.facebook.com/BEISMICH'
+        />
+        <meta property='og:image' content={news.cover} />
+        {/* Twitter cards */}
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:title' content={news.title} />
+        <meta name='twitter:description' content={news.description} />
+        <meta name='twitter:domain' content='BEISMICH' />
+        <meta name='twitter:image:src' content={news.cover} />
+        {/* SEO */}
+        <script type='application/ld+json'>
+          {JSON.stringify(articleStructuredData)}
+        </script>
+      </Helmet>
     </>
   );
 };
