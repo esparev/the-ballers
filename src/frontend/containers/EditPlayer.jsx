@@ -123,7 +123,8 @@ const EditPlayer = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al editar el jugador'
+            message={`¡Ups!, Hubo un error al editar el jugador. 
+            Verifique los datos que haya ingresado`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -159,7 +160,8 @@ const EditPlayer = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al eliminar el jugador'
+            message={`¡Ups!, Hubo un error al eliminar el jugador. 
+            Inténtelo más tarde`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

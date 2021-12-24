@@ -120,7 +120,8 @@ const CreateNews = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al publicar la noticia'
+            message={`¡Ups!, Hubo un error al publicar la noticia. 
+            Verifique que haya llenado los campos necesarios`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

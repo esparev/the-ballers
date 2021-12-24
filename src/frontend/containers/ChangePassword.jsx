@@ -53,7 +53,7 @@ const ChangePassword = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al cambiar la contraseña'
+            message='¡Ups!, Hubo un error al cambiar la contraseña. Ingrese una contraseña válida'
             messageStatus='error'
           />,
           document.getElementById('message-container')

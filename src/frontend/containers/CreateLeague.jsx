@@ -129,7 +129,8 @@ const CreateLeague = () => {
 
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al registrar la liga'
+            message={`¡Ups!, Hubo un error al registrar la liga. 
+            Verifique que haya llenado los campos necesarios`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

@@ -120,7 +120,8 @@ const EditLeague = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al editar la liga'
+            message={`¡Ups!, Hubo un error al editar la liga. 
+            Verifique los datos que haya ingresado`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -153,7 +154,8 @@ const EditLeague = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al editar la liga'
+            message={`¡Ups!, Hubo un error al editar la dirección de la liga. 
+            Verifique los datos que haya ingresado`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -187,7 +189,8 @@ const EditLeague = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al eliminar la liga'
+            message={`¡Ups!, Hubo un error al eliminar la liga. 
+            Inténtelo más tarde`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -220,7 +223,8 @@ const EditLeague = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al eliminar la liga'
+            message={`¡Ups!, Hubo un error al eliminar la liga. 
+            Inténtelo más tarde`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

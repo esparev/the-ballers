@@ -120,7 +120,8 @@ const EditTournament = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al editar el torneo'
+            message={`¡Ups!, Hubo un error al editar el torneo. 
+            Verifique los datos que haya ingresado`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -156,7 +157,8 @@ const EditTournament = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al eliminar el torneo'
+            message={`¡Ups!, Hubo un error al eliminar el torneo. 
+            Inténtelo más tarde`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

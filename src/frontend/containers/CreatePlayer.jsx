@@ -136,7 +136,8 @@ const CreatePlayer = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al registrar el jugador'
+            message={`¡Ups!, Hubo un error al registrar el jugador. 
+            Verifique que haya llenado los campos necesarios`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

@@ -120,7 +120,8 @@ const CreateTournament = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al publicar el torneo'
+            message={`¡Ups!, Hubo un error al publicar el torneo. 
+            Verifique que haya llenado los campos necesarios`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

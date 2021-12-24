@@ -125,7 +125,8 @@ const CreateCoach = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al registrar el entrenador'
+            message={`¡Ups!, Hubo un error al registrar el entrenador. 
+            Verifique que haya llenado los campos necesarios`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

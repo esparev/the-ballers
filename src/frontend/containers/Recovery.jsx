@@ -45,7 +45,8 @@ const Recovery = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al enviar el correo'
+            message={`¡Ups!, Hubo un error al enviar el correo. 
+            Verifique que el correo sea el correcto`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

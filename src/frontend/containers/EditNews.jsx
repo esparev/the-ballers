@@ -120,7 +120,8 @@ const EditNews = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al editar la noticia'
+            message={`¡Ups!, Hubo un error al editar la noticia. 
+            Verifique los datos que haya ingresado`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -156,7 +157,8 @@ const EditNews = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al eliminar la noticia'
+            message={`¡Ups!, Hubo un error al eliminar la noticia. 
+            Inténtelo más tarde`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

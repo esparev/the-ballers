@@ -56,7 +56,7 @@ const CreateAdmin = () => {
    */
   window.onstorage = () => {
     form.image = localStorage.getItem('uploaded image');
-    
+
     ReactDOM.render(
       <Message message='Subiendo imagen' messageStatus='upload' />,
       document.getElementById('message-container')
@@ -115,7 +115,8 @@ const CreateAdmin = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al registrar el administrador'
+            message={`¡Ups!, Hubo un error al registrar el administrador. 
+            Verifique que haya llenado los campos necesarios`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

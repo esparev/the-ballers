@@ -113,7 +113,8 @@ const EditTeam = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al editar el equipo'
+            message={`¡Ups!, Hubo un error al editar el equipo. 
+            Verifique los datos que haya ingresado`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -149,7 +150,8 @@ const EditTeam = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al eliminar el equipo'
+            message={`¡Ups!, Hubo un error al eliminar el equipo. 
+            Inténtelo más tarde`}
             messageStatus='error'
           />,
           document.getElementById('message-container')

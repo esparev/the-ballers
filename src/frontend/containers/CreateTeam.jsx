@@ -115,7 +115,8 @@ const CreateTeam = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al registrar el equipo'
+            message={`¡Ups!, Hubo un error al registrar el equipo. 
+            Verifique que haya llenado los campos necesarios`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
