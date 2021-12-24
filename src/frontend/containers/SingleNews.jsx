@@ -82,13 +82,15 @@ const SingleNews = (props) => {
 
       <main className='article__container'>
         <section className='article'>
-          <div className='article__cover'>
-            <img
-              className='article__cover--image cover-image'
-              src={news.cover}
-              alt='Imagen de la noticia'
-            />
-          </div>
+          {news.cover ? (
+            <div className='article__cover'>
+              <img
+                className='article__cover--image cover-image'
+                src={news.cover}
+                alt='Imagen de la noticia'
+              />
+            </div>
+          ) : null}
 
           <h1 className='article--title'>{news.title}</h1>
 

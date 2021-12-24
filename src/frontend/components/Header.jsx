@@ -20,7 +20,6 @@ const Header = () => {
 
   const logout = () => {
     localStorage.clear();
-    window.location.href = '/iniciar-sesion';
   };
 
   const adminDisplay = () => {
