@@ -9,8 +9,6 @@ import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
 
-const API = 'https://beismich.herokuapp.com/api/v1';
-
 const CreateAdmin = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Nuevo Administrador';
@@ -129,7 +127,7 @@ const CreateAdmin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addAdmin(`${API}/admins`, form, authConfig);
+    addAdmin(`${envConfig.apiUrl}/admins`, form, authConfig);
   };
 
   return (

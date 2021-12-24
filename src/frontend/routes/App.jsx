@@ -80,7 +80,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/iniciar-sesion' component={Login} />
           <Route exact path='/recuperar-contraseña' component={Recovery} />
           <Route exact path='/enviar-correo' component={SendMail} />
-          <Route exact path='/cambiar-contraseña' component={ChangePassword} />
+          <Route exact path='/recuperar' component={ChangePassword} />
           <Route path='*' component={NotFound} />
         </Switch>
       </Layout>
