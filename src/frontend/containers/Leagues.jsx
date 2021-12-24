@@ -32,9 +32,11 @@ const Leagues = () => {
           ))}
         </EntityContainer>
 
-        <ButtonContainer>
-          <YellowButton name='Nueva Liga' route='/ligas/nueva-liga' />
-        </ButtonContainer>
+        {localStorage.getItem('id') ? (
+          <ButtonContainer>
+            <YellowButton name='Nueva Liga' route='/ligas/nueva-liga' />
+          </ButtonContainer>
+        ) : null}
       </section>
     </main>
   );
