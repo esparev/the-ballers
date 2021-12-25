@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
 import RedButton from '../components/RedButton';
+import YellowButton from '../components/YellowButton';
 import DeleteMessage from '../components/DeleteMessage';
 import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
@@ -11,8 +13,6 @@ import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
-
-const API = 'https://beismich.herokuapp.com/api/v1';
 
 const EditAdmin = () => {
   useEffect(() => {
@@ -166,7 +166,7 @@ const EditAdmin = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editAdmin(
-      `${API}/admins/${localStorage.getItem('selected admin')}`,
+      `${envConfig.apiUrl}/admins/${localStorage.getItem('selected admin')}`,
       form,
       authConfig
     );
@@ -174,7 +174,7 @@ const EditAdmin = () => {
 
   const handleDelete = () => {
     deleteAdmin(
-      `${API}/admins/${localStorage.getItem('selected admin')}`,
+      `${envConfig.apiUrl}/admins/${localStorage.getItem('selected admin')}`,
       authConfig
     );
   };
@@ -202,12 +202,19 @@ const EditAdmin = () => {
             placeholder='Correo electrónico'
             onChange={handleInput}
           />
-          <input
+          {/* <input
             className='input'
             name='password'
             type='password'
             placeholder='Contraseña'
             onChange={handleInput}
+          /> */}
+          {/* <Link className='change-password' route='/recuperar-contraseña'>
+            Cambiar contraseña
+          </Link> */}
+          <YellowButton
+            name='Cambiar contraseña'
+            route='/recuperar-contraseña'
           />
 
           <label className='form--label label' htmlFor='file'>

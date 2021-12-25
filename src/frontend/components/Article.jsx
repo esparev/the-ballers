@@ -5,6 +5,8 @@ import '../assets/styles/components/Articles.scss';
 const Articles = (props) => {
   const { title, cover, date, category, route, onClick } = props;
 
+  const nothing = () => {};
+
   return (
     <div className='more-articles__card'>
       {cover ? (
@@ -24,7 +26,7 @@ const Articles = (props) => {
             <p className='card--category'>{category}</p>
           </div>
         </div>
-        <div onClick={onClick ? onClick : 0}>
+        <div onClick={onClick ? onClick : nothing}>
           <YellowButton name='Ver más' route={route} />
         </div>
       </div>

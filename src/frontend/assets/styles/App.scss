@@ -14,7 +14,7 @@ body {
 }
 main {
   width: auto;
-  padding: 60px 60px 90px 60px;
+  padding: 0 60px 90px 60px;
 }
 h1 {
   padding-bottom: 16px;
@@ -34,13 +34,16 @@ h3 {
 a {
   text-decoration: none;
 }
-.App{
-  position: relative
+.App {
+  position: relative;
 }
 
 @import './components/Button.scss';
 
 @media only screen and (max-width: 836px) {
+  main {
+    padding: 0 20px 50px 20px;
+  }
   h1 {
     font-size: $primary-mob;
   }

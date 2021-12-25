@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, HashRouter } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Home from '../containers/Home';
 import News from '../containers/News';

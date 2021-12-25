@@ -1,5 +1,5 @@
 import React from 'react';
-import YellowButton from './YellowButton.jsx';
+import YellowButton from './YellowButton';
 import '../assets/styles/components/Card.scss';
 
 const Card = (props) => {
