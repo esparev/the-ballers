@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Message from '../components/Message';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Login.scss';
 
