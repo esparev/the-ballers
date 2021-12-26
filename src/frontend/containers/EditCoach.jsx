@@ -68,7 +68,7 @@ const EditCoach = () => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    form.cover = localStorage.getItem('uploaded image');
+    form.image = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
       <Message message='Subiendo imagen' messageStatus='upload' />,

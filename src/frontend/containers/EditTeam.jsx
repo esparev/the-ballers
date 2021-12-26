@@ -58,7 +58,7 @@ const EditTeam = () => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    form.cover = localStorage.getItem('uploaded image');
+    form.logo = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
       <Message message='Subiendo imagen' messageStatus='upload' />,

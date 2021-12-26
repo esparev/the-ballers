@@ -58,7 +58,7 @@ const EditLeague = () => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    leagueForm.cover = localStorage.getItem('uploaded image');
+    leagueForm.logo = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
       <Message message='Subiendo imagen' messageStatus='upload' />,
