@@ -93,6 +93,36 @@ const LeagueTeams = (props) => {
           )}
         </section>
 
+        <section className='join-league'>
+          <div className='join-league__message'>
+            <h1 className='join-league__message--title'>
+              ¿Quieres formar parte de esta liga?
+            </h1>
+            <p className='join-league__message--text'>
+              Para formar parte de esta liga descarga la hoja de registro y
+              llévala a la dirección donde se encuentra la liga. También puedes
+              ponerte en contacto con el responsable de la liga.
+            </p>
+            {league.ageEnd < 18 ? (
+              <a
+                className='button yellow-button'
+                href='https://drive.google.com/uc?id=1EcyOMFxl525CFiRZu0LYY8VBKObdwCdz&export=download'
+                style={{ marginRight: 0 }}
+              >
+                Descargar hoja de registro
+              </a>
+            ) : (
+              <a
+                className='button yellow-button'
+                href='https://drive.google.com/uc?id=1ZsGEEBAAC5O1UOlOMhUv_fyErUKX2BVD&export=download'
+                style={{ marginRight: 0 }}
+              >
+                Descargar hoja de registro
+              </a>
+            )}
+          </div>
+        </section>
+
         {localStorage.getItem('id') ? (
           <ButtonContainer>
             <YellowButton

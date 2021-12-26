@@ -76,7 +76,6 @@ const App = ({ isLogged }) => {
           {/* Other routes */}
           <Route exact path='/perfil' component={isLogged ? Profile : NotFound} />
           <Route exact path='/conocenos' component={About} />
-          {/* <Route exact path='/unete' component={JoinLeague} /> */}
           <Route exact path='/iniciar-sesion' component={Login} />
           <Route exact path='/recuperar-contraseña' component={Recovery} />
           <Route exact path='/enviar-correo' component={SendMail} />

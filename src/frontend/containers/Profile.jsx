@@ -37,7 +37,7 @@ const Profile = () => {
 
         <ButtonContainer>
           <GrayButton
-            name='Editar Administrador'
+            name='Editar Perfil'
             route={`/admins/admin/${id}/editar-admin`}
           />
         </ButtonContainer>

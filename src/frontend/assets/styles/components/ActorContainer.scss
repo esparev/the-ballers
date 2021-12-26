@@ -12,11 +12,34 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+.league-cover {
+  justify-content: center;
+}
 .cover--image {
   width: 280px;
   margin-left: 60px;
   object-fit: contain;
   transform: rotate(345deg);
+}
+.image--cover {
+  width: 80%;
+}
+.join-league {
+  padding: 20px 60px;
+  text-align: center;
+}
+.join-league__message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.join-league__message--title {
+  color: $white;
+}
+.join-league__message--text {
+  font-family: $roboto-font;
+  font-size: $normal-desk;
+  color: $white;
 }
 .player-coach__container {
   padding: 0;
@@ -73,6 +96,13 @@
 }
 
 @media only screen and (max-width: 836px) {
+  .join-league {
+    padding: 20px;
+    text-align: center;
+  }
+  .join-league__message--text {
+    font-size: $normal-mob;
+  }
   .cover {
     justify-content: center;
   }
