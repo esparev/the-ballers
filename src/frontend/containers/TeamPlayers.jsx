@@ -19,7 +19,25 @@ const TeamPlayers = (props) => {
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const players = useGetPlayers(envConfig.apiUrl, teamId);
   const coaches = useGetCoaches(envConfig.apiUrl, teamId);
+
   localStorage.setItem('selected team', team.id);
+
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(`/#/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`);
+  };
+
+  const handlePlayer = () => {
+    loadPage(`/#/ligas/liga/${league.id}/equipo/${team.id}/nuevo-jugador`);
+  };
+
+  const handleCoach = () => {
+    loadPage(`/#/ligas/liga/${league.id}/equipo/${team.id}/nuevo-entrenador`);
+  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Equipo';
@@ -48,14 +66,20 @@ const TeamPlayers = (props) => {
             Elija si decide agregar a un jugador o a un entrenador
           </p>
           <div className='buttons__container'>
-            <YellowButton
+            {/* <YellowButton
               name='Jugador'
               route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-jugador`}
             />
             <YellowButton
               name='Entrenador'
               route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-entrenador`}
-            />
+            /> */}
+            <button className='button yellow-button' onClick={handlePlayer}>
+              Jugador
+            </button>
+            <button className='button yellow-button' onClick={handleCoach}>
+              Entrenador
+            </button>
             <a className='button gray-button' onClick={toggleMessage}>
               Cancelar
             </a>
@@ -139,10 +163,13 @@ const TeamPlayers = (props) => {
             <a className='button yellow-button' onClick={toggleMessage}>
               Nuevo Jugador/Entrenador
             </a>
-            <GrayButton
+            {/* <GrayButton
               name='Editar Equipo'
               route={`/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`}
-            />
+            /> */}
+            <button className='button gray-button' onClick={handleLoad}>
+              Editar Equipo
+            </button>
           </ButtonContainer>
         ) : null}
       </main>

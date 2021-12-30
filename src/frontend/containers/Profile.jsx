@@ -8,7 +8,17 @@ import '../assets/styles/components/ActorContainer.scss';
 const Profile = () => {
   const id = localStorage.getItem('id');
   const admin = useGetAdmin(envConfig.apiUrl, id);
+
   localStorage.setItem('selected admin', id);
+
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(`/#/admins/admin/${id}/editar-admin`);
+  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';
@@ -36,10 +46,13 @@ const Profile = () => {
         </div>
 
         <ButtonContainer>
-          <GrayButton
+          {/* <GrayButton
             name='Editar Perfil'
             route={`/admins/admin/${id}/editar-admin`}
-          />
+          /> */}
+          <button className='button gray-button' onClick={handleLoad}>
+            Editar Perfil
+          </button>
         </ButtonContainer>
       </section>
     </main>

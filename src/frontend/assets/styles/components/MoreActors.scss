@@ -10,8 +10,10 @@
 }
 .more-actors__card--image {
   width: 150px;
+  height: 150px;
   margin-bottom: 20px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .more-actors__card--name {
   text-align: center;

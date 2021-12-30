@@ -23,6 +23,17 @@ const Coach = (props) => {
     window.location.reload();
   };
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(
+      `/#/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}/editar-entrenador`
+    );
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Entrenador';
     window.scrollTo(0, 0);
@@ -75,10 +86,13 @@ const Coach = (props) => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <GrayButton
+            {/* <GrayButton
               name='Editar Entrenador'
               route={`/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}/editar-entrenador`}
-            />
+            /> */}
+            <button className='button gray-button' onClick={handleLoad}>
+              Editar Entrenador
+            </button>
           </ButtonContainer>
         ) : null}
       </section>

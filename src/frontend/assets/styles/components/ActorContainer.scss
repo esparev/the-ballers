@@ -59,8 +59,10 @@
 }
 .actor__container--image {
   width: 150px;
+  height: 150px;
   margin-right: 60px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .actor__container p {
   font-family: $rubik-font;

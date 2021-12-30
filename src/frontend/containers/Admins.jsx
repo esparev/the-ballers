@@ -7,12 +7,21 @@ import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
 
 const Admins = () => {
+  const admins = useGetAdmins(envConfig.apiUrl);
+
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage('/#/admins/nuevo-admin');
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Administradores';
     window.scrollTo(0, 0);
   }, []);
-
-  const admins = useGetAdmins(envConfig.apiUrl);
 
   return (
     <main className='admins'>
@@ -35,10 +44,13 @@ const Admins = () => {
         </div>
 
         <ButtonContainer>
-          <YellowButton
+          {/* <YellowButton
             name='Nuevo Administrador'
             route='/admins/nuevo-admin'
-          />
+          /> */}
+          <button className='button yellow-button' onClick={handleLoad}>
+            Nuevo Administrador
+          </button>
         </ButtonContainer>
       </div>
     </main>

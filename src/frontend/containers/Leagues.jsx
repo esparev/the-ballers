@@ -8,12 +8,21 @@ import { envConfig } from '../utils/config';
 import '../assets/styles/components/Entities.scss';
 
 const Leagues = () => {
+  const leagues = useGetLeagues(envConfig.apiUrl);
+
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage('/#/ligas/nueva-liga');
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Ligas';
     window.scrollTo(0, 0);
   }, []);
-
-  const leagues = useGetLeagues(envConfig.apiUrl);
 
   return (
     <main>
@@ -34,7 +43,10 @@ const Leagues = () => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <YellowButton name='Nueva Liga' route='/ligas/nueva-liga' />
+            {/* <YellowButton name='Nueva Liga' route='/ligas/nueva-liga' /> */}
+            <button className='button yellow-button' onClick={handleLoad}>
+              Nueva Liga
+            </button>
           </ButtonContainer>
         ) : null}
       </section>

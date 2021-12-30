@@ -33,6 +33,15 @@ const Tournament = (props) => {
     window.location.reload();
   };
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(`/#/torneos/torneo/${tournament.id}/editar-torneo`);
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Torneo';
     window.scrollTo(0, 0);
@@ -170,10 +179,13 @@ const Tournament = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <GrayButton
+              {/* <GrayButton
                 name='Editar Torneo'
                 route={`/torneos/torneo/${tournament.id}/editar-torneo`}
-              />
+              /> */}
+              <button className='button gray-button' onClick={handleLoad}>
+                Editar Torneo
+              </button>
             </ButtonContainer>
           ) : null}
         </section>

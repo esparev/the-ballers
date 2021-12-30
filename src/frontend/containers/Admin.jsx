@@ -19,6 +19,15 @@ const Admin = (props) => {
     window.location.reload();
   };
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(`/#/admins/admin/${admin.id}/editar-admin`);
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';
     window.scrollTo(0, 0);
@@ -63,10 +72,15 @@ const Admin = (props) => {
 
         <ButtonContainer>
           {localStorage.getItem('role') === 'hero' ? (
-            <GrayButton
-              name='Editar Administrador'
-              route={`/admins/admin/${admin.id}/editar-admin`}
-            />
+            //   (
+            //   <GrayButton
+            //     name='Editar Administrador'
+            //     route={`/admins/admin/${admin.id}/editar-admin`}
+            //   />
+            // )
+            <button className='button gray-button' onClick={handleLoad}>
+              Editar Administrador
+            </button>
           ) : null}
         </ButtonContainer>
       </section>

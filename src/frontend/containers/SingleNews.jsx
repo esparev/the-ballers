@@ -34,6 +34,15 @@ const SingleNews = (props) => {
     window.location.reload();
   };
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(`/#/noticias/noticia/${news.id}/editar-noticia`);
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Noticia';
     window.scrollTo(0, 0);
@@ -147,10 +156,13 @@ const SingleNews = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <GrayButton
+              {/* <GrayButton
                 name='Editar Noticia'
                 route={`/noticias/noticia/${news.id}/editar-noticia`}
-              />
+              /> */}
+              <button className='button gray-button' onClick={handleLoad}>
+                Editar Noticia
+              </button>
             </ButtonContainer>
           ) : null}
         </section>

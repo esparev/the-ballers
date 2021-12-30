@@ -16,6 +16,15 @@ const News = () => {
 
   sortByDate(news);
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(`/#/noticias/nueva-noticia`);
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Noticias';
     window.scrollTo(0, 0);
@@ -86,13 +95,20 @@ const News = () => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <Link
+              {/* <Link
                 className='button yellow-button'
                 to='/noticias/nueva-noticia'
                 style={{ marginRight: 0 }}
               >
                 Nueva Noticia
-              </Link>
+              </Link> */}
+              <button
+                className='button yellow-button'
+                onClick={handleLoad}
+                style={{ marginRight: 0 }}
+              >
+                Nueva Noticia
+              </button>
             </ButtonContainer>
           ) : null}
         </div>

@@ -19,6 +19,19 @@ const LeagueTeams = (props) => {
 
   localStorage.setItem('selected league', league.id);
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleNew = () => {
+    loadPage(`/#/ligas/liga/${league.id}/nuevo-equipo`);
+  };
+
+  const handleEdit = () => {
+    loadPage(`/#/ligas/liga/${league.id}/editar-liga`);
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Liga';
     window.scrollTo(0, 0);
@@ -125,14 +138,20 @@ const LeagueTeams = (props) => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <YellowButton
+            {/* <YellowButton
               name='Nuevo Equipo'
               route={`/ligas/liga/${league.id}/nuevo-equipo`}
-            />
-            <GrayButton
+            /> */}
+            <button className='button yellow-button' onClick={handleNew}>
+              Nuevo Equipo
+            </button>
+            <button className='button gray-button' onClick={handleEdit}>
+              Editar Liga
+            </button>
+            {/* <GrayButton
               name='Editar Liga'
               route={`/ligas/liga/${league.id}/editar-liga`}
-            />
+            /> */}
           </ButtonContainer>
         ) : null}
       </main>

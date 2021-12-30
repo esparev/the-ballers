@@ -23,6 +23,17 @@ const Player = (props) => {
     window.location.reload();
   };
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(
+      `/#/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}/editar-jugador`
+    );
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Jugador';
     window.scrollTo(0, 0);
@@ -79,10 +90,13 @@ const Player = (props) => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <GrayButton
+            {/* <GrayButton
               name='Editar Jugador'
               route={`/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}/editar-jugador`}
-            />
+            /> */}
+            <button className='button gray-button' onClick={handleLoad}>
+              Editar Jugador
+            </button>
           </ButtonContainer>
         ) : null}
       </section>

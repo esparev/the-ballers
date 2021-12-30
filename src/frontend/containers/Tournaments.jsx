@@ -16,6 +16,15 @@ const Tournaments = () => {
 
   sortByDate(tournaments);
 
+  const loadPage = (location) => {
+    window.location.href = location;
+    setTimeout(window.location.reload(), 500);
+  };
+
+  const handleLoad = () => {
+    loadPage(`/#/torneos/nuevo-torneo`);
+  };
+
   useEffect(() => {
     document.title = 'BEISMICH • Torneos';
     window.scrollTo(0, 0);
@@ -36,9 +45,7 @@ const Tournaments = () => {
           <>
             {filteredTournaments.length > 0 ? (
               <>
-                <h1 className='cards__container--title'>
-                  Torneos Encontrados
-                </h1>
+                <h1 className='cards__container--title'>Torneos Encontrados</h1>
                 {filteredTournaments.map((tournament) => (
                   <HashRouter>
                     <TournamentCard
@@ -88,13 +95,20 @@ const Tournaments = () => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <Link
+              {/* <Link
                 className='button yellow-button'
                 to='/torneos/nuevo-torneo'
                 style={{ marginRight: 0 }}
               >
                 Nuevo Torneo
-              </Link>
+              </Link> */}
+              <button
+                className='button yellow-button'
+                onClick={handleLoad}
+                style={{ marginRight: 0 }}
+              >
+                Nuevo Torneo
+              </button>
             </ButtonContainer>
           ) : null}
         </div>
