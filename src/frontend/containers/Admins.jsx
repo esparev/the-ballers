@@ -2,16 +2,19 @@ import React, { useEffect } from 'react';
 import AdminActor from '../components/AdminActor';
 import ButtonContainer from './ButtonContainer';
 import useGetAdmins from '../hooks/useGetAdmins';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the admins page with all its functions 
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Admins = () => {
+  // Fetching the necessary data to showcase in the component
   const admins = useGetAdmins(envConfig.apiUrl);
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage('/#/admins/nuevo-admin');

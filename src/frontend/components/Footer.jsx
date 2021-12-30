@@ -1,7 +1,13 @@
 import React from 'react';
 import '../assets/styles/components/Footer.scss';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the footer component with all its functions 
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Footer = () => (
   <footer id='footer'>
     <div className='footer__container'>

@@ -1,6 +1,8 @@
 /**
- * Updates thumbnail when the user has dragged and dropped the image
- * on the drop zone
+ * Updates thumbnail when the user has dragged 
+ * and dropped the image on the drop zone
+ * @param {*} dropZoneElement - html tag
+ * @param {*} file - image file
  */
 const updateThumbnail = (dropZoneElement, file) => {
   let thumbnailElement = dropZoneElement.querySelectorAll('.drop-zone--thumb');

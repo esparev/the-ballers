@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/styles/components/Login.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the send password recovery mail page with 
+ * all its functions stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const SendMail = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Correo Enviado';

@@ -4,7 +4,13 @@ import '../assets/styles/components/Header.scss';
 import beismichLogo from '../assets/static/beismich-logo.png';
 import userIcon from '../assets/icons/user-icon.svg';
 import burgerMenuIcon from '../assets/icons/burger-menu-icon.svg';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the header component with all its functions 
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Header = () => {
   useEffect(() => {
     var nav = document.getElementById('nav');

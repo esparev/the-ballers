@@ -1,19 +1,26 @@
 import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer';
 import useGetAdmin from '../hooks/useGetAdmin';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the profile page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Profile = () => {
+  // Assigns the admin's id from the local storage
+  // that was defined after a successful login
   const id = localStorage.getItem('id');
+
+  // Fetching the necessary data to showcase in the component
   const admin = useGetAdmin(envConfig.apiUrl, id);
 
+  // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected admin', id);
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(`/#/admins/admin/${id}/editar-admin`);

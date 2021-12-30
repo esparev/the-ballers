@@ -6,24 +6,32 @@ import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayers from '../hooks/useGetPlayers';
 import useGetCoaches from '../hooks/useGetCoaches';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
 import '../assets/styles/components/FeedbackMessage.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the team players page with all its functions
+ * stored inside for its full operation
+ * @param {*} props
+ * @returns JSX code to render to the DOM tree
+ */
 const TeamPlayers = (props) => {
+  // Assigns the team's id from the URL to the teamId props
+  // as well for its respective league to identify
+  // which league the team belongs to
   const { leagueId, teamId } = props.match.params;
 
+  // Fetching the necessary data to showcase in the component
   const league = useGetLeague(envConfig.apiUrl, leagueId);
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const players = useGetPlayers(envConfig.apiUrl, teamId);
   const coaches = useGetCoaches(envConfig.apiUrl, teamId);
 
+  // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected team', team.id);
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(`/#/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`);
@@ -153,10 +161,6 @@ const TeamPlayers = (props) => {
             <a className='button yellow-button' onClick={toggleMessage}>
               Nuevo Jugador/Entrenador
             </a>
-            {/* <GrayButton
-              name='Editar Equipo'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`}
-            /> */}
             <button className='button gray-button' onClick={handleLoad}>
               Editar Equipo
             </button>

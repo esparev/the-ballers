@@ -3,16 +3,19 @@ import EntityContainer from './EntityContainer';
 import Entity from '../components/Entity';
 import ButtonContainer from './ButtonContainer';
 import useGetLeagues from '../hooks/useGetLeagues';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Entities.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the leagues page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Leagues = () => {
+  // Fetching the necessary data to showcase in the component
   const leagues = useGetLeagues(envConfig.apiUrl);
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage('/#/ligas/nueva-liga');

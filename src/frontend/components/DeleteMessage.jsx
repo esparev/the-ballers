@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react';
 import toggleMessage from '../utils/functions/toggleMessage';
 import '../assets/styles/components/FeedbackMessage.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the delete message component with all its functions 
+ * stored inside for its full operation
+ * @param {*} props 
+ * @returns JSX code to render to the DOM tree
+ */
 const DeleteMessage = (props) => {
+  // Parameters that the function will receive
   const { entity, onClick } = props;
 
   useEffect(() => {

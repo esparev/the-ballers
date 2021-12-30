@@ -5,7 +5,13 @@ import Message from '../components/Message';
 import { Link } from 'react-router-dom';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Login.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the recover password page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Recovery = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Recuperar contraseña';
@@ -33,8 +39,8 @@ const Recovery = () => {
    * Sends a post request to the URL of the API provided
    * with the data entered by the user in a form to recover
    * the admin's password sending an mail to his email address
-   * @param {*} url - API URL
-   * @param {*} data - body data to post
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
    */
   const sendMail = async (url, data) => {
     await axios

@@ -3,25 +3,28 @@ import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
 import useGetAdmin from '../hooks/useGetAdmin';
 import useGetAdmins from '../hooks/useGetAdmins';
+import loadComponent from '../utils/functions/loadComponent';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the admin page with all its functions 
+ * stored inside for its full operation
+ * @param {*} props 
+ * @returns JSX code to render to the DOM tree
+ */
 const Admin = (props) => {
+  // Assigns the admin's id from the URL to the id props
   const { id } = props.match.params;
 
+  // Fetching the necessary data to showcase in the component
   const admin = useGetAdmin(envConfig.apiUrl, id);
   const admins = useGetAdmins(envConfig.apiUrl);
 
+  // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected admin', admin.id);
-
-  const loadAdmin = () => {
-    window.location.reload();
-  };
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(`/#/admins/admin/${admin.id}/editar-admin`);
@@ -55,7 +58,7 @@ const Admin = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>Más Administradores</h2>
-            <div className='more-actors' onClick={loadAdmin}>
+            <div className='more-actors' onClick={loadComponent}>
               {admins.map((admin) => (
                 <MoreActors
                   admin={admin}

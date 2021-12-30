@@ -5,27 +5,32 @@ import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayer from '../hooks/useGetPlayer';
 import useGetPlayers from '../hooks/useGetPlayers';
+import loadComponent from '../utils/functions/loadComponent';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the player page with all its functions
+ * stored inside for its full operation
+ * @param {*} props 
+ * @returns JSX code to render to the DOM tree
+ */
 const Player = (props) => {
+  // Assigns the player's id from the URL to the playerId props
+  // as well for its respective league and team id to identify
+  // which team the player belongs to and which league his team belongs to
   const { leagueId, teamId, playerId } = props.match.params;
 
+  // Fetching the necessary data to showcase in the component
   const league = useGetLeague(envConfig.apiUrl, leagueId);
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const player = useGetPlayer(envConfig.apiUrl, playerId);
   const players = useGetPlayers(envConfig.apiUrl, teamId);
 
+  // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected player', player.id);
-
-  const loadPlayer = () => {
-    window.location.reload();
-  };
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(
@@ -73,7 +78,7 @@ const Player = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>Más Jugadores</h2>
-            <div className='more-actors' onClick={loadPlayer}>
+            <div className='more-actors' onClick={loadComponent}>
               {players.map((player) => (
                 <MoreActors
                   player={player}

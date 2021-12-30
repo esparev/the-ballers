@@ -8,34 +8,41 @@ import ButtonContainer from './ButtonContainer';
 import useGetTournament from '../hooks/useGetTournament';
 import useGetTournaments from '../hooks/useGetTournaments';
 import sortByDate from '../utils/functions/sortByDate';
+import urlEncode from '../utils/functions/urlEncode';
+import loadComponent from '../utils/functions/loadComponent';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
 import twitterIcon from '../assets/icons/twitter-icon.svg';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the tournament page with all its functions
+ * stored inside for its full operation
+ * @param {*} props
+ * @returns JSX code to render to the DOM tree
+ */
 const Tournament = (props) => {
+  // Assigns the tournament's id from the URL to the id props
   const { id } = props.match.params;
 
+  // Setting moment.js to spanish
   moment.locale('es');
 
+  // Fetching the necessary data to showcase in the component
   const tournament = useGetTournament(envConfig.apiUrl, id);
   let tournaments = useGetTournaments(envConfig.apiUrl);
 
+  // Setting the tournament's id to have data persistency only on local storage
   localStorage.setItem('selected tournament', tournament.id);
 
+  // Sorting the tournaments by most recent date
   sortByDate(tournaments);
 
+  // Slicing the tournaments to not show all of them
   tournaments = tournaments.slice(0, 3);
-
-  const loadTournament = () => {
-    window.location.reload();
-  };
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(`/#/torneos/torneo/${tournament.id}/editar-torneo`);
@@ -47,8 +54,8 @@ const Tournament = (props) => {
   }, []);
 
   /**
-   * Copies the URL of the page into the user's
-   * clipboard
+   * Copies the URL of the page
+   * into the user's clipboard
    */
   const copyLink = () => {
     navigator.clipboard.writeText(window.location);
@@ -57,19 +64,6 @@ const Tournament = (props) => {
       <Message message='Enlace copiado' messageStatus='success' />,
       document.getElementById('message-container')
     );
-  };
-
-  /**
-   * Encodes the necessary characters to
-   * parse it in a url
-   * @param {string} str
-   * @returns
-   */
-  const urlEncode = (str) => {
-    return str
-      .replaceAll('#', '%23')
-      .replaceAll('/', '%2F')
-      .replaceAll(':', '%3A');
   };
 
   const articleStructuredData = {
@@ -197,7 +191,7 @@ const Tournament = (props) => {
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
               category='Torneo'
               route={`/torneos/torneo/${tournament.id}`}
-              onClick={loadTournament}
+              onClick={loadComponent}
             />
           ))}
         </section>

@@ -12,12 +12,21 @@ import useGetTournaments from '../hooks/useGetTournaments';
 import { envConfig } from '../utils/config';
 import '../assets/styles/App.scss';
 import '../assets/styles/components/Home.scss';
+// ---------------------------------------- END OF IMPORTS
 
+// Delay time between news for the slideshow
 const delay = 10000;
 
+/**
+ * Creates the home page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Home = () => {
+  // Setting moment.js to spanish
   moment.locale('es');
 
+  // Fetching the necessary data to showcase in the component
   let leagues = useGetLeagues(envConfig.apiUrl);
   let news = useGetNews(envConfig.apiUrl);
   let tournaments = useGetTournaments(envConfig.apiUrl);

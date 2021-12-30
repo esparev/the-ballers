@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react';
+import YellowButton from '../components/YellowButton';
 import '../assets/styles/components/NotFound.scss';
 import baseballIcon from '../assets/icons/baseball-icon.svg';
-import YellowButton from '../components/YellowButton';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the not found page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const NotFound = () => {
   useEffect(() => {
     document.title = 'BEISMICH • 404 Not Found';
   }, []);
+
   return (
     <main className='not-found-main'>
       <div className='not-found__container'>

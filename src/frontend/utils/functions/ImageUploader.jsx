@@ -1,7 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-/* Imgur Image Uploader API scripts */
+/**
+ * Imgur Image Uploader API scripts
+ * @returns HTML src tags in React Helmet
+ */
 const ImageUploader = () => {
   return (
     <Helmet>

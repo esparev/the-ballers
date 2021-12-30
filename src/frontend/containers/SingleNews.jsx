@@ -9,34 +9,40 @@ import useGetSingleNews from '../hooks/useGetSingleNews';
 import useGetNews from '../hooks/useGetNews';
 import sortByDate from '../utils/functions/sortByDate';
 import urlEncode from '../utils/functions/urlEncode';
+import loadComponent from '../utils/functions/loadComponent';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
 import facebookIcon from '../assets/icons/facebook-icon.svg';
 import twitterIcon from '../assets/icons/twitter-icon.svg';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the single news page with all its functions
+ * stored inside for its full operation
+ * @param {*} props
+ * @returns JSX code to render to the DOM tree
+ */
 const SingleNews = (props) => {
+  // Assigns the news's id from the URL to the id props
   const { id } = props.match.params;
 
+  // Setting moment.js to spanish
   moment.locale('es');
 
+  // Fetching the necessary data to showcase in the component
   const news = useGetSingleNews(envConfig.apiUrl, id);
   let newsCollection = useGetNews(envConfig.apiUrl);
 
+  // Setting the news's id to have data persistency only on local storage
   localStorage.setItem('selected news', news.id);
 
+  // Sorting the news by most recent date
   sortByDate(newsCollection);
 
+  // Slicing the news to not show all of them
   newsCollection = newsCollection.slice(0, 3);
-
-  const loadNews = () => {
-    window.location.reload();
-  };
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(`/#/noticias/noticia/${news.id}/editar-noticia`);
@@ -48,8 +54,8 @@ const SingleNews = (props) => {
   }, []);
 
   /**
-   * Copies the URL of the page into the user's
-   * clipboard
+   * Copies the URL of the page
+   * into the user's clipboard
    */
   const copyLink = () => {
     navigator.clipboard.writeText(window.location);
@@ -174,7 +180,7 @@ const SingleNews = (props) => {
               date={moment(news.createdAt).format('DD MMMM, YYYY')}
               category='Noticia'
               route={`/noticias/noticia/${news.id}`}
-              onClick={loadNews}
+              onClick={loadComponent}
             />
           ))}
         </section>

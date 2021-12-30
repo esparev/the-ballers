@@ -5,27 +5,32 @@ import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetCoach from '../hooks/useGetCoach';
 import useGetCoaches from '../hooks/useGetCoaches';
+import loadComponent from '../utils/functions/loadComponent';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the coach page with all its functions
+ * stored inside for its full operation
+ * @param {*} props
+ * @returns JSX code to render to the DOM tree
+ */
 const Coach = (props) => {
+  // Assigns the coach's id from the URL to the coachId props
+  // as well for its respective league and team id to identify 
+  // which team the coach belongs to and which league his team belongs to
   const { leagueId, teamId, coachId } = props.match.params;
 
+  // Fetching the necessary data to showcase in the component
   const league = useGetLeague(envConfig.apiUrl, leagueId);
   const team = useGetTeam(envConfig.apiUrl, teamId);
   const coach = useGetCoach(envConfig.apiUrl, coachId);
   const coaches = useGetCoaches(envConfig.apiUrl, teamId);
 
+  // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected coach', coach.id);
-
-  const loadCoach = () => {
-    window.location.reload();
-  };
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(
@@ -69,7 +74,7 @@ const Coach = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>Más Entrenadores</h2>
-            <div className='more-actors' onClick={loadCoach}>
+            <div className='more-actors' onClick={loadComponent}>
               {coaches.map((coach) => (
                 <MoreActors
                   coach={coach}

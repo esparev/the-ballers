@@ -5,22 +5,28 @@ import ButtonContainer from './ButtonContainer';
 import useGetLeague from '../hooks/useGetLeague';
 import useGetAddress from '../hooks/useGetAddress';
 import useGetTeams from '../hooks/useGetTeams';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/LeagueTeams.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the league teams page with all its functions
+ * stored inside for its full operation 
+ * @param {*} props 
+ * @returns JSX code to render to the DOM tree
+ */
 const LeagueTeams = (props) => {
+  // Assigns the league's id from the URL to the id props
   const { id } = props.match.params;
 
+  // Fetching the necessary data to showcase in the component
   const league = useGetLeague(envConfig.apiUrl, id);
   const address = useGetAddress(envConfig.apiUrl, id);
   const teams = useGetTeams(envConfig.apiUrl, id);
 
+  // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected league', league.id);
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleNew = () => {
     loadPage(`/#/ligas/liga/${league.id}/nuevo-equipo`);

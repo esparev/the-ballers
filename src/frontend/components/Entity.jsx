@@ -1,9 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/styles/components/Entity.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the entity component with all its functions
+ * stored inside for its full operation
+ * @param {*} props
+ * @returns JSX code to render to the DOM tree
+ */
 const Entity = (props) => {
+  // Parameters that the function will receive
   const { name, logo, route } = props;
+
   return (
     <div className='entity'>
       <Link to={route}>

@@ -11,7 +11,13 @@ import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the edit player page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const EditPlayer = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Editar Jugador';
@@ -102,9 +108,9 @@ const EditPlayer = () => {
    * Sends a patch request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} data - body data to post
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
+   * @param {json} config - headers configuration
    */
   const editPlayer = async (url, data, config) => {
     await axios
@@ -138,8 +144,8 @@ const EditPlayer = () => {
    * Sends a delete request to the URL of the API provided
    * to delete the selected news according to its id along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} config - headers configuration
    */
   const deletePlayer = async (url, config) => {
     await axios
@@ -174,7 +180,9 @@ const EditPlayer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editPlayer(
-      `${envConfig.apiUrl}/jugadores/${localStorage.getItem('selected player')}`,
+      `${envConfig.apiUrl}/jugadores/${localStorage.getItem(
+        'selected player'
+      )}`,
       form,
       authConfig
     );
@@ -182,7 +190,9 @@ const EditPlayer = () => {
 
   const handleDelete = () => {
     deletePlayer(
-      `${envConfig.apiUrl}/jugadores/${localStorage.getItem('selected player')}`,
+      `${envConfig.apiUrl}/jugadores/${localStorage.getItem(
+        'selected player'
+      )}`,
       authConfig
     );
   };

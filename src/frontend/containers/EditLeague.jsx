@@ -11,7 +11,13 @@ import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the edit league page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const EditLeague = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Editar Liga';
@@ -99,9 +105,9 @@ const EditLeague = () => {
    * Sends a patch request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} data - body data to post
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
+   * @param {json} config - headers configuration
    */
   const editLeague = async (url, data, config) => {
     await axios
@@ -135,9 +141,9 @@ const EditLeague = () => {
    * Sends a patch request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} data - body data to post
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
+   * @param {json} config - headers configuration
    */
   const editAddress = async (url, data, config) => {
     await axios
@@ -167,8 +173,8 @@ const EditLeague = () => {
    * Sends a delete request to the URL of the API provided
    * to delete the selected league according to its id along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} config - headers configuration
    */
   const deleteLeague = async (url, config) => {
     await axios
@@ -203,8 +209,8 @@ const EditLeague = () => {
    * Sends a delete request to the URL of the API provided
    * to delete the selected news according to its id along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} config - headers configuration
    */
   const deleteAddress = async (url, config) => {
     await axios
@@ -240,7 +246,9 @@ const EditLeague = () => {
       authConfig
     );
     editAddress(
-      `${envConfig.apiUrl}/direcciones/${localStorage.getItem('selected league')}`,
+      `${envConfig.apiUrl}/direcciones/${localStorage.getItem(
+        'selected league'
+      )}`,
       addressForm,
       authConfig
     );
@@ -252,7 +260,9 @@ const EditLeague = () => {
       authConfig
     );
     deleteAddress(
-      `${envConfig.apiUrl}/direcciones/${localStorage.getItem('selected league')}`,
+      `${envConfig.apiUrl}/direcciones/${localStorage.getItem(
+        'selected league'
+      )}`,
       authConfig
     );
   };

@@ -8,7 +8,13 @@ import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the create team page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const CreateTeam = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Nuevo Equipo';
@@ -94,9 +100,9 @@ const CreateTeam = () => {
    * Sends a post request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} data - body data to post
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
+   * @param {json} config - headers configuration
    */
   const addTeam = async (url, data, config) => {
     await axios

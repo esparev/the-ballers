@@ -34,7 +34,17 @@ import Recovery from '../containers/Recovery';
 import SendMail from '../containers/SendMail';
 import ChangePassword from '../containers/ChangePassword';
 import NotFound from '../containers/NotFound';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the entire client side routing for the
+ * react app with hash router and switch to achieve
+ * consistency between the URL route and the component
+ * the user is seeing as well with the consistency of
+ * both the header and footer for every component
+ * @param {*} param0 - data to verify the login status of an admin
+ * @returns routing for the entire react app
+ */
 const App = ({ isLogged }) => {
   return (
     <HashRouter>

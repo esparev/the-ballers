@@ -1,6 +1,11 @@
 import React from 'react';
 import '../assets/styles/components/About.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Contains the About page
+ * @returns JSX code to render to the DOM tree
+ */
 const About = () => {
   return (
     <main className='about'>

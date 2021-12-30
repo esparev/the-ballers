@@ -6,20 +6,25 @@ import NewsCard from '../components/Card';
 import ButtonContainer from './ButtonContainer';
 import useGetNews from '../hooks/useGetNews';
 import sortByDate from '../utils/functions/sortByDate';
+import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CardsContainer.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the news page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const News = () => {
+  // Setting moment.js to spanish
   moment.locale('es');
 
+  // Fetching the necessary data to showcase in the component
   const news = useGetNews(envConfig.apiUrl);
 
+  // Sorting the news by most recent date
   sortByDate(news);
-
-  const loadPage = (location) => {
-    window.location.href = location;
-    setTimeout(window.location.reload(), 500);
-  };
 
   const handleLoad = () => {
     loadPage(`/#/noticias/nueva-noticia`);
@@ -31,9 +36,19 @@ const News = () => {
 
     const search = document.getElementById('searchBar');
 
+    /**
+     * Shows and filters the news depending on the search request
+     * after a search action is being performed in the search bar input
+     */
     search.addEventListener('keyup', (e) => {
+      // Transforms the search value to lowercase
       const searchString = e.target.value.toLowerCase();
 
+      /**
+       * Filtered news based upon the search result value
+       * and it will try and find coincidences on the title or the description
+       * and see if the search result value is included in any of the properties
+       */
       const filteredNews = news.filter(
         (news) =>
           news.title.toLowerCase().includes(searchString) ||
@@ -43,6 +58,7 @@ const News = () => {
       if (searchString.length > 0) {
         ReactDOM.render(
           <>
+            {/* There were coincidences */}
             {filteredNews.length > 0 ? (
               <>
                 <h1 className='cards__container--title'>
@@ -68,6 +84,7 @@ const News = () => {
                 ))}
               </>
             ) : (
+              {/* There were no coincidences */}
               <h1 className='cards__container--title'>
                 No se encontraron coincidencias
               </h1>

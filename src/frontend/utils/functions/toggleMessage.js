@@ -3,6 +3,7 @@
  */
 const toggleMessage = () => {
   var message = document.getElementById('feedback-message');
+  
   if (message.style.display === '' || message.style.display === 'none') {
     message.style.display = 'grid';
   } else {

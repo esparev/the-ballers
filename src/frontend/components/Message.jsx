@@ -3,10 +3,22 @@ import '../assets/styles/components/Message.scss';
 import successIcon from '../assets/icons/check-icon.svg';
 import uploadIcon from '../assets/icons/upload-icon.svg';
 import crossIcon from '../assets/icons/crossed-icon.svg';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the message component with all its functions 
+ * stored inside for its full operation
+ * @param {*} props 
+ * @returns JSX code to render to the DOM tree
+ */
 const Message = (props) => {
+  // Parameters that the function will receive
   const { message, messageStatus } = props;
 
+  /**
+   * Closes the message after the X 
+   * button has been clicked
+   */
   const closeMessage = () => {
     var message = document.getElementById('message');
     message.style.display = 'none';

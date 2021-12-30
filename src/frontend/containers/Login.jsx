@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import togglePassword from '../utils/functions/togglePassword';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Login.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the login page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const Login = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Iniciar Sesión';
+    window.scrollTo(0, 0);
   }, []);
 
   const [form, setValues] = useState({
@@ -21,12 +29,19 @@ const Login = () => {
     });
   };
 
+  /**
+   * Sends a post request to the URL of the API provided
+   * with the data entered by the user in a form
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
+   */
   const login = async (url, data) => {
     await axios
       .post(url, data)
       .then((res) => {
-        const wrongLogin = document.getElementById('wrong-login');
-        wrongLogin.style.display = 'block';
+        // Setting various data from the admin's credential
+        // to serve data persistency on local storage for
+        // the admin's use and experience
         localStorage.setItem('id', res.data.admin.id);
         localStorage.setItem('name', res.data.admin.name);
         localStorage.setItem('email', res.data.admin.email);
@@ -49,18 +64,6 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     login(`${envConfig.apiUrl}/auth/iniciar-sesion`, form);
-  };
-
-  const togglePassword = () => {
-    var passwd = document.getElementById('password');
-    var passwdIcon = document.getElementById('password-icon');
-    if (passwd.type === 'password') {
-      passwd.type = 'text';
-      passwdIcon.classList.add('view-icon');
-    } else {
-      passwd.type = 'password';
-      passwdIcon.classList.remove('view-icon');
-    }
   };
 
   return (

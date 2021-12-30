@@ -11,7 +11,13 @@ import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CreateEntity.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the edit coach page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const EditCoach = () => {
   useEffect(() => {
     document.title = 'BEISMICH • Editar Entrenador';
@@ -102,9 +108,9 @@ const EditCoach = () => {
    * Sends a patch request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} data - body data to post
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
+   * @param {json} config - headers configuration
    */
   const editCoach = async (url, data, config) => {
     await axios
@@ -138,8 +144,8 @@ const EditCoach = () => {
    * Sends a delete request to the URL of the API provided
    * to delete the selected coach according to its id along
    * with a bearer token included in the headers configuration
-   * @param {*} url - API URL
-   * @param {*} config - headers configuration
+   * @param {string} url - API URL
+   * @param {json} config - headers configuration
    */
   const deleteCoach = async (url, config) => {
     await axios
@@ -174,7 +180,9 @@ const EditCoach = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editCoach(
-      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem('selected coach')}`,
+      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem(
+        'selected coach'
+      )}`,
       form,
       authConfig
     );
@@ -182,7 +190,9 @@ const EditCoach = () => {
 
   const handleDelete = () => {
     deleteCoach(
-      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem('selected coach')}`,
+      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem(
+        'selected coach'
+      )}`,
       authConfig
     );
   };

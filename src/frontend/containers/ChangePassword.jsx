@@ -3,16 +3,21 @@ import ReactDOM from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Message from '../components/Message';
+import togglePassword from '../utils/functions/togglePassword';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Login.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the change password page with all its functions
+ * stored inside for its full operation
+ * @returns JSX code to render to the DOM tree
+ */
 const ChangePassword = () => {
+  // Gets the full URL string
   const search = useLocation().search;
+  // Retrieves the value of the query param from the URL
   const token = new URLSearchParams(search).get('token');
-
-  useEffect(() => {
-    document.title = 'BEISMICH • Nueva Contraseña';
-  }, []);
 
   /**
    * Sets the initial values for the form fields
@@ -33,12 +38,17 @@ const ChangePassword = () => {
     });
   };
 
+  useEffect(() => {
+    document.title = 'BEISMICH • Nueva Contraseña';
+    window.scrollTo(0, 0);
+  }, []);
+
   /**
    * Sends a post request to the URL of the API provided
    * with the data entered by the user in a form to recover
    * the admin's password sending an mail to his email address
-   * @param {*} url - API URL
-   * @param {*} data - body data to post
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
    */
   const changePassword = async (url, data) => {
     await axios
@@ -66,23 +76,6 @@ const ChangePassword = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     changePassword(`${envConfig.apiUrl}/auth/cambiar-contra`, form);
-  };
-
-  /**
-   * Toggles the password input type between password and type when pressed
-   * on the eye icon
-   */
-  const togglePassword = () => {
-    var passwd = document.getElementById('password');
-    var passwdIcon = document.getElementById('password-icon');
-
-    if (passwd.type === 'password') {
-      passwd.type = 'text';
-      passwdIcon.classList.add('new-view-icon');
-    } else {
-      passwd.type = 'password';
-      passwdIcon.classList.remove('new-view-icon');
-    }
   };
 
   return (

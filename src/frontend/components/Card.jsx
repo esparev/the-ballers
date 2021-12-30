@@ -1,8 +1,16 @@
 import React from 'react';
 import YellowButton from './YellowButton';
 import '../assets/styles/components/Card.scss';
+// ---------------------------------------- END OF IMPORTS
 
+/**
+ * Creates the cards component with all its functions 
+ * stored inside for its full operation
+ * @param {*} props 
+ * @returns JSX code to render to the DOM tree
+ */
 const Card = (props) => {
+  // Parameters that the function will receive
   const { title, cover, date, category, description, link, route } = props;
 
   return (
