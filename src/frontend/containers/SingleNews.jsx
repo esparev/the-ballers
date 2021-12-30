@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import Message from '../components/Message';
 import Helmet from 'react-helmet';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
-import GrayButton from '../components/GrayButton';
 import useGetSingleNews from '../hooks/useGetSingleNews';
 import useGetNews from '../hooks/useGetNews';
 import sortByDate from '../utils/functions/sortByDate';
@@ -156,10 +155,6 @@ const SingleNews = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              {/* <GrayButton
-                name='Editar Noticia'
-                route={`/noticias/noticia/${news.id}/editar-noticia`}
-              /> */}
               <button className='button gray-button' onClick={handleLoad}>
                 Editar Noticia
               </button>

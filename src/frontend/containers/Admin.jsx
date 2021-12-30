@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
-import GrayButton from '../components/GrayButton';
 import useGetAdmin from '../hooks/useGetAdmin';
 import useGetAdmins from '../hooks/useGetAdmins';
 import { envConfig } from '../utils/config';
@@ -72,12 +71,6 @@ const Admin = (props) => {
 
         <ButtonContainer>
           {localStorage.getItem('role') === 'hero' ? (
-            //   (
-            //   <GrayButton
-            //     name='Editar Administrador'
-            //     route={`/admins/admin/${admin.id}/editar-admin`}
-            //   />
-            // )
             <button className='button gray-button' onClick={handleLoad}>
               Editar Administrador
             </button>

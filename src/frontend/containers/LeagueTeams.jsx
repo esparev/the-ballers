@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import EntityContainer from './EntityContainer';
 import Entity from '../components/Entity';
 import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
-import GrayButton from '../components/GrayButton';
 import useGetLeague from '../hooks/useGetLeague';
 import useGetAddress from '../hooks/useGetAddress';
 import useGetTeams from '../hooks/useGetTeams';
@@ -138,20 +136,12 @@ const LeagueTeams = (props) => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            {/* <YellowButton
-              name='Nuevo Equipo'
-              route={`/ligas/liga/${league.id}/nuevo-equipo`}
-            /> */}
             <button className='button yellow-button' onClick={handleNew}>
               Nuevo Equipo
             </button>
             <button className='button gray-button' onClick={handleEdit}>
               Editar Liga
             </button>
-            {/* <GrayButton
-              name='Editar Liga'
-              route={`/ligas/liga/${league.id}/editar-liga`}
-            /> */}
           </ButtonContainer>
         ) : null}
       </main>

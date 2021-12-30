@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer';
-import GrayButton from '../components/GrayButton';
 import useGetAdmin from '../hooks/useGetAdmin';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
@@ -46,10 +45,6 @@ const Profile = () => {
         </div>
 
         <ButtonContainer>
-          {/* <GrayButton
-            name='Editar Perfil'
-            route={`/admins/admin/${id}/editar-admin`}
-          /> */}
           <button className='button gray-button' onClick={handleLoad}>
             Editar Perfil
           </button>

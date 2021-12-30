@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter, Link } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import NewsCard from '../components/Card';
@@ -95,13 +95,6 @@ const News = () => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              {/* <Link
-                className='button yellow-button'
-                to='/noticias/nueva-noticia'
-                style={{ marginRight: 0 }}
-              >
-                Nueva Noticia
-              </Link> */}
               <button
                 className='button yellow-button'
                 onClick={handleLoad}

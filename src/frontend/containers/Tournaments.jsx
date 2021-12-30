@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter, Link } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import TournamentCard from '../components/Card';
@@ -95,13 +95,6 @@ const Tournaments = () => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              {/* <Link
-                className='button yellow-button'
-                to='/torneos/nuevo-torneo'
-                style={{ marginRight: 0 }}
-              >
-                Nuevo Torneo
-              </Link> */}
               <button
                 className='button yellow-button'
                 onClick={handleLoad}

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import Actor from '../components/Actor';
 import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
-import GrayButton from '../components/GrayButton';
 import toggleMessage from '../utils/functions/toggleMessage';
 import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
@@ -66,14 +64,6 @@ const TeamPlayers = (props) => {
             Elija si decide agregar a un jugador o a un entrenador
           </p>
           <div className='buttons__container'>
-            {/* <YellowButton
-              name='Jugador'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-jugador`}
-            />
-            <YellowButton
-              name='Entrenador'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-entrenador`}
-            /> */}
             <button className='button yellow-button' onClick={handlePlayer}>
               Jugador
             </button>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import AdminActor from '../components/AdminActor';
 import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
 import useGetAdmins from '../hooks/useGetAdmins';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
@@ -44,10 +43,6 @@ const Admins = () => {
         </div>
 
         <ButtonContainer>
-          {/* <YellowButton
-            name='Nuevo Administrador'
-            route='/admins/nuevo-admin'
-          /> */}
           <button className='button yellow-button' onClick={handleLoad}>
             Nuevo Administrador
           </button>
