@@ -84,10 +84,13 @@ const News = () => {
                 ))}
               </>
             ) : (
-              {/* There were no coincidences */}
-              <h1 className='cards__container--title'>
-                No se encontraron coincidencias
-              </h1>
+              {
+                /* There were no coincidences */
+              }(
+                <h1 className='cards__container--title'>
+                  No se encontraron coincidencias
+                </h1>
+              )
             )}
           </>,
           document.getElementById('filtered-news')
