@@ -224,12 +224,12 @@ const EditTournament = () => {
               type='link'
               id='textarea'
               placeholder='Link'
-              maxLength='255'
+              maxLength='455'
               onChange={handleInput}
             ></textarea>
             <div className='input-count' id='textarea-count'>
               <span id='textarea-current'>0</span>
-              <span id='textarea-maximum'>/255</span>
+              <span id='textarea-maximum'>/455</span>
             </div>
           </div>
 

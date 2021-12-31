@@ -157,6 +157,7 @@ const CreateTeam = () => {
             name='manager'
             type='text'
             placeholder='Nombre del manager'
+            required
             onChange={handleInput}
           />
 

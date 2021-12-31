@@ -82,9 +82,9 @@ const CreateLeague = () => {
   const [form, setValues] = useState({
     name: '',
     responsable: '',
-    phone: '',
-    ageStart: 0,
-    ageEnd: 0,
+    // phone: '',
+    // ageStart: 0,
+    // ageEnd: 0,
     logo: localStorage.getItem('league logo'),
     address: {
       streetName: '',
@@ -179,17 +179,19 @@ const CreateLeague = () => {
             name='phone'
             type='num'
             maxLength='10'
-            placeholder='Teléfono del responsable'
+            placeholder='Teléfono del responsable *'
+            required
             onChange={handleInput}
           />
           <select
             className='input empty'
             name='address.location'
             id='location'
+            required
             onChange={handleInput}
           >
             <option defaultValue value=''>
-              Localidad
+              Localidad *
             </option>
             <option value='Acuitzio'>Acuitzio</option>
             <option value='Aguililla'>Aguililla</option>
@@ -309,6 +311,7 @@ const CreateLeague = () => {
               type='tel'
               maxLength='2'
               placeholder='00'
+              required
               onChange={handleInput}
             />
             <label className='label'>hasta</label>
@@ -318,6 +321,7 @@ const CreateLeague = () => {
               type='tel'
               maxLength='2'
               placeholder='00'
+              required
               onChange={handleInput}
             />
             <label className='label'>años</label>
