@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
-import ImageUploader from '../utils/functions/ImageUploader';
 import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
@@ -209,8 +208,6 @@ const CreateAdmin = () => {
           </ButtonContainer>
         </form>
       </main>
-
-      <ImageUploader />
     </>
   );
 };

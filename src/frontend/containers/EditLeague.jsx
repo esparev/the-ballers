@@ -5,7 +5,6 @@ import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
 import RedButton from '../components/RedButton';
 import DeleteMessage from '../components/DeleteMessage';
-import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
 import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
@@ -472,8 +471,6 @@ const EditLeague = () => {
           </ButtonContainer>
         </form>
       </main>
-
-      <ImageUploader />
     </>
   );
 };

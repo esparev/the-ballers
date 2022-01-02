@@ -7,7 +7,6 @@ import ButtonContainer from './ButtonContainer';
 import RedButton from '../components/RedButton';
 import YellowButton from '../components/YellowButton';
 import DeleteMessage from '../components/DeleteMessage';
-import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
 import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
@@ -260,8 +259,6 @@ const EditAdmin = () => {
           </ButtonContainer>
         </form>
       </main>
-
-      <ImageUploader />
     </>
   );
 };

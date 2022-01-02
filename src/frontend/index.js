@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ImageUploader from './utils/functions/ImageUploader';
 import App from './routes/App';
 // ---------------------------------------- END OF IMPORTS
 
@@ -7,6 +8,9 @@ import App from './routes/App';
 // into the DOM tree of the index.html
 // file from the public folder
 ReactDOM.render(
-  <App isLogged={localStorage.getItem('id')} />,
+  <>
+    <ImageUploader />
+    <App isLogged={localStorage.getItem('id')} />
+  </>,
   document.getElementById('app')
 );

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
-import ImageUploader from '../utils/functions/ImageUploader';
 import countCharacters from '../utils/functions/countCharacters';
 import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
@@ -208,8 +207,6 @@ const CreateTournament = () => {
           </ButtonContainer>
         </form>
       </main>
-
-      <ImageUploader />
     </>
   );
 };

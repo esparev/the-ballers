@@ -5,7 +5,6 @@ import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
 import RedButton from '../components/RedButton';
 import DeleteMessage from '../components/DeleteMessage';
-import ImageUploader from '../utils/functions/ImageUploader';
 import toggleMessage from '../utils/functions/toggleMessage';
 import countCharacters from '../utils/functions/countCharacters';
 import updateThumbnail from '../utils/functions/updateThumbnail';
@@ -261,8 +260,6 @@ const EditTournament = () => {
           </ButtonContainer>
         </form>
       </main>
-
-      <ImageUploader />
     </>
   );
 };

@@ -10,7 +10,7 @@ const ImageUploader = () => {
     <Helmet>
       <script
         defer
-        src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@master/imgur.js'
+        src='https://cdn.jsdelivr.net/gh/esparev/imgur-uploader@3f5db4181ff51cd8c3d21c88bd447bffad043981/imgur.js'
         type='text/javascript'
       ></script>
       <script

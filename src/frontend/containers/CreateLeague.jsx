@@ -4,7 +4,6 @@ import axios from 'axios';
 import set from 'lodash/set';
 import Message from '../components/Message';
 import ButtonContainer from './ButtonContainer';
-import ImageUploader from '../utils/functions/ImageUploader';
 import updateThumbnail from '../utils/functions/updateThumbnail';
 import { authConfig } from '../utils/constants';
 import { envConfig } from '../utils/config';
@@ -363,8 +362,6 @@ const CreateLeague = () => {
           </ButtonContainer>
         </form>
       </main>
-
-      <ImageUploader />
     </>
   );
 };
