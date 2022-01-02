@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import AdminActor from '../components/AdminActor';
 import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
 import useGetAdmins from '../hooks/useGetAdmins';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -15,10 +15,6 @@ import '../assets/styles/components/TeamPlayers.scss';
 const Admins = () => {
   // Fetching the necessary data to showcase in the component
   const admins = useGetAdmins(envConfig.apiUrl);
-
-  const handleLoad = () => {
-    loadPage('/#/admins/nuevo-admin');
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Administradores';
@@ -46,9 +42,10 @@ const Admins = () => {
         </div>
 
         <ButtonContainer>
-          <button className='button yellow-button' onClick={handleLoad}>
-            Nuevo Administrador
-          </button>
+          <YellowButton
+            name='Nuevo Administrador'
+            route='/admins/nuevo-admin'
+          />
         </ButtonContainer>
       </div>
     </main>

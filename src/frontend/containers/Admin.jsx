@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
 import useGetAdmin from '../hooks/useGetAdmin';
 import useGetAdmins from '../hooks/useGetAdmins';
 import loadComponent from '../utils/functions/loadComponent';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the admin page with all its functions 
+ * Creates the admin page with all its functions
  * stored inside for its full operation
- * @param {*} props 
+ * @param {*} props
  * @returns JSX code to render to the DOM tree
  */
 const Admin = (props) => {
@@ -25,10 +25,6 @@ const Admin = (props) => {
 
   // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected admin', admin.id);
-
-  const handleLoad = () => {
-    loadPage(`/#/admins/admin/${admin.id}/editar-admin`);
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';
@@ -74,9 +70,10 @@ const Admin = (props) => {
 
         <ButtonContainer>
           {localStorage.getItem('role') === 'hero' ? (
-            <button className='button gray-button' onClick={handleLoad}>
-              Editar Administrador
-            </button>
+            <GrayButton
+              name='Editar Administrador'
+              route={`/admins/admin/${admin.id}/editar-admin`}
+            />
           ) : null}
         </ButtonContainer>
       </section>

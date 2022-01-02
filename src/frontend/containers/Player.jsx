@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
 import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayer from '../hooks/useGetPlayer';
 import useGetPlayers from '../hooks/useGetPlayers';
 import loadComponent from '../utils/functions/loadComponent';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -14,7 +14,7 @@ import '../assets/styles/components/ActorContainer.scss';
 /**
  * Creates the player page with all its functions
  * stored inside for its full operation
- * @param {*} props 
+ * @param {*} props
  * @returns JSX code to render to the DOM tree
  */
 const Player = (props) => {
@@ -31,12 +31,6 @@ const Player = (props) => {
 
   // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected player', player.id);
-
-  const handleLoad = () => {
-    loadPage(
-      `/#/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}/editar-jugador`
-    );
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Jugador';
@@ -94,9 +88,10 @@ const Player = (props) => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <button className='button gray-button' onClick={handleLoad}>
-              Editar Jugador
-            </button>
+            <GrayButton
+              name='Editar Jugador'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}/editar-jugador`}
+            />
           </ButtonContainer>
         ) : null}
       </section>

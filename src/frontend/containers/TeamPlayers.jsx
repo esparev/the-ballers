@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import Actor from '../components/Actor';
 import ButtonContainer from './ButtonContainer';
+import YellowButton from '../components/YellowButton';
+import GrayButton from '../components/GrayButton';
 import toggleMessage from '../utils/functions/toggleMessage';
 import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetPlayers from '../hooks/useGetPlayers';
 import useGetCoaches from '../hooks/useGetCoaches';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/TeamPlayers.scss';
 import '../assets/styles/components/FeedbackMessage.scss';
@@ -32,18 +33,6 @@ const TeamPlayers = (props) => {
 
   // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected team', team.id);
-
-  const handleLoad = () => {
-    loadPage(`/#/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`);
-  };
-
-  const handlePlayer = () => {
-    loadPage(`/#/ligas/liga/${league.id}/equipo/${team.id}/nuevo-jugador`);
-  };
-
-  const handleCoach = () => {
-    loadPage(`/#/ligas/liga/${league.id}/equipo/${team.id}/nuevo-entrenador`);
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Equipo';
@@ -72,12 +61,14 @@ const TeamPlayers = (props) => {
             Elija si decide agregar a un jugador o a un entrenador
           </p>
           <div className='buttons__container'>
-            <button className='button yellow-button' onClick={handlePlayer}>
-              Jugador
-            </button>
-            <button className='button yellow-button' onClick={handleCoach}>
-              Entrenador
-            </button>
+            <YellowButton
+              name='Jugador'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-jugador`}
+            />
+            <YellowButton
+              name='Entrenador'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-entrenador`}
+            />
             <a className='button gray-button' onClick={toggleMessage}>
               Cancelar
             </a>
@@ -161,9 +152,10 @@ const TeamPlayers = (props) => {
             <a className='button yellow-button' onClick={toggleMessage}>
               Nuevo Jugador/Entrenador
             </a>
-            <button className='button gray-button' onClick={handleLoad}>
-              Editar Equipo
-            </button>
+            <GrayButton
+              name='Editar Equipo'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`}
+            />
           </ButtonContainer>
         ) : null}
       </main>

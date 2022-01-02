@@ -5,12 +5,12 @@ import Message from '../components/Message';
 import Helmet from 'react-helmet';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
 import useGetSingleNews from '../hooks/useGetSingleNews';
 import useGetNews from '../hooks/useGetNews';
 import sortByDate from '../utils/functions/sortByDate';
 import urlEncode from '../utils/functions/urlEncode';
 import loadComponent from '../utils/functions/loadComponent';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
@@ -43,10 +43,6 @@ const SingleNews = (props) => {
 
   // Slicing the news to not show all of them
   newsCollection = newsCollection.slice(0, 3);
-
-  const handleLoad = () => {
-    loadPage(`/#/noticias/noticia/${news.id}/editar-noticia`);
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Noticia';
@@ -161,9 +157,10 @@ const SingleNews = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <button className='button gray-button' onClick={handleLoad}>
-                Editar Noticia
-              </button>
+              <GrayButton
+                name='Editar Noticia'
+                route={`/noticias/noticia/${news.id}/editar-noticia`}
+              />
             </ButtonContainer>
           ) : null}
         </section>

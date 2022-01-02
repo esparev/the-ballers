@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
 import useGetAdmin from '../hooks/useGetAdmin';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -21,10 +21,6 @@ const Profile = () => {
 
   // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected admin', id);
-
-  const handleLoad = () => {
-    loadPage(`/#/admins/admin/${id}/editar-admin`);
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Administrador';
@@ -52,9 +48,10 @@ const Profile = () => {
         </div>
 
         <ButtonContainer>
-          <button className='button gray-button' onClick={handleLoad}>
-            Editar Perfil
-          </button>
+          <GrayButton
+            name='Editar Perfil'
+            route={`/admins/admin/${id}/editar-admin`}
+          />
         </ButtonContainer>
       </section>
     </main>

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import MoreActors from '../components/MoreActors';
 import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
 import useGetLeague from '../hooks/useGetLeague';
 import useGetTeam from '../hooks/useGetTeam';
 import useGetCoach from '../hooks/useGetCoach';
 import useGetCoaches from '../hooks/useGetCoaches';
 import loadComponent from '../utils/functions/loadComponent';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -19,7 +19,7 @@ import '../assets/styles/components/ActorContainer.scss';
  */
 const Coach = (props) => {
   // Assigns the coach's id from the URL to the coachId props
-  // as well for its respective league and team id to identify 
+  // as well for its respective league and team id to identify
   // which team the coach belongs to and which league his team belongs to
   const { leagueId, teamId, coachId } = props.match.params;
 
@@ -31,12 +31,6 @@ const Coach = (props) => {
 
   // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected coach', coach.id);
-
-  const handleLoad = () => {
-    loadPage(
-      `/#/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}/editar-entrenador`
-    );
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Entrenador';
@@ -90,9 +84,10 @@ const Coach = (props) => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <button className='button gray-button' onClick={handleLoad}>
-              Editar Entrenador
-            </button>
+            <GrayButton
+              name='Editar Entrenador'
+              route={`/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}/editar-entrenador`}
+            />
           </ButtonContainer>
         ) : null}
       </section>

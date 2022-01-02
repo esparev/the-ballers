@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import NewsCard from '../components/Card';
 import ButtonContainer from './ButtonContainer';
 import useGetNews from '../hooks/useGetNews';
 import sortByDate from '../utils/functions/sortByDate';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CardsContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -25,10 +24,6 @@ const News = () => {
 
   // Sorting the news by most recent date
   sortByDate(news);
-
-  const handleLoad = () => {
-    loadPage(`/#/noticias/nueva-noticia`);
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Noticias';
@@ -58,7 +53,6 @@ const News = () => {
       if (searchString.length > 0) {
         ReactDOM.render(
           <>
-            {/* There were coincidences */}
             {filteredNews.length > 0 ? (
               <>
                 <h1 className='cards__container--title'>
@@ -84,13 +78,9 @@ const News = () => {
                 ))}
               </>
             ) : (
-              {
-                /* There were no coincidences */
-              }(
-                <h1 className='cards__container--title'>
-                  No se encontraron coincidencias
-                </h1>
-              )
+              <h1 className='cards__container--title'>
+                No se encontraron coincidencias
+              </h1>
             )}
           </>,
           document.getElementById('filtered-news')
@@ -115,13 +105,13 @@ const News = () => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <button
+              <Link
                 className='button yellow-button'
-                onClick={handleLoad}
                 style={{ marginRight: 0 }}
+                to='/noticias/nueva-noticia'
               >
                 Nueva Noticia
-              </button>
+              </Link>
             </ButtonContainer>
           ) : null}
         </div>

@@ -5,12 +5,12 @@ import Message from '../components/Message';
 import Helmet from 'react-helmet';
 import Article from '../components/Article';
 import ButtonContainer from './ButtonContainer';
+import GrayButton from '../components/GrayButton';
 import useGetTournament from '../hooks/useGetTournament';
 import useGetTournaments from '../hooks/useGetTournaments';
 import sortByDate from '../utils/functions/sortByDate';
 import urlEncode from '../utils/functions/urlEncode';
 import loadComponent from '../utils/functions/loadComponent';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/Article.scss';
 import linkIcon from '../assets/icons/link-icon.svg';
@@ -43,10 +43,6 @@ const Tournament = (props) => {
 
   // Slicing the tournaments to not show all of them
   tournaments = tournaments.slice(0, 3);
-
-  const handleLoad = () => {
-    loadPage(`/#/torneos/torneo/${tournament.id}/editar-torneo`);
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Torneo';
@@ -172,9 +168,10 @@ const Tournament = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <button className='button gray-button' onClick={handleLoad}>
-                Editar Torneo
-              </button>
+              <GrayButton
+                name='Editar Torneo'
+                route={`/torneos/torneo/${tournament.id}/editar-torneo`}
+              />
             </ButtonContainer>
           ) : null}
         </section>

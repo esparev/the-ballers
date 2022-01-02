@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import TournamentCard from '../components/Card';
 import ButtonContainer from './ButtonContainer';
 import useGetTournaments from '../hooks/useGetTournaments';
 import sortByDate from '../utils/functions/sortByDate';
-import loadPage from '../utils/functions/loadPage';
 import { envConfig } from '../utils/config';
 import '../assets/styles/components/CardsContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -25,10 +24,6 @@ const Tournaments = () => {
 
   // Sorting the tournaments by most recent date
   sortByDate(tournaments);
-
-  const handleLoad = () => {
-    loadPage(`/#/torneos/nuevo-torneo`);
-  };
 
   useEffect(() => {
     document.title = 'BEISMICH • Torneos';
@@ -59,7 +54,6 @@ const Tournaments = () => {
       if (searchString.length > 0) {
         ReactDOM.render(
           <>
-            {/* There were coincidences */}
             {filteredTournaments.length > 0 ? (
               <>
                 <h1 className='cards__container--title'>Torneos Encontrados</h1>
@@ -85,13 +79,9 @@ const Tournaments = () => {
                 ))}
               </>
             ) : (
-              {
-                /* There were no coincidences */
-              }(
-                <h1 className='cards__container--title'>
-                  No se encontraron coincidencias
-                </h1>
-              )
+              <h1 className='cards__container--title'>
+                No se encontraron coincidencias
+              </h1>
             )}
           </>,
           document.getElementById('filtered-tournaments')
@@ -116,13 +106,13 @@ const Tournaments = () => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <button
+              <Link
                 className='button yellow-button'
-                onClick={handleLoad}
                 style={{ marginRight: 0 }}
+                to='/torneos/nuevo-torneo'
               >
                 Nuevo Torneo
-              </button>
+              </Link>
             </ButtonContainer>
           ) : null}
         </div>
