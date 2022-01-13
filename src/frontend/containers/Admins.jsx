@@ -34,7 +34,7 @@ const Admins = () => {
                   key={admin.id}
                   name={admin.name}
                   image={admin.image}
-                  route={`/admins/admin/${admin.id}`}
+                  route={`/admins/${admin.id}`}
                 />
               ))}
             </div>

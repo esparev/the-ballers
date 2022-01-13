@@ -21,13 +21,13 @@ const Player = (props) => {
   // Assigns the player's id from the URL to the playerId props
   // as well for its respective league and team id to identify
   // which team the player belongs to and which league his team belongs to
-  const { leagueId, teamId, playerId } = props.match.params;
+  const { ligaSlug, equipoSlug, jugadorSlug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetLeague(envConfig.apiUrl, leagueId);
-  const team = useGetTeam(envConfig.apiUrl, teamId);
-  const player = useGetPlayer(envConfig.apiUrl, playerId);
-  const players = useGetPlayers(envConfig.apiUrl, teamId);
+  const league = useGetLeague(envConfig.apiUrl, ligaSlug);
+  const team = useGetTeam(envConfig.apiUrl, equipoSlug);
+  const player = useGetPlayer(envConfig.apiUrl, jugadorSlug);
+  const players = useGetPlayers(envConfig.apiUrl, equipoSlug);
 
   // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected player', player.id);
@@ -54,7 +54,7 @@ const Player = (props) => {
             <h1 className='actor__info--name'>{player.name}</h1>
             <div className='actor__info-about'>
               <p>
-                <strong>Nombre Equipo: </strong>
+                <strong>Equipo: </strong>
                 {team.name}
               </p>
               <p>
@@ -79,7 +79,7 @@ const Player = (props) => {
                   key={player.id}
                   name={player.name}
                   image={player.image}
-                  route={`/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}`}
+                  route={`/ligas/${league.id}/${team.id}/${player.id}`}
                 />
               ))}
             </div>
@@ -90,7 +90,7 @@ const Player = (props) => {
           <ButtonContainer>
             <GrayButton
               name='Editar Jugador'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}/editar-jugador`}
+              route={`/ligas/${league.id}/${team.id}/${player.id}/editar-jugador`}
             />
           </ButtonContainer>
         ) : null}

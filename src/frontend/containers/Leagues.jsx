@@ -34,7 +34,7 @@ const Leagues = () => {
               key={league.id}
               name={league.name}
               logo={league.logo}
-              route={`/ligas/liga/${league.id}`}
+              route={`/ligas/${league.id}`}
             />
           ))}
         </EntityContainer>

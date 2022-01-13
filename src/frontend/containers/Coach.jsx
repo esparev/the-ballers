@@ -21,26 +21,26 @@ const Coach = (props) => {
   // Assigns the coach's id from the URL to the coachId props
   // as well for its respective league and team id to identify
   // which team the coach belongs to and which league his team belongs to
-  const { leagueId, teamId, coachId } = props.match.params;
+  const { ligaSlug, equipoSlug, entrenadorSlug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetLeague(envConfig.apiUrl, leagueId);
-  const team = useGetTeam(envConfig.apiUrl, teamId);
-  const coach = useGetCoach(envConfig.apiUrl, coachId);
-  const coaches = useGetCoaches(envConfig.apiUrl, teamId);
+  const league = useGetLeague(envConfig.apiUrl, ligaSlug);
+  const team = useGetTeam(envConfig.apiUrl, equipoSlug);
+  const coach = useGetCoach(envConfig.apiUrl, entrenadorSlug);
+  const coaches = useGetCoaches(envConfig.apiUrl, equipoSlug);
 
   // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected coach', coach.id);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Entrenador';
+    document.title = 'BEISMICH • Coach';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <main className='player-coach__container'>
       <section className='cover'>
-        <img className='cover--image' src={league.logo} alt='Portada' />
+        <img className='cover--image' src={league.logo} alt='Cover' />
       </section>
 
       <section className='actor'>
@@ -48,17 +48,17 @@ const Coach = (props) => {
           <img
             className='actor__container--image'
             src={coach.image}
-            alt='Foto del entrenador'
+            alt='Coach photo'
           />
           <div className='actor__info'>
             <h1 className='actor__info--name'>{coach.name}</h1>
             <div className='actor__info-about'>
               <p>
-                <strong>Nombre Equipo: </strong>
+                <strong>Team: </strong>
                 {team.name}
               </p>
               <p>
-                <strong>Fecha de Nacimiento: </strong>
+                <strong>Birth: </strong>
                 {coach.birthday}
               </p>
             </div>
@@ -67,7 +67,7 @@ const Coach = (props) => {
 
         <section className='actors'>
           <div className='actors__container'>
-            <h2 className='actors__container--title'>Más Entrenadores</h2>
+            <h2 className='actors__container--title'>More coaches</h2>
             <div className='more-actors' onClick={loadComponent}>
               {coaches.map((coach) => (
                 <MoreActors
@@ -75,7 +75,7 @@ const Coach = (props) => {
                   key={coach.id}
                   name={coach.name}
                   image={coach.image}
-                  route={`/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}`}
+                  route={`/ligas/${league.id}/${team.id}/${coach.id}`}
                 />
               ))}
             </div>
@@ -85,8 +85,8 @@ const Coach = (props) => {
         {localStorage.getItem('id') ? (
           <ButtonContainer>
             <GrayButton
-              name='Editar Entrenador'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}/editar-entrenador`}
+              name='Edit Coach'
+              route={`/ligas/${league.id}/${team.id}/${coach.id}/editar-entrenador`}
             />
           </ButtonContainer>
         ) : null}

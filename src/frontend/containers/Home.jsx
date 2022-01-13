@@ -86,7 +86,7 @@ const Home = () => {
                   </p>
                   <YellowButton
                     name='Ver más'
-                    route={`/noticias/noticia/${news.id}`}
+                    route={`/noticias/${news.id}`}
                   />
                 </div>
                 <div className='slider__image'>
@@ -113,7 +113,7 @@ const Home = () => {
               key={league.id}
               name={league.name}
               logo={league.logo}
-              route={`/ligas/liga/${league.id}`}
+              route={`/ligas/${league.id}`}
             />
           ))}
         </EntityContainer>
@@ -135,7 +135,7 @@ const Home = () => {
                   ? `${news.description.substring(0, 255)}...`
                   : news.description
               }
-              route={`/noticias/noticia/${news.id}`}
+              route={`/noticias/${news.id}`}
             />
           ))}
         </section>
@@ -149,7 +149,7 @@ const Home = () => {
               cover={tournament.cover}
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
               category='Torneo'
-              route={`/torneos/torneo/${tournament.id}`}
+              route={`/torneos/${tournament.id}`}
             />
           ))}
         </section>

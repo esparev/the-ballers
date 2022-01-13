@@ -26,13 +26,13 @@ import twitterIcon from '../assets/icons/twitter-icon.svg';
  */
 const SingleNews = (props) => {
   // Assigns the news's id from the URL to the id props
-  const { id } = props.match.params;
+  const { slug } = props.match.params;
 
   // Setting moment.js to spanish
   moment.locale('es');
 
   // Fetching the necessary data to showcase in the component
-  const news = useGetSingleNews(envConfig.apiUrl, id);
+  const news = useGetSingleNews(envConfig.apiUrl, slug);
   let newsCollection = useGetNews(envConfig.apiUrl);
 
   // Setting the news's id to have data persistency only on local storage
@@ -159,7 +159,7 @@ const SingleNews = (props) => {
             <ButtonContainer>
               <GrayButton
                 name='Editar Noticia'
-                route={`/noticias/noticia/${news.id}/editar-noticia`}
+                route={`/noticias/${news.id}/editar-noticia`}
               />
             </ButtonContainer>
           ) : null}
@@ -176,7 +176,7 @@ const SingleNews = (props) => {
               cover={news.cover}
               date={moment(news.createdAt).format('DD MMMM, YYYY')}
               category='Noticia'
-              route={`/noticias/noticia/${news.id}`}
+              route={`/noticias/${news.id}`}
               onClick={loadComponent}
             />
           ))}

@@ -17,17 +17,17 @@ import '../assets/styles/components/ActorContainer.scss';
  */
 const Admin = (props) => {
   // Assigns the admin's id from the URL to the id props
-  const { id } = props.match.params;
+  const { slug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const admin = useGetAdmin(envConfig.apiUrl, id);
+  const admin = useGetAdmin(envConfig.apiUrl, slug);
   const admins = useGetAdmins(envConfig.apiUrl);
 
   // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected admin', admin.id);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Administrador';
+    document.title = 'BEISMICH • Admin';
     window.scrollTo(0, 0);
   }, []);
 
@@ -38,13 +38,13 @@ const Admin = (props) => {
           <img
             className='actor__container--image'
             src={admin.image}
-            alt='Foto del administrador'
+            alt='Profile picture'
           />
           <div className='actor__info'>
             <h1 className='actor__info--name'>{admin.name}</h1>
             <div className='actor__info-about'>
               <p>
-                <strong>Correo electrónico: </strong>
+                <strong>Email: </strong>
                 {admin.email}
               </p>
             </div>
@@ -53,7 +53,7 @@ const Admin = (props) => {
 
         <section className='actors'>
           <div className='actors__container'>
-            <h2 className='actors__container--title'>Más Administradores</h2>
+            <h2 className='actors__container--title'>More Admins</h2>
             <div className='more-actors' onClick={loadComponent}>
               {admins.map((admin) => (
                 <MoreActors
@@ -61,7 +61,7 @@ const Admin = (props) => {
                   key={admin.id}
                   name={admin.name}
                   image={admin.image}
-                  route={`/admins/admin/${admin.id}`}
+                  route={`/admins/${admin.id}`}
                 />
               ))}
             </div>
@@ -71,8 +71,8 @@ const Admin = (props) => {
         <ButtonContainer>
           {localStorage.getItem('role') === 'hero' ? (
             <GrayButton
-              name='Editar Administrador'
-              route={`/admins/admin/${admin.id}/editar-admin`}
+              name='Edit Admin'
+              route={`/admins/${admin.id}/edit-admin`}
             />
           ) : null}
         </ButtonContainer>

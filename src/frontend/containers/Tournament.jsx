@@ -26,13 +26,13 @@ import twitterIcon from '../assets/icons/twitter-icon.svg';
  */
 const Tournament = (props) => {
   // Assigns the tournament's id from the URL to the id props
-  const { id } = props.match.params;
+  const { slug } = props.match.params;
 
   // Setting moment.js to spanish
   moment.locale('es');
 
   // Fetching the necessary data to showcase in the component
-  const tournament = useGetTournament(envConfig.apiUrl, id);
+  const tournament = useGetTournament(envConfig.apiUrl, slug);
   let tournaments = useGetTournaments(envConfig.apiUrl);
 
   // Setting the tournament's id to have data persistency only on local storage

@@ -23,13 +23,13 @@ const TeamPlayers = (props) => {
   // Assigns the team's id from the URL to the teamId props
   // as well for its respective league to identify
   // which league the team belongs to
-  const { leagueId, teamId } = props.match.params;
+  const { ligaSlug, equipoSlug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetLeague(envConfig.apiUrl, leagueId);
-  const team = useGetTeam(envConfig.apiUrl, teamId);
-  const players = useGetPlayers(envConfig.apiUrl, teamId);
-  const coaches = useGetCoaches(envConfig.apiUrl, teamId);
+  const league = useGetLeague(envConfig.apiUrl, ligaSlug);
+  const team = useGetTeam(envConfig.apiUrl, equipoSlug);
+  const players = useGetPlayers(envConfig.apiUrl, equipoSlug);
+  const coaches = useGetCoaches(envConfig.apiUrl, equipoSlug);
 
   // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected team', team.id);
@@ -63,11 +63,11 @@ const TeamPlayers = (props) => {
           <div className='buttons__container'>
             <YellowButton
               name='Jugador'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-jugador`}
+              route={`/ligas/${league.id}/${team.id}/nuevo-jugador`}
             />
             <YellowButton
               name='Entrenador'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/nuevo-entrenador`}
+              route={`/ligas/${league.id}/${team.id}/nuevo-entrenador`}
             />
             <a className='button gray-button' onClick={toggleMessage}>
               Cancelar
@@ -114,7 +114,7 @@ const TeamPlayers = (props) => {
                     name={player.name}
                     image={player.image}
                     position={player.position}
-                    route={`/ligas/liga/${league.id}/equipo/${team.id}/jugador/${player.id}`}
+                    route={`/ligas/${league.id}/${team.id}/${player.id}`}
                   />
                 ))}
               </div>
@@ -134,7 +134,7 @@ const TeamPlayers = (props) => {
                     key={coach.id}
                     name={coach.name}
                     image={coach.image}
-                    route={`/ligas/liga/${league.id}/equipo/${team.id}/entrenador/${coach.id}`}
+                    route={`/ligas/${league.id}/${team.id}/${coach.id}`}
                   />
                 ))}
               </div>
@@ -154,7 +154,7 @@ const TeamPlayers = (props) => {
             </a>
             <GrayButton
               name='Editar Equipo'
-              route={`/ligas/liga/${league.id}/equipo/${team.id}/editar-equipo`}
+              route={`/ligas/${league.id}/${team.id}/editar-equipo`}
             />
           </ButtonContainer>
         ) : null}

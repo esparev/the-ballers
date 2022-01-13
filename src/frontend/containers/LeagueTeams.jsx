@@ -19,12 +19,12 @@ import '../assets/styles/components/LeagueTeams.scss';
  */
 const LeagueTeams = (props) => {
   // Assigns the league's id from the URL to the id props
-  const { id } = props.match.params;
+  const { slug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetLeague(envConfig.apiUrl, id);
-  const address = useGetAddress(envConfig.apiUrl, id);
-  const teams = useGetTeams(envConfig.apiUrl, id);
+  const league = useGetLeague(envConfig.apiUrl, slug);
+  const address = useGetAddress(envConfig.apiUrl, slug);
+  const teams = useGetTeams(envConfig.apiUrl, slug);
 
   // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected league', league.id);
@@ -93,7 +93,7 @@ const LeagueTeams = (props) => {
                   key={team.id}
                   name={team.name}
                   logo={team.logo}
-                  route={`/ligas/liga/${league.id}/equipo/${team.id}`}
+                  route={`/ligas/${league.id}/${team.id}`}
                 />
               ))}
             </EntityContainer>
@@ -137,11 +137,11 @@ const LeagueTeams = (props) => {
           <ButtonContainer>
             <YellowButton
               name='Nuevo Equipo'
-              route={`/ligas/liga/${league.id}/nuevo-equipo`}
+              route={`/ligas/${league.id}/nuevo-equipo`}
             />
             <GrayButton
               name='Editar Liga'
-              route={`/ligas/liga/${league.id}/editar-liga`}
+              route={`/ligas/${league.id}/editar-liga`}
             />
           </ButtonContainer>
         ) : null}

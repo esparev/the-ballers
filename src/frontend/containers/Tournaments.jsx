@@ -73,7 +73,7 @@ const Tournaments = () => {
                           ? `${tournament.link.substring(0, 255)}...`
                           : tournament.link
                       }
-                      route={`/torneos/torneo/${tournament.id}`}
+                      route={`/torneos/${tournament.id}`}
                     />
                   </HashRouter>
                 ))}
@@ -134,7 +134,7 @@ const Tournaments = () => {
                 ? `${tournament.link.substring(0, 255)}...`
                 : tournament.link
             }
-            route={`/torneos/torneo/${tournament.id}`}
+            route={`/torneos/${tournament.id}`}
           />
         ))}
       </div>

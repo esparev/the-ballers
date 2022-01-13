@@ -72,7 +72,7 @@ const News = () => {
                           ? `${news.description.substring(0, 255)}...`
                           : news.description
                       }
-                      route={`/noticias/noticia/${news.id}`}
+                      route={`/noticias/${news.id}`}
                     />
                   </HashRouter>
                 ))}
@@ -133,7 +133,7 @@ const News = () => {
                 ? `${news.description.substring(0, 255)}...`
                 : news.description
             }
-            route={`/noticias/noticia/${news.id}`}
+            route={`/noticias/${news.id}`}
           />
         ))}
       </div>

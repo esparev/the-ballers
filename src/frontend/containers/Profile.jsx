@@ -50,7 +50,7 @@ const Profile = () => {
         <ButtonContainer>
           <GrayButton
             name='Editar Perfil'
-            route={`/admins/admin/${id}/editar-admin`}
+            route={`/admins/${id}/editar-admin`}
           />
         </ButtonContainer>
       </section>
