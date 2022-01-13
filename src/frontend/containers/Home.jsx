@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import moment from 'moment';
-import EntityContainer from './EntityContainer';
-import Entity from '../components/Entity';
-import Article from '../components/Article';
-import Card from '../components/Card';
-import YellowButton from '../components/YellowButton';
-import sortByDate from '../utils/functions/sortByDate';
-import useGetNews from '../hooks/useGetNews';
-import useGetLeagues from '../hooks/useGetLeagues';
-import useGetTournaments from '../hooks/useGetTournaments';
-import { envConfig } from '../utils/config';
-import '../assets/styles/App.scss';
-import '../assets/styles/components/Home.scss';
+import Card from '@components/Card';
+import Entity from '@components/Entity';
+import Article from '@components/Article';
+import YellowButton from '@components/YellowButton';
+import EntityContainer from '@containers/EntityContainer';
+import useGetNews from '@hooks/useGetNews';
+import useGetLeagues from '@hooks/useGetLeagues';
+import useGetTournaments from '@hooks/useGetTournaments';
+import sortByDate from '@functions/sortByDate';
+import { envConfig } from '@config';
+import '@mainStyles/App.scss';
+import '@styles/Home.scss';
 // ---------------------------------------- END OF IMPORTS
 
 // Delay time between news for the slideshow

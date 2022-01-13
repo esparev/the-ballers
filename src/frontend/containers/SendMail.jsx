@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/components/Login.scss';
+import '@styles/Login.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

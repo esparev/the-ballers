@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/components/Header.scss';
-import beismichLogo from '../assets/static/beismich-logo.png';
-import userIcon from '../assets/icons/user-icon.svg';
-import burgerMenuIcon from '../assets/icons/burger-menu-icon.svg';
+import '@styles/Header.scss';
+import beismichLogo from '@static/beismich-logo.png';
+import userIcon from '@icons/user-icon.svg';
+import burgerMenuIcon from '@icons/burger-menu-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**

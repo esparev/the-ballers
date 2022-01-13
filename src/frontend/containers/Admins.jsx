@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import AdminActor from '../components/AdminActor';
-import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
-import useGetAdmins from '../hooks/useGetAdmins';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/TeamPlayers.scss';
+import AdminActor from '@components/AdminActor';
+import YellowButton from '@components/YellowButton';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetAdmins from '@hooks/useGetAdmins';
+import { envConfig } from '@config';
+import '@styles/TeamPlayers.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the admins page with all its functions 
+ * Creates the admins page with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */

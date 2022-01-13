@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import YellowButton from '../components/YellowButton';
-import '../assets/styles/components/NotFound.scss';
-import baseballIcon from '../assets/icons/baseball-icon.svg';
+import YellowButton from '@components/YellowButton';
+import '@styles/NotFound.scss';
+import baseballIcon from '@icons/baseball-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/components/EntityContainer.scss'
+import '@styles/EntityContainer.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

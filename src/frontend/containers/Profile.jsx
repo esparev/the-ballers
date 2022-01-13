@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import ButtonContainer from './ButtonContainer';
-import GrayButton from '../components/GrayButton';
-import useGetAdmin from '../hooks/useGetAdmin';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/ActorContainer.scss';
+import GrayButton from '@components/GrayButton';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetAdmin from '@hooks/useGetAdmin';
+import { envConfig } from '@config';
+import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

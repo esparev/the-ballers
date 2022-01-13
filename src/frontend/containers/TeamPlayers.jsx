@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import Actor from '../components/Actor';
-import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
-import GrayButton from '../components/GrayButton';
-import toggleMessage from '../utils/functions/toggleMessage';
-import useGetLeague from '../hooks/useGetLeague';
-import useGetTeam from '../hooks/useGetTeam';
-import useGetPlayers from '../hooks/useGetPlayers';
-import useGetCoaches from '../hooks/useGetCoaches';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/TeamPlayers.scss';
-import '../assets/styles/components/FeedbackMessage.scss';
+import Actor from '@components/Actor';
+import YellowButton from '@components/YellowButton';
+import GrayButton from '@components/GrayButton';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetLeague from '@hooks/useGetLeague';
+import useGetTeam from '@hooks/useGetTeam';
+import useGetPlayers from '@hooks/useGetPlayers';
+import useGetCoaches from '@hooks/useGetCoaches';
+import toggleMessage from '@functions/toggleMessage';
+import { envConfig } from '@config';
+import '@styles/TeamPlayers.scss';
+import '@styles/FeedbackMessage.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

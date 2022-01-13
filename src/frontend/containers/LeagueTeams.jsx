@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import EntityContainer from './EntityContainer';
-import Entity from '../components/Entity';
-import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
-import GrayButton from '../components/GrayButton';
-import useGetLeague from '../hooks/useGetLeague';
-import useGetAddress from '../hooks/useGetAddress';
-import useGetTeams from '../hooks/useGetTeams';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/LeagueTeams.scss';
+import Entity from '@components/Entity';
+import YellowButton from '@components/YellowButton';
+import GrayButton from '@components/GrayButton';
+import EntityContainer from '@containers/EntityContainer';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetLeague from '@hooks/useGetLeague';
+import useGetAddress from '@hooks/useGetAddress';
+import useGetTeams from '@hooks/useGetTeams';
+import { envConfig } from '@config';
+import '@styles/LeagueTeams.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

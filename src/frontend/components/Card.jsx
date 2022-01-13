@@ -1,6 +1,6 @@
 import React from 'react';
-import YellowButton from './YellowButton';
-import '../assets/styles/components/Card.scss';
+import YellowButton from '@components/YellowButton';
+import '@styles/Card.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

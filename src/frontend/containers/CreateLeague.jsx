@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import set from 'lodash/set';
-import Message from '../components/Message';
-import ButtonContainer from './ButtonContainer';
-import updateThumbnail from '../utils/functions/updateThumbnail';
-import { authConfig } from '../utils/constants';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/CreateEntity.scss';
+import Message from '@components/Message';
+import ButtonContainer from '@containers/ButtonContainer';
+import updateThumbnail from '@functions/updateThumbnail';
+import { authConfig } from '@constants';
+import { envConfig } from '@config';
+import '@styles/CreateEntity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

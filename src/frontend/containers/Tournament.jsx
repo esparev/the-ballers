@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-import Message from '../components/Message';
 import Helmet from 'react-helmet';
-import Article from '../components/Article';
-import ButtonContainer from './ButtonContainer';
-import GrayButton from '../components/GrayButton';
-import useGetTournament from '../hooks/useGetTournament';
-import useGetTournaments from '../hooks/useGetTournaments';
-import sortByDate from '../utils/functions/sortByDate';
-import urlEncode from '../utils/functions/urlEncode';
-import loadComponent from '../utils/functions/loadComponent';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/Article.scss';
-import linkIcon from '../assets/icons/link-icon.svg';
-import facebookIcon from '../assets/icons/facebook-icon.svg';
-import twitterIcon from '../assets/icons/twitter-icon.svg';
+import Message from '@components/Message';
+import Article from '@components/Article';
+import GrayButton from '@components/GrayButton';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetTournament from '@hooks/useGetTournament';
+import useGetTournaments from '@hooks/useGetTournaments';
+import loadComponent from '@functions/loadComponent';
+import sortByDate from '@functions/sortByDate';
+import urlEncode from '@functions/urlEncode';
+import { envConfig } from '@config';
+import '@styles/Article.scss';
+import linkIcon from '@icons/link-icon.svg';
+import facebookIcon from '@icons/facebook-icon.svg';
+import twitterIcon from '@icons/twitter-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**

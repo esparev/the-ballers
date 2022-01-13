@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/components/Entity.scss';
+import '@styles/Entity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { HashRouter, Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-import NewsCard from '../components/Card';
-import ButtonContainer from './ButtonContainer';
-import useGetNews from '../hooks/useGetNews';
-import sortByDate from '../utils/functions/sortByDate';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/CardsContainer.scss';
+import NewsCard from '@components/Card';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetNews from '@hooks/useGetNews';
+import sortByDate from '@functions/sortByDate';
+import { envConfig } from '@config';
+import '@styles/CardsContainer.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

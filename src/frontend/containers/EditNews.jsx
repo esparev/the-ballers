@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Message from '../components/Message';
+import Message from '@components/Message';
+import RedButton from '@components/RedButton';
+import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from './ButtonContainer';
-import RedButton from '../components/RedButton';
-import DeleteMessage from '../components/DeleteMessage';
-import toggleMessage from '../utils/functions/toggleMessage';
-import countCharacters from '../utils/functions/countCharacters';
-import updateThumbnail from '../utils/functions/updateThumbnail';
-import { authConfig } from '../utils/constants';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/CreateEntity.scss';
+import toggleMessage from '@functions/toggleMessage';
+import countCharacters from '@functions/countCharacters';
+import updateThumbnail from '@functions/updateThumbnail';
+import { authConfig } from '@constants';
+import { envConfig } from '@config';
+import '@styles/CreateEntity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

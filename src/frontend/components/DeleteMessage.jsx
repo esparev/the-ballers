@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import toggleMessage from '../utils/functions/toggleMessage';
-import '../assets/styles/components/FeedbackMessage.scss';
+import toggleMessage from '@functions/toggleMessage';
+import '@styles/FeedbackMessage.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

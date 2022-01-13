@@ -1,6 +1,6 @@
 import React from 'react';
-import '../assets/styles/components/Footer.scss';
-import facebookIcon from '../assets/icons/facebook-icon.svg';
+import '@stylesFooter.scss';
+import facebookIcon from '@icons/facebook-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**

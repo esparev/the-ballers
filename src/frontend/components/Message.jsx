@@ -1,8 +1,8 @@
 import React from 'react';
-import '../assets/styles/components/Message.scss';
-import successIcon from '../assets/icons/check-icon.svg';
-import uploadIcon from '../assets/icons/upload-icon.svg';
-import crossIcon from '../assets/icons/crossed-icon.svg';
+import '@styles/Message.scss';
+import successIcon from '@icons/check-icon.svg';
+import uploadIcon from '@icons/upload-icon.svg';
+import crossIcon from '@icons/crossed-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**

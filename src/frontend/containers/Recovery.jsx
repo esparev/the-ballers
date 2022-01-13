@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Message from '../components/Message';
-import { Link } from 'react-router-dom';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/Login.scss';
+import Message from '@components/Message';
+import { envConfig } from '@config';
+import '@styles/Login.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

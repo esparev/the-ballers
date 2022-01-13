@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { authConfig } from '../utils/constants';
+import { authConfig } from '@constants';
 
 /**
  * Gets the admin's data with the 

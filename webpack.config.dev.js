@@ -13,6 +13,21 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      '@styles': path.resolve(
+        __dirname,
+        'src/frontend/assets/styles/components/'
+      ),
+      '@functions': path.resolve(__dirname, 'src/frontend/utils/functions/'),
+      '@constants': path.resolve(__dirname, 'src/frontend/utils/constants/'),
+      '@mainStyles': path.resolve(__dirname, 'src/frontend/assets/styles/'),
+      '@components': path.resolve(__dirname, 'src/frontend/components/'),
+      '@containers': path.resolve(__dirname, 'src/frontend/containers/'),
+      '@static': path.resolve(__dirname, 'src/frontend/assets/static/'),
+      '@config': path.resolve(__dirname, 'src/frontend/utils/config/'),
+      '@icons': path.resolve(__dirname, 'src/frontend/assets/icons/'),
+      '@hooks': path.resolve(__dirname, 'src/frontend/utils/hooks/'),
+    },
   },
   module: {
     rules: [

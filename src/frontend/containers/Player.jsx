@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import MoreActors from '../components/MoreActors';
-import ButtonContainer from './ButtonContainer';
-import GrayButton from '../components/GrayButton';
-import useGetLeague from '../hooks/useGetLeague';
-import useGetTeam from '../hooks/useGetTeam';
-import useGetPlayer from '../hooks/useGetPlayer';
-import useGetPlayers from '../hooks/useGetPlayers';
-import loadComponent from '../utils/functions/loadComponent';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/ActorContainer.scss';
+import MoreActors from '@components/MoreActors';
+import GrayButton from '@components/GrayButton';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetLeague from '@hooks/useGetLeague';
+import useGetTeam from '@hooks/useGetTeam';
+import useGetPlayer from '@hooks/useGetPlayer';
+import useGetPlayers from '@hooks/useGetPlayers';
+import loadComponent from '@functions/loadComponent';
+import { envConfig } from '@config';
+import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

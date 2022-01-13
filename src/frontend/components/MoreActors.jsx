@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/components/MoreActors.scss';
+import '@styles/MoreActors.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

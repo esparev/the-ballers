@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import MoreActors from '../components/MoreActors';
-import ButtonContainer from './ButtonContainer';
-import GrayButton from '../components/GrayButton';
-import useGetAdmin from '../hooks/useGetAdmin';
-import useGetAdmins from '../hooks/useGetAdmins';
-import loadComponent from '../utils/functions/loadComponent';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/ActorContainer.scss';
+import MoreActors from '@components/MoreActors';
+import GrayButton from '@components/GrayButton';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetAdmin from '@hooks/useGetAdmin';
+import useGetAdmins from '@hooks/useGetAdmins';
+import loadComponent from '@functions/loadComponent';
+import { envConfig } from '@config';
+import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

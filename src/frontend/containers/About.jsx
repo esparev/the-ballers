@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/components/About.scss';
+import '@styles/About.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**

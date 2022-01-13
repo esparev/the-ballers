@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import EntityContainer from './EntityContainer';
-import Entity from '../components/Entity';
-import ButtonContainer from './ButtonContainer';
-import YellowButton from '../components/YellowButton';
-import useGetLeagues from '../hooks/useGetLeagues';
-import { envConfig } from '../utils/config';
-import '../assets/styles/components/Entities.scss';
+import Entity from '@components/Entity';
+import YellowButton from '@components/YellowButton';
+import EntityContainer from '@containers/EntityContainer';
+import ButtonContainer from '@containers/ButtonContainer';
+import useGetLeagues from '@hooks/useGetLeagues';
+import { envConfig } from '@config';
+import '@styles/Entities.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
