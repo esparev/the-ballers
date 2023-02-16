@@ -15,18 +15,15 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      '@styles': path.resolve(
-        __dirname,
-        'src/assets/styles/components/'
-      ),
       '@functions': path.resolve(__dirname, 'src/utils/functions/'),
       '@constants': path.resolve(__dirname, 'src/utils/constants/'),
-      '@mainStyles': path.resolve(__dirname, 'src/assets/styles/'),
+      '@styles': path.resolve(__dirname, 'src/styles/components/'),
       '@components': path.resolve(__dirname, 'src/components/'),
       '@containers': path.resolve(__dirname, 'src/containers/'),
       '@static': path.resolve(__dirname, 'src/assets/static/'),
       '@config': path.resolve(__dirname, 'src/utils/config/'),
       '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+      '@mainStyles': path.resolve(__dirname, 'src/styles/'),
       '@hooks': path.resolve(__dirname, 'src/hooks/'),
     },
   },
