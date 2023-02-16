@@ -19,17 +19,17 @@
   padding: 40px 60px;
   border-radius: 20px;
   text-align: center;
-  background-color: $white;
+  background-color: $white-100;
 }
 .feedback-message__container--title {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $primary-desk;
 }
 .feedback-message__container--text {
   margin: 12px 0;
   font-family: $roboto-font;
   font-size: $normal-desk;
-  color: $gray;
+  color: $gray-dark;
 }
 .buttons__container {
   display: flex;

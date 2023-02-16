@@ -5,7 +5,7 @@
   width: 100%;
   margin-bottom: 20px;
   border-radius: 12px;
-  background-color: $white;
+  background-color: $white-100;
 }
 .more-articles__card-info {
   padding: 16px;
@@ -18,7 +18,7 @@
 }
 .more-articles__card--title {
   padding-bottom: 16px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   text-transform: uppercase;
 }
@@ -27,7 +27,7 @@
   flex-wrap: wrap;
   font-family: $roboto-font;
   font-size: $normal-desk;
-  color: $gray;
+  color: $gray-dark;
 }
 .card__about p {
   padding-right: 8px;
@@ -38,7 +38,7 @@
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: $gray;
+  color: $gray-dark;
 }
 
 @media only screen and (max-width: 1340px) {

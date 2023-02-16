@@ -33,13 +33,13 @@
 .admin__card-info--name,
 .actor__card-info--name {
   text-align: center;
-  color: $white;
+  color: $white-100;
 }
 .admin__card--position,
 .actor__card--position {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
 }
 
 @media only screen and (max-width: 836px) {

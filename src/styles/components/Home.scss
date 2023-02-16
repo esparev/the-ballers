@@ -23,7 +23,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: $white;
+  background-color: $white-100;
   overflow: hidden;
 }
 .slider__sidebar {
@@ -35,20 +35,20 @@
   z-index: 1;
 }
 .slider__sidebar--title {
-  color: $white;
+  color: $white-100;
   white-space: normal;
 }
 .slider__sidebar--line {
   width: 35%;
-  border-bottom: 4px solid $white;
-  color: $white;
+  border-bottom: 4px solid $white-100;
+  color: $white-100;
 }
 .slider__sidebar--summary {
   padding-top: 14px;
   padding-bottom: 14px;
   font-family: $roboto-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
   white-space: normal;
 }
 .slider__image {
@@ -60,7 +60,7 @@
   width: inherit;
 }
 .leagues--title {
-  color: $white;
+  color: $white-100;
 }
 .news-tournaments {
   display: flex;
@@ -73,14 +73,14 @@
   padding-right: 60px;
 }
 .news--title {
-  color: $white;
+  color: $white-100;
 }
 .tournaments {
   width: 20%;
   margin-top: 60px;
 }
 .tournaments--title {
-  color: $white;
+  color: $white-100;
 }
 
 @media only screen and (max-width: 1340px) {

@@ -15,7 +15,7 @@
   object-fit: cover;
 }
 .league--title {
-  color: $white;
+  color: $white-100;
 }
 .league__info {
   display: flex;
@@ -26,16 +26,16 @@
 }
 .league__info p {
   margin: 12px 0;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
 }
 .teams--title {
-  color: $white;
+  color: $white-100;
 }
 .no-teams {
   text-align: center;
-  color: $white;
+  color: $white-100;
 }
 
 @media only screen and (max-width: 836px) {

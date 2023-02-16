@@ -7,7 +7,7 @@
   align-items: center;
   margin-bottom: 20px;
   border-radius: 12px;
-  background-color: $white;
+  background-color: $white-100;
   overflow: hidden;
 }
 .card--image {
@@ -30,13 +30,13 @@
 }
 .card--link {
   display: inline-block;
-  color: $yellow;
+  color: $green-light;
 }
 .card__about {
   display: flex;
   font-family: $roboto-font;
   font-size: $small-desk;
-  color: $gray;
+  color: $gray-light;
 }
 .card__about p {
   padding-right: 8px;
@@ -47,7 +47,7 @@
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: $gray;
+  color: $gray-light;
 }
 
 @media only screen and (max-width: 1340px) {

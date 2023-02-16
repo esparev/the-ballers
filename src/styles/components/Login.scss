@@ -15,10 +15,10 @@
 }
 .greeting--title {
   padding-top: 16px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: 2.4rem;
   text-align: start;
-  color: $white;
+  color: $white-100;
 }
 .greeting--message {
   display: none;
@@ -33,7 +33,7 @@
   flex-direction: column;
   justify-content: center;
   margin-top: 20px;
-  background-color: $white;
+  background-color: $white-100;
   border-radius: 12px 12px 0 0;
 }
 .login {
@@ -52,7 +52,7 @@
   text-align: start;
 }
 .login__greet--title {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: 2.4rem;
 }
 .login__greet-desktop {
@@ -99,16 +99,16 @@
   font-family: $roboto-font;
   font-size: $small-desk;
   font-weight: bold;
-  color: $gray;
+  color: $gray-dark;
 }
 .login--wrong-login {
   display: none;
   max-width: 300px;
   margin-top: 60px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  color: $red;
+  color: $red-light;
 }
 .form--input-text {
   height: 32px;
@@ -116,15 +116,15 @@
   max-width: 600px;
   margin: 14px 0;
   border: none;
-  border-bottom: 4px solid $yellow;
-  caret-color: $yellow;
-  font-family: $rubik-font;
+  border-bottom: 4px solid $green-light;
+  caret-color: $green-light;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
   color: $black;
 }
 .form--input-text::placeholder {
-  color: $gray;
+  color: $gray-dark;
   opacity: 100%;
 }
 .form--input-text:focus {
@@ -136,10 +136,10 @@
   font-weight: bold;
 }
 .password-match {
-  color: $green;
+  color: $green-light;
 }
 .password-mismatch {
-  color: $red;
+  color: $red-light;
 }
 .login__form--button {
   height: 40px;
@@ -149,16 +149,16 @@
   margin: 12px 0;
   border: none;
   border-radius: 20px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  background-color: $yellow;
-  color: $white;
+  background-color: $green-light;
+  color: $white-100;
   cursor: pointer;
   outline: none;
 }
 .login__form--button a {
-  color: $white;
+  color: $white-100;
 }
 .login--mobile {
   margin-top: 30px;
@@ -193,7 +193,7 @@
     margin-top: 8px;
     font-family: $roboto-font;
     font-size: $normal-mob;
-    color: $white;
+    color: $white-100;
   }
   .login__greet {
     display: none;

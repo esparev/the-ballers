@@ -8,7 +8,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 60px;
-  background-color: $midnight;
+  background-color: $green-midnight;
 }
 
 // Header logo
@@ -55,7 +55,7 @@ header {
   margin-right: 60px;
   padding: 20px;
   border-radius: 12px;
-  background-color: $white;
+  background-color: $white-100;
   box-shadow: -6px 14px 12px 3px rgba($color: $black, $alpha: 0.5);
   z-index: 1;
 }
@@ -73,15 +73,15 @@ header {
 .header__nav-list--admin a,
 .header__nav-list--item a {
   margin: 0 20px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  color: $white;
+  color: $white-100;
   outline: none;
 }
 .header__nav-list--item a:hover {
   transition: 0.3s;
-  color: $yellow;
+  color: $green-light;
 }
 .header__nav-list--item a:last-child {
   width: 100%;
@@ -104,7 +104,7 @@ header {
 }
 .header__nav-list--admin a img:hover {
   transition: 0.3s;
-  border: 3px $yellow solid;
+  border: 3px $green-light solid;
 }
 
 @media only screen and (max-width: 836px) {
@@ -115,7 +115,7 @@ header {
     top: 10vh;
     padding: 20px;
     border-radius: 12px;
-    background-color: $white;
+    background-color: $white-100;
     box-shadow: -6px 14px 12px 3px rgba($color: $black, $alpha: 0.5);
     z-index: 1;
   }

@@ -12,7 +12,7 @@
   object-fit: cover;
 }
 .team--title {
-  color: $white;
+  color: $white-100;
 }
 .team__info {
   display: flex;
@@ -22,9 +22,9 @@
 }
 .team__info p {
   margin: 12px 0;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
 }
 .players-coach {
   display: flex;
@@ -41,7 +41,7 @@
 .admins--title,
 .actors--title {
   font-size: $secondary-desk;
-  color: $white;
+  color: $white-100;
 }
 .admins__container {
   display: flex;

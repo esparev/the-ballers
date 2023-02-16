@@ -34,12 +34,12 @@
   align-items: center;
 }
 .join-league__message--title {
-  color: $white;
+  color: $white-100;
 }
 .join-league__message--text {
   font-family: $roboto-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
 }
 .player-coach__container {
   padding: 0;
@@ -65,12 +65,12 @@
   object-fit: cover;
 }
 .actor__container p {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
 }
 .actor__info--name {
-  color: $white;
+  color: $white-100;
 }
 .actor__info-about {
   width: auto;
@@ -87,7 +87,7 @@
   margin: 40px 60px;
 }
 .actors__container--title {
-  color: $white;
+  color: $white-100;
 }
 .more-actors {
   display: flex;

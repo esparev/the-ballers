@@ -1,16 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Rubik:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Roboto+Condensed:wght@400;700&display=swap');
 // V A R I A B L E S
 // Font families
-$rubik-font: 'Rubik', sans-serif;
-$roboto-font: 'Roboto', sans-serif;
+$inter-font: 'Inter',
+sans-serif;
+$roboto-font: 'Roboto',
+sans-serif;
 // Colors
-$white: #ffffff;
-$black: #000000;
-$yellow: #ffb700;
-$red: #fa0000;
-$green: #00b800;
-$gray: #676767;
-$midnight: #090030;
+$black:#000000;
+$white-100: #FFFFFF;
+$white-200: #E6E6E6;
+$white-300: #CCCCCC;
+$white-400: #9F9F9F;
+$gray-light:#676767;
+$gray-dark:#333333;
+$red-light:#D01414;
+$red-dark:#430000;
+$green-light:#80D014;
+$green-dark:#0F4700;
+$green-midnight: #0D181E;
 // Desktop font sizes
 $primary-desk: 4rem;
 $secondary-desk: 2.6rem;

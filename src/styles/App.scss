@@ -10,7 +10,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background-color: $midnight;
+  background-color: $green-midnight;
 }
 main {
   width: auto;
@@ -18,17 +18,17 @@ main {
 }
 h1 {
   padding-bottom: 16px;
-  font-family: $rubik-font;
+  font-family: $roboto-font;
   font-size: $primary-desk;
 }
 h2 {
   padding-bottom: 16px;
-  font-family: $rubik-font;
+  font-family: $roboto-font;
   font-size: $secondary-desk;
 }
 h3 {
   padding-bottom: 16px;
-  font-family: $rubik-font;
+  font-family: $roboto-font;
   font-size: $secondary-mob;
 }
 a {

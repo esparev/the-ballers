@@ -18,7 +18,7 @@
   justify-content: space-between;
   padding: 12px 16px;
   border-radius: 12px;
-  background-color: $white;
+  background-color: $white-100;
   z-index: 1;
 }
 .message__container {
@@ -41,7 +41,7 @@
     brightness(115%) contrast(119%);
 }
 .message__container--message {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: 1.8rem;
   font-weight: bold;
   padding: 0 20px;

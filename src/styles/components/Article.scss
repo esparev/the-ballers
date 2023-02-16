@@ -10,7 +10,7 @@
   margin-bottom: 20px;
 }
 .article--title {
-  color: $white;
+  color: $white-100;
 }
 .article__cover {
   height: 45%;
@@ -30,7 +30,7 @@
   padding-bottom: 16px;
   font-family: $roboto-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
   opacity: 50%;
 }
 .article--info p {
@@ -38,23 +38,23 @@
 }
 .article--line {
   width: 20%;
-  border-bottom: 4px solid $white;
+  border-bottom: 4px solid $white-100;
 }
 .article--description {
   padding: 16px 0;
   font-family: $roboto-font;
   font-size: $normal-desk;
-  color: $white;
+  color: $white-100;
 }
 .article__share {
   display: flex;
   align-items: center;
 }
 .article__share p {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $secondary-mob;
   font-weight: bold;
-  color: $white;
+  color: $white-100;
 }
 .article__icons {
   height: 52px;
@@ -74,7 +74,7 @@
   width: 20%;
 }
 .more-articles--title {
-  color: $white;
+  color: $white-100;
 }
 
 @media only screen and (max-width: 1340px) {

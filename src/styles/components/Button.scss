@@ -14,21 +14,21 @@
   padding: 8px 24px;
   border: none;
   border-radius: 20px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  color: $white;
+  color: $white-100;
   cursor: pointer;
   outline: none;
 }
 .yellow-button {
-  background-color: $yellow;
+  background-color: $green-light;
 }
 .red-button {
-  background-color: $red;
+  background-color: $red-light;
 }
 .gray-button {
-  background-color: $gray;
+  background-color: $gray-light;
 }
 
 @media only screen and (max-width: 836px) {

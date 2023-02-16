@@ -2,10 +2,10 @@
 
 .cards__container {
   padding: 60px;
-  background-color: $midnight;
+  background-color: $green-midnight;
 }
 .cards__container--title {
-  color: $white;
+  color: $white-100;
 }
 .cards--bar {
   display: flex;
@@ -17,13 +17,13 @@
   margin-top: 16px;
   margin-right: 16px;
   padding: 8px 24px;
-  border: 3px solid $yellow;
+  border: 3px solid $green-light;
   border-radius: 20px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  background-color: $white;
-  caret-color: $yellow;
+  background-color: $white-100;
+  caret-color: $green-light;
   outline: none;
 }
 .filtered-search {

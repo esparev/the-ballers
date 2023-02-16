@@ -8,15 +8,15 @@
   flex-direction: column;
 }
 .form--title {
-  color: $white;
+  color: $white-100;
 }
 .label {
   margin-top: 14px;
   margin-bottom: 8px;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  color: $white;
+  color: $white-100;
   opacity: 50%;
 }
 .input {
@@ -25,22 +25,22 @@
   width: 100%;
   margin: 14px 0;
   border: none;
-  border-bottom: 4px solid $yellow;
-  caret-color: $yellow;
-  font-family: $rubik-font;
+  border-bottom: 4px solid $green-light;
+  caret-color: $green-light;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  color: $white;
-  background-color: $midnight;
+  color: $white-100;
+  background-color: $green-midnight;
 }
 .input-count {
   max-width: 600px;
   display: flex;
   justify-content: end;
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
-  color: $white;
+  color: $white-100;
   opacity: 50%;
 }
 .input-age {
@@ -67,7 +67,7 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 .input::placeholder {
-  color: $white;
+  color: $white-100;
   opacity: 50%;
 }
 .input:focus {
@@ -77,12 +77,12 @@ input[type='number'] {
   height: 300px;
   max-width: 600px;
   position: relative;
-  border: 4px dashed $yellow;
+  border: 4px dashed $green-light;
 }
 .form__image-square {
   height: 372px;
   max-width: 372px;
-  border: 4px dashed $yellow;
+  border: 4px dashed $green-light;
 }
 .form__image-labels {
   height: inherit;
@@ -101,11 +101,11 @@ input[type='number'] {
 }
 .form__image--label,
 .form__image--label-button {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $normal-desk;
   font-weight: bold;
   text-align: center;
-  color: $white;
+  color: $white-100;
   opacity: 50%;
 }
 .form__image--label-button {

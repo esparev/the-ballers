@@ -10,21 +10,21 @@
   display: flex;
 }
 .not-found__container--four {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: 25rem;
   font-weight: bold;
-  color: $white;
+  color: $white-100;
 }
 .not-found__container--baseball {
   width: 200px;
   margin: 0 20px;
 }
 .not-found--message {
-  font-family: $rubik-font;
+  font-family: $inter-font;
   font-size: $primary-desk;
   font-weight: bold;
   text-align: center;
-  color: $white;
+  color: $white-100;
 }
 
 @media only screen and (max-width: 836px) {
