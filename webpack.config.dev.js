@@ -26,7 +26,7 @@ module.exports = {
       '@static': path.resolve(__dirname, 'src/frontend/assets/static/'),
       '@config': path.resolve(__dirname, 'src/frontend/utils/config/'),
       '@icons': path.resolve(__dirname, 'src/frontend/assets/icons/'),
-      '@hooks': path.resolve(__dirname, 'src/frontend/utils/hooks/'),
+      '@hooks': path.resolve(__dirname, 'src/frontend/hooks/'),
     },
   },
   module: {
