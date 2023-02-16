@@ -3,7 +3,7 @@ import Actor from '@components/Actor';
 import YellowButton from '@components/YellowButton';
 import GrayButton from '@components/GrayButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetLeague from '@hooks/useGetLeague';
+import useGetClub from '@hooks/useGetClub';
 import useGetTeam from '@hooks/useGetTeam';
 import useGetPlayers from '@hooks/useGetPlayers';
 import useGetCoaches from '@hooks/useGetCoaches';
@@ -26,7 +26,7 @@ const TeamPlayers = (props) => {
   const { ligaSlug, equipoSlug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetLeague(envConfig.apiUrl, ligaSlug);
+  const league = useGetClub(envConfig.apiUrl, ligaSlug);
   const team = useGetTeam(envConfig.apiUrl, equipoSlug);
   const players = useGetPlayers(envConfig.apiUrl, equipoSlug);
   const coaches = useGetCoaches(envConfig.apiUrl, equipoSlug);

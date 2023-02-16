@@ -6,7 +6,7 @@ import Article from '@components/Article';
 import YellowButton from '@components/YellowButton';
 import EntityContainer from '@containers/EntityContainer';
 import useGetNews from '@hooks/useGetNews';
-import useGetLeagues from '@hooks/useGetLeagues';
+import useGetClubs from '@hooks/useGetClubs';
 import useGetTournaments from '@hooks/useGetTournaments';
 import sortByDate from '@functions/sortByDate';
 import { envConfig } from '@config';
@@ -27,7 +27,7 @@ const Home = () => {
   moment.locale('es');
 
   // Fetching the necessary data to showcase in the component
-  let leagues = useGetLeagues(envConfig.apiUrl);
+  let leagues = useGetClubs(envConfig.apiUrl);
   let news = useGetNews(envConfig.apiUrl);
   let tournaments = useGetTournaments(envConfig.apiUrl);
 

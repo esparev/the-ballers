@@ -3,7 +3,7 @@ import Entity from '@components/Entity';
 import YellowButton from '@components/YellowButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetLeagues from '@hooks/useGetLeagues';
+import useGetClubs from '@hooks/useGetClubs';
 import { envConfig } from '@config';
 import '@styles/Entities.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -15,7 +15,7 @@ import '@styles/Entities.scss';
  */
 const Leagues = () => {
   // Fetching the necessary data to showcase in the component
-  const leagues = useGetLeagues(envConfig.apiUrl);
+  const leagues = useGetClubs(envConfig.apiUrl);
 
   useEffect(() => {
     document.title = 'BEISMICH • Ligas';

@@ -4,7 +4,7 @@ import YellowButton from '@components/YellowButton';
 import GrayButton from '@components/GrayButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetLeague from '@hooks/useGetLeague';
+import useGetClub from '@hooks/useGetClub';
 import useGetAddress from '@hooks/useGetAddress';
 import useGetTeams from '@hooks/useGetTeams';
 import { envConfig } from '@config';
@@ -22,7 +22,7 @@ const LeagueTeams = (props) => {
   const { slug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetLeague(envConfig.apiUrl, slug);
+  const league = useGetClub(envConfig.apiUrl, slug);
   const address = useGetAddress(envConfig.apiUrl, slug);
   const teams = useGetTeams(envConfig.apiUrl, slug);
 
