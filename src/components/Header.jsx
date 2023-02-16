@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '@styles/Header.scss';
-import beismichLogo from '@static/beismich-logo.png';
+// import beismichLogo from '@static/beismich-logo.png';
 import userIcon from '@icons/user-icon.svg';
 import burgerMenuIcon from '@icons/burger-menu-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the header component with all its functions 
+ * Creates the header component with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
@@ -49,7 +49,7 @@ const Header = () => {
   return (
     <header className='main-header' id='header'>
       <Link className='header--logo' to='/'>
-        <img src={beismichLogo} alt='Logo BEISMICH' />
+        <img src='' alt='Logo BEISMICH' />
       </Link>
       <div className='header__menu'>
         <a className='header--burger-menu' onClick={menuDisplay}>
