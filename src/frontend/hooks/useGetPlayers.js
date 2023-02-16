@@ -5,15 +5,18 @@ import axios from 'axios';
  * Gets all the players data belonging to
  * their respective team from the API
  * @param {string} API - API URL
- * @param {number} teamId - team id
+ * @param {string} teamSlug - team slug
  * @returns all the players in JSON format
  */
-const useGetPlayers = (API, teamId) => {
+const useGetPlayers = (API, teamSlug) => {
   const [players, setPlayers] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/equipos/${teamId}`);
-    setPlayers(response.data.player);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/teams/${teamSlug}`);
+      setPlayers(response.data.player);
+    }
+    fetchData();
   }, []);
 
   return players;

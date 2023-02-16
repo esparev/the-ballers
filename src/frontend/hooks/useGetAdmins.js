@@ -10,9 +10,12 @@ import { authConfig } from '@constants';
 const useGetAdmins = (API) => {
   const [admins, setAdmins] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/admins`, authConfig);
-    setAdmins(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/admins`, authConfig);
+      setAdmins(response.data);
+    }
+    fetchData();
   }, []);
 
   return admins;

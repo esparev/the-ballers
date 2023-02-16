@@ -3,17 +3,20 @@ import axios from 'axios';
 
 /**
  * Gets the player's data with the
- * provided id from the API
+ * provided slug from the API
  * @param {string} API - API URL
- * @param {number} playerId - player id
+ * @param {string} playerSlug - player slug
  * @returns requested player in JSON format
  */
-const useGetPlayer = (API, playerId) => {
+const useGetPlayer = (API, playerSlug) => {
   const [player, setPlayer] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/jugadores/${playerId}`);
-    setPlayer(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/players/${playerSlug}`);
+      setPlayer(response.data);
+    }
+    fetchData();
   }, []);
 
   return player;

@@ -1,5 +1,5 @@
 import React from 'react';
-import '@stylesFooter.scss';
+import '@styles/Footer.scss';
 import facebookIcon from '@icons/facebook-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 

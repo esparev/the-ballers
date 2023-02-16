@@ -9,9 +9,12 @@ import axios from 'axios';
 const useGetTournaments = (API) => {
   const [tournaments, setTournaments] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/torneos`);
-    setTournaments(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/tournaments`);
+      setTournaments(response.data);
+    }
+    fetchData();
   }, []);
 
   return tournaments;

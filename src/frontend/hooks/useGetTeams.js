@@ -3,17 +3,20 @@ import axios from 'axios';
 
 /**
  * Gets all the teams data belonging to
- * their respective league from the API
+ * their respective club from the API
  * @param {string} API - API URL
- * @param {number} leagueId - league id
+ * @param {number} clubId - club id
  * @returns all the teams in JSON format
  */
-const useGetTeams = (API, leagueId) => {
+const useGetTeams = (API, clubId) => {
   const [teams, setTeams] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/ligas/${leagueId}`);
-    setTeams(response.data.team);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/clubs/${clubId}`);
+      setTeams(response.data.team);
+    }
+    fetchData();
   }, []);
 
   return teams;

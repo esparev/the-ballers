@@ -12,9 +12,9 @@ const useGetAddress = (API, leagueId) => {
   const [address, setAddress] = useState([]);
 
   useEffect(async () => {
-    const response = await axios(`${API}/ligas/${leagueId}`)
+    const response = await axios(`${API}/clubs/${leagueId}`)
       .then((res) => {
-        return axios(`${API}/ligas/${leagueId}`);
+        return axios(`${API}/clubs/${leagueId}`);
       })
       .then((res) => {
         return axios(`${API}/direcciones/${res.data.addressId}`);

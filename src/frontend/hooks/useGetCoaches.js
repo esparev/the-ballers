@@ -6,12 +6,15 @@ import axios from 'axios';
  * @param {string} API - API URL
  * @returns all the coaches in JSON format
  */
-const useGetCoaches = (API, teamId) => {
+const useGetCoaches = (API, teamSlug) => {
   const [coaches, setCoaches] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/equipos/${teamId}`);
-    setCoaches(response.data.coach);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/teams/${teamSlug}`);
+      setCoaches(response.data.coach);
+    }
+    fetchData();
   }, []);
 
   return coaches;

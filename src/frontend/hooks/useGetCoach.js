@@ -3,17 +3,20 @@ import axios from 'axios';
 
 /**
  * Gets the coach's data with the
- * provided id from the API
+ * provided slug from the API
  * @param {string} API - API URL
- * @param {number} coachId - admin id
+ * @param {string} coachSlug - coach slug
  * @returns requested coach in JSON format
  */
-const useGetCoach = (API, coachId) => {
+const useGetCoach = (API, coachSlug) => {
   const [coach, setCoach] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/entrenadores/${coachId}`);
-    setCoach(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/coaches/${coachSlug}`);
+      setCoach(response.data);
+    }
+    fetchData();
   }, []);
 
   return coach;

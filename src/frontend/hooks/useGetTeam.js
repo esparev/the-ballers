@@ -3,17 +3,20 @@ import axios from 'axios';
 
 /**
  * Gets the team's data with the
- * provided id from the API
+ * provided slug from the API
  * @param {string} API - API URL
- * @param {number} teamId - team id
+ * @param {string} teamSlug - team slug
  * @returns requested team in JSON format
  */
-const useGetTeam = (API, teamId) => {
+const useGetTeam = (API, teamSlug) => {
   const [team, setTeam] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/equipos/${teamId}`);
-    setTeam(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/teams/${teamSlug}`);
+      setTeam(response.data);
+    }
+    fetchData();
   }, []);
 
   return team;

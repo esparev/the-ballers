@@ -9,9 +9,12 @@ import axios from 'axios';
 const useGetNews = (API) => {
   const [news, setNews] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/noticias`);
-    setNews(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/news`);
+      setNews(response.data);
+    }
+    fetchData();
   }, []);
 
   return news;

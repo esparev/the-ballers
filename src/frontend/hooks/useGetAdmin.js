@@ -3,18 +3,21 @@ import axios from 'axios';
 import { authConfig } from '@constants';
 
 /**
- * Gets the admin's data with the 
- * provided id from the API
+ * Gets the admin's data with the
+ * provided slug from the API
  * @param {string} API - API URL
- * @param {number} adminId - admin id
+ * @param {string} adminSlug - admin slug
  * @returns requested admin in JSON format
  */
-const useGetAdmin = (API, adminId) => {
+const useGetAdmin = (API, adminSlug) => {
   const [admin, setAdmin] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios(`${API}/admins/${adminId}`, authConfig);
-    setAdmin(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(`${API}/admins/${adminSlug}`, authConfig);
+      setAdmin(response.data);
+    }
+    fetchData();
   }, []);
 
   return admin;
