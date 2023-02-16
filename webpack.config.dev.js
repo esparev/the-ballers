@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
-  entry: './src/frontend/index.js',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -16,17 +16,17 @@ module.exports = {
     alias: {
       '@styles': path.resolve(
         __dirname,
-        'src/frontend/assets/styles/components/'
+        'src/assets/styles/components/'
       ),
-      '@functions': path.resolve(__dirname, 'src/frontend/utils/functions/'),
-      '@constants': path.resolve(__dirname, 'src/frontend/utils/constants/'),
-      '@mainStyles': path.resolve(__dirname, 'src/frontend/assets/styles/'),
-      '@components': path.resolve(__dirname, 'src/frontend/components/'),
-      '@containers': path.resolve(__dirname, 'src/frontend/containers/'),
-      '@static': path.resolve(__dirname, 'src/frontend/assets/static/'),
-      '@config': path.resolve(__dirname, 'src/frontend/utils/config/'),
-      '@icons': path.resolve(__dirname, 'src/frontend/assets/icons/'),
-      '@hooks': path.resolve(__dirname, 'src/frontend/hooks/'),
+      '@functions': path.resolve(__dirname, 'src/utils/functions/'),
+      '@constants': path.resolve(__dirname, 'src/utils/constants/'),
+      '@mainStyles': path.resolve(__dirname, 'src/assets/styles/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@containers': path.resolve(__dirname, 'src/containers/'),
+      '@static': path.resolve(__dirname, 'src/assets/static/'),
+      '@config': path.resolve(__dirname, 'src/utils/config/'),
+      '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+      '@hooks': path.resolve(__dirname, 'src/hooks/'),
     },
   },
   module: {
