@@ -1,32 +1,53 @@
 import React from 'react';
 import '@styles/Footer.scss';
+import ballersLogo from '@static/ballers-logo.png';
 import facebookIcon from '@icons/facebook-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the footer component with all its functions 
+ * Creates the footer component with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
 const Footer = () => (
   <footer id='footer'>
-    <div className='footer__container'>
-      <div className='footer__container-info made-by'>
-        <p>Hecho por Integra • 2021</p>
-      </div>
-      <div className='footer__container-socials'>
-        <a
-          href='https://www.facebook.com/BEISMICH'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <img src={facebookIcon} alt='Facebook' />
+    <figure className='footer__logo'>
+      <a href='/'>
+        <img src={ballersLogo} alt="The Ballers' Logo" />
+      </a>
+    </figure>
+    <div className='footer__info'>
+      <div className='footer__links'>
+        <a className='footer__links--item' href=''>
+          Privacy Policy
+        </a>
+        <a className='footer__links--item' href=''>
+          Terms and Conditions
+        </a>
+        <a className='footer__links--item' href=''>
+          Help
+        </a>
+        <a className='footer__links--item' href=''>
+          Contact Us
+        </a>
+        <a className='footer__links--item' href=''>
+          Accesibility
         </a>
       </div>
-      <div className='footer__container-info beismich'>
-        <p>Asociación de Beisbolistas Michoacanos</p>
-      </div>
+      <p className='footer--copyright'>© Copyright 2022 The Ballers. All rights reserved.</p>
+      <p className='footer--made-by'>
+        Developed and mantained by{' '}
+        <a href='https://esparev.com' target='_blank' rel='noreferrer noopener'>
+          Esparev
+        </a>
+        .
+      </p>
     </div>
+    <figure className='footer__social'>
+      <a href='https://esparev.com' target='_blank' rel='noreferrer noopener'>
+        <img src={facebookIcon} alt='Facebook icon' />
+      </a>
+    </figure>
   </footer>
 );
 
