@@ -55,7 +55,7 @@ const News = () => {
           <>
             {filteredNews.length > 0 ? (
               <>
-                <h1 className='cards__container--title'>Noticias Encontradas</h1>
+                <h1 className='news--title'>Noticias Encontradas</h1>
                 {filteredNews.map((news) => (
                   <HashRouter>
                     <NewsCard
@@ -76,7 +76,7 @@ const News = () => {
                 ))}
               </>
             ) : (
-              <h1 className='cards__container--title'>No se encontraron coincidencias</h1>
+              <h1 className='news--title'>No se encontraron coincidencias</h1>
             )}
           </>,
           document.getElementById('filtered-news')
@@ -89,7 +89,7 @@ const News = () => {
 
   return (
     <main>
-      <div className='cards__container'>
+      <div className='news__body'>
         <div className='tools'>
           <div className='search-bar'>
             <svg
@@ -130,24 +130,26 @@ const News = () => {
 
         <div className='filtered-search' id='filtered-news'></div>
 
-        <h1 className='cards__container--title'>Noticias</h1>
+        <h1 className='news--title'>Noticias</h1>
 
-        {news.map((news) => (
-          <NewsCard
-            news={news}
-            key={news.id}
-            title={news.title}
-            cover={news.cover}
-            date={moment(news.createdAt).format('DD MMMM, YYYY')}
-            category='Noticia'
-            description={
-              news.description.length > 255
-                ? `${news.description.substring(0, 255)}...`
-                : news.description
-            }
-            route={`/noticias/${news.id}`}
-          />
-        ))}
+        <div className='news__container'>
+          {news.map((news) => (
+            <NewsCard
+              news={news}
+              key={news.id}
+              title={news.title}
+              cover={news.cover}
+              date={moment(news.createdAt).format('DD MMMM, YYYY')}
+              category='Noticia'
+              description={
+                news.description.length > 255
+                  ? `${news.description.substring(0, 255)}...`
+                  : news.description
+              }
+              route={`/noticias/${news.id}`}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );

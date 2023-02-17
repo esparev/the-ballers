@@ -56,7 +56,7 @@ const Tournaments = () => {
           <>
             {filteredTournaments.length > 0 ? (
               <>
-                <h1 className='cards__container--title'>Torneos Encontrados</h1>
+                <h1 className='tournaments--title'>Torneos Encontrados</h1>
                 {filteredTournaments.map((tournament) => (
                   <HashRouter>
                     <TournamentCard
@@ -77,7 +77,7 @@ const Tournaments = () => {
                 ))}
               </>
             ) : (
-              <h1 className='cards__container--title'>No se encontraron coincidencias</h1>
+              <h1 className='tournaments--title'>No se encontraron coincidencias</h1>
             )}
           </>,
           document.getElementById('filtered-tournaments')
@@ -90,7 +90,7 @@ const Tournaments = () => {
 
   return (
     <main>
-      <div className='cards__container'>
+      <div className='tournaments__body'>
         <div className='tools'>
           <div className='search-bar'>
             <svg
@@ -131,24 +131,26 @@ const Tournaments = () => {
 
         <div className='filtered-search' id='filtered-tournaments'></div>
 
-        <h1 className='cards__container--title'>Torneos</h1>
+        <h1 className='tournaments--title'>Torneos</h1>
 
-        {tournaments.map((tournament) => (
-          <TournamentCard
-            tournament={tournament}
-            key={tournament.id}
-            title={tournament.title}
-            cover={tournament.cover}
-            date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
-            category='Torneo'
-            link={
-              tournament.link.length > 255
-                ? `${tournament.link.substring(0, 255)}...`
-                : tournament.link
-            }
-            route={`/torneos/${tournament.id}`}
-          />
-        ))}
+        <div className='tournaments__container'>
+          {tournaments.map((tournament) => (
+            <TournamentCard
+              tournament={tournament}
+              key={tournament.id}
+              title={tournament.title}
+              cover={tournament.cover}
+              date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
+              category='Torneo'
+              link={
+                tournament.link.length > 255
+                  ? `${tournament.link.substring(0, 255)}...`
+                  : tournament.link
+              }
+              route={`/torneos/${tournament.id}`}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );

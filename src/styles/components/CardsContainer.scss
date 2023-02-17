@@ -1,12 +1,9 @@
 @import '../Vars.scss';
 
-.cards__container {
+.news__body,
+.tournaments__body {
   padding: 60px;
   background-color: $green-midnight;
-}
-
-.cards__container--title {
-  color: $white-100;
 }
 
 .tools {
@@ -24,7 +21,7 @@
   padding: 8px 12px;
   border-radius: 4px;
   background-color: $gray-dark;
-  
+
   input {
     font-family: $inter-font;
     font-size: 1.6rem;
@@ -35,12 +32,26 @@
   }
 }
 
+.news--title,
+.tournaments--title {
+  color: $white-100;
+}
+
 .filtered-search {
   margin-top: 40px;
 }
 
+.news__container,
+.tournaments__container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+
 @media only screen and (max-width: 836px) {
-  .cards__container {
+
+  .news__body,
+  .tournaments__body {
     padding: 20px;
   }
 

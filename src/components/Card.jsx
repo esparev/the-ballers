@@ -17,22 +17,19 @@ const Card = (props) => {
     <div className='card'>
       {cover ? <img className='card--image' src={cover} alt='Cover of the news' /> : null}
 
-      <div className='card__info-container'>
-        <div className='card__info'>
-          <h2 className='card__info--title'>{title}</h2>
-          <div className='card__meta-info'>
-            <p>{date}</p>
-            <p>•</p>
-            <p className='card__meta-info--category'>{category}</p>
-          </div>
-          <p className='card--description'>
-            {description}
-            <a className='card--link' href={link} target='_blank' rel='noopener noreferrer'>
-              {link}
-            </a>
-          </p>
+      <div className='card__details'>
+        <h2 className='card__details--title'>{title}</h2>
+        <div className='card__meta-info'>
+          <p>{date}</p>
+          <p>•</p>
+          <p className='card__meta-info--category'>{category}</p>
         </div>
-
+        <p className='card--description'>
+          {description}
+          <a className='card--link' href={link} target='_blank' rel='noopener noreferrer'>
+            {link}
+          </a>
+        </p>
         <PrimaryButton name='See more' route={route} />
       </div>
     </div>

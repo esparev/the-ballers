@@ -54,10 +54,7 @@ const Home = () => {
 
     resetTimeout();
     timeoutRef.current = setTimeout(
-      () =>
-        setIndex((prevIndex) =>
-          prevIndex === news.length - 1 ? 0 : prevIndex + 1
-        ),
+      () => setIndex((prevIndex) => (prevIndex === news.length - 1 ? 0 : prevIndex + 1)),
       delay
     );
 
@@ -72,8 +69,7 @@ const Home = () => {
         <div className='slider--hide-overflow'>
           <div
             className='slider__carousel'
-            style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
-          >
+            style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
             {news.map((news, index) => (
               <section className='slider' key={index}>
                 <div className='slider__sidebar'>
@@ -84,10 +80,7 @@ const Home = () => {
                       ? `${news.description.substring(0, 100)}...`
                       : news.description}
                   </p>
-                  <PrimaryButton
-                    name='Ver más'
-                    route={`/noticias/${news.id}`}
-                  />
+                  <PrimaryButton name='Ver más' route={`/noticias/${news.id}`} />
                 </div>
                 <div className='slider__image'>
                   {news.cover ? (
@@ -122,22 +115,24 @@ const Home = () => {
       <section className='news-tournaments'>
         <section className='news'>
           <h2 className='news--title'>Noticias</h2>
-          {news.map((news) => (
-            <Card
-              news={news}
-              key={news.id}
-              title={news.title}
-              cover={news.cover}
-              date={moment(news.createdAt).format('DD MMMM, YYYY')}
-              category='Noticia'
-              description={
-                news.description.length > 255
-                  ? `${news.description.substring(0, 255)}...`
-                  : news.description
-              }
-              route={`/noticias/${news.id}`}
-            />
-          ))}
+          <div className='news__container'>
+            {news.map((news) => (
+              <Card
+                news={news}
+                key={news.id}
+                title={news.title}
+                cover={news.cover}
+                date={moment(news.createdAt).format('DD MMMM, YYYY')}
+                category='Noticia'
+                description={
+                  news.description.length > 255
+                    ? `${news.description.substring(0, 255)}...`
+                    : news.description
+                }
+                route={`/noticias/${news.id}`}
+              />
+            ))}
+          </div>
         </section>
         <section className='tournaments'>
           <h2 className='tournaments--title'>Torneos</h2>
