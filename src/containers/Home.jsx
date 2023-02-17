@@ -75,12 +75,8 @@ const Home = () => {
                 <div className='slider__sidebar'>
                   <h1 className='slider__sidebar--title'>{news.title}</h1>
                   <hr className='slider__sidebar--line' />
-                  <p className='slider__sidebar--summary'>
-                    {news.description.length > 100
-                      ? `${news.description.substring(0, 100)}...`
-                      : news.description}
-                  </p>
-                  <PrimaryButton name='Ver más' route={`/noticias/${news.id}`} />
+                  <p className='slider__sidebar--summary'>{news.description}</p>
+                  <PrimaryButton name='See more' route={`/noticias/${news.id}`} />
                 </div>
                 <div className='slider__image'>
                   {news.cover ? (
