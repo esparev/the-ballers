@@ -2,32 +2,33 @@
 
 // H E A D E R
 header {
-  height: 10vh;
+  height: auto;
   width: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 60px;
   background-color: $green-midnight;
 }
 
-// Header logo
-.header--logo {
-  height: 10vh;
-  border-radius: 0 0 12px 12px;
-  overflow: hidden;
-}
-.header--logo img {
-  height: inherit;
-  object-fit: contain;
+.header__main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 52px;
 }
 
+.header__logo {
+  height: 56px;
+
+  img {
+    height: inherit;
+  }
+}
+
+
 .header__menu {
-  height: 10vh;
-  display: flex;
-  align-items: end;
-  flex-direction: column;
-  justify-content: center;
+  height: 100%;
 }
 
 // Header burger menu
@@ -38,15 +39,20 @@ header {
 // Header nav
 .nav {
   display: block;
+  padding-right: 52px;
 }
-.header__nav-list {
-  height: auto;
-  width: auto;
+
+.nav__list {
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
+  column-gap: 40px;
   list-style: none;
 }
-.header__nav-admin {
+
+.admin-nav {
+  display: none;
   height: auto;
   width: auto;
   position: absolute;
@@ -54,129 +60,116 @@ header {
   right: 1px;
   margin-right: 60px;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 8px;
   background-color: $white-100;
-  box-shadow: -6px 14px 12px 3px rgba($color: $black, $alpha: 0.5);
   z-index: 1;
 }
-.admin-nav {
-  display: none;
-}
-.header__nav-admin li a {
+
+.nav__list--item a {
   margin: 10px 0;
   color: $black;
   text-align: end;
 }
-.user-list {
-  padding-right: 0;
-}
-.header__nav-list--admin a,
-.header__nav-list--item a {
-  margin: 0 20px;
-  font-family: $inter-font;
+
+
+.nav__list--item a {
+  width: max-content;
+  display: inline-block;
+  font-family: $roboto-font;
   font-size: $normal-desk;
   font-weight: bold;
-  color: $white-100;
+  text-transform: uppercase;
+  color: $white-400;
   outline: none;
 }
-.header__nav-list--item a:hover {
+
+.nav__list--item a:hover {
   transition: 0.3s;
   color: $green-light;
 }
-.header__nav-list--item a:last-child {
-  width: 100%;
-  display: inline-block;
-}
-.header__nav-list--image {
-  display: block;
-}
-.header__nav-list--admin a img,
-.header__nav-list--item a img {
-  display: block;
+
+.nav__list--admin a img,
+.nav__list--item a svg {
   width: 40px;
   height: 40px;
-  border-radius: 100px;
+  border-radius: 1000px;
 }
-.header__nav-list--item a img:hover {
-  transition: 0.3s;
-  filter: invert(42%) sepia(100%) saturate(436%) hue-rotate(357deg)
-    brightness(101%) contrast(112%);
+
+.nav__list--item a svg {
+  fill: $white-100;
 }
-.header__nav-list--admin a img:hover {
+
+.nav__list--item a svg:hover {
+  cursor: pointer;
   transition: 0.3s;
-  border: 3px $green-light solid;
+  fill: $green-light;
+}
+
+.nav__list--admin a img:hover {
+  cursor: pointer;
+  transition: 0.1s;
+  border: 2px $green-light solid;
 }
 
 @media only screen and (max-width: 836px) {
-  .header__nav {
-    height: auto;
-    width: auto;
-    position: absolute;
-    top: 10vh;
-    padding: 20px;
-    border-radius: 12px;
-    background-color: $white-100;
-    box-shadow: -6px 14px 12px 3px rgba($color: $black, $alpha: 0.5);
-    z-index: 1;
+  header {
+    flex-direction: column;
   }
+
   .nav {
-    display: none;
+    min-width: 100vw;
+    padding: 20px 52px;
+    background-color: $gray-dark;
+    border-top: 1px $gray-light solid;
+    border-bottom: 1px $gray-light solid;
   }
-  .header__nav-list {
-    display: initial;
-    text-align: end;
+
+  .nav__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 28px;
+    text-align: center;
   }
-  .header__nav-admin {
-    display: block;
+
+  .admin-nav {
+    display: flex;
+    flex-direction: column;
+    row-gap: 28px;
     position: initial;
-    top: initial;
-    right: initial;
     margin-right: initial;
     padding: initial;
-    border-radius: initial;
     background-color: initial;
-    box-shadow: initial;
-    z-index: initial;
+
+    .nav__list--item a {
+      color: $white-400;
+
+      :hover {
+        color: $green-light;
+      }
+    }
   }
-  .header__nav-admin li a {
-    margin: initial;
+
+  .nav__list--item a:hover {
+    color: $green-light;
   }
-  .user-list {
-    padding-right: 20px;
-  }
-  .header__nav-list--item {
-    margin: 20px 0;
-  }
-  .header__nav-list--item a {
-    color: $black;
-  }
-  .header__nav-list--image {
+
+  .nav__list--image {
     display: none;
   }
+
   .header--burger-menu {
-    height: 10vh;
+    height: 100%;
     display: initial;
     cursor: pointer;
   }
+
   .header--burger-menu img {
-    height: 10vh;
     width: 30px;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  header {
-    padding: 0 20px;
-  }
-  .header__nav {
-    min-width: 100vw;
-    right: 0;
-  }
-  .header__nav-admin li a,
-  .header__nav-list {
-    text-align: center;
-  }
-  .user-list {
-    padding-right: 32px;
+  .header__main {
+    padding: 20px;
   }
 }
