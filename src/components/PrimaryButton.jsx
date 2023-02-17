@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the yellow button component with all its functions 
+ * Creates the yellow button component with all its functions
  * stored inside for its full operation
- * @param {*} props 
+ * @param {*} props
  * @returns JSX code to render to the DOM tree
  */
-const YellowButton = (props) => {
+const PrimaryButton = (props) => {
   // Parameters that the function will receive
   const { name, route, onClick } = props;
 
@@ -21,14 +21,10 @@ const YellowButton = (props) => {
   const nothing = () => {};
 
   return (
-    <Link
-      className='button yellow-button'
-      to={route}
-      onClick={onClick || nothing}
-    >
+    <Link className='button primary-button' to={route} onClick={onClick || nothing}>
       {name}
     </Link>
   );
 };
 
-export default YellowButton;
+export default PrimaryButton;

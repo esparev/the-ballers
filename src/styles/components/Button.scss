@@ -5,35 +5,35 @@
   flex-wrap: wrap;
   justify-content: end;
 }
+
 .button {
-  height: 40px;
+  height: max-content;
   width: max-content;
   display: block;
   margin-top: 16px;
   margin-right: 16px;
-  padding: 8px 24px;
+  padding: 8px 28px;
   border: none;
-  border-radius: 20px;
-  font-family: $inter-font;
-  font-size: $normal-desk;
+  border-radius: 4px;
+  font-family: $roboto-font;
+  font-size: 2rem;
   font-weight: bold;
-  color: $white-100;
+  text-transform: uppercase;
   cursor: pointer;
   outline: none;
 }
-.yellow-button {
+
+.primary-button {
   background-color: $green-light;
-}
-.red-button {
-  background-color: $red-light;
-}
-.gray-button {
-  background-color: $gray-light;
+  color: $green-dark;
 }
 
-@media only screen and (max-width: 836px) {
-  .button {
-    height: 32px;
-    font-size: $normal-mob;
-  }
+.secondary-button {
+  background-color: $gray-light;
+  color: $gray-dark;
+}
+
+.danger-button {
+  background-color: $red-light;
+  color: $red-dark;
 }

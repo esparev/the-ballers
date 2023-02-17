@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
  * @param {*} props
  * @returns JSX code to render to the DOM tree
  */
-const GrayButton = (props) => {
+const SecondaryButton = (props) => {
   // Parameters that the function will receive
   const { name, route, onClick } = props;
 
@@ -21,14 +21,10 @@ const GrayButton = (props) => {
   const nothing = () => {};
 
   return (
-    <Link
-      className='button gray-button'
-      to={route}
-      onClick={onClick || nothing}
-    >
+    <Link className='button secondary-button' to={route} onClick={onClick || nothing}>
       {name}
     </Link>
   );
 };
 
-export default GrayButton;
+export default SecondaryButton;
