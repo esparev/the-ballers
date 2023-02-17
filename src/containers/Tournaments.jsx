@@ -64,9 +64,7 @@ const Tournaments = () => {
                       key={tournament.id}
                       title={tournament.title}
                       cover={tournament.cover}
-                      date={moment(tournament.createdAt).format(
-                        'DD MMMM, YYYY'
-                      )}
+                      date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
                       category='Torneo'
                       link={
                         tournament.link.length > 255
@@ -79,9 +77,7 @@ const Tournaments = () => {
                 ))}
               </>
             ) : (
-              <h1 className='cards__container--title'>
-                No se encontraron coincidencias
-              </h1>
+              <h1 className='cards__container--title'>No se encontraron coincidencias</h1>
             )}
           </>,
           document.getElementById('filtered-tournaments')
@@ -95,23 +91,39 @@ const Tournaments = () => {
   return (
     <main>
       <div className='cards__container'>
-        <div className='cards--bar'>
-          <input
-            className='search-bar'
-            type='search'
-            name='searchBar'
-            id='searchBar'
-            placeholder='Buscar un torneo'
-          />
+        <div className='tools'>
+          <div className='search-bar'>
+            <svg
+              className='search-bar--icon'
+              width='32'
+              height='32'
+              viewBox='0 0 32 32'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'>
+              <path
+                d='M26.6667 26.6667L21.2663 21.2663M21.2663 21.2663C22.9553 19.5773 24 17.244 24 14.6667C24 9.51202 19.8213 5.33334 14.6667 5.33334C9.512 5.33334 5.33333 9.51202 5.33333 14.6667C5.33333 19.8213 9.512 24 14.6667 24C17.244 24 19.5773 22.9553 21.2663 21.2663Z'
+                stroke='#9F9F9F'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              />
+            </svg>
+            <input
+              className='search-bar--input'
+              type='search'
+              name='searchBar'
+              id='searchBar'
+              placeholder='Search by title, description'
+            />
+          </div>
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
               <Link
                 className='button primary-button'
                 style={{ marginRight: 0 }}
-                to='/torneos/nuevo-torneo'
-              >
-                Nuevo Torneo
+                to='/torneos/nuevo-torneo'>
+                Create tournament
               </Link>
             </ButtonContainer>
           ) : null}
