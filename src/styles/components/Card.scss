@@ -2,7 +2,8 @@
 
 .card {
   height: max-content;
-  max-height: 200px;
+  min-height: 200px;
+  max-height: 250px;
   width: 100%;
   display: flex;
   overflow: hidden;
@@ -58,6 +59,13 @@
   font-family: $inter-font;
   font-size: 1.6rem;
   color: $white-400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 @media only screen and (max-width: 1340px) {

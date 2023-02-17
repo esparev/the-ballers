@@ -142,11 +142,7 @@ const Tournaments = () => {
               cover={tournament.cover}
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
               category='Torneo'
-              link={
-                tournament.link.length > 255
-                  ? `${tournament.link.substring(0, 255)}...`
-                  : tournament.link
-              }
+              link={tournament.link}
               route={`/torneos/${tournament.id}`}
             />
           ))}

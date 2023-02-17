@@ -141,11 +141,7 @@ const News = () => {
               cover={news.cover}
               date={moment(news.createdAt).format('DD MMMM, YYYY')}
               category='Noticia'
-              description={
-                news.description.length > 255
-                  ? `${news.description.substring(0, 255)}...`
-                  : news.description
-              }
+              description={news.description}
               route={`/noticias/${news.id}`}
             />
           ))}
