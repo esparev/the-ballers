@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
-import RedButton from '@components/RedButton';
+import DangerButton from '@components/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from './ButtonContainer';
 import toggleMessage from '@functions/toggleMessage';
@@ -252,7 +252,7 @@ const EditNews = () => {
             <button type='submit' className='button yellow-button'>
               Guardar Cambios
             </button>
-            <RedButton name='Eliminar Noticia' onClick={toggleMessage} />
+            <DangerButton name='Eliminar Noticia' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>

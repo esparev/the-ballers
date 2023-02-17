@@ -1,5 +1,5 @@
 import React from 'react';
-import YellowButton from '@components/YellowButton';
+import PrimaryButton from '@components/PrimaryButton';
 import '@styles/Articles.scss';
 // ---------------------------------------- END OF IMPORTS
 
@@ -41,7 +41,7 @@ const Articles = (props) => {
           </div>
         </div>
         <div onClick={onClick ? onClick : nothing}>
-          <YellowButton name='Ver más' route={route} />
+          <PrimaryButton name='Ver más' route={route} />
         </div>
       </div>
     </div>

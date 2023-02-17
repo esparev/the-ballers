@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import MoreActors from '@components/MoreActors';
-import GrayButton from '@components/GrayButton';
+import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import useGetClub from '@hooks/useGetClub';
 import useGetTeam from '@hooks/useGetTeam';
@@ -88,7 +88,7 @@ const Player = (props) => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <GrayButton
+            <SecondaryButton
               name='Editar Jugador'
               route={`/ligas/${league.id}/${team.id}/${player.id}/editar-jugador`}
             />

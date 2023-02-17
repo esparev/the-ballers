@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import YellowButton from '@components/YellowButton';
+import PrimaryButton from '@components/PrimaryButton';
 import '@styles/NotFound.scss';
 import baseballIcon from '@icons/baseball-icon.svg';
 // ---------------------------------------- END OF IMPORTS
@@ -26,7 +26,7 @@ const NotFound = () => {
         <p className='not-found__container--four'>4</p>
       </div>
       <p className='not-found--message'>¡Ups!, Página no encontrada</p>
-      <YellowButton name='Regresar' route='/' />
+      <PrimaryButton name='Regresar' route='/' />
     </main>
   );
 };

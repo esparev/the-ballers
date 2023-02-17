@@ -106,7 +106,7 @@ const News = () => {
           {localStorage.getItem('id') ? (
             <ButtonContainer>
               <Link
-                className='button yellow-button'
+                className='button primary-button'
                 style={{ marginRight: 0 }}
                 to='/noticias/nueva-noticia'
               >

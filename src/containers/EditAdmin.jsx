@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
-import RedButton from '@components/RedButton';
-import YellowButton from '@components/YellowButton';
+import DangerButton from '@components/DangerButton';
+import PrimaryButton from '@components/PrimaryButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
 import toggleMessage from '@functions/toggleMessage';
@@ -217,7 +217,7 @@ const EditAdmin = () => {
           {/* <Link className='change-password' route='/recuperar-contraseña'>
             Cambiar contraseña
           </Link> */}
-          <YellowButton
+          <PrimaryButton
             name='Cambiar contraseña'
             route='/recuperar-contraseña'
           />
@@ -255,7 +255,7 @@ const EditAdmin = () => {
             <button type='submit' className='button yellow-button'>
               Guardar Cambios
             </button>
-            <RedButton name='Eliminar Administrador' onClick={toggleMessage} />
+            <DangerButton name='Eliminar Administrador' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>

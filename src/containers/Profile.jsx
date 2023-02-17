@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import GrayButton from '@components/GrayButton';
+import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import useGetAdmin from '@hooks/useGetAdmin';
 import { envConfig } from '@config';
@@ -48,7 +48,7 @@ const Profile = () => {
         </div>
 
         <ButtonContainer>
-          <GrayButton
+          <SecondaryButton
             name='Editar Perfil'
             route={`/admins/${id}/editar-admin`}
           />

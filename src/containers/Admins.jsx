@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import AdminActor from '@components/AdminActor';
-import YellowButton from '@components/YellowButton';
+import PrimaryButton from '@components/PrimaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import useGetAdmins from '@hooks/useGetAdmins';
 import { envConfig } from '@config';
@@ -42,7 +42,7 @@ const Admins = () => {
         </div>
 
         <ButtonContainer>
-          <YellowButton
+          <PrimaryButton
             name='Nuevo Administrador'
             route='/admins/nuevo-admin'
           />

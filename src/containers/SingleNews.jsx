@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import moment from 'moment';
 import Message from '@components/Message';
 import Article from '@components/Article';
-import GrayButton from '@components/GrayButton';
+import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import useGetSingleNews from '@hooks/useGetSingleNews';
 import useGetNews from '@hooks/useGetNews';
@@ -157,7 +157,7 @@ const SingleNews = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <GrayButton
+              <SecondaryButton
                 name='Editar Noticia'
                 route={`/noticias/${news.id}/editar-noticia`}
               />

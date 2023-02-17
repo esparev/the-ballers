@@ -4,7 +4,7 @@ import moment from 'moment';
 import Helmet from 'react-helmet';
 import Message from '@components/Message';
 import Article from '@components/Article';
-import GrayButton from '@components/GrayButton';
+import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import useGetTournament from '@hooks/useGetTournament';
 import useGetTournaments from '@hooks/useGetTournaments';
@@ -168,7 +168,7 @@ const Tournament = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <GrayButton
+              <SecondaryButton
                 name='Editar Torneo'
                 route={`/torneos/torneo/${tournament.id}/editar-torneo`}
               />

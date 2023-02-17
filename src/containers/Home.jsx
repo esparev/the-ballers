@@ -3,7 +3,7 @@ import moment from 'moment';
 import Card from '@components/Card';
 import Entity from '@components/Entity';
 import Article from '@components/Article';
-import YellowButton from '@components/YellowButton';
+import PrimaryButton from '@components/PrimaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import useGetNews from '@hooks/useGetNews';
 import useGetClubs from '@hooks/useGetClubs';
@@ -84,7 +84,7 @@ const Home = () => {
                       ? `${news.description.substring(0, 100)}...`
                       : news.description}
                   </p>
-                  <YellowButton
+                  <PrimaryButton
                     name='Ver más'
                     route={`/noticias/${news.id}`}
                   />

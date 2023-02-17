@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Entity from '@components/Entity';
-import YellowButton from '@components/YellowButton';
+import PrimaryButton from '@components/PrimaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
 import useGetClubs from '@hooks/useGetClubs';
@@ -41,7 +41,7 @@ const Leagues = () => {
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <YellowButton name='Nueva Liga' route='/ligas/nueva-liga' />
+            <PrimaryButton name='Nueva Liga' route='/ligas/nueva-liga' />
           </ButtonContainer>
         ) : null}
       </section>

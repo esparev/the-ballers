@@ -107,7 +107,7 @@ const Tournaments = () => {
           {localStorage.getItem('id') ? (
             <ButtonContainer>
               <Link
-                className='button yellow-button'
+                className='button primary-button'
                 style={{ marginRight: 0 }}
                 to='/torneos/nuevo-torneo'
               >

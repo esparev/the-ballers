@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Actor from '@components/Actor';
-import YellowButton from '@components/YellowButton';
-import GrayButton from '@components/GrayButton';
+import PrimaryButton from '@components/PrimaryButton';
+import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import useGetClub from '@hooks/useGetClub';
 import useGetTeam from '@hooks/useGetTeam';
@@ -61,11 +61,11 @@ const TeamPlayers = (props) => {
             Elija si decide agregar a un jugador o a un entrenador
           </p>
           <div className='buttons__container'>
-            <YellowButton
+            <PrimaryButton
               name='Jugador'
               route={`/ligas/${league.id}/${team.id}/nuevo-jugador`}
             />
-            <YellowButton
+            <PrimaryButton
               name='Entrenador'
               route={`/ligas/${league.id}/${team.id}/nuevo-entrenador`}
             />
@@ -152,7 +152,7 @@ const TeamPlayers = (props) => {
             <a className='button yellow-button' onClick={toggleMessage}>
               Nuevo Jugador/Entrenador
             </a>
-            <GrayButton
+            <SecondaryButton
               name='Editar Equipo'
               route={`/ligas/${league.id}/${team.id}/editar-equipo`}
             />
