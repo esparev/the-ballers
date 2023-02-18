@@ -1,55 +1,78 @@
 @import '../Vars.scss';
 
-.league-teams {
+.club-teams {
   padding-top: 20px;
 }
-.league__main {
+
+.club__main {
   display: flex;
   flex-wrap: wrap;
+  column-gap: 28px;
   align-items: center;
 }
-.league--image {
+
+.club--image {
   width: 200px;
   height: 200px;
-  margin-right: 20px;
-  object-fit: cover;
+  object-fit: contain;
 }
-.league--title {
+
+.club__main-info {
+  display: flex;
+  row-gap: 12px;
+  flex-direction: column;
+}
+
+.club--title {
+  text-transform: uppercase;
   color: $white-100;
 }
-.league__info {
+
+.club__info {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   margin: 40px 0;
 }
-.league__info p {
+
+.club__info p {
   margin: 12px 0;
   font-family: $inter-font;
   font-size: $normal-desk;
+  color: $white-400;
+}
+
+.club__info p strong {
   color: $white-100;
 }
+
 .teams--title {
-  color: $white-100;
+  text-transform: uppercase;
+  color: $white-400;
 }
+
 .no-teams {
   text-align: center;
+  text-transform: uppercase;
   color: $white-100;
 }
 
 @media only screen and (max-width: 836px) {
-  .league-teams {
+  .club-teams {
     padding: 20px;
   }
-  .league__main {
+
+  .club__main {
     justify-content: center;
     text-align: center;
   }
-  .league--image {
+
+  .club--image {
     margin: 0;
   }
-  .league__info {
+
+  .club__info {
     flex-direction: column;
     justify-content: center;
     text-align: center;

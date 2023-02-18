@@ -30,7 +30,7 @@ const LeagueTeams = (props) => {
   localStorage.setItem('selected league', league.id);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Liga';
+    document.title = 'The Ballers • Club';
     window.scrollTo(0, 0);
   }, []);
 
@@ -38,71 +38,72 @@ const LeagueTeams = (props) => {
     <>
       <div id='message-container'></div>
 
-      <main className='league-teams'>
-        <section className='league'>
-          <div className='league__main'>
-            <img className='league--image' src={league.logo} alt={`Logo de ${league.logo}`} />
-            <h1 className='league--title'>{league.name}</h1>
+      <main className='club-teams'>
+        <section className='club'>
+          <div className='club__main'>
+            <img className='club--image' src={league.logo} alt={`Logo de ${league.logo}`} />
+            <div className='club__main-info'>
+              <h1 className='club--title'>{league.name}</h1>
+              {localStorage.getItem('id') ? (
+                <ButtonContainer>
+                  <PrimaryButton name='Create team' route={`/ligas/${league.id}/nuevo-equipo`} />
+                  <SecondaryButton name='Edit club' route={`/ligas/${league.id}/editar-liga`} />
+                </ButtonContainer>
+              ) : null}
+            </div>
           </div>
 
-          <div className='league__info'>
+          <div className='club__info'>
             <div>
               {league.responsable ? (
                 <p>
-                  <strong>Responsable: </strong>
+                  <strong>Responsible: </strong>
                   {league.responsable}
                 </p>
               ) : null}
               {league.phone ? (
                 <p>
-                  <strong>Teléfono: </strong>
+                  <strong>Phone number: </strong>
                   {league.phone}
                 </p>
               ) : null}
             </div>
             <div>
               <p>
-                <strong>Localidad: </strong>
+                <strong>Location: </strong>
                 {address.location}
               </p>
               <p>
-                <strong>Dirección: </strong>
+                <strong>Address: </strong>
                 {`${address.streetName} ${address.streetNumber}, ${address.zipCode} ${address.suburb}, Mich.`}
               </p>
             </div>
             <div>
               <p>
-                <strong>Rango de edad: </strong>
-                {`${league.ageStart} - ${league.ageEnd} años`}
+                <strong>Age range: </strong>
+                {`${league.ageStart} - ${league.ageEnd}`}
               </p>
             </div>
           </div>
         </section>
 
         <section className='teams'>
-          <h1 className='teams--title'>Equipos</h1>
+          <h1 className='teams--title'>Teams</h1>
           {teams.length > 0 && (
             <EntityContainer>
               {teams.map((team) => (
                 <Entity
                   team={team}
-                  key={team.id}
+                  key={team.slug}
                   name={team.name}
                   logo={team.logo}
-                  route={`/ligas/${league.id}/${team.id}`}
+                  route={`/ligas/${league.slug}/${team.slug}`}
                 />
               ))}
             </EntityContainer>
           )}
-          {teams.length === 0 && <h2 className='no-teams'>Esta liga aún no tiene equipos</h2>}
+          {teams.length === 0 && <h2 className='no-teams'>This club doesn't have teams yet</h2>}
         </section>
-
-        {localStorage.getItem('id') ? (
-          <ButtonContainer>
-            <PrimaryButton name='Nuevo Equipo' route={`/ligas/${league.id}/nuevo-equipo`} />
-            <SecondaryButton name='Editar Liga' route={`/ligas/${league.id}/editar-liga`} />
-          </ButtonContainer>
-        ) : null}
       </main>
     </>
   );
