@@ -1,70 +1,80 @@
 @import '../Vars.scss';
 
-.more-articles__card {
-  height: fit-content;
+.article__card {
   width: 100%;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  background-color: $white-100;
+  height: fit-content;
 }
-.more-articles__card-info {
-  padding: 16px;
+
+.article__card-info {
+  // padding: 16px;
 }
-.more-articles__card--image {
+
+.article__card--img {
   height: 240px;
   width: inherit;
-  border-radius: 12px;
   object-fit: cover;
 }
-.more-articles__card--title {
-  padding-bottom: 16px;
-  font-family: $inter-font;
-  font-size: $normal-desk;
+
+.article__card--title {
+  font-family: $roboto-font;
+  font-size: 2.8rem;
   text-transform: uppercase;
+  color: $white-100;
 }
-.more-articles__card--info {
+
+.article__card-info {
   display: flex;
   flex-wrap: wrap;
-  font-family: $roboto-font;
-  font-size: $normal-desk;
-  color: $gray-dark;
-}
-.card__about p {
-  padding-right: 8px;
-}
-.card--category {
-  font-family: $roboto-font;
-  font-size: $normal-desk;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  flex-direction: column;
+  row-gap: 12px;
+  font-family: $inter-font;
+  font-size: 1.6rem;
   color: $gray-dark;
 }
 
+.card__about {
+  display: flex;
+  column-gap: 8px;
+  font-size: 1.4rem;
+  color: $white-300;
+}
+
+.card--category {
+  font-family: $roboto-font;
+  font-weight: bold;
+  letter-spacing: 5%;
+  text-transform: uppercase;
+}
+
 @media only screen and (max-width: 1340px) {
-  .more-articles__card {
+  .article__card {
     display: flex;
     align-items: center;
   }
-  .more-articles__card--image {
+
+  .article__card--image {
     width: 50%;
   }
-  .more-articles__card-info {
+
+  .article__card-info {
     padding: 20px;
   }
 }
 
 @media only screen and (max-width: 836px) {
-  .more-articles__card {
+  .article__card {
     display: block;
   }
-  .more-articles__card--image {
+
+  .article__card--image {
     height: 200px;
     width: 100%;
   }
-  .more-articles__card--info {
+
+  .article__card--info {
     font-size: $normal-mob;
   }
+
   .card--category {
     font-size: $normal-mob;
   }
