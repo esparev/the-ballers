@@ -63,7 +63,7 @@ const News = () => {
                       key={news.slug}
                       title={news.title}
                       cover={news.cover}
-                      date={moment(news.createdAt).format('DD MMMM, YYYY')}
+                      date={moment(news.createdAt).format('MMMM Do YYYY')}
                       category='News'
                       description={news.description}
                       route={`/noticias/${news.slug}`}
@@ -134,7 +134,7 @@ const News = () => {
               key={news.slug}
               title={news.title}
               cover={news.cover}
-              date={moment(news.createdAt).format('DD MMMM, YYYY')}
+              date={moment(news.createdAt).format('MMMM Do YYYY')}
               category='News'
               description={news.description}
               route={`/noticias/${news.slug}`}

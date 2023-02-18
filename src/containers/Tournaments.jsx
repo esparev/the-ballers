@@ -64,7 +64,7 @@ const Tournaments = () => {
                       key={tournament.slug}
                       title={tournament.title}
                       cover={tournament.cover}
-                      date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
+                      date={moment(tournament.createdAt).format(`MMMM Do YYYY`)}
                       category='Tournament'
                       description={tournament.description}
                       route={`/torneos/${tournament.slug}`}
@@ -136,7 +136,7 @@ const Tournaments = () => {
               key={tournament.slug}
               title={tournament.title}
               cover={tournament.cover}
-              date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
+              date={moment(tournament.createdAt).format('MMMM Do YYYY')}
               category='Tournament'
               description={tournament.description}
               route={`/torneos/${tournament.slug}`}
