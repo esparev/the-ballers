@@ -16,8 +16,8 @@ import '@styles/CardsContainer.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Tournaments = () => {
-  // Setting moment.js to spanish
-  moment.locale('es');
+  // Setting moment.js to english
+  moment.locale('en');
 
   // Fetching the necessary data to showcase in the component
   const tournaments = useGetTournaments(envConfig.apiUrl);
@@ -26,7 +26,7 @@ const Tournaments = () => {
   sortByDate(tournaments);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Torneos';
+    document.title = 'The Ballers • Tournaments';
     window.scrollTo(0, 0);
 
     const search = document.getElementById('searchBar');
@@ -56,28 +56,24 @@ const Tournaments = () => {
           <>
             {filteredTournaments.length > 0 ? (
               <>
-                <h1 className='tournaments--title'>Torneos Encontrados</h1>
+                <h1 className='tournaments--title'>Search results</h1>
                 {filteredTournaments.map((tournament) => (
                   <HashRouter>
                     <TournamentCard
                       tournament={tournament}
-                      key={tournament.id}
+                      key={tournament.slug}
                       title={tournament.title}
                       cover={tournament.cover}
                       date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
-                      category='Torneo'
-                      link={
-                        tournament.link.length > 255
-                          ? `${tournament.link.substring(0, 255)}...`
-                          : tournament.link
-                      }
-                      route={`/torneos/${tournament.id}`}
+                      category='Tournament'
+                      description={tournament.description}
+                      route={`/torneos/${tournament.slug}`}
                     />
                   </HashRouter>
                 ))}
               </>
             ) : (
-              <h1 className='tournaments--title'>No se encontraron coincidencias</h1>
+              <h1 className='tournaments--title'>No matches found</h1>
             )}
           </>,
           document.getElementById('filtered-tournaments')
@@ -131,19 +127,19 @@ const Tournaments = () => {
 
         <div className='filtered-search' id='filtered-tournaments'></div>
 
-        <h1 className='tournaments--title'>Torneos</h1>
+        <h1 className='tournaments--title'>Tournaments</h1>
 
         <div className='tournaments__container'>
           {tournaments.map((tournament) => (
             <TournamentCard
               tournament={tournament}
-              key={tournament.id}
+              key={tournament.slug}
               title={tournament.title}
               cover={tournament.cover}
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
-              category='Torneo'
-              link={tournament.link}
-              route={`/torneos/${tournament.id}`}
+              category='Tournament'
+              description={tournament.description}
+              route={`/torneos/${tournament.slug}`}
             />
           ))}
         </div>

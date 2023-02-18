@@ -2,7 +2,10 @@
 
 .news__body,
 .tournaments__body {
-  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  padding: 0 60px;
   background-color: $green-midnight;
 }
 
@@ -38,7 +41,9 @@
 }
 
 .filtered-search {
-  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
 }
 
 .news__container,

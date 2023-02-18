@@ -16,8 +16,8 @@ import '@styles/CardsContainer.scss';
  * @returns JSX code to render to the DOM tree
  */
 const News = () => {
-  // Setting moment.js to spanish
-  moment.locale('es');
+  // Setting moment.js to english
+  moment.locale('en');
 
   // Fetching the necessary data to showcase in the component
   const news = useGetNews(envConfig.apiUrl);
@@ -26,7 +26,7 @@ const News = () => {
   sortByDate(news);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Noticias';
+    document.title = 'The Ballers • News';
     window.scrollTo(0, 0);
 
     const search = document.getElementById('searchBar');
@@ -55,28 +55,24 @@ const News = () => {
           <>
             {filteredNews.length > 0 ? (
               <>
-                <h1 className='news--title'>Noticias Encontradas</h1>
+                <h1 className='news--title'>Search results</h1>
                 {filteredNews.map((news) => (
                   <HashRouter>
                     <NewsCard
                       news={news}
-                      key={news.id}
+                      key={news.slug}
                       title={news.title}
                       cover={news.cover}
                       date={moment(news.createdAt).format('DD MMMM, YYYY')}
-                      category='Noticia'
-                      description={
-                        news.description.length > 255
-                          ? `${news.description.substring(0, 255)}...`
-                          : news.description
-                      }
-                      route={`/noticias/${news.id}`}
+                      category='News'
+                      description={news.description}
+                      route={`/noticias/${news.slug}`}
                     />
                   </HashRouter>
                 ))}
               </>
             ) : (
-              <h1 className='news--title'>No se encontraron coincidencias</h1>
+              <h1 className='news--title'>No matches found</h1>
             )}
           </>,
           document.getElementById('filtered-news')
@@ -130,8 +126,7 @@ const News = () => {
 
         <div className='filtered-search' id='filtered-news'></div>
 
-        <h1 className='news--title'>Noticias</h1>
-
+        <h1 className='news--title'>News</h1>
         <div className='news__container'>
           {news.map((news) => (
             <NewsCard
@@ -140,7 +135,7 @@ const News = () => {
               title={news.title}
               cover={news.cover}
               date={moment(news.createdAt).format('DD MMMM, YYYY')}
-              category='Noticia'
+              category='News'
               description={news.description}
               route={`/noticias/${news.id}`}
             />
