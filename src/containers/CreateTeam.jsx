@@ -190,7 +190,7 @@ const CreateTeam = () => {
             </div>
           </div>
           <ButtonContainer>
-            <button type='submit' className='button yellow-button'>
+            <button type='submit' className='button primary-button'>
               Agregar Equipo
             </button>
           </ButtonContainer>

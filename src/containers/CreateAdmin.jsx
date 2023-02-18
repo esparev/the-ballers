@@ -202,7 +202,7 @@ const CreateAdmin = () => {
             </div>
           </div>
           <ButtonContainer>
-            <button type='submit' className='button yellow-button'>
+            <button type='submit' className='button primary-button'>
               Agregar Administrador
             </button>
           </ButtonContainer>

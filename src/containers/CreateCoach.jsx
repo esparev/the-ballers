@@ -203,7 +203,7 @@ const CreateCoach = () => {
             </div>
           </div>
           <ButtonContainer>
-            <button type='submit' className='button yellow-button'>
+            <button type='submit' className='button primary-button'>
               Agregar Entrenador
             </button>
           </ButtonContainer>

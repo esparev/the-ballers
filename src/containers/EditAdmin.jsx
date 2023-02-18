@@ -252,7 +252,7 @@ const EditAdmin = () => {
             </div>
           </div>
           <ButtonContainer>
-            <button type='submit' className='button yellow-button'>
+            <button type='submit' className='button primary-button'>
               Guardar Cambios
             </button>
             <DangerButton name='Eliminar Administrador' onClick={toggleMessage} />

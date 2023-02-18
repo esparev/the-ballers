@@ -201,7 +201,7 @@ const CreateNews = () => {
           </div>
 
           <ButtonContainer>
-            <button type='submit' className='button yellow-button'>
+            <button type='submit' className='button primary-button'>
               Publicar Noticia
             </button>
           </ButtonContainer>
