@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import Helmet from 'react-helmet';
@@ -25,11 +25,12 @@ import twitterIcon from '@icons/twitter-icon.svg';
  * @returns JSX code to render to the DOM tree
  */
 const Tournament = (props) => {
+  const [title, setTitle] = useState('Tournament');
   // Assigns the tournament's id from the URL to the id props
   const { slug } = props.match.params;
 
-  // Setting moment.js to spanish
-  moment.locale('es');
+  // Setting moment.js to english
+  moment.locale('en');
 
   // Fetching the necessary data to showcase in the component
   const tournament = useGetTournament(envConfig.apiUrl, slug);
@@ -45,7 +46,12 @@ const Tournament = (props) => {
   tournaments = tournaments.slice(0, 3);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Torneo';
+    if (title) {
+      document.title = `The Ballers • ${title}`;
+    }
+  }, [title]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -57,7 +63,7 @@ const Tournament = (props) => {
     navigator.clipboard.writeText(window.location);
 
     ReactDOM.render(
-      <Message message='Enlace copiado' messageStatus='success' />,
+      <Message message='Link copied to clipboard' messageStatus='success' />,
       document.getElementById('message-container')
     );
   };
@@ -68,14 +74,14 @@ const Tournament = (props) => {
     headline: tournament.title,
     image: tournament.cover,
     author: tournament.author,
-    genre: 'beisbol',
-    keywords: 'beisbol torneo michoacan',
+    genre: 'baseball',
+    keywords: 'baseball torneo michoacan',
     publisher: {
       '@type': 'Organization',
-      name: 'BEISMICH',
-      url: 'https://www.beismich.netlify.app',
+      name: 'The Ballers',
+      url: 'https://esparev-the-ballers.netlify.app',
     },
-    url: 'https://www.beismich.netlify.app',
+    url: 'https://esparev-the-ballers.netlify.app',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://google.com/article',
@@ -104,28 +110,15 @@ const Tournament = (props) => {
 
           <h1 className='article--title'>{tournament.title}</h1>
 
-          <div className='article--info'>
-            <p>{tournament.author}</p>
+          <div className='article__info'>
+            <p className='article__info--author'>{tournament.author}</p>
             <p>•</p>
-            <p>
-              {moment(tournament.createdAt).format(
-                'DD [de] MMMM [de] YYYY, h:mm a'
-              )}
-            </p>
+            <p>{moment(tournament.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
           </div>
 
           <hr className='article--line' />
 
-          <p className='article--description'>
-            <a
-              className='card--link'
-              href={tournament.link}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              {tournament.link}
-            </a>
-          </p>
+          <p className='article--description'>{tournament.description}</p>
 
           <div className='article__share'>
             <p>Compartir:</p>
@@ -135,12 +128,12 @@ const Tournament = (props) => {
                   window.location.toString()
                 )}`}
                 target='_blank'
-                rel='noopener noreferrer'
-              >
+                rel='noopener noreferrer'>
                 <img
                   className='share-icon'
                   src={facebookIcon}
-                  alt='Compartir en Facebook'
+                  title='Share on Facebook'
+                  alt='Share on Facebook'
                 />
               </a>
               <a
@@ -148,20 +141,16 @@ const Tournament = (props) => {
                   window.location.toString()
                 )}`}
                 target='_blank'
-                rel='noopener noreferrer'
-              >
+                rel='noopener noreferrer'>
                 <img
                   className='share-icon'
                   src={twitterIcon}
-                  alt='Compartir en Twitter'
+                  title='Share on Twitter'
+                  alt='Share on Twitter'
                 />
               </a>
               <a onClick={copyLink}>
-                <img
-                  className='share-icon'
-                  src={linkIcon}
-                  alt='Copiar enlace'
-                />
+                <img className='share-icon' src={linkIcon} title='Copy link' alt='Copy link' />
               </a>
             </div>
           </div>
@@ -169,25 +158,24 @@ const Tournament = (props) => {
           {localStorage.getItem('id') ? (
             <ButtonContainer>
               <SecondaryButton
-                name='Editar Torneo'
-                route={`/torneos/torneo/${tournament.id}/editar-torneo`}
+                name='Edit tournament'
+                route={`/torneos/torneo/${tournament.slug}/editar-torneo`}
               />
             </ButtonContainer>
           ) : null}
         </section>
 
         <section className='more-articles'>
-          <h2 className='more-articles--title'>Más Torneos</h2>
-
+          <h2 className='more-articles--title'>More tournaments</h2>
           {tournaments.map((tournament) => (
             <Article
               tournament={tournament}
-              key={tournament.id}
+              key={tournament.slug}
               title={tournament.title}
               cover={tournament.cover}
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
-              category='Torneo'
-              route={`/torneos/torneo/${tournament.id}`}
+              category='Tournament'
+              route={`/torneos/torneo/${tournament.slug}`}
               onClick={loadComponent}
             />
           ))}
@@ -196,28 +184,23 @@ const Tournament = (props) => {
 
       <Helmet>
         {/* Facebook og tags */}
-        <meta property='og:locale' content='es_ES' />
+        <meta property='og:locale' content='en_US' />
         <meta property='og:type' content='article' />
         <meta property='og:title' content={tournament.title} />
         <meta property='og:description' content={tournament.link} />
         <meta property='og:url' content={window.location} />
-        <meta property='og:site_name' content='BEISMICH' />
+        <meta property='og:site_name' content='The Ballers' />
         <meta property='article:author' content={tournament.author} />
-        <meta
-          property='article:publisher'
-          content='https://www.facebook.com/BEISMICH'
-        />
+        <meta property='article:publisher' content='https://esparev.com' />
         <meta property='og:image' content={tournament.cover} />
         {/* Twitter cards */}
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:title' content={tournament.title} />
         <meta name='twitter:description' content={tournament.description} />
-        <meta name='twitter:domain' content='BEISMICH' />
+        <meta name='twitter:domain' content='The Ballers' />
         <meta name='twitter:image:src' content={tournament.cover} />
         {/* SEO */}
-        <script type='application/ld+json'>
-          {JSON.stringify(articleStructuredData)}
-        </script>
+        <script type='application/ld+json'>{JSON.stringify(articleStructuredData)}</script>
       </Helmet>
     </>
   );

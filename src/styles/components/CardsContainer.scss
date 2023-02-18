@@ -26,6 +26,7 @@
   background-color: $gray-dark;
 
   input {
+    width: 100%;
     font-family: $inter-font;
     font-size: 1.6rem;
     background-color: $gray-dark;
@@ -37,7 +38,7 @@
 
 .news--title,
 .tournaments--title {
-  color: $white-100;
+  color: $white-400;
 }
 
 .filtered-search {

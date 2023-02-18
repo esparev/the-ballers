@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
 import moment from 'moment';
@@ -25,15 +25,17 @@ import twitterIcon from '@icons/twitter-icon.svg';
  * @returns JSX code to render to the DOM tree
  */
 const SingleNews = (props) => {
+  const [title, setTitle] = useState('News');
   // Assigns the news's id from the URL to the id props
   const { slug } = props.match.params;
 
-  // Setting moment.js to spanish
-  moment.locale('es');
+  // Setting moment.js to english
+  moment.locale('en');
 
   // Fetching the necessary data to showcase in the component
   const news = useGetSingleNews(envConfig.apiUrl, slug);
-  let newsCollection = useGetNews(envConfig.apiUrl);
+  // Slicing the news to not show all of them
+  let newsCollection = useGetNews(envConfig.apiUrl).slice(0, 3);
 
   // Setting the news's id to have data persistency only on local storage
   localStorage.setItem('selected news', news.id);
@@ -41,11 +43,13 @@ const SingleNews = (props) => {
   // Sorting the news by most recent date
   sortByDate(newsCollection);
 
-  // Slicing the news to not show all of them
-  newsCollection = newsCollection.slice(0, 3);
+  useEffect(() => {
+    if (title) {
+      document.title = `The Ballers • ${title}`;
+    }
+  }, [title]);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Noticia';
     window.scrollTo(0, 0);
   }, []);
 
@@ -57,7 +61,7 @@ const SingleNews = (props) => {
     navigator.clipboard.writeText(window.location);
 
     ReactDOM.render(
-      <Message message='Enlace copiado' messageStatus='success' />,
+      <Message message='Link copied to clipboard' messageStatus='success' />,
       document.getElementById('message-container')
     );
   };
@@ -68,14 +72,14 @@ const SingleNews = (props) => {
     headline: news.title,
     image: news.cover,
     author: news.author,
-    genre: 'beisbol',
-    keywords: 'beisbol torneo michoacan',
+    genre: 'baseball',
+    keywords: 'baseball tournament',
     publisher: {
       '@type': 'Organization',
-      url: 'https://www.beismich.netlify.app',
-      name: 'BEISMICH',
+      url: 'https://esparev-the-ballers.netlify.app',
+      name: 'The ballers',
     },
-    url: 'https://www.beismich.netlify.app',
+    url: 'https://esparev-the-ballers.netlify.app',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://google.com/article',
@@ -97,19 +101,19 @@ const SingleNews = (props) => {
               <img
                 className='article__cover--image cover-image'
                 src={news.cover}
-                alt='Imagen de la noticia'
+                alt='News cover'
               />
             </div>
           ) : null}
 
-          <h1 className='article--title'>{news.title}</h1>
+          <h1 className='article--title' onClick={() => setTitle(news.title)}>
+            {news.title}
+          </h1>
 
-          <div className='article--info'>
-            <p>{news.author}</p>
+          <div className='article__info'>
+            <p className='article__info--author'>{news.author}</p>
             <p>•</p>
-            <p>
-              {moment(news.createdAt).format('DD [de] MMMM [de] YYYY, h:mm a')}
-            </p>
+            <p>{moment(news.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
           </div>
 
           <hr className='article--line' />
@@ -117,19 +121,19 @@ const SingleNews = (props) => {
           <p className='article--description'>{news.description}</p>
 
           <div className='article__share'>
-            <p>Compartir:</p>
+            <p>Share on</p>
             <div className='article__icons'>
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?u=${urlEncode(
                   window.location.toString()
                 )}`}
                 target='_blank'
-                rel='noopener noreferrer'
-              >
+                rel='noopener noreferrer'>
                 <img
                   className='share-icon'
                   src={facebookIcon}
-                  alt='Compartir en Facebook'
+                  title='Share on Facebook'
+                  alt='Share on Facebook'
                 />
               </a>
               <a
@@ -137,46 +141,38 @@ const SingleNews = (props) => {
                   window.location.toString()
                 )}`}
                 target='_blank'
-                rel='noopener noreferrer'
-              >
+                rel='noopener noreferrer'>
                 <img
                   className='share-icon'
                   src={twitterIcon}
-                  alt='Compartir en Twitter'
+                  title='Share on Twitter'
+                  alt='Share on Twitter'
                 />
               </a>
               <a onClick={copyLink}>
-                <img
-                  className='share-icon'
-                  src={linkIcon}
-                  alt='Copiar enlace'
-                />
+                <img className='share-icon' src={linkIcon} title='Copy link' alt='Copy link' />
               </a>
             </div>
           </div>
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <SecondaryButton
-                name='Editar Noticia'
-                route={`/noticias/${news.id}/editar-noticia`}
-              />
+              <SecondaryButton name='Edit news' route={`/noticias/${news.id}/editar-noticia`} />
             </ButtonContainer>
           ) : null}
         </section>
 
         <section className='more-articles'>
-          <h2 className='more-articles--title'>Más Noticias</h2>
-
+          <h2 className='more-articles--title'>More news</h2>
           {newsCollection.map((news) => (
             <Article
               news={news}
-              key={news.id}
+              key={news.slug}
               title={news.title}
               cover={news.cover}
-              date={moment(news.createdAt).format('DD MMMM, YYYY')}
-              category='Noticia'
-              route={`/noticias/${news.id}`}
+              date={moment(news.createdAt).format('MMMM Do YYYY')}
+              category='News'
+              route={`/noticias/${news.slug}`}
               onClick={loadComponent}
             />
           ))}
@@ -185,28 +181,23 @@ const SingleNews = (props) => {
 
       <Helmet>
         {/* Facebook og tags */}
-        <meta property='og:locale' content='es_ES' />
+        <meta property='og:locale' content='en_US' />
         <meta property='og:type' content='article' />
         <meta property='og:title' content={news.title} />
         <meta property='og:description' content={news.description} />
         <meta property='og:url' content={window.location} />
-        <meta property='og:site_name' content='BEISMICH' />
+        <meta property='og:site_name' content='The Ballers' />
         <meta property='article:author' content={news.author} />
-        <meta
-          property='article:publisher'
-          content='https://www.facebook.com/BEISMICH'
-        />
+        <meta property='article:publisher' content='https://esparev.com' />
         <meta property='og:image' content={news.cover} />
         {/* Twitter cards */}
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:title' content={news.title} />
         <meta name='twitter:description' content={news.description} />
-        <meta name='twitter:domain' content='BEISMICH' />
+        <meta name='twitter:domain' content='The Ballers' />
         <meta name='twitter:image:src' content={news.cover} />
         {/* SEO */}
-        <script type='application/ld+json'>
-          {JSON.stringify(articleStructuredData)}
-        </script>
+        <script type='application/ld+json'>{JSON.stringify(articleStructuredData)}</script>
       </Helmet>
     </>
   );
