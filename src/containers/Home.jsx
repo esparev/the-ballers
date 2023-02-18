@@ -23,8 +23,8 @@ const delay = 10000;
  * @returns JSX code to render to the DOM tree
  */
 const Home = () => {
-  // Setting moment.js to spanish
-  moment.locale('es');
+  // Setting moment.js to english
+  moment.locale('en');
 
   // Fetching the necessary data to showcase in the component
   let leagues = useGetClubs(envConfig.apiUrl);
@@ -50,7 +50,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    document.title = 'BEISMICH';
+    document.title = 'The Ballers';
 
     resetTimeout();
     timeoutRef.current = setTimeout(
@@ -76,15 +76,11 @@ const Home = () => {
                   <h1 className='slider__sidebar--title'>{news.title}</h1>
                   <hr className='slider__sidebar--line' />
                   <p className='slider__sidebar--summary'>{news.description}</p>
-                  <PrimaryButton name='See more' route={`/noticias/${news.id}`} />
+                  <PrimaryButton name='See more' route={`/noticias/${news.slug}`} />
                 </div>
                 <div className='slider__image'>
                   {news.cover ? (
-                    <img
-                      className='slider__image--img'
-                      src={news.cover}
-                      alt='Imagen de la noticia'
-                    />
+                    <img className='slider__image--img' src={news.cover} alt='News cover' />
                   ) : null}
                 </div>
               </section>
@@ -94,15 +90,15 @@ const Home = () => {
       </main>
 
       <section className='entities'>
-        <h2 className='leagues--title'>Conoce Nuestras Ligas</h2>
+        <h2 className='leagues--title'>Meet our clubs</h2>
         <EntityContainer>
           {leagues.map((league) => (
             <Entity
               league={league}
-              key={league.id}
+              key={league.slug}
               name={league.name}
               logo={league.logo}
-              route={`/ligas/${league.id}`}
+              route={`/ligas/${league.slug}`}
             />
           ))}
         </EntityContainer>
@@ -110,37 +106,34 @@ const Home = () => {
 
       <section className='news-tournaments'>
         <section className='news'>
-          <h2 className='news--title'>Noticias</h2>
+          <h2 className='news--title'>News</h2>
           <div className='news__container'>
             {news.map((news) => (
               <Card
                 news={news}
-                key={news.id}
+                key={news.slug}
                 title={news.title}
                 cover={news.cover}
                 date={moment(news.createdAt).format('DD MMMM, YYYY')}
-                category='Noticia'
-                description={
-                  news.description.length > 255
-                    ? `${news.description.substring(0, 255)}...`
-                    : news.description
-                }
-                route={`/noticias/${news.id}`}
+                category='News'
+                description={news.description}
+                route={`/noticias/${news.slug}`}
               />
             ))}
           </div>
         </section>
+
         <section className='tournaments'>
-          <h2 className='tournaments--title'>Torneos</h2>
+          <h2 className='tournaments--title'>Tournaments</h2>
           {tournaments.map((tournament) => (
             <Article
               tournament={tournament}
-              key={tournament.id}
+              key={tournament.slug}
               title={tournament.title}
               cover={tournament.cover}
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
-              category='Torneo'
-              route={`/torneos/${tournament.id}`}
+              category='Tournament'
+              route={`/torneos/${tournament.slug}`}
             />
           ))}
         </section>

@@ -1,21 +1,16 @@
 @import '../Vars.scss';
 
-.entity {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
 .entity a:focus {
   outline: none;
 }
 .entity--image {
   width: 250px;
   height: 250px;
-  object-fit: cover;
+  object-fit: contain;
 }
 .entity--name {
-  font-family: $inter-font;
-  font-size: $secondary-mob;
+  font-family: $roboto-font;
+  font-size: 2.4rem;
   font-weight: bold;
   text-align: center;
   color: $white-100;
