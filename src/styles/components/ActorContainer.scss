@@ -24,22 +24,24 @@
 .image--cover {
   width: 80%;
 }
-.join-league {
-  padding: 20px 60px;
+.join-club {
+  width: 100%;
+  display: flex;
+  row-gap: 12px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 60px;
   text-align: center;
 }
-.join-league__message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.join-league__message--title {
+.join-club__message--title {
+  text-transform: uppercase;
   color: $white-100;
 }
-.join-league__message--text {
-  font-family: $roboto-font;
-  font-size: $normal-desk;
-  color: $white-100;
+.join-club__message--text {
+  font-family: $inter-font;
+  font-size: 1.6rem;
+  color: $white-400;
 }
 .player-coach__container {
   padding: 0;
@@ -98,12 +100,8 @@
 }
 
 @media only screen and (max-width: 836px) {
-  .join-league {
+  .join-club {
     padding: 20px;
-    text-align: center;
-  }
-  .join-league__message--text {
-    font-size: $normal-mob;
   }
   .cover {
     justify-content: center;

@@ -1,10 +1,18 @@
 @import '../Vars.scss';
 
 .entities {
-  padding: 60px;
+  padding: 0 60px;
 }
+
+.entities__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .entities--title {
-  color: $white-100;
+  color: $white-400;
+  text-transform: uppercase;
 }
 
 @media only screen and (max-width: 836px) {

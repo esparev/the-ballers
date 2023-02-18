@@ -41,11 +41,7 @@ const LeagueTeams = (props) => {
       <main className='league-teams'>
         <section className='league'>
           <div className='league__main'>
-            <img
-              className='league--image'
-              src={league.logo}
-              alt={`Logo de ${league.logo}`}
-            />
+            <img className='league--image' src={league.logo} alt={`Logo de ${league.logo}`} />
             <h1 className='league--title'>{league.name}</h1>
           </div>
 
@@ -98,51 +94,13 @@ const LeagueTeams = (props) => {
               ))}
             </EntityContainer>
           )}
-          {teams.length === 0 && (
-            <h2 className='no-teams'>Esta liga aún no tiene equipos</h2>
-          )}
-        </section>
-
-        <section className='join-league'>
-          <div className='join-league__message'>
-            <h1 className='join-league__message--title'>
-              ¿Quieres formar parte de esta liga?
-            </h1>
-            <p className='join-league__message--text'>
-              Para formar parte de esta liga descarga la hoja de registro y
-              llévala a la dirección donde se encuentra la liga. También puedes
-              ponerte en contacto con el responsable de la liga.
-            </p>
-            {league.ageEnd < 18 ? (
-              <a
-                className='button yellow-button'
-                href='https://drive.google.com/uc?id=1EcyOMFxl525CFiRZu0LYY8VBKObdwCdz&export=download'
-                style={{ marginRight: 0 }}
-              >
-                Descargar hoja de registro
-              </a>
-            ) : (
-              <a
-                className='button yellow-button'
-                href='https://drive.google.com/uc?id=1ZsGEEBAAC5O1UOlOMhUv_fyErUKX2BVD&export=download'
-                style={{ marginRight: 0 }}
-              >
-                Descargar hoja de registro
-              </a>
-            )}
-          </div>
+          {teams.length === 0 && <h2 className='no-teams'>Esta liga aún no tiene equipos</h2>}
         </section>
 
         {localStorage.getItem('id') ? (
           <ButtonContainer>
-            <PrimaryButton
-              name='Nuevo Equipo'
-              route={`/ligas/${league.id}/nuevo-equipo`}
-            />
-            <SecondaryButton
-              name='Editar Liga'
-              route={`/ligas/${league.id}/editar-liga`}
-            />
+            <PrimaryButton name='Nuevo Equipo' route={`/ligas/${league.id}/nuevo-equipo`} />
+            <SecondaryButton name='Editar Liga' route={`/ligas/${league.id}/editar-liga`} />
           </ButtonContainer>
         ) : null}
       </main>
