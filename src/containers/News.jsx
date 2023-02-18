@@ -131,13 +131,13 @@ const News = () => {
           {news.map((news) => (
             <NewsCard
               news={news}
-              key={news.id}
+              key={news.slug}
               title={news.title}
               cover={news.cover}
               date={moment(news.createdAt).format('DD MMMM, YYYY')}
               category='News'
               description={news.description}
-              route={`/noticias/${news.id}`}
+              route={`/noticias/${news.slug}`}
             />
           ))}
         </div>
