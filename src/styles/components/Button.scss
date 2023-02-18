@@ -22,16 +22,34 @@
 }
 
 .primary-button {
-  background-color: $green-light;
+  transition: 0.3s;
   color: $green-dark;
+  background-color: $green-light;
+}
+
+.primary-button:hover {
+  color: $green-light;
+  background-color: $green-dark;
 }
 
 .secondary-button {
-  background-color: $gray-light;
+  transition: 0.3s;
   color: $gray-dark;
+  background-color: $gray-light;
+}
+
+.secondary-button:hover {
+  color: $gray-light;
+  background-color: $gray-dark;
 }
 
 .danger-button {
-  background-color: $red-light;
+  transition: 0.3s;
   color: $red-dark;
+  background-color: $red-light;
+}
+
+.danger-button:hover {
+  color: $red-light;
+  background-color: $red-dark;
 }
