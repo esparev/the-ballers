@@ -21,19 +21,19 @@ const Coach = (props) => {
   // Assigns the coach's id from the URL to the coachId props
   // as well for its respective league and team id to identify
   // which team the coach belongs to and which league his team belongs to
-  const { ligaSlug, equipoSlug, entrenadorSlug } = props.match.params;
+  const { clubSlug, teamSlug, coachSlug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetClub(envConfig.apiUrl, ligaSlug);
-  const team = useGetTeam(envConfig.apiUrl, equipoSlug);
-  const coach = useGetCoach(envConfig.apiUrl, entrenadorSlug);
-  const coaches = useGetCoaches(envConfig.apiUrl, equipoSlug);
+  const league = useGetClub(envConfig.apiUrl, clubSlug);
+  const team = useGetTeam(envConfig.apiUrl, teamSlug);
+  const coach = useGetCoach(envConfig.apiUrl, coachSlug);
+  const coaches = useGetCoaches(envConfig.apiUrl, teamSlug);
 
   // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected coach', coach.id);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Coach';
+    document.title = 'The Ballers • Coach';
     window.scrollTo(0, 0);
   }, []);
 
@@ -45,13 +45,16 @@ const Coach = (props) => {
 
       <section className='actor'>
         <div className='actor__container'>
-          <img
-            className='actor__container--image'
-            src={coach.image}
-            alt='Coach photo'
-          />
+          <img className='actor__container--image' src={coach.image} alt='Coach photo' />
           <div className='actor__info'>
-            <h1 className='actor__info--name'>{coach.name}</h1>
+            <div className='actor__header'>
+              <h1 className='actor__info--name'>{coach.name}</h1>
+              {localStorage.getItem('id') ? (
+                <ButtonContainer>
+                  <SecondaryButton name='Edit coach' route={`/edit-coach/${coach.id}`} />
+                </ButtonContainer>
+              ) : null}
+            </div>
             <div className='actor__info-about'>
               <p>
                 <strong>Team: </strong>
@@ -72,24 +75,15 @@ const Coach = (props) => {
               {coaches.map((coach) => (
                 <MoreActors
                   coach={coach}
-                  key={coach.id}
+                  key={coach.slug}
                   name={coach.name}
                   image={coach.image}
-                  route={`/ligas/${league.id}/${team.id}/${coach.id}`}
+                  route={`/club/${league.slug}/${team.slug}/${coach.slug}`}
                 />
               ))}
             </div>
           </div>
         </section>
-
-        {localStorage.getItem('id') ? (
-          <ButtonContainer>
-            <SecondaryButton
-              name='Edit Coach'
-              route={`/ligas/${league.id}/${team.id}/${coach.id}/editar-entrenador`}
-            />
-          </ButtonContainer>
-        ) : null}
       </section>
     </main>
   );

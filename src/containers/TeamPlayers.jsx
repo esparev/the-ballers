@@ -23,13 +23,13 @@ const TeamPlayers = (props) => {
   // Assigns the team's id from the URL to the teamId props
   // as well for its respective league to identify
   // which league the team belongs to
-  const { ligaSlug, equipoSlug } = props.match.params;
+  const { clubSlug, teamSlug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetClub(envConfig.apiUrl, ligaSlug);
-  const team = useGetTeam(envConfig.apiUrl, equipoSlug);
-  const players = useGetPlayers(envConfig.apiUrl, equipoSlug);
-  const coaches = useGetCoaches(envConfig.apiUrl, equipoSlug);
+  const league = useGetClub(envConfig.apiUrl, clubSlug);
+  const team = useGetTeam(envConfig.apiUrl, teamSlug);
+  const players = useGetPlayers(envConfig.apiUrl, teamSlug);
+  const coaches = useGetCoaches(envConfig.apiUrl, teamSlug);
 
   // Setting the admin's id to have data persistency only on local storage
   localStorage.setItem('selected team', team.id);
@@ -55,20 +55,14 @@ const TeamPlayers = (props) => {
       <div className='feedback-message' id='feedback-message'>
         <div className='feedback-message__container'>
           <h1 className='feedback-message__container--title'>
-            ¿Desea agregar a un Jugador o un Entrenador?
+            Do you want to add a Player or a Coach?
           </h1>
           <p className='feedback-message__container--text'>
-            Elija si decide agregar a un jugador o a un entrenador
+            Choose whether you decide to add a player or a coach
           </p>
           <div className='buttons__container'>
-            <PrimaryButton
-              name='Jugador'
-              route={`/club/${league.slug}/${team.slug}/nuevo-jugador`}
-            />
-            <PrimaryButton
-              name='Entrenador'
-              route={`/club/${league.slug}/${team.slug}/nuevo-entrenador`}
-            />
+            <PrimaryButton name='Player' route={`/new-player`} />
+            <PrimaryButton name='Coach' route={`/new-coach`} />
             <a className='button secondary-button' onClick={toggleMessage}>
               Cancelar
             </a>
@@ -88,10 +82,7 @@ const TeamPlayers = (props) => {
                     <a className='button primary-button' onClick={toggleMessage}>
                       Create player/coach
                     </a>
-                    <SecondaryButton
-                      name='Edit team'
-                      route={`/club/${league.slug}/${team.slug}/editar-equipo`}
-                    />
+                    <SecondaryButton name='Edit team' route={`/edit-team/${team.slug}`} />
                   </ButtonContainer>
                 ) : null}
               </div>
@@ -123,7 +114,7 @@ const TeamPlayers = (props) => {
                     name={player.name}
                     image={player.image}
                     position={player.position}
-                    route={`/club/${league.slug}/${team.slug}/${player.slug}`}
+                    route={`/club/${league.slug}/team/${team.slug}/player/${player.slug}`}
                   />
                 ))}
               </div>
@@ -142,7 +133,7 @@ const TeamPlayers = (props) => {
                     key={coach.slug}
                     name={coach.name}
                     image={coach.image}
-                    route={`/club/${league.slug}/${team.slug}/${coach.slug}`}
+                    route={`/club/${league.slug}/team/${team.slug}/coach/${coach.slug}`}
                   />
                 ))}
               </div>

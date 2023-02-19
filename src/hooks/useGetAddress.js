@@ -3,21 +3,21 @@ import axios from 'axios';
 
 /**
  * Gets the address's data belonging to its respective
- * league with the provided league id from the API
+ * club with the provided club slug from the API
  * @param {string} API - API URL
- * @param {number} leagueId - league id
+ * @param {number} clubSlug - club slug
  * @returns requested address in JSON format
  */
-const useGetAddress = (API, leagueId) => {
+const useGetAddress = (API, clubSlug) => {
   const [address, setAddress] = useState([]);
 
   useEffect(async () => {
-    const response = await axios(`${API}/clubs/${leagueId}`)
+    const response = await axios(`${API}/clubs/${clubSlug}`)
       .then((res) => {
-        return axios(`${API}/clubs/${leagueId}`);
+        return axios(`${API}/clubs/${clubSlug}`);
       })
       .then((res) => {
-        return axios(`${API}/direcciones/${res.data.addressId}`);
+        return axios(`${API}/addresses/${res.data.addressId}`);
       });
     setAddress(response.data);
   }, []);

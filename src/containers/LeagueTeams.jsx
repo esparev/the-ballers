@@ -46,8 +46,8 @@ const LeagueTeams = (props) => {
               <h1 className='club--title'>{league.name}</h1>
               {localStorage.getItem('id') ? (
                 <ButtonContainer>
-                  <PrimaryButton name='Create team' route={`/club/${league.id}/nuevo-equipo`} />
-                  <SecondaryButton name='Edit club' route={`/club/${league.id}/editar-liga`} />
+                  <PrimaryButton name='Create team' route={`/new-team`} />
+                  <SecondaryButton name='Edit club' route={`/edit-club/${league.slug}`} />
                 </ButtonContainer>
               ) : null}
             </div>

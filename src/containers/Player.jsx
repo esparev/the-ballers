@@ -21,13 +21,13 @@ const Player = (props) => {
   // Assigns the player's id from the URL to the playerId props
   // as well for its respective league and team id to identify
   // which team the player belongs to and which league his team belongs to
-  const { ligaSlug, equipoSlug, jugadorSlug } = props.match.params;
+  const { clubSlug, teamSlug, playerSlug } = props.match.params;
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetClub(envConfig.apiUrl, ligaSlug);
-  const team = useGetTeam(envConfig.apiUrl, equipoSlug);
-  const player = useGetPlayer(envConfig.apiUrl, jugadorSlug);
-  const players = useGetPlayers(envConfig.apiUrl, equipoSlug);
+  const league = useGetClub(envConfig.apiUrl, clubSlug);
+  const team = useGetTeam(envConfig.apiUrl, teamSlug);
+  const player = useGetPlayer(envConfig.apiUrl, playerSlug);
+  const players = useGetPlayers(envConfig.apiUrl, teamSlug);
 
   // Setting the coach's id to have data persistency only on local storage
   localStorage.setItem('selected player', player.id);
@@ -55,10 +55,7 @@ const Player = (props) => {
               <h1 className='actor__info--name'>{player.name}</h1>
               {localStorage.getItem('id') ? (
                 <ButtonContainer>
-                  <SecondaryButton
-                    name='Edit player'
-                    route={`/club/${league.slug}/${team.slug}/${player.slug}/editar-jugador`}
-                  />
+                  <SecondaryButton name='Edit player' route={`/edit-player/${player.slug}`} />
                 </ButtonContainer>
               ) : null}
             </div>
