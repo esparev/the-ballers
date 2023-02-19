@@ -16,7 +16,7 @@ import '@styles/CreateEntity.scss';
  */
 const CreatePlayer = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Nuevo Jugador';
+    document.title = 'The Ballers • New Player';
     window.scrollTo(0, 0);
 
     // Opaque date placeholder until it has been modified
@@ -83,12 +83,12 @@ const CreatePlayer = () => {
     form.image = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -129,10 +129,7 @@ const CreatePlayer = () => {
       .post(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Jugador registrado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Player created successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -141,8 +138,8 @@ const CreatePlayer = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al registrar el jugador. 
-            Verifique que haya llenado los campos necesarios`}
+            message={`Ups!, There was an error creating the player. 
+            Verify that you have filled the necessary field`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -154,7 +151,7 @@ const CreatePlayer = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addPlayer(`${envConfig.apiUrl}/jugadores`, form, authConfig);
+    addPlayer(`${envConfig.apiUrl}/players`, form, authConfig);
   };
 
   return (
@@ -163,81 +160,75 @@ const CreatePlayer = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Agregar Nuevo Jugador</h1>
-          <input
-            className='input'
-            name='name'
-            type='text'
-            placeholder='Nombre *'
-            required
-            onChange={handleInput}
-          />
-          <select
-            className='input empty'
-            name='position'
-            id='positions'
-            onChange={handleInput}
-          >
-            <option defaultValue value=''>
-              Posición
-            </option>
-            <option value='Pitcher'>Pitcher</option>
-            <option value='Catcher'>Catcher</option>
-            <option value='Primera Base'>Primera base</option>
-            <option value='Segunda Base'>Segunda base</option>
-            <option value='Tercera Base'>Tercera base</option>
-            <option value='Campocorto'>Campocorto</option>
-            <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
-            <option value='Jardinero Central'>Jardinero central</option>
-            <option value='Jardinero Derecho'>Jardinero derecho</option>
-            <option value='Bateador'>Bateador</option>
-          </select>
-          <label className='form--label label' htmlFor='date'>
-            Fecha de nacimiento
-          </label>
-          <input
-            className='input empty'
-            name='birthday'
-            type='date'
-            id='date'
-            placeholder='Fecha de nacimiento'
-            onChange={handleInput}
-          />
-
-          <label className='form--label label' htmlFor='file'>
-            Foto del Jugador
-          </label>
-          <div className='form__image form__image-square' id='drop-zone'>
-            <input
-              className='form__image--input form__image-square--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels form__image-square-labels'>
-              <span
-                className='
-                form__image--label form__image-square--label
-                drop-zone--prompt
-              '
-              >
-                Arrastra una imagen
-              </span>
-              <span
-                className='
-                form__image--label-button form__image-square--label-button
-                drop-zone--prompt
-              '
-              >
-                O haz clic aquí para subir una imagen
-              </span>
+          <h1 className='form--title'>New player</h1>
+          <div className='form__desktop'>
+            <div className='form'>
+              <input
+                className='input'
+                name='name'
+                type='text'
+                placeholder='Name *'
+                required
+                onChange={handleInput}
+              />
+              <select className='input empty' name='position' id='positions' onChange={handleInput}>
+                <option defaultValue value=''>
+                  Position
+                </option>
+                <option value='Pitcher'>Pitcher</option>
+                <option value='Catcher'>Catcher</option>
+                <option value='Primera Base'>Primera base</option>
+                <option value='Segunda Base'>Segunda base</option>
+                <option value='Tercera Base'>Tercera base</option>
+                <option value='Campocorto'>Campocorto</option>
+                <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
+                <option value='Jardinero Central'>Jardinero central</option>
+                <option value='Jardinero Derecho'>Jardinero derecho</option>
+                <option value='Bateador'>Bateador</option>
+              </select>
+              <label className='form--label label label--bold' htmlFor='date'>
+                Birthday
+              </label>
+              <input
+                className='input empty'
+                name='birthday'
+                type='date'
+                id='date'
+                placeholder='Birthday'
+                onChange={handleInput}
+              />
+            </div>
+            <div className='form--field'>
+              <label className='form--label label' htmlFor='file'>
+                Profile picture
+              </label>
+              <div className='form__image form__image-square' id='drop-zone'>
+                <input
+                  className='form__image--input form__image-square--input'
+                  type='file'
+                  id='file'
+                  accept='image/*'
+                />
+                <div className='form__image-labels form__image-square-labels'>
+                  <span className='form__image--label form__image-square--label drop-zone--prompt'>
+                    Drag an image
+                  </span>
+                  <span className='form__image--label-button form__image-square--label-button drop-zone--prompt'>
+                    Or click to upload the image
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <ButtonContainer>
-            <button type='submit' className='button primary-button'>
-              Agregar Jugador
-            </button>
-          </ButtonContainer>
+
+          <div className='form__footer'>
+            <p className='form__footer--text'>Mandatory fields (*)</p>
+            <ButtonContainer>
+              <button type='submit' className='button primary-button'>
+                Create
+              </button>
+            </ButtonContainer>
+          </div>
         </form>
       </main>
     </>

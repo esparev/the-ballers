@@ -17,7 +17,7 @@ import '@styles/CreateEntity.scss';
  */
 const CreateNews = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Publicar Noticia';
+    document.title = 'The Ballers • New News';
     window.scrollTo(0, 0);
 
     var elTxtA = document.getElementById('textarea');
@@ -70,12 +70,12 @@ const CreateNews = () => {
     form.cover = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -113,10 +113,7 @@ const CreateNews = () => {
       .post(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Noticia publicada con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='News published successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -125,8 +122,8 @@ const CreateNews = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al publicar la noticia. 
-            Verifique que haya llenado los campos necesarios`}
+            message={`Ups!, There was an error publishing the news. 
+            Verify that you have filled the necessary field`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -138,7 +135,7 @@ const CreateNews = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addNews(`${envConfig.apiUrl}/noticias`, form, authConfig);
+    addNews(`${envConfig.apiUrl}/news`, form, authConfig);
   };
 
   return (
@@ -147,14 +144,14 @@ const CreateNews = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Publicar Nueva Noticia</h1>
-          <div>
+          <h1 className='form--title'>Publish news</h1>
+          <div className='form--field'>
             <input
               className='input'
               name='title'
               type='text'
               id='input'
-              placeholder='Titulo *'
+              placeholder='Title *'
               required
               onChange={handleInput}
             />
@@ -163,48 +160,44 @@ const CreateNews = () => {
               <span id='input-maximum'>/255</span>
             </div>
           </div>
-          <div>
+          <div className='form--field'>
             <textarea
               className='input'
               name='description'
               type='text'
               id='textarea'
-              placeholder='Descripción *'
+              placeholder='Description *'
               maxLength='1000'
               required
-              onChange={handleInput}
-            ></textarea>
+              onChange={handleInput}></textarea>
             <div className='input-count' id='textarea-count'>
               <span id='textarea-current'>0</span>
               <span id='textarea-maximum'>/1000</span>
             </div>
           </div>
-
-          <label className='form--label label' htmlFor='file'>
-            Portada de la noticia
-          </label>
-          <div className='form__image' id='drop-zone'>
-            <input
-              className='form__image--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels'>
-              <span className='form__image--label drop-zone--prompt'>
-                Arrastra una imagen
-              </span>
-              <span className='form__image--label-button drop-zone--prompt'>
-                O haz clic aquí para subir una imagen
-              </span>
+          <div className='form--field'>
+            <label className='form--label label' htmlFor='file'>
+              Cover
+            </label>
+            <div className='form__image' id='drop-zone'>
+              <input className='form__image--input' type='file' id='file' accept='image/*' />
+              <div className='form__image-labels'>
+                <span className='form__image--label drop-zone--prompt'>Drag an image</span>
+                <span className='form__image--label-button drop-zone--prompt'>
+                  Or click to upload the image
+                </span>
+              </div>
             </div>
           </div>
 
-          <ButtonContainer>
-            <button type='submit' className='button primary-button'>
-              Publicar Noticia
-            </button>
-          </ButtonContainer>
+          <div className='form__footer'>
+            <p className='form__footer--text'>Mandatory fields (*)</p>
+            <ButtonContainer>
+              <button type='submit' className='button primary-button'>
+                Publish
+              </button>
+            </ButtonContainer>
+          </div>
         </form>
       </main>
     </>

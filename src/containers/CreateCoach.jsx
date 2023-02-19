@@ -16,7 +16,7 @@ import '@styles/CreateEntity.scss';
  */
 const CreateCoach = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Nuevo Entrenador';
+    document.title = 'The Ballers • New Coach';
     window.scrollTo(0, 0);
 
     // Opaque date placeholder until it has been modified
@@ -73,12 +73,12 @@ const CreateCoach = () => {
     form.image = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -118,10 +118,7 @@ const CreateCoach = () => {
       .post(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Entrenador registrado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Coach successfully created!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -130,8 +127,8 @@ const CreateCoach = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al registrar el entrenador. 
-            Verifique que haya llenado los campos necesarios`}
+            message={`Ups!, There was an error creating the coach. 
+            Verify that you have filled the necessary field`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -143,7 +140,7 @@ const CreateCoach = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addCoach(`${envConfig.apiUrl}/entrenadores`, form, authConfig);
+    addCoach(`${envConfig.apiUrl}/coaches`, form, authConfig);
   };
 
   return (
@@ -152,61 +149,60 @@ const CreateCoach = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Agregar Nuevo Entrenador</h1>
-          <input
-            className='input'
-            name='name'
-            type='text'
-            placeholder='Nombre *'
-            required
-            onChange={handleInput}
-          />
-          <label className='form--label label' htmlFor='date'>
-            Fecha de nacimiento
-          </label>
-          <input
-            className='input empty'
-            name='birthday'
-            type='date'
-            id='date'
-            placeholder='Fecha de nacimiento'
-            onChange={handleInput}
-          />
-
-          <label className='form--label label' htmlFor='file'>
-            Foto del Entrenador
-          </label>
-          <div className='form__image form__image-square' id='drop-zone'>
-            <input
-              className='form__image--input form__image-square--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels form__image-square-labels'>
-              <span
-                className='
-                form__image--label form__image-square--label
-                drop-zone--prompt
-              '
-              >
-                Arrastra una imagen
-              </span>
-              <span
-                className='
-                form__image--label-button form__image-square--label-button
-                drop-zone--prompt
-              '
-              >
-                O haz clic aquí para subir una imagen
-              </span>
+          <h1 className='form--title'>New coach</h1>
+          <div className='form__desktop'>
+            <div className='form'>
+              <input
+                className='input'
+                name='name'
+                type='text'
+                placeholder='Name *'
+                required
+                onChange={handleInput}
+              />
+              <label className='form--label label label--bold' htmlFor='date'>
+                Birthday
+              </label>
+              <input
+                className='input empty'
+                name='birthday'
+                type='date'
+                id='date'
+                placeholder='Birthday'
+                onChange={handleInput}
+              />
+            </div>
+            <div className='form--field'>
+              <label className='form--label label' htmlFor='file'>
+                Profile picture
+              </label>
+              <div className='form__image form__image-square' id='drop-zone'>
+                <input
+                  className='form__image--input form__image-square--input'
+                  type='file'
+                  id='file'
+                  accept='image/*'
+                />
+                <div className='form__image-labels form__image-square-labels'>
+                  <span className='form__image--label form__image-square--label drop-zone--prompt'>
+                    Drag an image
+                  </span>
+                  <span className='form__image--label-button form__image-square--label-button drop-zone--promp'>
+                    Or click to upload the image
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <ButtonContainer>
-            <button type='submit' className='button primary-button'>
-              Agregar Entrenador
-            </button>
-          </ButtonContainer>
+
+          <div className='form__footer'>
+            <p className='form__footer--text'>Mandatory fields (*)</p>
+            <ButtonContainer>
+              <button type='submit' className='button primary-button'>
+                Create
+              </button>
+            </ButtonContainer>
+          </div>
         </form>
       </main>
     </>

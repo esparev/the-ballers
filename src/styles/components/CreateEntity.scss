@@ -1,94 +1,141 @@
 @import '../Vars.scss';
 
 .create-container {
-    padding-top: 20px;
-  }
+  padding-top: 20px;
+}
+
 .form {
+  width: 100%;
   display: flex;
+  row-gap: 12px;
   flex-direction: column;
 }
+
+.form__desktop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .form--title {
+  text-transform: uppercase;
   color: $white-100;
 }
-.label {
-  margin-top: 14px;
-  margin-bottom: 8px;
+
+.form--field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form__footer--text {
   font-family: $inter-font;
-  font-size: $normal-desk;
-  font-weight: bold;
+  font-size: 1.6rem;
+  color: $white-300;
+}
+
+.label {
+  font-family: $inter-font;
+  font-size: 1.6rem;
   color: $white-100;
   opacity: 50%;
 }
+
+.label--bold {
+  font-family: $roboto-font;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: $white-100;
+  opacity: 100%;
+}
+
 .input {
   height: 32px;
+  min-height: 32px;
   max-width: 600px;
   width: 100%;
-  margin: 14px 0;
   border: none;
-  border-bottom: 4px solid $green-light;
-  caret-color: $green-light;
+  border-bottom: 2px solid $green-light;
   font-family: $inter-font;
-  font-size: $normal-desk;
-  font-weight: bold;
+  font-size: 1.6rem;
   color: $white-100;
   background-color: $green-midnight;
 }
+
 .input-count {
   max-width: 600px;
   display: flex;
   justify-content: end;
   font-family: $inter-font;
-  font-size: $normal-desk;
-  font-weight: bold;
+  font-size: 1.6rem;
   color: $white-100;
   opacity: 50%;
 }
+
 .input-age {
   width: 50px;
   margin: 0 12px;
   text-align: center;
 }
+
 .empty {
   color: rgba(255, 255, 255, 0.5);
 }
+
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
 .empty::-webkit-calendar-picker-indicator {
   filter: invert(1);
   opacity: 50%;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
 .input::placeholder {
   color: $white-100;
   opacity: 50%;
 }
+
 .input:focus {
   outline: none;
 }
+
 .form__image {
   height: 300px;
   max-width: 600px;
   position: relative;
-  border: 4px dashed $green-light;
+  border: 2px dashed $green-light;
 }
+
 .form__image-square {
   height: 372px;
+  min-width: 372px;
   max-width: 372px;
-  border: 4px dashed $green-light;
+  border: 2px dashed $green-light;
 }
+
 .form__image-labels {
   height: inherit;
   display: grid;
   place-content: center;
 }
+
 .form__image--input {
   width: 100%;
   height: 100%;
@@ -99,25 +146,33 @@ input[type='number'] {
   opacity: 0;
   z-index: 1;
 }
+
+.form__image--input:hover {
+  cursor: pointer;
+}
+
 .form__image--label,
 .form__image--label-button {
   font-family: $inter-font;
-  font-size: $normal-desk;
-  font-weight: bold;
+  font-size: 1.6rem;
   text-align: center;
   color: $white-100;
   opacity: 50%;
 }
+
 .form__image--label-button {
   text-decoration: underline;
   cursor: pointer;
 }
+
 .drop-zone__over {
   border-style: solid;
 }
+
 .drop-zone--label {
   display: none;
 }
+
 .drop-zone--thumb {
   height: 100%;
   max-width: 100%;
@@ -125,6 +180,7 @@ input[type='number'] {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .drop-zone--thumb::after {
   content: attr(data-label);
 }
@@ -133,25 +189,27 @@ input[type='number'] {
   .create-container {
     padding: 20px 20px 50px 20px;
   }
-  .input {
-    font-size: $normal-mob;
+
+  .form__desktop {
+    row-gap: 12px;
+    flex-direction: column;
+    justify-content: initial;
   }
-  .input-count {
-    font-size: $normal-mob;
-  }
-  .label {
-    font-size: $normal-mob;
-  }
+
   .form__image {
     height: calc(90vw / 2);
     width: 100%;
   }
+
   .form__image {
     height: 280px;
     width: 280px;
   }
-  .form__image--label,
-  .form__image--label-button {
-    font-size: $normal-mob;
+
+  .form__footer {
+    row-gap: 12px;
+    align-items: initial;
+    flex-direction: column;
+    justify-content: initial;
   }
 }

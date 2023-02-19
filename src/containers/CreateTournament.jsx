@@ -17,7 +17,7 @@ import '@styles/CreateEntity.scss';
  */
 const CreateTournament = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Publicar Torneo';
+    document.title = 'The Ballers • New Tournament';
     window.scrollTo(0, 0);
 
     var elTxtA = document.getElementById('textarea');
@@ -70,12 +70,12 @@ const CreateTournament = () => {
     form.cover = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -113,10 +113,7 @@ const CreateTournament = () => {
       .post(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Torneo publicado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Tournament published successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -125,8 +122,8 @@ const CreateTournament = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al publicar el torneo. 
-            Verifique que haya llenado los campos necesarios`}
+            message={`Ups!, There was an error publishing the tournament. 
+            Verify that you have filled the necessary field`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -138,7 +135,7 @@ const CreateTournament = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTournament(`${envConfig.apiUrl}/torneos`, form, authConfig);
+    addTournament(`${envConfig.apiUrl}/tournaments`, form, authConfig);
   };
 
   return (
@@ -147,14 +144,14 @@ const CreateTournament = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Publicar Nuevo Torneo</h1>
-          <div>
+          <h1 className='form--title'>Publish tournament</h1>
+          <div className='form--field'>
             <input
               className='input'
               name='title'
               type='text'
               id='input'
-              placeholder='Titulo *'
+              placeholder='Title *'
               required
               onChange={handleInput}
             />
@@ -163,48 +160,45 @@ const CreateTournament = () => {
               <span id='input-maximum'>/255</span>
             </div>
           </div>
-          <div>
+          <div className='form--field'>
             <textarea
               className='input'
-              name='link'
-              type='link'
+              name='description'
+              type='text'
               id='textarea'
-              placeholder='Link *'
-              maxLength='455'
+              placeholder='Description *'
+              maxLength='1000'
               required
-              onChange={handleInput}
-            ></textarea>
+              onChange={handleInput}></textarea>
             <div className='input-count' id='textarea-count'>
               <span id='textarea-current'>0</span>
-              <span id='textarea-maximum'>/455</span>
+              <span id='textarea-maximum'>/1000</span>
             </div>
           </div>
 
-          <label className='form--label label' htmlFor='file'>
-            Portada del torneo
-          </label>
-          <div className='form__image' id='drop-zone'>
-            <input
-              className='form__image--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels'>
-              <span className='form__image--label drop-zone--prompt'>
-                Arrastra una imagen
-              </span>
-              <span className='form__image--label-button drop-zone--prompt'>
-                O haz clic aquí para subir una imagen
-              </span>
+          <div className='form--field'>
+            <label className='form--label label' htmlFor='file'>
+              Cover
+            </label>
+            <div className='form__image' id='drop-zone'>
+              <input className='form__image--input' type='file' id='file' accept='image/*' />
+              <div className='form__image-labels'>
+                <span className='form__image--label drop-zone--prompt'>Drag an image</span>
+                <span className='form__image--label-button drop-zone--prompt'>
+                  Or click to upload the image
+                </span>
+              </div>
             </div>
           </div>
 
-          <ButtonContainer>
-            <button type='submit' className='button primary-button'>
-              Publicar Torneo
-            </button>
-          </ButtonContainer>
+          <div className='form__footer'>
+            <p className='form__footer--text'>Mandatory fields (*)</p>
+            <ButtonContainer>
+              <button type='submit' className='button primary-button'>
+                Publish
+              </button>
+            </ButtonContainer>
+          </div>
         </form>
       </main>
     </>
