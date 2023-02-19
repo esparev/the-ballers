@@ -8,7 +8,7 @@ import useGetClub from '@hooks/useGetClub';
 import useGetAddress from '@hooks/useGetAddress';
 import useGetTeams from '@hooks/useGetTeams';
 import { envConfig } from '@config';
-import '@styles/LeagueTeams.scss';
+import '@styles/Teams.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
@@ -17,7 +17,7 @@ import '@styles/LeagueTeams.scss';
  * @param {*} props
  * @returns JSX code to render to the DOM tree
  */
-const LeagueTeams = (props) => {
+const Teams = (props) => {
   // Assigns the league's id from the URL to the id props
   const { slug } = props.match.params;
 
@@ -109,4 +109,4 @@ const LeagueTeams = (props) => {
   );
 };
 
-export default LeagueTeams;
+export default Teams;

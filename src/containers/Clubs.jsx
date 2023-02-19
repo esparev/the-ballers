@@ -13,7 +13,7 @@ import '@styles/Entities.scss';
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const Leagues = () => {
+const Clubs = () => {
   // Fetching the necessary data to showcase in the component
   const clubs = useGetClubs(envConfig.apiUrl);
 
@@ -50,7 +50,7 @@ const Leagues = () => {
       <section className='join-club'>
         <h1 className='join-club__message--title'>Are you interested in being part of a club?</h1>
         <p className='join-club__message--text'>
-          If you are interested in being part of one of our leagues, download the following document
+          If you are interested in being part of one of our clubs, download the following document
           to make your registration.
         </p>
         <a
@@ -63,4 +63,4 @@ const Leagues = () => {
   );
 };
 
-export default Leagues;
+export default Clubs;

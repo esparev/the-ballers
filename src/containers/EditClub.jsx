@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import set from 'lodash/set';
 import Message from '@components/Message';
+import DangerButton from '@components/DangerButton';
+import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
+import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
@@ -11,13 +13,13 @@ import '@styles/CreateEntity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the create league page with all its functions
+ * Creates the edit league page with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const CreateLeague = () => {
+const EditClub = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Nueva Liga';
+    document.title = 'BEISMICH • Editar Liga';
     window.scrollTo(0, 0);
 
     // Select closest container for the input
@@ -61,7 +63,7 @@ const CreateLeague = () => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    form.logo = localStorage.getItem('uploaded image');
+    leagueForm.logo = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
       <Message message='Subiendo imagen' messageStatus='upload' />,
@@ -78,49 +80,41 @@ const CreateLeague = () => {
   /**
    * Sets the initial values for the league fields
    */
-  const [form, setValues] = useState({
-    name: '',
-    responsable: '',
-    // phone: '',
-    // ageStart: 0,
-    // ageEnd: 0,
-    logo: localStorage.getItem('league logo'),
-    address: {
-      streetName: '',
-      streetNumber: '',
-      zipCode: '',
-      suburb: '',
-      location: '',
-    },
-  });
+  const [leagueForm, setLeagueValues] = useState({});
+  const [addressForm, setAddressValues] = useState({});
 
   /**
    * Sets values after onChange event is triggered on the
    * indicated inputs
    */
-  const handleInput = (event) => {
-    const formCopy = JSON.parse(JSON.stringify(form));
-    set(formCopy, event.target.name, event.target.value);
-    setValues(formCopy);
+  const handleLeagueInput = (event) => {
+    setLeagueValues({
+      ...leagueForm,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const handleAddressInput = (event) => {
+    setAddressValues({
+      ...addressForm,
+      [event.target.name]: event.target.value,
+    });
   };
 
   /**
-   * Sends a post request to the URL of the API provided
+   * Sends a patch request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
    * @param {string} url - API URL
    * @param {json} data - body data to post
    * @param {json} config - headers configuration
    */
-  const addLeague = async (url, data, config) => {
+  const editLeague = async (url, data, config) => {
     await axios
-      .post(url, data, config)
+      .patch(url, data, config)
       .then((res) => {
-        console.log('FORM', form);
-
         ReactDOM.render(
           <Message
-            message='Liga registrada con éxito!'
+            message='¡Liga editada con éxito!'
             messageStatus='success'
           />,
           document.getElementById('message-container')
@@ -129,13 +123,10 @@ const CreateLeague = () => {
         localStorage.removeItem('uploaded image');
       })
       .catch((error) => {
-        console.log('ERROR', error);
-        console.log('FORM', form);
-
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al registrar la liga. 
-            Verifique que haya llenado los campos necesarios`}
+            message={`¡Ups!, Hubo un error al editar la liga. 
+            Verifique los datos que haya ingresado`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -145,52 +136,175 @@ const CreateLeague = () => {
       });
   };
 
+  /**
+   * Sends a patch request to the URL of the API provided
+   * with the data entered by the user in a form along
+   * with a bearer token included in the headers configuration
+   * @param {string} url - API URL
+   * @param {json} data - body data to post
+   * @param {json} config - headers configuration
+   */
+  const editAddress = async (url, data, config) => {
+    await axios
+      .patch(url, data, config)
+      .then((res) => {
+        ReactDOM.render(
+          <Message
+            message='¡Liga editada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+      })
+      .catch((error) => {
+        ReactDOM.render(
+          <Message
+            message={`¡Ups!, Hubo un error al editar la dirección de la liga. 
+            Verifique los datos que haya ingresado`}
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+      });
+  };
+
+  /**
+   * Sends a delete request to the URL of the API provided
+   * to delete the selected league according to its id along
+   * with a bearer token included in the headers configuration
+   * @param {string} url - API URL
+   * @param {json} config - headers configuration
+   */
+  const deleteLeague = async (url, config) => {
+    await axios
+      .delete(url, config)
+      .then((res) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Liga eliminada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      })
+      .catch((error) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message={`¡Ups!, Hubo un error al eliminar la liga. 
+            Inténtelo más tarde`}
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+
+        localStorage.removeItem('uploaded image');
+      });
+  };
+  /**
+   * Sends a delete request to the URL of the API provided
+   * to delete the selected news according to its id along
+   * with a bearer token included in the headers configuration
+   * @param {string} url - API URL
+   * @param {json} config - headers configuration
+   */
+  const deleteAddress = async (url, config) => {
+    await axios
+      .delete(url, config)
+      .then((res) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message='¡Liga eliminada con éxito!'
+            messageStatus='success'
+          />,
+          document.getElementById('message-container')
+        );
+      })
+      .catch((error) => {
+        toggleMessage();
+        ReactDOM.render(
+          <Message
+            message={`¡Ups!, Hubo un error al eliminar la liga. 
+            Inténtelo más tarde`}
+            messageStatus='error'
+          />,
+          document.getElementById('message-container')
+        );
+      });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    addLeague(`${envConfig.apiUrl}/ligas`, form, authConfig);
+    editLeague(
+      `${envConfig.apiUrl}/ligas/${localStorage.getItem('selected league')}`,
+      leagueForm,
+      authConfig
+    );
+    editAddress(
+      `${envConfig.apiUrl}/direcciones/${localStorage.getItem(
+        'selected league'
+      )}`,
+      addressForm,
+      authConfig
+    );
+  };
+
+  const handleDelete = () => {
+    deleteLeague(
+      `${envConfig.apiUrl}/ligas/${localStorage.getItem('selected league')}`,
+      authConfig
+    );
+    deleteAddress(
+      `${envConfig.apiUrl}/direcciones/${localStorage.getItem(
+        'selected league'
+      )}`,
+      authConfig
+    );
   };
 
   return (
     <>
       <div id='message-container'></div>
 
+      <DeleteMessage entity='liga' onClick={handleDelete} />
+
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Agregar Nueva Liga</h1>
+          <h1 className='form--title'>Editar Liga</h1>
           <input
             className='input'
             name='name'
             type='text'
-            placeholder='Nombre *'
-            required
-            onChange={handleInput}
+            placeholder='Nombre'
+            onChange={handleLeagueInput}
           />
           <input
             className='input'
             name='responsable'
             type='text'
-            required
-            placeholder='Nombre del responsable *'
-            onChange={handleInput}
+            placeholder='Nombre del responsable'
+            onChange={handleLeagueInput}
           />
           <input
             className='input'
             name='phone'
             type='num'
             maxLength='10'
-            placeholder='Teléfono del responsable *'
-            required
-            onChange={handleInput}
+            placeholder='Teléfono del responsable'
+            onChange={handleLeagueInput}
           />
           <select
             className='input empty'
-            name='address.location'
+            name='location'
             id='location'
-            required
-            onChange={handleInput}
+            onChange={handleAddressInput}
           >
             <option defaultValue value=''>
-              Localidad *
+              Localidad
             </option>
             <option value='Acuitzio'>Acuitzio</option>
             <option value='Aguililla'>Aguililla</option>
@@ -270,36 +384,32 @@ const CreateLeague = () => {
           <label className='label'>Dirección</label>
           <input
             className='input'
-            name='address.streetName'
+            name='streetName'
             type='text'
-            placeholder='Calle *'
-            required
-            onChange={handleInput}
+            placeholder='Calle'
+            onChange={handleAddressInput}
           />
           <input
             className='input'
-            name='address.streetNumber'
+            name='streetNumber'
             type='text'
-            placeholder='Número *'
-            required
-            onChange={handleInput}
+            placeholder='Número'
+            onChange={handleAddressInput}
           />
           <input
             className='input'
-            name='address.zipCode'
-            type='text'
+            name='zipCode'
+            type='tel'
             maxLength='5'
-            placeholder='C.P. *'
-            required
-            onChange={handleInput}
+            placeholder='C.P.'
+            onChange={handleAddressInput}
           />
           <input
             className='input'
-            name='address.suburb'
             type='text'
-            placeholder='Colonia *'
-            required
-            onChange={handleInput}
+            name='suburb'
+            placeholder='Colonia'
+            onChange={handleAddressInput}
           />
           <label className='label'>Rango de edad</label>
           <div>
@@ -310,8 +420,7 @@ const CreateLeague = () => {
               type='tel'
               maxLength='2'
               placeholder='00'
-              required
-              onChange={handleInput}
+              onChange={handleLeagueInput}
             />
             <label className='label'>hasta</label>
             <input
@@ -320,8 +429,7 @@ const CreateLeague = () => {
               type='tel'
               maxLength='2'
               placeholder='00'
-              required
-              onChange={handleInput}
+              onChange={handleLeagueInput}
             />
             <label className='label'>años</label>
           </div>
@@ -357,8 +465,9 @@ const CreateLeague = () => {
           </div>
           <ButtonContainer>
             <button type='submit' className='button primary-button'>
-              Agregar Liga
+              Guardar Cambios
             </button>
+            <DangerButton name='Eliminar Liga' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>
@@ -366,4 +475,4 @@ const CreateLeague = () => {
   );
 };
 
-export default CreateLeague;
+export default EditClub;
