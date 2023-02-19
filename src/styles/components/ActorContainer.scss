@@ -5,25 +5,28 @@
   width: auto;
   display: flex;
   align-items: center;
-  margin: 60px 0 20px 0;
   overflow: hidden;
-  // background-image: url('../../static/sport-background.png');
+  background-image: url('../../assets/static/sport-background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .league-cover {
   justify-content: center;
 }
+
 .cover--image {
   width: 280px;
   margin-left: 60px;
   object-fit: contain;
   transform: rotate(345deg);
 }
+
 .image--cover {
   width: 80%;
 }
+
 .join-club {
   width: 100%;
   display: flex;
@@ -34,63 +37,94 @@
   margin-top: 60px;
   text-align: center;
 }
+
 .join-club__message--title {
   text-transform: uppercase;
   color: $white-100;
 }
+
 .join-club__message--text {
   font-family: $inter-font;
   font-size: 1.6rem;
   color: $white-400;
 }
+
 .player-coach__container {
   padding: 0;
   padding-bottom: 60px;
 }
+
 .profile {
   height: 95vh;
 }
+
 .actor {
-  padding: 60px;
+  padding: 0 60px;
 }
+
 .actor__container {
   width: auto;
   display: flex;
   flex-wrap: wrap;
+  column-gap: 28px;
   align-items: center;
 }
+
 .actor__container--image {
   width: 150px;
   height: 150px;
-  margin-right: 60px;
-  border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
 }
+
+.actor__header {
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+}
+
 .actor__container p {
   font-family: $inter-font;
   font-size: $normal-desk;
   color: $white-100;
 }
+
+.actor__info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
 .actor__info--name {
+  text-transform: uppercase;
   color: $white-100;
 }
+
 .actor__info-about {
   width: auto;
   display: flex;
+  column-gap: 20px;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
+
 .actor__info-about p {
-  margin: 4px 40px 4px 0;
+  color: $white-400;
+}
+
+.actor__info-about p strong {
+  color: $white-100;
 }
 
 .actors {
   width: auto;
   margin: 40px 60px;
 }
+
 .actors__container--title {
-  color: $white-100;
+  font-size: 2.8rem;
+  text-transform: uppercase;
+  color: $white-400;
 }
+
 .more-actors {
   display: flex;
   flex-wrap: wrap;
@@ -103,28 +137,39 @@
   .join-club {
     padding: 20px;
   }
+
   .cover {
     justify-content: center;
   }
+
   .cover--image {
     margin-left: 0;
   }
+
   .actor {
     padding: 20px;
   }
+
   .actor__container {
+    flex-direction: column;
     justify-content: center;
+    row-gap: 12px;
   }
-  .actor__container--image {
-    margin-right: 0;
-    margin-bottom: 20px;
+
+  .actor__header {
+    flex-direction: column;
+    row-gap: 12px;
   }
+
   .actor__info {
     text-align: center;
   }
-  .actor__info-about p {
-    margin-right: 0;
+
+  .actor__info-about {
+    flex-direction: column;
+    row-gap: 12px;
   }
+
   .actors__container--title {
     text-align: center;
   }

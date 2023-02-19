@@ -33,14 +33,14 @@ const Player = (props) => {
   localStorage.setItem('selected player', player.id);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Jugador';
+    document.title = 'The Ballers • Players';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <main className='player-coach__container'>
       <section className='cover'>
-        <img className='cover--image' src={league.logo} alt='Portada' />
+        <img className='cover--image' src={league.logo} alt='Cover' />
       </section>
 
       <section className='actor'>
@@ -48,21 +48,31 @@ const Player = (props) => {
           <img
             className='actor__container--image'
             src={player.image}
-            alt='Foto del jugador'
+            alt={`${player.name} profile`}
           />
           <div className='actor__info'>
-            <h1 className='actor__info--name'>{player.name}</h1>
+            <div className='actor__header'>
+              <h1 className='actor__info--name'>{player.name}</h1>
+              {localStorage.getItem('id') ? (
+                <ButtonContainer>
+                  <SecondaryButton
+                    name='Edit player'
+                    route={`/ligas/${league.slug}/${team.slug}/${player.slug}/editar-jugador`}
+                  />
+                </ButtonContainer>
+              ) : null}
+            </div>
             <div className='actor__info-about'>
               <p>
-                <strong>Equipo: </strong>
+                <strong>Team: </strong>
                 {team.name}
               </p>
               <p>
-                <strong>Posición de juego: </strong>
+                <strong>Position: </strong>
                 {player.position}
               </p>
               <p>
-                <strong>Fecha de Nacimiento: </strong>
+                <strong>Birthday: </strong>
                 {player.birthday}
               </p>
             </div>
@@ -71,29 +81,20 @@ const Player = (props) => {
 
         <section className='actors'>
           <div className='actors__container'>
-            <h2 className='actors__container--title'>Más Jugadores</h2>
+            <h2 className='actors__container--title'>More players</h2>
             <div className='more-actors' onClick={loadComponent}>
               {players.map((player) => (
                 <MoreActors
                   player={player}
-                  key={player.id}
+                  key={player.slug}
                   name={player.name}
                   image={player.image}
-                  route={`/ligas/${league.id}/${team.id}/${player.id}`}
+                  route={`/ligas/${league.slug}/${team.slug}/${player.slug}`}
                 />
               ))}
             </div>
           </div>
         </section>
-
-        {localStorage.getItem('id') ? (
-          <ButtonContainer>
-            <SecondaryButton
-              name='Editar Jugador'
-              route={`/ligas/${league.id}/${team.id}/${player.id}/editar-jugador`}
-            />
-          </ButtonContainer>
-        ) : null}
       </section>
     </main>
   );
