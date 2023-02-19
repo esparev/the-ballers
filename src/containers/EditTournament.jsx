@@ -20,7 +20,7 @@ import '@styles/CreateEntity.scss';
  */
 const EditTournament = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Editar Torneo';
+    document.title = 'The Ballers • Edit Tournaments';
     window.scrollTo(0, 0);
 
     var elTxtA = document.getElementById('textarea');
@@ -73,12 +73,12 @@ const EditTournament = () => {
     form.cover = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -113,10 +113,7 @@ const EditTournament = () => {
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Torneo editado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Tournament edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -125,8 +122,8 @@ const EditTournament = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al editar el torneo. 
-            Verifique los datos que haya ingresado`}
+            message={`Ups!, There was an error editing the tournament. 
+            Verify the information filled in the form`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -149,10 +146,7 @@ const EditTournament = () => {
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message
-            message='¡Torneo eliminado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Tournament deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -162,8 +156,8 @@ const EditTournament = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al eliminar el torneo. 
-            Inténtelo más tarde`}
+            message={`Ups!, There was an error deleting the tournament. 
+            Try again later`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -176,9 +170,7 @@ const EditTournament = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editTournament(
-      `${envConfig.apiUrl}/torneos/${localStorage.getItem(
-        'selected tournament'
-      )}`,
+      `${envConfig.apiUrl}/tournaments/${localStorage.getItem('selected tournament')}`,
       form,
       authConfig
     );
@@ -186,9 +178,7 @@ const EditTournament = () => {
 
   const handleDelete = () => {
     deleteTournament(
-      `${envConfig.apiUrl}/torneos/${localStorage.getItem(
-        'selected tournament'
-      )}`,
+      `${envConfig.apiUrl}/tournaments/${localStorage.getItem('selected tournament')}`,
       authConfig
     );
   };
@@ -201,14 +191,14 @@ const EditTournament = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Editar Torneo</h1>
-          <div>
+          <h1 className='form--title'>Edit tournament</h1>
+          <div className='form--field'>
             <input
               className='input'
               name='title'
               type='text'
               id='input'
-              placeholder='Titulo'
+              placeholder='Title'
               onChange={handleInput}
             />
             <div className='input-count' id='input-count'>
@@ -216,47 +206,41 @@ const EditTournament = () => {
               <span id='input-maximum'>/255</span>
             </div>
           </div>
-          <div>
+          <div className='form--field'>
             <textarea
               className='input'
-              name='link'
-              type='link'
+              name='description'
+              type='text'
               id='textarea'
-              placeholder='Link'
-              maxLength='455'
-              onChange={handleInput}
-            ></textarea>
+              placeholder='Description'
+              maxLength='1000'
+              onChange={handleInput}></textarea>
             <div className='input-count' id='textarea-count'>
               <span id='textarea-current'>0</span>
-              <span id='textarea-maximum'>/455</span>
+              <span id='textarea-maximum'>/1000</span>
             </div>
           </div>
 
-          <label className='form--label label' htmlFor='file'>
-            Portada del torneo
-          </label>
-          <div className='form__image' id='drop-zone'>
-            <input
-              className='form__image--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels'>
-              <span className='form__image--label drop-zone--prompt'>
-                Arrastra una imagen
-              </span>
-              <span className='form__image--label-button drop-zone--prompt'>
-                O haz clic aquí para subir una imagen
-              </span>
+          <div className='form--field'>
+            <label className='form--label label' htmlFor='file'>
+              Cover
+            </label>
+            <div className='form__image' id='drop-zone'>
+              <input className='form__image--input' type='file' id='file' accept='image/*' />
+              <div className='form__image-labels'>
+                <span className='form__image--label drop-zone--prompt'>Drag an image</span>
+                <span className='form__image--label-button drop-zone--prompt'>
+                  Or click to upload the image
+                </span>
+              </div>
             </div>
           </div>
 
           <ButtonContainer>
             <button type='submit' className='button primary-button'>
-              Guardar Cambios
+              Save changes
             </button>
-            <DangerButton name='Eliminar Torneo' onClick={toggleMessage} />
+            <DangerButton name='Delete' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>

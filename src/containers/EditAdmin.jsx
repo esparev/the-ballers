@@ -21,7 +21,7 @@ import '@styles/CreateEntity.scss';
  */
 const EditAdmin = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Editar Administrador';
+    document.title = 'The Ballers • Edit Admin';
     window.scrollTo(0, 0);
 
     // Select closest container for the input
@@ -68,12 +68,12 @@ const EditAdmin = () => {
     form.image = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -108,10 +108,7 @@ const EditAdmin = () => {
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Administrador editado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Admin edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -120,8 +117,8 @@ const EditAdmin = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al editar el administrador. 
-            Verifique los datos que haya ingresado`}
+            message={`Ups!, There was an error editing the admin. 
+            Verify the information filled in the form`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -144,10 +141,7 @@ const EditAdmin = () => {
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message
-            message='¡Administrador eliminado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Admin deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -157,8 +151,8 @@ const EditAdmin = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al eliminar el administrador. 
-            Inténtelo más tarde`}
+            message={`Ups!, There was an error deleting the admin. 
+            Try again later`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -178,10 +172,7 @@ const EditAdmin = () => {
   };
 
   const handleDelete = () => {
-    deleteAdmin(
-      `${envConfig.apiUrl}/admins/${localStorage.getItem('selected admin')}`,
-      authConfig
-    );
+    deleteAdmin(`${envConfig.apiUrl}/admins/${localStorage.getItem('selected admin')}`, authConfig);
   };
 
   return (
@@ -192,70 +183,63 @@ const EditAdmin = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Editar Administrador</h1>
-          <input
-            className='input'
-            name='name'
-            type='text'
-            placeholder='Nombre'
-            onChange={handleInput}
-          />
-          <input
-            className='input'
-            name='email'
-            type='email'
-            placeholder='Correo electrónico'
-            onChange={handleInput}
-          />
-          {/* <input
-            className='input'
-            name='password'
-            type='password'
-            placeholder='Contraseña'
-            onChange={handleInput}
-          /> */}
-          {/* <Link className='change-password' route='/recuperar-contraseña'>
-            Cambiar contraseña
-          </Link> */}
-          <PrimaryButton
-            name='Cambiar contraseña'
-            route='/recuperar-contraseña'
-          />
-
-          <label className='form--label label' htmlFor='file'>
-            Foto del Administrador
-          </label>
-          <div className='form__image form__image-square' id='drop-zone'>
-            <input
-              className='form__image--input form__image-square--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels form__image-square-labels'>
-              <span
-                className='
-                form__image--label form__image-square--label
-                drop-zone--prompt
-              '
-              >
-                Arrastra una imagen
-              </span>
-              <span
-                className='
-                form__image--label-button form__image-square--label-button
-                drop-zone--prompt
-              '
-              >
-                O haz clic aquí para subir una imagen
-              </span>
+          <h1 className='form--title'>Edit admin</h1>
+          <div className='form__desktop'>
+            <div className='form'>
+              <input
+                className='input'
+                name='name'
+                type='text'
+                placeholder='Name'
+                autoComplete='off'
+                onChange={handleInput}
+              />
+              <input
+                className='input'
+                name='email'
+                type='email'
+                placeholder='Email'
+                autoComplete='off'
+                onChange={handleInput}
+              />
+              {/* <input
+                className='input'
+                name='password'
+                type='password'
+                placeholder='Password'
+                autoComplete='off'
+                minLength='8'
+                onChange={handleInput}
+              /> */}
+            </div>
+            <div className='form--field'>
+              <label className='form--label label' htmlFor='file'>
+                Profile picture
+              </label>
+              <div className='form__image form__image-square' id='drop-zone'>
+                <input
+                  className='form__image--input form__image-square--input'
+                  type='file'
+                  id='file'
+                  accept='image/*'
+                />
+                <div className='form__image-labels form__image-square-labels'>
+                  <span className='form__image--label form__image-square--label drop-zone--prompt'>
+                    Drag an image
+                  </span>
+                  <span className='form__image--label-button form__image-square--label-button drop-zone--prompt'>
+                    Or click to upload the image
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
+
           <ButtonContainer>
             <button type='submit' className='button primary-button'>
-              Guardar Cambios
+              Save changes
             </button>
-            <DangerButton name='Eliminar Administrador' onClick={toggleMessage} />
+            <DangerButton name='Delete' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>

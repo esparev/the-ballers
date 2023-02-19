@@ -11,7 +11,7 @@ import '@styles/CreateEntity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the create league page with all its functions
+ * Creates the create club page with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
@@ -76,7 +76,7 @@ const CreateClub = () => {
   };
 
   /**
-   * Sets the initial values for the league fields
+   * Sets the initial values for the club fields
    */
   const [form, setValues] = useState({
     name: '',
@@ -112,7 +112,7 @@ const CreateClub = () => {
    * @param {json} data - body data to post
    * @param {json} config - headers configuration
    */
-  const addLeague = async (url, data, config) => {
+  const addClub = async (url, data, config) => {
     await axios
       .post(url, data, config)
       .then((res) => {
@@ -139,7 +139,7 @@ const CreateClub = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addLeague(`${envConfig.apiUrl}/clubs`, form, authConfig);
+    addClub(`${envConfig.apiUrl}/clubs`, form, authConfig);
   };
 
   return (

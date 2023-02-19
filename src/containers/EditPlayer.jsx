@@ -19,7 +19,7 @@ import '@styles/CreateEntity.scss';
  */
 const EditPlayer = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Editar Jugador';
+    document.title = 'The Ballers • Edit Player';
     window.scrollTo(0, 0);
 
     // Opaque date placeholder until it has been modified
@@ -76,12 +76,12 @@ const EditPlayer = () => {
     form.image = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image upladed' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -116,10 +116,7 @@ const EditPlayer = () => {
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Jugador editado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Player edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -128,8 +125,8 @@ const EditPlayer = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al editar el jugador. 
-            Verifique los datos que haya ingresado`}
+            message={`Ups!, There was an error editing the player. 
+            Verify the information filled in the form`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -152,10 +149,7 @@ const EditPlayer = () => {
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message
-            message='¡Jugador eliminado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Player deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -165,8 +159,8 @@ const EditPlayer = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al eliminar el jugador. 
-            Inténtelo más tarde`}
+            message={`Ups!, There was an error deleting the news. 
+            Try again later`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -179,9 +173,7 @@ const EditPlayer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editPlayer(
-      `${envConfig.apiUrl}/jugadores/${localStorage.getItem(
-        'selected player'
-      )}`,
+      `${envConfig.apiUrl}/players/${localStorage.getItem('selected player')}`,
       form,
       authConfig
     );
@@ -189,9 +181,7 @@ const EditPlayer = () => {
 
   const handleDelete = () => {
     deletePlayer(
-      `${envConfig.apiUrl}/jugadores/${localStorage.getItem(
-        'selected player'
-      )}`,
+      `${envConfig.apiUrl}/players/${localStorage.getItem('selected player')}`,
       authConfig
     );
   };
@@ -204,80 +194,71 @@ const EditPlayer = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Editar Jugador</h1>
-          <input
-            className='input'
-            name='name'
-            type='text'
-            placeholder='Nombre'
-            onChange={handleInput}
-          />
-          <select
-            className='input empty'
-            name='position'
-            id='positions'
-            onChange={handleInput}
-          >
-            <option defaultValue value=''>
-              Posición
-            </option>
-            <option value='Pitcher'>Pitcher</option>
-            <option value='Catcher'>Catcher</option>
-            <option value='Primera Base'>Primera base</option>
-            <option value='Segunda Base'>Segunda base</option>
-            <option value='Tercera Base'>Tercera base</option>
-            <option value='Campocorto'>Campocorto</option>
-            <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
-            <option value='Jardinero Central'>Jardinero central</option>
-            <option value='Jardinero Derecho'>Jardinero derecho</option>
-            <option value='Bateador'>Bateador</option>
-          </select>
-          <label className='form--label label' htmlFor='date'>
-            Fecha de nacimiento
-          </label>
-          <input
-            className='input empty'
-            name='birthday'
-            type='date'
-            id='date'
-            placeholder='Fecha de nacimiento'
-            onChange={handleInput}
-          />
-
-          <label className='form--label label' htmlFor='file'>
-            Foto del Jugador
-          </label>
-          <div className='form__image form__image-square' id='drop-zone'>
-            <input
-              className='form__image--input form__image-square--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels form__image-square-labels'>
-              <span
-                className='
-                form__image--label form__image-square--label
-                drop-zone--prompt
-              '
-              >
-                Arrastra una imagen
-              </span>
-              <span
-                className='
-                form__image--label-button form__image-square--label-button
-                drop-zone--prompt
-              '
-              >
-                O haz clic aquí para subir una imagen
-              </span>
+          <h1 className='form--title'>Edit player</h1>
+          <div className='form__desktop'>
+            <div className='form'>
+              <input
+                className='input'
+                name='name'
+                type='text'
+                placeholder='Name'
+                onChange={handleInput}
+              />
+              <select className='input empty' name='position' id='positions' onChange={handleInput}>
+                <option defaultValue value=''>
+                  Position
+                </option>
+                <option value='Pitcher'>Pitcher</option>
+                <option value='Catcher'>Catcher</option>
+                <option value='Primera Base'>Primera base</option>
+                <option value='Segunda Base'>Segunda base</option>
+                <option value='Tercera Base'>Tercera base</option>
+                <option value='Campocorto'>Campocorto</option>
+                <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
+                <option value='Jardinero Central'>Jardinero central</option>
+                <option value='Jardinero Derecho'>Jardinero derecho</option>
+                <option value='Bateador'>Bateador</option>
+              </select>
+              <label className='form--label label label--bold' htmlFor='date'>
+                Birthday
+              </label>
+              <input
+                className='input empty'
+                name='birthday'
+                type='date'
+                id='date'
+                placeholder='Birthday'
+                onChange={handleInput}
+              />
+            </div>
+            <div className='form--field'>
+              <label className='form--label label' htmlFor='file'>
+                Profile picture
+              </label>
+              <div className='form__image form__image-square' id='drop-zone'>
+                <input
+                  className='form__image--input form__image-square--input'
+                  type='file'
+                  id='file'
+                  accept='image/*'
+                />
+                <div className='form__image-labels form__image-square-labels'>
+                  <span className='form__image--label form__image-square--label drop-zone--prompt'>
+                    Drag an image
+                  </span>
+                  <span className='form__image--label-button form__image-square--label-button drop-zone--prompt'>
+                    Or click to upload the image
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
+
           <ButtonContainer>
             <button type='submit' className='button primary-button'>
-              Guardar Cambios
+              Save changes
             </button>
-            <DangerButton name='Eliminar Jugador' onClick={toggleMessage} />
+            <DangerButton name='Delete' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>

@@ -19,7 +19,7 @@ import '@styles/CreateEntity.scss';
  */
 const EditCoach = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Editar Entrenador';
+    document.title = 'The Ballers • Edit Coach';
     window.scrollTo(0, 0);
 
     // Opaque date placeholder until it has been modified
@@ -76,12 +76,12 @@ const EditCoach = () => {
     form.image = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploading' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -116,10 +116,7 @@ const EditCoach = () => {
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Entrenador editado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Coach edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -128,8 +125,8 @@ const EditCoach = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al editar el entrenador. 
-            Verifique los datos que haya ingresado`}
+            message={`Ups!, There was an error editing the coach. 
+            Verify the information filled in the form`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -152,10 +149,7 @@ const EditCoach = () => {
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message
-            message='¡Entrenador eliminado con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='Coach deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -165,8 +159,8 @@ const EditCoach = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al eliminar el entrenador. 
-            Inténtelo más tarde`}
+            message={`Ups!, There was an error deleting the coach. 
+            Try again later`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -179,9 +173,7 @@ const EditCoach = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editCoach(
-      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem(
-        'selected coach'
-      )}`,
+      `${envConfig.apiUrl}/coaches/${localStorage.getItem('selected coach')}`,
       form,
       authConfig
     );
@@ -189,9 +181,7 @@ const EditCoach = () => {
 
   const handleDelete = () => {
     deleteCoach(
-      `${envConfig.apiUrl}/entrenadores/${localStorage.getItem(
-        'selected coach'
-      )}`,
+      `${envConfig.apiUrl}/coaches/${localStorage.getItem('selected coach')}`,
       authConfig
     );
   };
@@ -204,60 +194,56 @@ const EditCoach = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Editar Entrenador</h1>
-          <input
-            className='input'
-            name='name'
-            type='text'
-            placeholder='Nombre'
-            onChange={handleInput}
-          />
-          <label className='form--label label' htmlFor='date'>
-            Fecha de nacimiento
-          </label>
-          <input
-            className='input empty'
-            name='birthday'
-            type='date'
-            id='date'
-            placeholder='Fecha de nacimiento'
-            onChange={handleInput}
-          />
-
-          <label className='form--label label' htmlFor='file'>
-            Foto del Entrenador
-          </label>
-          <div className='form__image form__image-square' id='drop-zone'>
-            <input
-              className='form__image--input form__image-square--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels form__image-square-labels'>
-              <span
-                className='
-                form__image--label form__image-square--label
-                drop-zone--prompt
-              '
-              >
-                Arrastra una imagen
-              </span>
-              <span
-                className='
-                form__image--label-button form__image-square--label-button
-                drop-zone--prompt
-              '
-              >
-                O haz clic aquí para subir una imagen
-              </span>
+          <h1 className='form--title'>Edit coach</h1>
+          <div className='form__desktop'>
+            <div className='form'>
+              <input
+                className='input'
+                name='name'
+                type='text'
+                placeholder='Name'
+                onChange={handleInput}
+              />
+              <label className='form--label label label--bold' htmlFor='date'>
+                Birthday
+              </label>
+              <input
+                className='input empty'
+                name='birthday'
+                type='date'
+                id='date'
+                placeholder='Birthday'
+                onChange={handleInput}
+              />
+            </div>
+            <div className='form--field'>
+              <label className='form--label label' htmlFor='file'>
+                Profile picture
+              </label>
+              <div className='form__image form__image-square' id='drop-zone'>
+                <input
+                  className='form__image--input form__image-square--input'
+                  type='file'
+                  id='file'
+                  accept='image/*'
+                />
+                <div className='form__image-labels form__image-square-labels'>
+                  <span className='form__image--label form__image-square--label drop-zone--prompt'>
+                    Drag an image
+                  </span>
+                  <span className='form__image--label-button form__image-square--label-button drop-zone--promp'>
+                    Or click to upload the image
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
+
           <ButtonContainer>
             <button type='submit' className='button primary-button'>
-              Guardar Cambios
+              Save changes
             </button>
-            <DangerButton name='Eliminar Entrenador' onClick={toggleMessage} />
+            <DangerButton name='Delete' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>

@@ -20,7 +20,7 @@ import '@styles/CreateEntity.scss';
  */
 const EditNews = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Editar Noticia';
+    document.title = 'The Ballers • Edit News';
     window.scrollTo(0, 0);
 
     var elTxtA = document.getElementById('textarea');
@@ -73,12 +73,12 @@ const EditNews = () => {
     form.cover = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
-      <Message message='Subiendo imagen' messageStatus='upload' />,
+      <Message message='Uploading image' messageStatus='upload' />,
       document.getElementById('message-container')
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Se ha subido la imagen' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -113,10 +113,7 @@ const EditNews = () => {
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Noticia editada con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='News edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -125,8 +122,8 @@ const EditNews = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al editar la noticia. 
-            Verifique los datos que haya ingresado`}
+            message={`Ups!, There was an error editing the news. 
+            Verify the information filled in the form`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -149,10 +146,7 @@ const EditNews = () => {
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message
-            message='¡Noticia eliminada con éxito!'
-            messageStatus='success'
-          />,
+          <Message message='News deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -162,8 +156,8 @@ const EditNews = () => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al eliminar la noticia. 
-            Inténtelo más tarde`}
+            message={`Ups!, There was an error deleting the news. 
+            Try again later`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -175,18 +169,11 @@ const EditNews = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editNews(
-      `${envConfig.apiUrl}/noticias/${localStorage.getItem('selected news')}`,
-      form,
-      authConfig
-    );
+    editNews(`${envConfig.apiUrl}/news/${localStorage.getItem('selected news')}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteNews(
-      `${envConfig.apiUrl}/noticias/${localStorage.getItem('selected news')}`,
-      authConfig
-    );
+    deleteNews(`${envConfig.apiUrl}/news/${localStorage.getItem('selected news')}`, authConfig);
   };
 
   return (
@@ -197,14 +184,14 @@ const EditNews = () => {
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Editar Noticia</h1>
-          <div>
+          <h1 className='form--title'>Edit news</h1>
+          <div className='form--field'>
             <input
               className='input'
               name='title'
               type='text'
               id='input'
-              placeholder='Titulo'
+              placeholder='Title'
               onChange={handleInput}
             />
             <div className='input-count' id='input-count'>
@@ -212,47 +199,40 @@ const EditNews = () => {
               <span id='input-maximum'>/255</span>
             </div>
           </div>
-          <div>
+          <div className='form--field'>
             <textarea
               className='input'
               name='description'
               type='text'
               id='textarea'
-              placeholder='Descripción'
+              placeholder='Description'
               maxLength='1000'
-              onChange={handleInput}
-            ></textarea>
+              onChange={handleInput}></textarea>
             <div className='input-count' id='textarea-count'>
               <span id='textarea-current'>0</span>
               <span id='textarea-maximum'>/1000</span>
             </div>
           </div>
-
-          <label className='form--label label' htmlFor='file'>
-            Portada de la noticia
-          </label>
-          <div className='form__image' id='drop-zone'>
-            <input
-              className='form__image--input'
-              type='file'
-              id='file'
-              accept='image/*'
-            />
-            <div className='form__image-labels'>
-              <span className='form__image--label drop-zone--prompt'>
-                Arrastra una imagen
-              </span>
-              <span className='form__image--label-button drop-zone--prompt'>
-                O haz clic aquí para subir una imagen
-              </span>
+          <div className='form--field'>
+            <label className='form--label label' htmlFor='file'>
+              Cover
+            </label>
+            <div className='form__image' id='drop-zone'>
+              <input className='form__image--input' type='file' id='file' accept='image/*' />
+              <div className='form__image-labels'>
+                <span className='form__image--label drop-zone--prompt'>Drag an image</span>
+                <span className='form__image--label-button drop-zone--prompt'>
+                  Or click to upload the image
+                </span>
+              </div>
             </div>
           </div>
 
           <ButtonContainer>
             <button type='submit' className='button primary-button'>
-              Guardar Cambios
+              Save changes
             </button>
-            <DangerButton name='Eliminar Noticia' onClick={toggleMessage} />
+            <DangerButton name='Delete' onClick={toggleMessage} />
           </ButtonContainer>
         </form>
       </main>
