@@ -63,11 +63,11 @@ const TeamPlayers = (props) => {
           <div className='buttons__container'>
             <PrimaryButton
               name='Jugador'
-              route={`/ligas/${league.slug}/${team.slug}/nuevo-jugador`}
+              route={`/club/${league.slug}/${team.slug}/nuevo-jugador`}
             />
             <PrimaryButton
               name='Entrenador'
-              route={`/ligas/${league.slug}/${team.slug}/nuevo-entrenador`}
+              route={`/club/${league.slug}/${team.slug}/nuevo-entrenador`}
             />
             <a className='button secondary-button' onClick={toggleMessage}>
               Cancelar
@@ -90,7 +90,7 @@ const TeamPlayers = (props) => {
                     </a>
                     <SecondaryButton
                       name='Edit team'
-                      route={`/ligas/${league.slug}/${team.slug}/editar-equipo`}
+                      route={`/club/${league.slug}/${team.slug}/editar-equipo`}
                     />
                   </ButtonContainer>
                 ) : null}
@@ -123,7 +123,7 @@ const TeamPlayers = (props) => {
                     name={player.name}
                     image={player.image}
                     position={player.position}
-                    route={`/ligas/${league.slug}/${team.slug}/${player.slug}`}
+                    route={`/club/${league.slug}/${team.slug}/${player.slug}`}
                   />
                 ))}
               </div>
@@ -142,7 +142,7 @@ const TeamPlayers = (props) => {
                     key={coach.slug}
                     name={coach.name}
                     image={coach.image}
-                    route={`/ligas/${league.slug}/${team.slug}/${coach.slug}`}
+                    route={`/club/${league.slug}/${team.slug}/${coach.slug}`}
                   />
                 ))}
               </div>

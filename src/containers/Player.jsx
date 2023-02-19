@@ -57,7 +57,7 @@ const Player = (props) => {
                 <ButtonContainer>
                   <SecondaryButton
                     name='Edit player'
-                    route={`/ligas/${league.slug}/${team.slug}/${player.slug}/editar-jugador`}
+                    route={`/club/${league.slug}/${team.slug}/${player.slug}/editar-jugador`}
                   />
                 </ButtonContainer>
               ) : null}
@@ -89,7 +89,7 @@ const Player = (props) => {
                   key={player.slug}
                   name={player.name}
                   image={player.image}
-                  route={`/ligas/${league.slug}/${team.slug}/${player.slug}`}
+                  route={`/club/${league.slug}/${team.slug}/${player.slug}`}
                 />
               ))}
             </div>

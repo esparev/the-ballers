@@ -17,7 +17,7 @@ const Admins = () => {
   const admins = useGetAdmins(envConfig.apiUrl);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Administradores';
+    document.title = 'The Ballers • Admins';
     window.scrollTo(0, 0);
   }, []);
 
@@ -26,15 +26,15 @@ const Admins = () => {
       <div className='admins__container-card'>
         <div className='players-coach'>
           <section className='admins'>
-            <h2 className='admins--title'>Administradores</h2>
+            <h2 className='admins--title'>Admins</h2>
             <div className='admins__container'>
               {admins.map((admin) => (
                 <AdminActor
                   admin={admin}
-                  key={admin.id}
+                  key={admin.slug}
                   name={admin.name}
                   image={admin.image}
-                  route={`/admins/${admin.id}`}
+                  route={`/admin/${admin.slug}`}
                 />
               ))}
             </div>
@@ -42,10 +42,7 @@ const Admins = () => {
         </div>
 
         <ButtonContainer>
-          <PrimaryButton
-            name='Nuevo Administrador'
-            route='/admins/nuevo-admin'
-          />
+          <PrimaryButton name='Create admin' route='/new-admin' />
         </ButtonContainer>
       </div>
     </main>

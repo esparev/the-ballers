@@ -52,44 +52,44 @@ const App = ({ isLogged }) => {
         <Switch>
           <Route exact path='/' component={Home} />
           {/* News routes */}
-          <Route exact path='/noticias' component={News} />
-          <Route exact path='/noticias/:slug' component={SingleNews} />
-          <Route exact path='/noticias/nueva-noticia' component={isLogged ? CreateNews : NotFound} />
-          <Route exact path='/noticias/:slug/editar-noticia' component={isLogged ? EditNews : NotFound} />
+          <Route exact path='/news' component={News} />
+          <Route exact path='/news/:slug' component={SingleNews} />
+          <Route exact path='/new-news' component={isLogged ? CreateNews : NotFound} />
+          <Route exact path='/edit-news/:slug' component={isLogged ? EditNews : NotFound} />
           {/* Tournaments routes */}
-          <Route exact path='/torneos' component={Tournaments} />
-          <Route exact path='/torneos/:slug' component={Tournament} />
-          <Route exact path='/torneos/nuevo-torneo' component={isLogged ? CreateTournament : NotFound} />
-          <Route exact path='/torneos/:slug/editar-torneo' component={isLogged ? EditTournament : NotFound} />
+          <Route exact path='/tournaments' component={Tournaments} />
+          <Route exact path='/tournament/:slug' component={Tournament} />
+          <Route exact path='/new-tournament' component={isLogged ? CreateTournament : NotFound} />
+          <Route exact path='/edit-tournament/:slug' component={isLogged ? EditTournament : NotFound} />
           {/* Leagues routes */}
-          <Route exact path='/ligas' component={Leagues} />
-          <Route exact path='/ligas/:slug' component={LeagueTeams} />
-          <Route exact path='/ligas/nueva-liga' component={isLogged ? CreateLeague : NotFound} />
-          <Route exact path='/ligas/:slug/editar-liga' component={isLogged ? EditLeague : NotFound} />
+          <Route exact path='/clubs' component={Leagues} />
+          <Route exact path='/club/:slug' component={LeagueTeams} />
+          <Route exact path='/new-club' component={isLogged ? CreateLeague : NotFound} />
+          <Route exact path='/club/:slug/editar-liga' component={isLogged ? EditLeague : NotFound} />
           {/* Teams routes */}
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug' component={TeamPlayers} />
-          <Route exact path='/ligas/:ligaSlug/nuevo-equipo' component={isLogged ? CreateTeam : NotFound} />
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug/editar-equipo' component={isLogged ? EditTeam : NotFound} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug' component={TeamPlayers} />
+          <Route exact path='/club/:ligaSlug/nuevo-equipo' component={isLogged ? CreateTeam : NotFound} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug/editar-equipo' component={isLogged ? EditTeam : NotFound} />
           {/* Player routes */}
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug/:jugadorSlug' component={PlayerContainer} />
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug/nuevo-jugador' component={isLogged ? CreatePlayer : NotFound} />
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug/:jugadorSlug/editar-jugador' component={isLogged ? EditPlayer : NotFound} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug/:jugadorSlug' component={PlayerContainer} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug/nuevo-jugador' component={isLogged ? CreatePlayer : NotFound} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug/:jugadorSlug/editar-jugador' component={isLogged ? EditPlayer : NotFound} />
           {/* Coach routes */}
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug/:entrenadorSlug' component={CoachContainer} />
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug/nuevo-entrenador' component={isLogged ? CreateCoach : NotFound} />
-          <Route exact path='/ligas/:ligaSlug/:equipoSlug/:entrenadorSlug/editar-entrenador' component={isLogged ? EditCoach : NotFound} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug/:entrenadorSlug' component={CoachContainer} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug/nuevo-entrenador' component={isLogged ? CreateCoach : NotFound} />
+          <Route exact path='/club/:ligaSlug/:equipoSlug/:entrenadorSlug/editar-entrenador' component={isLogged ? EditCoach : NotFound} />
           {/* Admins routes */}
           <Route exact path='/admins' component={isLogged ? Admins : NotFound} />
-          <Route exact path='/admins/:slug' component={isLogged ? AdminContainer : NotFound} />
-          <Route exact path='/admins/nuevo-admin' component={isLogged ? CreateAdmin : NotFound} />
-          <Route exact path='/admins/:slug/editar-admin' component={isLogged ? EditAdmin : NotFound} />
+          <Route exact path='/admin/:slug' component={isLogged ? AdminContainer : NotFound} />
+          <Route exact path='/new-admin' component={isLogged ? CreateAdmin : NotFound} />
+          <Route exact path='/edit-admin/:slug' component={isLogged ? EditAdmin : NotFound} />
           {/* Other routes */}
-          <Route exact path='/perfil' component={isLogged ? Profile : NotFound} />
-          <Route exact path='/conocenos' component={About} />
-          <Route exact path='/iniciar-sesion' component={Login} />
-          <Route exact path='/recuperar-contraseña' component={Recovery} />
-          <Route exact path='/enviar-correo' component={SendMail} />
-          <Route exact path='/recuperar' component={ChangePassword} />
+          <Route exact path='/profile' component={isLogged ? Profile : NotFound} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/change-password' component={Recovery} />
+          <Route exact path='/send-mail' component={SendMail} />
+          <Route exact path='/recovery' component={ChangePassword} />
           <Route path='*' component={NotFound} />
         </Switch>
       </Layout>

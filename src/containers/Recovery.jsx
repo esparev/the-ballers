@@ -46,7 +46,7 @@ const Recovery = () => {
     await axios
       .post(url, data)
       .then((res) => {
-        window.location.href = '/#/enviar-correo';
+        window.location.href = '/#/send-mail';
       })
       .catch((error) => {
         ReactDOM.render(
@@ -103,10 +103,10 @@ const Recovery = () => {
                 />
               </div>
               <button type='submit' className='login__form--button'>
-                <Link to='/enviar-correo'>Enviar</Link>
+                <Link to='/send-mail'>Enviar</Link>
               </button>
             </form>
-            <Link className='login--forgot-password' to='/iniciar-sesion'>
+            <Link className='login--forgot-password' to='/login'>
               Regresar a inicio de sesión
             </Link>
           </section>

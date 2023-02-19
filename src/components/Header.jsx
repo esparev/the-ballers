@@ -58,16 +58,16 @@ const Header = () => {
       <nav className='nav' id='nav'>
         <ul className='nav__list'>
           <li className='nav__list--item'>
-            <Link to='/noticias'>News</Link>
+            <Link to='/news'>News</Link>
           </li>
           <li className='nav__list--item'>
-            <Link to='/torneos'>Tournaments</Link>
+            <Link to='/tournaments'>Tournaments</Link>
           </li>
           <li className='nav__list--item'>
-            <Link to='/ligas'>Clubs</Link>
+            <Link to='/clubs'>Clubs</Link>
           </li>
           <li className='nav__list--item'>
-            <Link to='/conocenos'>About us</Link>
+            <Link to='/about'>About us</Link>
           </li>
           {localStorage.getItem('image') ? (
             <li className='nav__list--image'>
@@ -91,7 +91,7 @@ const Header = () => {
             {localStorage.getItem('id') ? (
               <>
                 <li className='nav__list--item'>
-                  <Link to='/perfil'>Profile</Link>
+                  <Link to='/profile'>Profile</Link>
                 </li>
                 <li className='nav__list--item'>
                   <Link to='/admins'>Admins</Link>
@@ -101,13 +101,13 @@ const Header = () => {
 
             {localStorage.getItem('id') ? (
               <li className='nav__list--item'>
-                <Link to='/iniciar-sesion' onClick={logout}>
+                <Link to='/login' onClick={logout}>
                   Logout
                 </Link>
               </li>
             ) : (
               <li className='nav__list--item'>
-                <Link to='/iniciar-sesion'>Login</Link>
+                <Link to='/login'>Login</Link>
               </li>
             )}
           </div>

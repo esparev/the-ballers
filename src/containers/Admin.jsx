@@ -27,7 +27,7 @@ const Admin = (props) => {
   localStorage.setItem('selected admin', admin.id);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Admin';
+    document.title = 'The Ballers • Admin';
     window.scrollTo(0, 0);
   }, []);
 
@@ -58,10 +58,10 @@ const Admin = (props) => {
               {admins.map((admin) => (
                 <MoreActors
                   admin={admin}
-                  key={admin.id}
+                  key={admin.slug}
                   name={admin.name}
                   image={admin.image}
-                  route={`/admins/${admin.id}`}
+                  route={`/admin/${admin.slug}`}
                 />
               ))}
             </div>
@@ -72,7 +72,7 @@ const Admin = (props) => {
           {localStorage.getItem('role') === 'hero' ? (
             <SecondaryButton
               name='Edit Admin'
-              route={`/admins/${admin.id}/edit-admin`}
+              route={`/edit-admin/${admin.slug}`}
             />
           ) : null}
         </ButtonContainer>

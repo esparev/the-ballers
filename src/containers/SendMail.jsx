@@ -38,7 +38,7 @@ const SendMail = () => {
           </div>
           <form className='login__form' action=''>
             <button className='login__form--button'>
-              <Link to='/iniciar-sesion'>Iniciar sesión</Link>
+              <Link to='/login'>Iniciar sesión</Link>
             </button>
           </form>
         </section>

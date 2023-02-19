@@ -66,7 +66,7 @@ const News = () => {
                       date={moment(news.createdAt).format('MMMM Do YYYY')}
                       category='News'
                       description={news.description}
-                      route={`/noticias/${news.slug}`}
+                      route={`/news/${news.slug}`}
                     />
                   </HashRouter>
                 ))}
@@ -117,7 +117,7 @@ const News = () => {
               <Link
                 className='button primary-button'
                 style={{ marginRight: 0 }}
-                to='/noticias/nueva-noticia'>
+                to='/new-news'>
                 Create news
               </Link>
             </ButtonContainer>
@@ -137,7 +137,7 @@ const News = () => {
               date={moment(news.createdAt).format('MMMM Do YYYY')}
               category='News'
               description={news.description}
-              route={`/noticias/${news.slug}`}
+              route={`/news/${news.slug}`}
             />
           ))}
         </div>

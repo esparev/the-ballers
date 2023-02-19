@@ -119,7 +119,7 @@ const Login = () => {
               Iniciar Sesión
             </button>
           </form>
-          <Link className='login--forgot-password' to='/recuperar-contraseña'>
+          <Link className='login--forgot-password' to='/change-password'>
             ¿Olvidaste tu contraseña?
           </Link>
           <p className='login--wrong-login' id='wrong-login'>

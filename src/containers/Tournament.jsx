@@ -159,7 +159,7 @@ const Tournament = (props) => {
             <ButtonContainer>
               <SecondaryButton
                 name='Edit tournament'
-                route={`/torneos/torneo/${tournament.slug}/editar-torneo`}
+                route={`/edit-tournament/${tournament.slug}`}
               />
             </ButtonContainer>
           ) : null}
@@ -175,7 +175,7 @@ const Tournament = (props) => {
               cover={tournament.cover}
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
               category='Tournament'
-              route={`/torneos/torneo/${tournament.slug}`}
+              route={`/tournament/${tournament.slug}`}
               onClick={loadComponent}
             />
           ))}

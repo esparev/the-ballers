@@ -67,7 +67,7 @@ const Tournaments = () => {
                       date={moment(tournament.createdAt).format(`MMMM Do YYYY`)}
                       category='Tournament'
                       description={tournament.description}
-                      route={`/torneos/${tournament.slug}`}
+                      route={`/tournament/${tournament.slug}`}
                     />
                   </HashRouter>
                 ))}
@@ -118,7 +118,7 @@ const Tournaments = () => {
               <Link
                 className='button primary-button'
                 style={{ marginRight: 0 }}
-                to='/torneos/nuevo-torneo'>
+                to='/new-tournament'>
                 Create tournament
               </Link>
             </ButtonContainer>
@@ -139,7 +139,7 @@ const Tournaments = () => {
               date={moment(tournament.createdAt).format('MMMM Do YYYY')}
               category='Tournament'
               description={tournament.description}
-              route={`/torneos/${tournament.slug}`}
+              route={`/tournament/${tournament.slug}`}
             />
           ))}
         </div>

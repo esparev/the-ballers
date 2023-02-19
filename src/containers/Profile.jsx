@@ -50,7 +50,7 @@ const Profile = () => {
         <ButtonContainer>
           <SecondaryButton
             name='Editar Perfil'
-            route={`/admins/${id}/editar-admin`}
+            route={`/admin/${id}/editar-admin`}
           />
         </ButtonContainer>
       </section>

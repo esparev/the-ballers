@@ -29,7 +29,7 @@ const Leagues = () => {
           <h1 className='entities--title'>The Ballers's clubs</h1>
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <PrimaryButton name='Create club' route='/ligas/nueva-liga' />
+              <PrimaryButton name='Create club' route='/new-club' />
             </ButtonContainer>
           ) : null}
         </div>
@@ -41,7 +41,7 @@ const Leagues = () => {
               key={club.slug}
               name={club.name}
               logo={club.logo}
-              route={`/ligas/${club.slug}`}
+              route={`/club/${club.slug}`}
             />
           ))}
         </EntityContainer>

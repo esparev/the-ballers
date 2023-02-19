@@ -76,7 +76,7 @@ const Home = () => {
                   <h1 className='slider__sidebar--title'>{news.title}</h1>
                   <hr className='slider__sidebar--line' />
                   <p className='slider__sidebar--summary'>{news.description}</p>
-                  <PrimaryButton name='See more' route={`/noticias/${news.slug}`} />
+                  <PrimaryButton name='See more' route={`/news/${news.slug}`} />
                 </div>
                 <div className='slider__image'>
                   {news.cover ? (
@@ -98,7 +98,7 @@ const Home = () => {
               key={league.slug}
               name={league.name}
               logo={league.logo}
-              route={`/ligas/${league.slug}`}
+              route={`/club/${league.slug}`}
             />
           ))}
         </EntityContainer>
@@ -117,7 +117,7 @@ const Home = () => {
                 date={moment(news.createdAt).format('DD MMMM, YYYY')}
                 category='News'
                 description={news.description}
-                route={`/noticias/${news.slug}`}
+                route={`/news/${news.slug}`}
               />
             ))}
           </div>
@@ -133,7 +133,7 @@ const Home = () => {
               cover={tournament.cover}
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
               category='Tournament'
-              route={`/torneos/${tournament.slug}`}
+              route={`/tournament/${tournament.slug}`}
             />
           ))}
         </section>

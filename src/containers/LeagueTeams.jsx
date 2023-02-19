@@ -46,8 +46,8 @@ const LeagueTeams = (props) => {
               <h1 className='club--title'>{league.name}</h1>
               {localStorage.getItem('id') ? (
                 <ButtonContainer>
-                  <PrimaryButton name='Create team' route={`/ligas/${league.id}/nuevo-equipo`} />
-                  <SecondaryButton name='Edit club' route={`/ligas/${league.id}/editar-liga`} />
+                  <PrimaryButton name='Create team' route={`/club/${league.id}/nuevo-equipo`} />
+                  <SecondaryButton name='Edit club' route={`/club/${league.id}/editar-liga`} />
                 </ButtonContainer>
               ) : null}
             </div>
@@ -97,7 +97,7 @@ const LeagueTeams = (props) => {
                   key={team.slug}
                   name={team.name}
                   logo={team.logo}
-                  route={`/ligas/${league.slug}/${team.slug}`}
+                  route={`/club/${league.slug}/${team.slug}`}
                 />
               ))}
             </EntityContainer>

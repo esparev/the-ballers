@@ -157,7 +157,7 @@ const SingleNews = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <SecondaryButton name='Edit news' route={`/noticias/${news.id}/editar-noticia`} />
+              <SecondaryButton name='Edit news' route={`/edit-news/${news.slug}`} />
             </ButtonContainer>
           ) : null}
         </section>
@@ -172,7 +172,7 @@ const SingleNews = (props) => {
               cover={news.cover}
               date={moment(news.createdAt).format('MMMM Do YYYY')}
               category='News'
-              route={`/noticias/${news.slug}`}
+              route={`/news/${news.slug}`}
               onClick={loadComponent}
             />
           ))}
