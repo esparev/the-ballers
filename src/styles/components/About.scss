@@ -1,37 +1,72 @@
 @import '../Vars.scss';
 
 .about {
+  width: 100%;
   display: flex;
-  height: 95vh;
+  row-gap: 24px;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 0 60px 0;
+}
+
+.about__figure {
+  width: 100%;
+  max-height: 352px;
+  display: flex;
+  align-items: start;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+.who,
+.pros {
+  width: 100%;
+  display: flex;
+  row-gap: 12px;
   align-items: center;
   flex-direction: column;
 }
+
 .who--title,
 .pros--title {
+  text-transform: uppercase;
   text-align: center;
   color: $white-100;
 }
+
 .about--description {
-  font-family: $roboto-font;
-  font-size: $normal-desk;
+  width: 70%;
+  font-family: $inter-font;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
   text-align: center;
-  color: $white-100;
+  color: $white-300;
 }
-.about section {
-  padding: 0 15%;
-}
-.pros {
-  margin-top: 40px;
+
+.about hr {
+  width: 35%;
+  border: none;
+  border-bottom: 4px solid $green-light;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 @media only screen and (max-width: 836px) {
   .about {
-    padding: 20px;
+    padding: 20px 0;
   }
+
+  .who,
+  .pros {
+    padding: 0 20px;
+  }
+
   .about--description {
-    font-size: $normal-mob;
-  }
-  .about section {
-    padding: 0;
+    width: 100%;
   }
 }
