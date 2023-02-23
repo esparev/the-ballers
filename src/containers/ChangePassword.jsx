@@ -55,17 +55,15 @@ const ChangePassword = () => {
       .post(url, data)
       .then((res) => {
         ReactDOM.render(
-          <Message
-            message='¡Se ha cambiado tu contraseña!'
-            messageStatus='success'
-          />,
+          <Message message='Your password has been changed!' messageStatus='success' />,
           document.getElementById('message-container')
         );
       })
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message='¡Ups!, Hubo un error al cambiar la contraseña. Ingrese una contraseña válida'
+            message='Ups!, There was an error changing your password.
+            Enter a valid password'
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -75,60 +73,42 @@ const ChangePassword = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    changePassword(`${envConfig.apiUrl}/auth/cambiar-contra`, form);
+    changePassword(`${envConfig.apiUrl}/auth/change-password`, form);
   };
 
   return (
     <>
       <div id='message-container'></div>
 
-      <div className='main-login'>
-        <section className='greeting'>
-          <h1 className='greeting--title'>Crea una Nueva Contraseña</h1>
-        </section>
-        <section className='greeting-desktop'>
-          <h1 className='greeting--title'>Nueva Contraseña</h1>
-        </section>
-
-        <main className='login-main'>
-          <section className='login'>
-            <div className='login__greet'>
-              <h2 className='login__greet--title'>Nueva Contraseña</h2>
-              <p className='login__greet--message'>
-                Ingrese una nueva contraseña para su cuenta
-              </p>
+      <main className='login'>
+        <section className='login'>
+          <div className='login__greet'>
+            <h2 className='login__greet--title'>New Password</h2>
+            <p className='login__greet--message'>Enter a new password for your account</p>
+          </div>
+          <form className='login__form' onSubmit={handleSubmit}>
+            <div className='login__form--password'>
+              <input
+                className='login__form--input form--input-text'
+                name='newPassword'
+                type='password'
+                id='password'
+                minLength='8'
+                placeholder='Password'
+                required
+                onChange={handleInput}
+              />
+              <span
+                className='login__form--password-icon input-icon'
+                id='password-icon'
+                onClick={togglePassword}></span>
             </div>
-            <div className='login__greet-desktop'>
-              <h2 className='login__greet--title'>Crea una Nueva Contraseña</h2>
-              <p className='login__greet--message'>
-                Ingrese una nueva contraseña para su cuenta
-              </p>
-            </div>
-            <form className='login__form' onSubmit={handleSubmit}>
-              <div className='login__form--password'>
-                <input
-                  className='login__form--input form--input-text'
-                  name='newPassword'
-                  type='password'
-                  id='password'
-                  minLength='8'
-                  placeholder='Nueva contraseña'
-                  required
-                  onChange={handleInput}
-                />
-                <span
-                  className='login__form--password-icon input-icon'
-                  id='password-icon'
-                  onClick={togglePassword}
-                ></span>
-              </div>
-              <button type='submit' className='login__form--button'>
-                Confirmar
-              </button>
-            </form>
-          </section>
-        </main>
-      </div>
+            <button type='submit' className='login__form--button'>
+              Change password
+            </button>
+          </form>
+        </section>
+      </main>
     </>
   );
 };
