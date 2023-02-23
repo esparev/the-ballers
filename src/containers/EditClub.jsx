@@ -5,6 +5,7 @@ import Message from '@components/Message';
 import DangerButton from '@components/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getClub } from '../api/getClub';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -17,10 +18,57 @@ import '@styles/CreateEntity.scss';
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditClub = () => {
+const EditClub = (props) => {
+  const { slug } = props.match.params;
+
+  /**
+   * Sets the initial values for the club fields
+   */
+  const [clubForm, setClubValues] = useState({
+    name: '',
+    responsable: '',
+    phone: '',
+    ageStart: 0,
+    ageEnd: 0,
+    address: {
+      streetName: '',
+      streetNumber: '',
+      zipCode: '',
+      suburb: '',
+      location: '',
+    },
+  });
+  const [addressForm, setAddressValues] = useState({});
+
+  const loadClub = async () => {
+    try {
+      const response = await getClub(envConfig.apiUrl, slug);
+      setClubValues({
+        name: response.name,
+        responsable: response.responsable,
+        phone: response.phone,
+        ageStart: response.ageStart,
+        ageEnd: response.ageEnd,
+        address: {
+          streetName: response.address.streetName,
+          streetNumber: response.address.streetNumber,
+          zipCode: response.address.zipCode,
+          suburb: response.address.suburb,
+          location: response.address.location,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     document.title = 'Edit Club • The Ballers';
     window.scrollTo(0, 0);
+
+    (async () => {
+      await loadClub();
+    })();
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -75,29 +123,6 @@ const EditClub = () => {
         document.getElementById('message-container')
       );
     }, 1500);
-  };
-
-  /**
-   * Sets the initial values for the club fields
-   */
-  const [clubForm, setClubValues] = useState({});
-  const [addressForm, setAddressValues] = useState({});
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleClubInput = (event) => {
-    setClubValues({
-      ...clubForm,
-      [event.target.name]: event.target.value,
-    });
-  };
-  const handleAddressInput = (event) => {
-    setAddressValues({
-      ...addressForm,
-      [event.target.name]: event.target.value,
-    });
   };
 
   /**
@@ -195,6 +220,7 @@ const EditClub = () => {
         localStorage.removeItem('uploaded image');
       });
   };
+
   /**
    * Sends a delete request to the URL of the API provided
    * to delete the selected news according to its id along
@@ -223,6 +249,24 @@ const EditClub = () => {
           document.getElementById('message-container')
         );
       });
+  };
+
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleClubInput = (event) => {
+    setClubValues({
+      ...clubForm,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleAddressInput = (event) => {
+    setAddressValues({
+      ...addressForm,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -263,6 +307,7 @@ const EditClub = () => {
                 name='name'
                 type='text'
                 placeholder="Club's name"
+                value={clubForm.name}
                 onChange={handleClubInput}
               />
               <label className='label label--bold'>Responsible's data</label>
@@ -271,6 +316,7 @@ const EditClub = () => {
                 name='responsable'
                 type='text'
                 placeholder='Name'
+                value={clubForm.responsable}
                 onChange={handleClubInput}
               />
               <input
@@ -279,6 +325,7 @@ const EditClub = () => {
                 type='num'
                 maxLength='10'
                 placeholder='Phone number'
+                value={clubForm.phone}
                 onChange={handleClubInput}
               />
               <label className='label label--bold'>Address</label>
@@ -287,6 +334,7 @@ const EditClub = () => {
                 name='address.streetName'
                 type='text'
                 placeholder='Street name'
+                value={clubForm.address.streetName}
                 onChange={handleAddressInput}
               />
               <input
@@ -294,6 +342,7 @@ const EditClub = () => {
                 name='address.streetNumber'
                 type='text'
                 placeholder='Street number'
+                value={clubForm.address.streetNumber}
                 onChange={handleAddressInput}
               />
               <input
@@ -302,6 +351,7 @@ const EditClub = () => {
                 type='text'
                 maxLength='5'
                 placeholder='Zip code'
+                value={clubForm.address.zipCode}
                 onChange={handleAddressInput}
               />
               <input
@@ -309,6 +359,7 @@ const EditClub = () => {
                 name='address.suburb'
                 type='text'
                 placeholder='Suburb'
+                value={clubForm.address.suburb}
                 onChange={handleAddressInput}
               />
               <input
@@ -316,6 +367,7 @@ const EditClub = () => {
                 name='address.location'
                 type='text'
                 placeholder='Location'
+                value={clubForm.address.location}
                 onChange={handleAddressInput}
               />
               <label className='label label--bold'>Age range</label>
@@ -327,6 +379,7 @@ const EditClub = () => {
                   type='tel'
                   maxLength='2'
                   placeholder='00'
+                  value={clubForm.ageStart}
                   onChange={handleClubInput}
                 />
                 <label className='label'>to</label>
@@ -336,6 +389,7 @@ const EditClub = () => {
                   type='tel'
                   maxLength='2'
                   placeholder='00'
+                  value={clubForm.ageEnd}
                   onChange={handleClubInput}
                 />
                 <label className='label'>years</label>

@@ -5,6 +5,7 @@ import Message from '@components/Message';
 import DangerButton from '@components/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getPlayer } from '../api/getPlayer';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -17,20 +18,30 @@ import '@styles/CreateEntity.scss';
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditPlayer = () => {
+const EditPlayer = (props) => {
+  const { slug } = props.match.params;
+
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({ name: '', position: '', birthday: '' });
+
+  const loadPlayer = async () => {
+    try {
+      const response = await getPlayer(envConfig.apiUrl, slug);
+      setValues({ name: response.name, position: response.position, birthday: response.birthday });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     document.title = 'Edit Player • The Ballers';
     window.scrollTo(0, 0);
 
-    // Opaque date placeholder until it has been modified
-    var dateEl = document.getElementById('date');
-    dateEl.onchange = function () {
-      if (dateEl.value === '') {
-        dateEl.classList.add('empty');
-      } else {
-        dateEl.classList.remove('empty');
-      }
-    };
+    (async () => {
+      await loadPlayer();
+    })();
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -85,22 +96,6 @@ const EditPlayer = () => {
         document.getElementById('message-container')
       );
     }, 1500);
-  };
-
-  /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({});
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
   };
 
   /**
@@ -170,6 +165,17 @@ const EditPlayer = () => {
       });
   };
 
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     editPlayer(
@@ -202,11 +208,12 @@ const EditPlayer = () => {
                 name='name'
                 type='text'
                 placeholder='Name'
+                value={form.name}
                 onChange={handleInput}
               />
-              <select className='input empty' name='position' id='positions' onChange={handleInput}>
+              <select className='input' name='position' id='positions' onChange={handleInput}>
                 <option defaultValue value=''>
-                  Position
+                  {form.position}
                 </option>
                 <option value='Pitcher'>Pitcher</option>
                 <option value='Catcher'>Catcher</option>
@@ -223,11 +230,12 @@ const EditPlayer = () => {
                 Birthday
               </label>
               <input
-                className='input empty'
+                className='input'
                 name='birthday'
                 type='date'
                 id='date'
                 placeholder='Birthday'
+                value={form.birthday}
                 onChange={handleInput}
               />
             </div>

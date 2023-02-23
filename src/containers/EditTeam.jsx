@@ -5,6 +5,7 @@ import Message from '@components/Message';
 import DangerButton from '@components/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getTeam } from '../api/getTeam';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -17,10 +18,30 @@ import '@styles/CreateEntity.scss';
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditTeam = () => {
+const EditTeam = (props) => {
+  const { slug } = props.match.params;
+
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({ name: '', manager: '' });
+
+  const loadTeam = async () => {
+    try {
+      const response = await getTeam(envConfig.apiUrl, slug);
+      setValues({ name: response.name, manager: response.manager });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     document.title = 'Edit Team • The Ballers';
     window.scrollTo(0, 0);
+
+    (async () => {
+      await loadTeam();
+    })();
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -75,22 +96,6 @@ const EditTeam = () => {
         document.getElementById('message-container')
       );
     }, 1500);
-  };
-
-  /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({});
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
   };
 
   /**
@@ -160,6 +165,17 @@ const EditTeam = () => {
       });
   };
 
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     editTeam(
@@ -189,6 +205,7 @@ const EditTeam = () => {
                 name='name'
                 type='text'
                 placeholder='Name'
+                value={form.name}
                 onChange={handleInput}
               />
               <input
@@ -196,6 +213,7 @@ const EditTeam = () => {
                 name='manager'
                 type='text'
                 placeholder="Manager's name"
+                value={form.manager}
                 onChange={handleInput}
               />
             </div>

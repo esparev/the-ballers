@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
 import DangerButton from '@components/DangerButton';
-import PrimaryButton from '@components/PrimaryButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getAdmin } from '../api/getAdmin';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -19,10 +18,30 @@ import '@styles/CreateEntity.scss';
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditAdmin = () => {
+const EditAdmin = (props) => {
+  const { slug } = props.match.params;
+
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({ name: '', email: '' });
+
+  const loadAdmin = async () => {
+    try {
+      const response = await getAdmin(envConfig.apiUrl, slug);
+      setValues({ name: response.name, email: response.email });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     document.title = 'Edit Admin • The Ballers';
     window.scrollTo(0, 0);
+
+    (async () => {
+      await loadAdmin();
+    })();
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -77,22 +96,6 @@ const EditAdmin = () => {
         document.getElementById('message-container')
       );
     }, 1500);
-  };
-
-  /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({});
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
   };
 
   /**
@@ -162,6 +165,17 @@ const EditAdmin = () => {
       });
   };
 
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     editAdmin(
@@ -192,6 +206,7 @@ const EditAdmin = () => {
                 type='text'
                 placeholder='Name'
                 autoComplete='off'
+                value={form.name}
                 onChange={handleInput}
               />
               <input
@@ -200,17 +215,9 @@ const EditAdmin = () => {
                 type='email'
                 placeholder='Email'
                 autoComplete='off'
+                value={form.email}
                 onChange={handleInput}
               />
-              {/* <input
-                className='input'
-                name='password'
-                type='password'
-                placeholder='Password'
-                autoComplete='off'
-                minLength='8'
-                onChange={handleInput}
-              /> */}
             </div>
             <div className='form--field'>
               <label className='form--label label' htmlFor='file'>

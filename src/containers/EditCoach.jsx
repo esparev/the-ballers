@@ -5,6 +5,7 @@ import Message from '@components/Message';
 import DangerButton from '@components/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getCoach } from '../api/getCoach';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -17,20 +18,30 @@ import '@styles/CreateEntity.scss';
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditCoach = () => {
+const EditCoach = (props) => {
+  const { slug } = props.match.params;
+
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({ name: '', birthday: '' });
+
+  const loadCoach = async () => {
+    try {
+      const response = await getCoach(envConfig.apiUrl, slug);
+      setValues({ name: response.name, birthday: response.birthday });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     document.title = 'Edit Coach • The Ballers';
     window.scrollTo(0, 0);
 
-    // Opaque date placeholder until it has been modified
-    var dateEl = document.getElementById('date');
-    dateEl.onchange = function () {
-      if (dateEl.value === '') {
-        dateEl.classList.add('empty');
-      } else {
-        dateEl.classList.remove('empty');
-      }
-    };
+    (async () => {
+      await loadCoach();
+    })();
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -85,22 +96,6 @@ const EditCoach = () => {
         document.getElementById('message-container')
       );
     }, 1500);
-  };
-
-  /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({});
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
   };
 
   /**
@@ -170,6 +165,17 @@ const EditCoach = () => {
       });
   };
 
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     editCoach(
@@ -202,17 +208,19 @@ const EditCoach = () => {
                 name='name'
                 type='text'
                 placeholder='Name'
+                value={form.name}
                 onChange={handleInput}
               />
               <label className='form--label label label--bold' htmlFor='date'>
                 Birthday
               </label>
               <input
-                className='input empty'
+                className='input'
                 name='birthday'
                 type='date'
                 id='date'
                 placeholder='Birthday'
+                value={form.birthday}
                 onChange={handleInput}
               />
             </div>
