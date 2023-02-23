@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
 import ButtonContainer from '@containers/ButtonContainer';
-import countCharacters from '@functions/countCharacters';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
