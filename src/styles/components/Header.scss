@@ -88,7 +88,15 @@ header {
   color: $green-light;
 }
 
-.nav__list--admin a img,
+.nav__list--image a {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-content: center;
+  border-radius: 1000px;
+}
+
+.nav__list--image a img,
 .nav__list--item a svg {
   width: 40px;
   height: 40px;
@@ -105,7 +113,7 @@ header {
   fill: $green-light;
 }
 
-.nav__list--admin a img:hover {
+.nav__list--image a:hover {
   cursor: pointer;
   transition: 0.1s;
   border: 2px $green-light solid;
