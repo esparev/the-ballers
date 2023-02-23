@@ -51,7 +51,7 @@ const Coach = (props) => {
               <h1 className='actor__info--name'>{coach.name}</h1>
               {localStorage.getItem('id') ? (
                 <ButtonContainer>
-                  <SecondaryButton name='Edit coach' route={`/edit-coach/${coach.id}`} />
+                  <SecondaryButton name='Edit coach' route={`/edit-coach/${coach.slug}`} />
                 </ButtonContainer>
               ) : null}
             </div>
