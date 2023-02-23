@@ -153,12 +153,21 @@
   color: $green-dark;
   cursor: pointer;
   outline: none;
+
+  a {
+    color: $green-dark;
+  }
 }
 
 .login__form--button:hover {
   transition: 0.3s;
   color: $green-light;
   background-color: $green-dark;
+
+  a {
+    transition: 0.3s;
+    color: $green-light;
+  }
 }
 
 @media only screen and (max-width: 836px) {

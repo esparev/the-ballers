@@ -14,7 +14,7 @@ import '@styles/Login.scss';
  */
 const Recovery = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Recuperar contraseña';
+    document.title = 'Recover Password • The Ballers';
   }, []);
 
   /**
@@ -51,8 +51,8 @@ const Recovery = () => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`¡Ups!, Hubo un error al enviar el correo. 
-            Verifique que el correo sea el correcto`}
+            message={`Ups!, There was an error sending the email.
+            Verify that the email is correct`}
             messageStatus='error'
           />,
           document.getElementById('message-container')
@@ -62,56 +62,39 @@ const Recovery = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    sendMail(`${envConfig.apiUrl}/auth/recuperar`, form);
+    sendMail(`${envConfig.apiUrl}/auth/recover`, form);
   };
 
   return (
     <>
       <div id='message-container'></div>
 
-      <div className='main-login'>
-        <section className='greeting'>
-          <h1 className='greeting--title'>Recupera tu contraseña</h1>
-        </section>
-        <section className='greeting-desktop'>
-          <h1 className='greeting--title'>Olvidaste tu Contraseña</h1>
-        </section>
-
-        <main className='login-main'>
-          <section className='login'>
-            <div className='login__greet'>
-              <h2 className='login__greet--title'>Olvidaste tu Contraseña</h2>
-              <p className='login__greet--message'>
-                Ingresa el correo electrónico para recuperar tu contraseña
-              </p>
+      <main className='login'>
+        <section className='login'>
+          <div className='login__greet'>
+            <h2 className='login__greet--title'>Forgot Password</h2>
+            <p className='login__greet--message'>Enter your email to recover your password</p>
+          </div>
+          <form className='login__form' onSubmit={handleSubmit}>
+            <div className='login__form--email'>
+              <input
+                className='login__form--input form--input-text'
+                name='email'
+                type='email'
+                placeholder='Email'
+                required
+                onChange={handleInput}
+              />
             </div>
-            <div className='login__greet-desktop'>
-              <h2 className='login__greet--title'>Recupera tu contraseña</h2>
-              <p className='login__greet--message'>
-                Ingresa el correo electrónico para recuperar tu contraseña
-              </p>
-            </div>
-            <form className='login__form' onSubmit={handleSubmit}>
-              <div className='login__form--email'>
-                <input
-                  className='login__form--input form--input-text'
-                  name='email'
-                  type='email'
-                  placeholder='Correo electrónico'
-                  required
-                  onChange={handleInput}
-                />
-              </div>
-              <button type='submit' className='login__form--button'>
-                <Link to='/send-mail'>Enviar</Link>
-              </button>
-            </form>
-            <Link className='login--forgot-password' to='/login'>
-              Regresar a inicio de sesión
-            </Link>
-          </section>
-        </main>
-      </div>
+            <button type='submit' className='login__form--button'>
+              <Link to='/send-mail'>Send mail</Link>
+            </button>
+          </form>
+          <Link className='login--forgot-password' to='/login'>
+            Back to login
+          </Link>
+        </section>
+      </main>
     </>
   );
 };
