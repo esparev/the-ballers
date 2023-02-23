@@ -13,7 +13,7 @@ import '@styles/Login.scss';
  */
 const Login = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • Iniciar Sesión';
+    document.title = 'The Ballers • Login';
     window.scrollTo(0, 0);
   }, []);
 
@@ -63,71 +63,60 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(`${envConfig.apiUrl}/auth/iniciar-sesion`, form);
+    login(`${envConfig.apiUrl}/auth/login`, form);
   };
 
   return (
-    <div className='main-login'>
-      <section className='greeting'>
-        <h1 className='greeting--title'>Inicia Sesión</h1>
-      </section>
-      <section className='greeting-desktop'>
-        <h1 className='greeting--title'>Bienvenido de Nuevo</h1>
-      </section>
-
-      <main className='login-main'>
-        <section className='login'>
-          <div className='login__greet'>
-            <h2 className='login__greet--title'>Bienvenido de Nuevo</h2>
-            <p className='login__greet--message'>
-              ¡Hola!, inicia sesión para continuar
-            </p>
+    <main className='login'>
+      <div className='login__greet'>
+        <h1 className='login__greet--title'>Log In</h1>
+        <p className='login__greet--message'>Log in and start managing</p>
+      </div>
+      <form className='login__form' onSubmit={handleSubmit}>
+        <div className='login__form--email'>
+          <input
+            className='login__form--input form--input-text'
+            name='email'
+            type='email'
+            placeholder='Email'
+            onChange={handleInput}
+          />
+        </div>
+        <div className='login__form--password'>
+          <input
+            className='login__form--input form--input-text'
+            name='password'
+            type='password'
+            id='password'
+            minLength='8'
+            placeholder='Password'
+            onChange={handleInput}
+          />
+          <span
+            className='login__form--password-icon input-icon'
+            id='password-icon'
+            onClick={togglePassword}></span>
+        </div>
+        <div className='login__form-extras'>
+          <div className='login__remember'>
+            <input
+              className='login__remember--checkbox'
+              type='checkbox'
+              name='remember'
+              id='remember'
+            />
+            <span className='login--checkbox'></span>
+            <label className='login__remember--text' htmlFor='remember'>Remember me</label>
           </div>
-          <div className='login__greet-desktop'>
-            <h2 className='login__greet--title'>Inicia Sesión</h2>
-            <p className='login__greet--message'>
-              ¡Hola!, inicia sesión para continuar
-            </p>
-          </div>
-          <form className='login__form' onSubmit={handleSubmit}>
-            <div className='login__form--email'>
-              <input
-                className='login__form--input form--input-text'
-                name='email'
-                type='email'
-                placeholder='Correo electrónico'
-                onChange={handleInput}
-              />
-            </div>
-            <div className='login__form--password'>
-              <input
-                className='login__form--input form--input-text'
-                name='password'
-                type='password'
-                id='password'
-                minLength='8'
-                placeholder='Contraseña'
-                onChange={handleInput}
-              />
-              <span
-                className='login__form--password-icon input-icon'
-                id='password-icon'
-                onClick={togglePassword}
-              ></span>
-            </div>
-            <button type='submit' className='login__form--button'>
-              Iniciar Sesión
-            </button>
-          </form>
           <Link className='login--forgot-password' to='/change-password'>
-            ¿Olvidaste tu contraseña?
+            Forgot password?
           </Link>
-          <p className='login--wrong-login' id='wrong-login'>
-            El correo o la contraseña son incorrectos, intente nuevamente
-          </p>
-        </section>
-      </main>
-    </div>
+        </div>
+        <button type='submit' className='login__form--button'>
+          Log In
+        </button>
+      </form>
+    </main>
   );
 };
 

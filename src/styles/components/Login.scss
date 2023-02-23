@@ -1,216 +1,168 @@
 @import '../Vars.scss';
 
-.login-list {
-  color: $black;
-}
-.main-login {
-  height: 101vh;
-}
-.greeting {
-  height: 5vh;
-  padding: 0 20px;
-}
-.greeting-register {
-  grid-row: 1;
-}
-.greeting--title {
-  padding-top: 16px;
-  font-family: $inter-font;
-  font-size: 2.4rem;
-  text-align: start;
-  color: $white-100;
-}
-.greeting--message {
-  display: none;
-}
-.greeting-desktop {
-  display: none;
-}
-.login-main {
-  height: 85vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 20px;
-  background-color: $white-100;
-  border-radius: 12px 12px 0 0;
-}
 .login {
-  height: 76vh;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  row-gap: 20px;
   align-items: center;
-  padding: 40px 20px;
-  text-align: center;
+  flex-direction: column;
 }
+
 .login__greet {
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 20px;
-  text-align: start;
+  display: flex;
+  row-gap: 20px;
+  align-items: center;
+  flex-direction: column;
 }
+
 .login__greet--title {
   font-family: $inter-font;
-  font-size: 2.4rem;
+  font-size: 4rem;
+  color: $white-100;
 }
-.login__greet-desktop {
-  display: none;
+
+.login__greet--message {
+  font-family: $inter-font;
+  font-size: 1.8rem;
+  color: $white-100;
 }
+
 .login__form {
   width: 100%;
-  max-width: 300px;
+  max-width: 352px;
+  display: flex;
+  row-gap: 20px;
+  flex-direction: column;
 }
+
 .login__form--name,
 .login__form--email,
 .login__form--password {
-  position: relative;
   display: flex;
   align-items: center;
 }
-.input-icon {
+
+.login__form-extras {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login__remember {
+  display: flex;
+  position: relative;
+  align-items: center;
+  column-gap: 8px;
+}
+
+/* Creating a custom checkbox */
+.login--checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 20px;
   width: 20px;
-  position: absolute;
-  right: 0;
-  margin-right: 12px;
+  border-radius: 5px;
+  background-color: rgba(103, 103, 103, 0.2);
   cursor: pointer;
-  // background-image: url('../../icons/private-icon.png');
-  background-size: 20px;
-  background-repeat: no-repeat;
 }
-.view-icon {
-  // background-image: url('../../icons/view-icon.png');
+
+/* Specify the background color to be shown when checkbox is checked */
+.login__remember input:checked~.login--checkbox {
+  background-color: $green-light;
 }
-.new-view-icon {
-  // background-image: url('../../icons/view-icon.png');
-}
-.confirm-view-icon {
-  // background-image: url('../../icons/view-icon.png');
-}
-.login--forgot-password {
-  width: 90%;
-  max-width: 300px;
-  text-align: end;
-}
-.login--forgot-password,
-.login__greet--message {
-  font-family: $roboto-font;
-  font-size: $small-desk;
-  font-weight: bold;
-  color: $gray-dark;
-}
-.login--wrong-login {
+
+/* Checkmark to be shown in checkbox */
+/* It is not be shown when not checked */
+.login--checkbox:after {
+  content: "";
+  position: absolute;
   display: none;
-  max-width: 300px;
-  margin-top: 60px;
-  font-family: $inter-font;
-  font-size: $normal-desk;
-  font-weight: bold;
-  color: $red-light;
 }
+
+/* Display checkmark when checked */
+.login__remember input:checked~.login--checkbox:after {
+  display: block;
+}
+
+/* Styling the checkmark using webkit */
+/* Rotated the rectangle by 45 degree and 
+  showing only two border to make it look
+  like a tickmark */
+.login__remember .login--checkbox:after {
+  left: 7px;
+  bottom: 5px;
+  width: 4px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.login__remember--checkbox[type=checkbox] {
+  visibility: hidden;
+}
+
+.login__remember--text {
+  margin-left: 4px;
+  font-family: $inter-font;
+  font-size: 1.6rem;
+  color: $white-400;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.login--forgot-password {
+  font-family: $inter-font;
+  font-size: 1.6rem;
+  color: $green-light;
+}
+
 .form--input-text {
-  height: 32px;
   width: 100%;
-  max-width: 600px;
-  margin: 14px 0;
+  max-width: 800px;
   border: none;
-  border-bottom: 4px solid $green-light;
-  caret-color: $green-light;
+  padding: 8px 12px;
+  border-radius: 5px;
   font-family: $inter-font;
-  font-size: $normal-desk;
-  font-weight: bold;
-  color: $black;
+  font-size: 1.6rem;
+  color: $white-100;
+  background-color: rgba(103, 103, 103, 0.2);
 }
-.form--input-text::placeholder {
-  color: $gray-dark;
-  opacity: 100%;
-}
+
 .form--input-text:focus {
   outline: none;
 }
-.password-match,
-.password-mismatch {
-  font-size: $normal-desk;
-  font-weight: bold;
-}
-.password-match {
-  color: $green-light;
-}
-.password-mismatch {
-  color: $red-light;
-}
+
 .login__form--button {
-  height: 40px;
   width: 100%;
   max-width: 600px;
-  padding: 12px 24px;
-  margin: 12px 0;
+  padding: 8px 24px;
   border: none;
-  border-radius: 20px;
-  font-family: $inter-font;
-  font-size: $normal-desk;
+  border-radius: 5px;
+  font-family: $roboto-font;
   font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.6rem;
   background-color: $green-light;
-  color: $white-100;
+  color: $green-dark;
   cursor: pointer;
   outline: none;
 }
-.login__form--button a {
-  color: $white-100;
-}
-.login--mobile {
-  margin-top: 30px;
+
+.login__form--button:hover {
+  transition: 0.3s;
+  color: $green-light;
+  background-color: $green-dark;
 }
 
-@media only screen and (min-width: 836px) {
-  .main-login {
-    display: flex;
-  }
-  .login-main {
-    height: auto;
-  }
-  .greeting {
-    display: none;
-  }
-  .greeting-desktop {
-    height: 90vh;
-    width: 40%;
-    min-width: 300px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-  .greeting--title {
-    font-size: $primary-desk;
-    text-align: center;
-  }
-  .greeting--message {
-    display: block;
-    margin-top: 8px;
-    font-family: $roboto-font;
-    font-size: $normal-mob;
-    color: $white-100;
-  }
-  .login__greet {
-    display: none;
-  }
-  .login__greet-desktop {
-    display: block;
-    margin-bottom: 40px;
-  }
-  .login__greet--title {
-    font-size: $primary-desk;
-  }
-  .login--forgot-password {
-    text-align: center;
-  }
-  .login-main {
-    width: 60%;
-    margin-top: 0;
-    border-radius: 0;
+@media only screen and (max-width: 836px) {
+  .login {
+    padding: 100px 20px 152px 20px;
   }
 }
