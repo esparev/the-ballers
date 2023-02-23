@@ -5,8 +5,8 @@ import Message from '@components/Message';
 import DangerButton from '@components/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from './ButtonContainer';
+import { getSingleNews } from '../api/getSingleNews';
 import toggleMessage from '@functions/toggleMessage';
-import countCharacters from '@functions/countCharacters';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
@@ -18,16 +18,32 @@ import '@styles/CreateEntity.scss';
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditNews = () => {
+const EditNews = (props) => {
+  const { slug } = props.match.params;
+
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({ title: '', description: '' });
+  const [count, setCounter] = useState({ title: 0, description: 0 });
+
+  const loadNews = async () => {
+    try {
+      const response = await getSingleNews(envConfig.apiUrl, slug);
+      setValues({ title: response.title, description: response.description });
+      setCounter({ title: response.title.length, description: response.description.length });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    document.title = 'The Ballers • Edit News';
+    document.title = 'Edit News • The Ballers';
     window.scrollTo(0, 0);
 
-    var elTxtA = document.getElementById('textarea');
-    var elIn = document.getElementById('input');
-
-    elTxtA.addEventListener('keyup', countCharacters, false);
-    elIn.addEventListener('keyup', countCharacters, false);
+    (async () => {
+      await loadNews();
+    })();
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -82,22 +98,6 @@ const EditNews = () => {
         document.getElementById('message-container')
       );
     }, 1500);
-  };
-
-  /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({});
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
   };
 
   /**
@@ -167,13 +167,31 @@ const EditNews = () => {
       });
   };
 
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleCounter = (event) => {
+    setCounter({
+      ...count,
+      [event.target.name]: event.target.value.length,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    editNews(`${envConfig.apiUrl}/news/${localStorage.getItem('selected news')}`, form, authConfig);
+    editNews(`${envConfig.apiUrl}/news/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteNews(`${envConfig.apiUrl}/news/${localStorage.getItem('selected news')}`, authConfig);
+    deleteNews(`${envConfig.apiUrl}/news/${slug}`, authConfig);
   };
 
   return (
@@ -192,10 +210,15 @@ const EditNews = () => {
               type='text'
               id='input'
               placeholder='Title'
-              onChange={handleInput}
+              value={form.title}
+              maxLength='255'
+              onChange={(event) => {
+                handleInput(event);
+                handleCounter(event);
+              }}
             />
             <div className='input-count' id='input-count'>
-              <span id='input-current'>0</span>
+              <span id='input-current'>{count.title}</span>
               <span id='input-maximum'>/255</span>
             </div>
           </div>
@@ -206,11 +229,15 @@ const EditNews = () => {
               type='text'
               id='textarea'
               placeholder='Description'
+              value={form.description}
               maxLength='1000'
-              onChange={handleInput}></textarea>
+              onChange={(event) => {
+                handleInput(event);
+                handleCounter(event);
+              }}></textarea>
             <div className='input-count' id='textarea-count'>
-              <span id='textarea-current'>0</span>
-              <span id='textarea-maximum'>/1000</span>
+              <span id='textarea-current'>{count.description}</span>
+              <span id='textarea-maximum'>/2000</span>
             </div>
           </div>
           <div className='form--field'>
