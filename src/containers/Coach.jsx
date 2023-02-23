@@ -33,7 +33,7 @@ const Coach = (props) => {
   localStorage.setItem('selected coach', coach.id);
 
   useEffect(() => {
-    document.title = 'The Ballers • Coach';
+    document.title = 'Coach • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

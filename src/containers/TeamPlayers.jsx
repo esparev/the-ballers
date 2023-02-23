@@ -35,7 +35,7 @@ const TeamPlayers = (props) => {
   localStorage.setItem('selected team', team.id);
 
   useEffect(() => {
-    document.title = 'The Ballers • Team';
+    document.title = 'Team • The Ballers';
     window.scrollTo(0, 0);
 
     /**

@@ -26,7 +26,7 @@ const News = () => {
   sortByDate(news);
 
   useEffect(() => {
-    document.title = 'The Ballers • News';
+    document.title = 'News • The Ballers';
     window.scrollTo(0, 0);
 
     const search = document.getElementById('searchBar');

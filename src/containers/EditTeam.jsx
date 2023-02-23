@@ -19,7 +19,7 @@ import '@styles/CreateEntity.scss';
  */
 const EditTeam = () => {
   useEffect(() => {
-    document.title = 'The Ballers • Edit Team';
+    document.title = 'Edit Team • The Ballers';
     window.scrollTo(0, 0);
 
     // Select closest container for the input

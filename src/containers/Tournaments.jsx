@@ -26,7 +26,7 @@ const Tournaments = () => {
   sortByDate(tournaments);
 
   useEffect(() => {
-    document.title = 'The Ballers • Tournaments';
+    document.title = 'Tournaments • The Ballers';
     window.scrollTo(0, 0);
 
     const search = document.getElementById('searchBar');

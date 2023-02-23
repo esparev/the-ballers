@@ -47,7 +47,7 @@ const Tournament = (props) => {
 
   useEffect(() => {
     if (title) {
-      document.title = `The Ballers • ${title}`;
+      document.title = `${title} • The Ballers`;
     }
   }, [title]);
 

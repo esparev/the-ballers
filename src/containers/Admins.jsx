@@ -17,7 +17,7 @@ const Admins = () => {
   const admins = useGetAdmins(envConfig.apiUrl);
 
   useEffect(() => {
-    document.title = 'The Ballers • Admins';
+    document.title = 'Admins • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

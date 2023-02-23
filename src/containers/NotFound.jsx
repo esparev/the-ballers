@@ -11,7 +11,7 @@ import baseballIcon from '@icons/baseball-icon.svg';
  */
 const NotFound = () => {
   useEffect(() => {
-    document.title = 'BEISMICH • 404 Not Found';
+    document.title = 'Not Found • The Ballers';
   }, []);
 
   return (

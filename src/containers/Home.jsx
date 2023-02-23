@@ -50,7 +50,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    document.title = 'The Ballers';
+    document.title = 'Home • The Ballers';
 
     resetTimeout();
     timeoutRef.current = setTimeout(

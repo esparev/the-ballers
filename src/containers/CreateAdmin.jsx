@@ -16,7 +16,7 @@ import '@styles/CreateEntity.scss';
  */
 const CreateAdmin = () => {
   useEffect(() => {
-    document.title = 'The Ballers • New Admin';
+    document.title = 'New Admin • The Ballers';
     window.scrollTo(0, 0);
 
     // Select closest container for the input

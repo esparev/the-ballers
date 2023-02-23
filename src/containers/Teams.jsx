@@ -30,7 +30,7 @@ const Teams = (props) => {
   localStorage.setItem('selected league', league.id);
 
   useEffect(() => {
-    document.title = 'The Ballers • Club';
+    document.title = 'Club • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

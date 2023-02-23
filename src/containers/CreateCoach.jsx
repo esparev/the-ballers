@@ -16,9 +16,10 @@ import '@styles/CreateEntity.scss';
  */
 const CreateCoach = () => {
   useEffect(() => {
-    document.title = 'The Ballers • New Coach';
+    document.title = 'New Coach • The Ballers';
     window.scrollTo(0, 0);
 
+    // ! change this to useState?
     // Opaque date placeholder until it has been modified
     var dateEl = document.getElementById('date');
     dateEl.onchange = function () {

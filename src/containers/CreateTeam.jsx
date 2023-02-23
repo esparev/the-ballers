@@ -16,7 +16,7 @@ import '@styles/CreateEntity.scss';
  */
 const CreateTeam = () => {
   useEffect(() => {
-    document.title = 'The Ballers • New Team';
+    document.title = 'New Team • The Ballers';
     window.scrollTo(0, 0);
 
     // Select closest container for the input

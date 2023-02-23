@@ -27,7 +27,7 @@ const Admin = (props) => {
   localStorage.setItem('selected admin', admin.id);
 
   useEffect(() => {
-    document.title = 'The Ballers • Admin';
+    document.title = 'Admin • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

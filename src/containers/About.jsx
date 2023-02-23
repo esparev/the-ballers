@@ -8,7 +8,7 @@ import '@styles/About.scss';
  */
 const About = () => {
   useEffect(() => {
-    document.title = 'The Ballers • About Us';
+    document.title = 'About Us • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

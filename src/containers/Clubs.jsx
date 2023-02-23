@@ -18,7 +18,7 @@ const Clubs = () => {
   const clubs = useGetClubs(envConfig.apiUrl);
 
   useEffect(() => {
-    document.title = 'The Ballers • Clubs';
+    document.title = 'Clubs • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

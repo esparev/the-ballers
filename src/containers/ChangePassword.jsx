@@ -39,7 +39,7 @@ const ChangePassword = () => {
   };
 
   useEffect(() => {
-    document.title = 'BEISMICH • Nueva Contraseña';
+    document.title = 'New Password • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

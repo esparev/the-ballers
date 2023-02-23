@@ -23,7 +23,7 @@ const Profile = () => {
   localStorage.setItem('selected admin', id);
 
   useEffect(() => {
-    document.title = 'BEISMICH • Administrador';
+    document.title = 'Profile • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

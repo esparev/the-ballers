@@ -13,7 +13,7 @@ import '@styles/Login.scss';
  */
 const Login = () => {
   useEffect(() => {
-    document.title = 'The Ballers • Login';
+    document.title = 'Login • The Ballers';
     window.scrollTo(0, 0);
   }, []);
 

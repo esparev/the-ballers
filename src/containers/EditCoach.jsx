@@ -19,7 +19,7 @@ import '@styles/CreateEntity.scss';
  */
 const EditCoach = () => {
   useEffect(() => {
-    document.title = 'The Ballers • Edit Coach';
+    document.title = 'Edit Coach • The Ballers';
     window.scrollTo(0, 0);
 
     // Opaque date placeholder until it has been modified
