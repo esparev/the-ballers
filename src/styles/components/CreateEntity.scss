@@ -56,16 +56,16 @@
 }
 
 .input {
-  height: 32px;
-  min-height: 32px;
+  min-height: 36px;
   max-width: 600px;
   width: 100%;
+  padding: 8px 12px;
   border: none;
-  border-bottom: 2px solid $green-light;
+  border-radius: 5px;
   font-family: $inter-font;
   font-size: 1.6rem;
   color: $white-100;
-  background-color: $green-midnight;
+  background-color: rgba(103, 103, 103, 0.2);
 }
 
 .input-count {
@@ -105,6 +105,7 @@ input::-webkit-inner-spin-button {
 
 input[type='number'] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .input::placeholder {
