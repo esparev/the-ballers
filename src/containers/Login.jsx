@@ -48,9 +48,6 @@ const Login = () => {
         localStorage.setItem('image', res.data.admin.image);
         localStorage.setItem('role', res.data.admin.role);
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('actor image', 'https://i.imgur.com/CFJ2k8J.png');
-        localStorage.setItem('league logo', 'https://i.imgur.com/PEZQ6jS.png');
-        localStorage.setItem('team logo', 'https://i.imgur.com/chid3RN.png');
         window.location.href = '/';
       })
       .catch((error) => {
