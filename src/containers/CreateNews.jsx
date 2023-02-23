@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
 import ButtonContainer from '@containers/ButtonContainer';
-import countCharacters from '@functions/countCharacters';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
@@ -16,15 +15,15 @@ import '@styles/CreateEntity.scss';
  * @returns JSX code to render to the DOM tree
  */
 const CreateNews = () => {
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({ title: '', description: '' });
+  const [count, setCounter] = useState({ title: 0, description: 0 });
+
   useEffect(() => {
-    document.title = 'The Ballers • New News';
+    document.title = 'Publish News • The Ballers';
     window.scrollTo(0, 0);
-
-    var elTxtA = document.getElementById('textarea');
-    var elIn = document.getElementById('input');
-
-    elTxtA.addEventListener('keyup', countCharacters, false);
-    elIn.addEventListener('keyup', countCharacters, false);
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -82,25 +81,6 @@ const CreateNews = () => {
   };
 
   /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({
-    title: '',
-    description: '',
-  });
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  /**
    * Sends a post request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
@@ -133,6 +113,24 @@ const CreateNews = () => {
       });
   };
 
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleCounter = (event) => {
+    setCounter({
+      ...count,
+      [event.target.name]: event.target.value.length,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addNews(`${envConfig.apiUrl}/news`, form, authConfig);
@@ -152,11 +150,15 @@ const CreateNews = () => {
               type='text'
               id='input'
               placeholder='Title *'
+              maxLength='255'
               required
-              onChange={handleInput}
+              onChange={(event) => {
+                handleCounter(event);
+                handleInput(event);
+              }}
             />
             <div className='input-count' id='input-count'>
-              <span id='input-current'>0</span>
+              <span id='input-current'>{count.title}</span>
               <span id='input-maximum'>/255</span>
             </div>
           </div>
@@ -169,9 +171,12 @@ const CreateNews = () => {
               placeholder='Description *'
               maxLength='1000'
               required
-              onChange={handleInput}></textarea>
+              onChange={(event) => {
+                handleCounter(event);
+                handleInput(event);
+              }}></textarea>
             <div className='input-count' id='textarea-count'>
-              <span id='textarea-current'>0</span>
+              <span id='textarea-current'>{count.description}</span>
               <span id='textarea-maximum'>/1000</span>
             </div>
           </div>

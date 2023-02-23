@@ -16,15 +16,15 @@ import '@styles/CreateEntity.scss';
  * @returns JSX code to render to the DOM tree
  */
 const CreateTournament = () => {
+  /**
+   * Sets the initial values for the form fields
+   */
+  const [form, setValues] = useState({ title: '', link: '' });
+  const [count, setCounter] = useState({ title: 0, description: 0 });
+
   useEffect(() => {
-    document.title = 'The Ballers • New Tournament';
+    document.title = 'Publish Tournament • The Ballers';
     window.scrollTo(0, 0);
-
-    var elTxtA = document.getElementById('textarea');
-    var elIn = document.getElementById('input');
-
-    elTxtA.addEventListener('keyup', countCharacters, false);
-    elIn.addEventListener('keyup', countCharacters, false);
 
     // Select closest container for the input
     document.querySelectorAll('.form__image--input').forEach((inputElement) => {
@@ -82,25 +82,6 @@ const CreateTournament = () => {
   };
 
   /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({
-    title: '',
-    link: '',
-  });
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  /**
    * Sends a post request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
@@ -133,6 +114,24 @@ const CreateTournament = () => {
       });
   };
 
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleCounter = (event) => {
+    setCounter({
+      ...count,
+      [event.target.name]: event.target.value.length,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addTournament(`${envConfig.apiUrl}/tournaments`, form, authConfig);
@@ -152,11 +151,15 @@ const CreateTournament = () => {
               type='text'
               id='input'
               placeholder='Title *'
+              maxLength={255}
               required
-              onChange={handleInput}
+              onChange={(event) => {
+                handleCounter(event);
+                handleInput(event);
+              }}
             />
             <div className='input-count' id='input-count'>
-              <span id='input-current'>0</span>
+              <span id='input-current'>{count.title}</span>
               <span id='input-maximum'>/255</span>
             </div>
           </div>
@@ -169,9 +172,12 @@ const CreateTournament = () => {
               placeholder='Description *'
               maxLength='1000'
               required
-              onChange={handleInput}></textarea>
+              onChange={(event) => {
+                handleCounter(event);
+                handleInput(event);
+              }}></textarea>
             <div className='input-count' id='textarea-count'>
-              <span id='textarea-current'>0</span>
+              <span id='textarea-current'>{count.description}</span>
               <span id='textarea-maximum'>/1000</span>
             </div>
           </div>
