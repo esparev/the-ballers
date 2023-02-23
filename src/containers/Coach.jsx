@@ -78,7 +78,7 @@ const Coach = (props) => {
                   key={coach.slug}
                   name={coach.name}
                   image={coach.image}
-                  route={`/club/${league.slug}/${team.slug}/${coach.slug}`}
+                  route={`/club/${league.slug}/team/${team.slug}/coach/${coach.slug}`}
                 />
               ))}
             </div>
