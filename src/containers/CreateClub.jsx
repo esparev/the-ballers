@@ -81,10 +81,9 @@ const CreateClub = () => {
   const [form, setValues] = useState({
     name: '',
     responsable: '',
-    // phone: '',
-    // ageStart: 0,
-    // ageEnd: 0,
-    logo: localStorage.getItem('league logo'),
+    phone: '',
+    ageStart: 0,
+    ageEnd: 0,
     address: {
       streetName: '',
       streetNumber: '',
@@ -211,90 +210,14 @@ const CreateClub = () => {
                 required
                 onChange={handleInput}
               />
-              <select
-                className='input empty'
+              <input
+                className='input'
                 name='address.location'
-                id='location'
+                type='text'
+                placeholder='Location *'
                 required
-                onChange={handleInput}>
-                <option defaultValue value=''>
-                  Location *
-                </option>
-                <option value='Acuitzio'>Acuitzio</option>
-                <option value='Aguililla'>Aguililla</option>
-                <option value='Álvaro Obregón'>Álvaro Obregón</option>
-                <option value='Angamacutiro'>Angamacutiro</option>
-                <option value='Apatzingán'>Apatzingán</option>
-                <option value='Ario'>Ario</option>
-                <option value='Arteaga'>Arteaga</option>
-                <option value='Buenavista'>Buenavista</option>
-                <option value='Charo'>Charo</option>
-                <option value='Chavinda'>Chavinda</option>
-                <option value='Cherán'>Cherán</option>
-                <option value='Chilchota'>Chilchota</option>
-                <option value='Coahuayana'>Coahuayana</option>
-                <option value='Coalcomán'>Coalcomán</option>
-                <option value='Cojumatlán de Régules'>Cojumatlán de Régules</option>
-                <option value='Cotija'>Cotija</option>
-                <option value='Cuitzeo'>Cuitzeo</option>
-                <option value='Gabriel Zamora'>Gabriel Zamora</option>
-                <option value='Hidalgo'>Hidalgo</option>
-                <option value='Huandacareo'>Huandacareo</option>
-                <option value='Huetamo'>Huetamo</option>
-                <option value='Indaparapeo'>Indaparapeo</option>
-                <option value='Ixtlán'>Ixtlán</option>
-                <option value='Jacona'>Jacona</option>
-                <option value='Jiquilpan'>Jiquilpan</option>
-                <option value='José Sixto Verduzco'>José Sixto Verduzco</option>
-                <option value='Jungapeo'>Jungapeo</option>
-                <option value='La Huacana'>La Huacana</option>
-                <option value='La Piedad'>La Piedad</option>
-                <option value='Lázaro Cárdenas'>Lázaro Cárdenas</option>
-                <option value='Los Reyes'>Los Reyes</option>
-                <option value='Madero'>Madero</option>
-                <option value='Maravatío'>Maravatío</option>
-                <option value='Marcos Castellanos'>Marcos Castellanos</option>
-                <option value='Morelia'>Morelia</option>
-                <option value='Múgica'>Múgica</option>
-                <option value='Nahuatzen'>Nahuatzen</option>
-                <option value='Nahuatzen'>Nahuatzen</option>
-                <option value='Nuevo Parangaricutiro'>Nuevo Parangaricutiro</option>
-                <option value='Pajacuarán'>Pajacuarán</option>
-                <option value='Panindícuaro'>Panindícuaro</option>
-                <option value='Paracho'>Paracho</option>
-                <option value='Pátzcuaro'>Pátzcuaro</option>
-                <option value='Peribán'>Peribán</option>
-                <option value='Purépero'>Purépero</option>
-                <option value='Purúandiro'>Purúandiro</option>
-                <option value='Queréndaro'>Queréndaro</option>
-                <option value='Quiroga'>Quiroga</option>
-                <option value='Quiroga'>Quiroga</option>
-                <option value='Sahuayo'>Sahuayo</option>
-                <option value='Salvador Escalante'>Salvador Escalante</option>
-                <option value='Santa Ana Maya'>Santa Ana Maya</option>
-                <option value='Tacámbaro'>Tacámbaro</option>
-                <option value='Tancítaro'>Tancítaro</option>
-                <option value='Tangamandapio'>Tangamandapio</option>
-                <option value='Tangancícuaro'>Tangancícuaro</option>
-                <option value='Tanhuato'>Tanhuato</option>
-                <option value='Taretan'>Taretan</option>
-                <option value='Tarímbaro'>Tarímbaro</option>
-                <option value='Tepalcatepec'>Tepalcatepec</option>
-                <option value='Tingambato'>Tingambato</option>
-                <option value='Tingüindín'>Tingüindín</option>
-                <option value='Tocumbo'>Tocumbo</option>
-                <option value='Turicato'>Turicato</option>
-                <option value='Tuxpan'>Tuxpan</option>
-                <option value='Uruapan'>Uruapan</option>
-                <option value='Venustiano Carranza'>Venustiano Carranza</option>
-                <option value='Vista Hermosa'>Vista Hermosa</option>
-                <option value='Yurécuaro'>Yurécuaro</option>
-                <option value='Zacapu'>Zacapu</option>
-                <option value='Zamora'>Zamora</option>
-                <option value='Zinapécuaro'>Zinapécuaro</option>
-                <option value='Ziracuaretiro'>Ziracuaretiro</option>
-                <option value='Zitácuaro'>Zitácuaro</option>
-              </select>
+                onChange={handleInput}
+              />
               <label className='label label--bold'>Age range</label>
               <div>
                 <label className='label'>From</label>

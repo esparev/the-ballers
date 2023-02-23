@@ -210,14 +210,14 @@ const EditPlayer = () => {
                 </option>
                 <option value='Pitcher'>Pitcher</option>
                 <option value='Catcher'>Catcher</option>
-                <option value='Primera Base'>Primera base</option>
-                <option value='Segunda Base'>Segunda base</option>
-                <option value='Tercera Base'>Tercera base</option>
-                <option value='Campocorto'>Campocorto</option>
-                <option value='Jardinero Izquierdo'>Jardinero izquierdo</option>
-                <option value='Jardinero Central'>Jardinero central</option>
-                <option value='Jardinero Derecho'>Jardinero derecho</option>
-                <option value='Bateador'>Bateador</option>
+                <option value='First Base'>First base</option>
+                <option value='Second Base'>Second base</option>
+                <option value='Third Base'>Third base</option>
+                <option value='Short field'>Short field</option>
+                <option value='Left gardener'>Jardinero izquierdo</option>
+                <option value='Center fielder'>Center fielder</option>
+                <option value='Right gardener'>Right gardener</option>
+                <option value='Batter'>Batter</option>
               </select>
               <label className='form--label label label--bold' htmlFor='date'>
                 Birthday
