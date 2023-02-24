@@ -33,7 +33,7 @@ const Login = () => {
         // Setting various data from the admin's credential
         // to serve data persistency on local storage for
         // the admin's use and experience
-        localStorage.setItem('id', res.data.admin.id);
+        localStorage.setItem('slug', res.data.admin.slug);
         localStorage.setItem('name', res.data.admin.name);
         localStorage.setItem('email', res.data.admin.email);
         localStorage.setItem('image', res.data.admin.image);

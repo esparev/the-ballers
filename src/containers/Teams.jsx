@@ -64,9 +64,6 @@ const Teams = (props) => {
   // Fetching the necessary data to showcase in the component
   const teams = useGetTeams(envConfig.apiUrl, slug);
 
-  // Setting the admin's id to have data persistency only on local storage
-  localStorage.setItem('selected league', clubData.id);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     (async () => {
@@ -88,7 +85,7 @@ const Teams = (props) => {
             <img className='club--image' src={clubData.logo} alt={`Logo de ${clubData.logo}`} />
             <div className='club__main-info'>
               <h1 className='club--title'>{clubData.name}</h1>
-              {localStorage.getItem('id') ? (
+              {localStorage.getItem('slug') ? (
                 <ButtonContainer>
                   <PrimaryButton name='Create team' route={`/new-team`} />
                   <SecondaryButton name='Edit club' route={`/edit-club/${clubData.slug}`} />

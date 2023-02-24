@@ -270,24 +270,13 @@ const EditClub = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editClub(
-      `${envConfig.apiUrl}/clubs/${localStorage.getItem('selected league')}`,
-      clubForm,
-      authConfig
-    );
-    editAddress(
-      `${envConfig.apiUrl}/addresses/${localStorage.getItem('selected league')}`,
-      addressForm,
-      authConfig
-    );
+    editClub(`${envConfig.apiUrl}/clubs/${slug}`, clubForm, authConfig);
+    // editAddress(`${envConfig.apiUrl}/addresses/${slug}`, addressForm, authConfig);
   };
 
   const handleDelete = () => {
-    deleteClub(`${envConfig.apiUrl}/clubs/${localStorage.getItem('selected league')}`, authConfig);
-    deleteAddress(
-      `${envConfig.apiUrl}/addresses/${localStorage.getItem('selected league')}`,
-      authConfig
-    );
+    deleteClub(`${envConfig.apiUrl}/clubs/${slug}`, authConfig);
+    // deleteAddress(`${envConfig.apiUrl}/addresses/${slug}`, authConfig);
   };
 
   return (

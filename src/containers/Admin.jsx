@@ -41,9 +41,6 @@ const Admin = (props) => {
   // Fetching the necessary data to showcase in the component
   const admins = useGetAdmins(envConfig.apiUrl);
 
-  // Setting the admin's id to have data persistency only on local storage
-  localStorage.setItem('selected admin', adminData.id);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     (async () => {

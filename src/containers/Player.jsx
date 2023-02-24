@@ -54,9 +54,6 @@ const Player = (props) => {
   const club = useGetClub(envConfig.apiUrl, clubSlug);
   const players = useGetPlayers(envConfig.apiUrl, teamSlug);
 
-  // Setting the coach's id to have data persistency only on local storage
-  localStorage.setItem('selected player', playerData.id);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     (async () => {
@@ -84,7 +81,7 @@ const Player = (props) => {
           <div className='actor__info'>
             <div className='actor__header'>
               <h1 className='actor__info--name'>{playerData.name}</h1>
-              {localStorage.getItem('id') ? (
+              {localStorage.getItem('slug') ? (
                 <ButtonContainer>
                   <SecondaryButton name='Edit player' route={`/edit-player/${playerData.slug}`} />
                 </ButtonContainer>

@@ -51,9 +51,6 @@ const TeamPlayers = (props) => {
   const players = useGetPlayers(envConfig.apiUrl, teamSlug);
   const coaches = useGetCoaches(envConfig.apiUrl, teamSlug);
 
-  // Setting the admin's id to have data persistency only on local storage
-  localStorage.setItem('selected team', teamData.id);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     (async () => {
@@ -103,7 +100,7 @@ const TeamPlayers = (props) => {
             <div className='team__header'>
               <div className='team__title'>
                 <h1 className='team--h1'>{teamData.name}</h1>
-                {localStorage.getItem('id') ? (
+                {localStorage.getItem('slug') ? (
                   <ButtonContainer>
                     <a className='button primary-button' onClick={toggleMessage}>
                       Create player/coach

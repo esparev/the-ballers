@@ -58,9 +58,6 @@ const SingleNews = (props) => {
   // Slicing the news to not show all of them
   let newsCollection = useGetNews(envConfig.apiUrl).slice(0, 3);
 
-  // Setting the news's id to have data persistency only on local storage
-  localStorage.setItem('selected news', newsData.id);
-
   // Sorting the news by most recent date
   sortByDate(newsCollection);
 
@@ -175,7 +172,7 @@ const SingleNews = (props) => {
             </div>
           </div>
 
-          {localStorage.getItem('id') ? (
+          {localStorage.getItem('slug') ? (
             <ButtonContainer>
               <SecondaryButton name='Edit news' route={`/edit-news/${newsData.slug}`} />
             </ButtonContainer>

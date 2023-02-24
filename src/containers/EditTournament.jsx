@@ -186,18 +186,11 @@ const EditTournament = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editTournament(
-      `${envConfig.apiUrl}/tournaments/${localStorage.getItem('selected tournament')}`,
-      form,
-      authConfig
-    );
+    editTournament(`${envConfig.apiUrl}/tournaments/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteTournament(
-      `${envConfig.apiUrl}/tournaments/${localStorage.getItem('selected tournament')}`,
-      authConfig
-    );
+    deleteTournament(`${envConfig.apiUrl}/tournaments/${slug}`, authConfig);
   };
 
   return (

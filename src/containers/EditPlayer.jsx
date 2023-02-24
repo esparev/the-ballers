@@ -177,18 +177,11 @@ const EditPlayer = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editPlayer(
-      `${envConfig.apiUrl}/players/${localStorage.getItem('selected player')}`,
-      form,
-      authConfig
-    );
+    editPlayer(`${envConfig.apiUrl}/players/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deletePlayer(
-      `${envConfig.apiUrl}/players/${localStorage.getItem('selected player')}`,
-      authConfig
-    );
+    deletePlayer(`${envConfig.apiUrl}/players/${slug}`, authConfig);
   };
 
   return (

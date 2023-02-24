@@ -99,9 +99,9 @@ const Tournaments = () => {
               <path
                 d='M26.6667 26.6667L21.2663 21.2663M21.2663 21.2663C22.9553 19.5773 24 17.244 24 14.6667C24 9.51202 19.8213 5.33334 14.6667 5.33334C9.512 5.33334 5.33333 9.51202 5.33333 14.6667C5.33333 19.8213 9.512 24 14.6667 24C17.244 24 19.5773 22.9553 21.2663 21.2663Z'
                 stroke='#9F9F9F'
-                stroke-width='2'
-                stroke-linecap='round'
-                stroke-linejoin='round'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
               />
             </svg>
             <input
@@ -113,7 +113,7 @@ const Tournaments = () => {
             />
           </div>
 
-          {localStorage.getItem('id') ? (
+          {localStorage.getItem('slug') ? (
             <ButtonContainer>
               <Link
                 className='button primary-button'

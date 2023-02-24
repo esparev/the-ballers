@@ -177,18 +177,11 @@ const EditCoach = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editCoach(
-      `${envConfig.apiUrl}/coaches/${localStorage.getItem('selected coach')}`,
-      form,
-      authConfig
-    );
+    editCoach(`${envConfig.apiUrl}/coaches/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteCoach(
-      `${envConfig.apiUrl}/coaches/${localStorage.getItem('selected coach')}`,
-      authConfig
-    );
+    deleteCoach(`${envConfig.apiUrl}/coaches/${slug}`, authConfig);
   };
 
   return (

@@ -27,7 +27,7 @@ const Clubs = () => {
       <section className='entities'>
         <div className='entities__header'>
           <h1 className='entities--title'>The Ballers's clubs</h1>
-          {localStorage.getItem('id') ? (
+          {localStorage.getItem('slug') ? (
             <ButtonContainer>
               <PrimaryButton name='Create club' route='/new-club' />
             </ButtonContainer>

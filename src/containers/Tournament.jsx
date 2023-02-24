@@ -57,9 +57,6 @@ const Tournament = (props) => {
 
   let tournaments = useGetTournaments(envConfig.apiUrl);
 
-  // Setting the tournament's id to have data persistency only on local storage
-  localStorage.setItem('selected tournament', tournamentData.id);
-
   // Sorting the tournaments by most recent date
   sortByDate(tournaments);
 
@@ -177,7 +174,7 @@ const Tournament = (props) => {
             </div>
           </div>
 
-          {localStorage.getItem('id') ? (
+          {localStorage.getItem('slug') ? (
             <ButtonContainer>
               <SecondaryButton
                 name='Edit tournament'

@@ -177,15 +177,11 @@ const EditAdmin = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editAdmin(
-      `${envConfig.apiUrl}/admins/${localStorage.getItem('selected admin')}`,
-      form,
-      authConfig
-    );
+    editAdmin(`${envConfig.apiUrl}/admins/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteAdmin(`${envConfig.apiUrl}/admins/${localStorage.getItem('selected admin')}`, authConfig);
+    deleteAdmin(`${envConfig.apiUrl}/admins/${slug}`, authConfig);
   };
 
   return (

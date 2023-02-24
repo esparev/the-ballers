@@ -74,7 +74,7 @@ const Coach = (props) => {
           <div className='actor__info'>
             <div className='actor__header'>
               <h1 className='actor__info--name'>{coachData.name}</h1>
-              {localStorage.getItem('id') ? (
+              {localStorage.getItem('slug') ? (
                 <ButtonContainer>
                   <SecondaryButton name='Edit coach' route={`/edit-coach/${coachData.slug}`} />
                 </ButtonContainer>

@@ -177,15 +177,11 @@ const EditTeam = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editTeam(
-      `${envConfig.apiUrl}/teams/${localStorage.getItem('selected team')}`,
-      form,
-      authConfig
-    );
+    editTeam(`${envConfig.apiUrl}/teams/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteTeam(`${envConfig.apiUrl}/teams/${localStorage.getItem('selected team')}`, authConfig);
+    deleteTeam(`${envConfig.apiUrl}/teams/${slug}`, authConfig);
   };
 
   return (
