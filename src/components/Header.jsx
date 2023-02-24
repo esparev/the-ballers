@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '@styles/Header.scss';
 import ballersLogo from '@static/ballers-logo.png';
@@ -11,6 +11,8 @@ import burgerMenuIcon from '@icons/burger-menu-icon.svg';
  * @returns JSX code to render to the DOM tree
  */
 const Header = () => {
+  const [logoutStatus, setLogoutStatus] = useState(false);
+
   useEffect(() => {
     var nav = document.getElementById('nav');
 
@@ -21,10 +23,11 @@ const Header = () => {
     };
 
     nav.addEventListener('resize', menuDesktop);
-  }, []);
+  }, [logoutStatus]);
 
   const logout = () => {
     localStorage.clear();
+    setLogoutStatus(true);
   };
 
   const adminDisplay = () => {
@@ -88,7 +91,7 @@ const Header = () => {
             </li>
           )}
           <div className='admin-nav' id='admin-nav'>
-            {localStorage.getItem('id') ? (
+            {localStorage.getItem('slug') ? (
               <>
                 <li className='nav__list--item'>
                   <Link to='/profile'>Profile</Link>
@@ -99,7 +102,7 @@ const Header = () => {
               </>
             ) : null}
 
-            {localStorage.getItem('id') ? (
+            {localStorage.getItem('slug') ? (
               <li className='nav__list--item'>
                 <Link to='/login' onClick={logout}>
                   Logout
