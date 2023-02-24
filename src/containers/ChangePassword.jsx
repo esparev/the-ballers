@@ -19,17 +19,12 @@ const ChangePassword = () => {
   // Retrieves the value of the query param from the URL
   const token = new URLSearchParams(search).get('token');
 
-  /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({
-    token: token,
-    newPassword: '',
-  });
+  // Sets the initial values for the form fields
+  const [form, setValues] = useState({ token: token, newPassword: '' });
 
   /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
+   * Sets values after onChange event is
+   * triggered on the indicated inputs
    */
   const handleInput = (event) => {
     setValues({

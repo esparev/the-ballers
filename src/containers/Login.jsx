@@ -12,22 +12,13 @@ import '@styles/Login.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Login = () => {
+  // Sets the initial values for the form fields
+  const [form, setValues] = useState({ email: '', password: '' });
+
   useEffect(() => {
     document.title = 'Login • The Ballers';
     window.scrollTo(0, 0);
   }, []);
-
-  const [form, setValues] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
 
   /**
    * Sends a post request to the URL of the API provided
@@ -56,6 +47,13 @@ const Login = () => {
           wrongLogin.style.display = 'block';
         }
       });
+  };
+
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -103,7 +101,9 @@ const Login = () => {
               id='remember'
             />
             <span className='login--checkbox'></span>
-            <label className='login__remember--text' htmlFor='remember'>Remember me</label>
+            <label className='login__remember--text' htmlFor='remember'>
+              Remember me
+            </label>
           </div>
           <Link className='login--forgot-password' to='/change-password'>
             Forgot password?

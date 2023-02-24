@@ -16,8 +16,8 @@ import '@styles/ActorContainer.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Coach = (props) => {
-  // Assigns the coach's id from the URL to the coachId props
-  // as well for its respective club and team id to identify
+  // Assigns the coach's slug from the URL to the coachSlug props
+  // as well for its respective club and team slug to identify
   // which team the coach belongs to and which club his team belongs to
   const { clubSlug, teamSlug, coachSlug } = props.match.params;
   const [coachData, setCoachData] = useState({
@@ -30,6 +30,7 @@ const Coach = (props) => {
     },
   });
 
+  // Fetching the data to showcase in the component
   const loadCoach = async () => {
     try {
       const response = await getCoach(envConfig.apiUrl, coachSlug);
@@ -47,12 +48,8 @@ const Coach = (props) => {
     }
   };
 
-  // Fetching the necessary data to showcase in the component
   const club = useGetClub(envConfig.apiUrl, clubSlug);
   const coaches = useGetCoaches(envConfig.apiUrl, teamSlug);
-
-  // Setting the coach's id to have data persistency only on local storage
-  localStorage.setItem('selected coach', coachData.id);
 
   useEffect(() => {
     window.scrollTo(0, 0);

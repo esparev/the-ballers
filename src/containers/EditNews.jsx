@@ -21,12 +21,11 @@ import '@styles/CreateEntity.scss';
 const EditNews = (props) => {
   const { slug } = props.match.params;
 
-  /**
-   * Sets the initial values for the form fields
-   */
+  // Sets the initial values for the form fields
   const [form, setValues] = useState({ title: '', description: '' });
   const [count, setCounter] = useState({ title: 0, description: 0 });
 
+  // Fetching the data to showcase in the component
   const loadNews = async () => {
     try {
       const response = await getSingleNews(envConfig.apiUrl, slug);

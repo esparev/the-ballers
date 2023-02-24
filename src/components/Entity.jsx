@@ -10,7 +10,7 @@ import '@styles/Entity.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Entity = (props) => {
-  // Parameters that the function will receive
+  // Component's props
   const { name, logo, route } = props;
 
   return (

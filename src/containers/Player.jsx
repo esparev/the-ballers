@@ -16,8 +16,8 @@ import '@styles/ActorContainer.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Player = (props) => {
-  // Assigns the player's id from the URL to the playerId props
-  // as well for its respective club and team id to identify
+  // Assigns the player's slug from the URL to the playerSlug props
+  // as well for its respective club and team slug to identify
   // which team the player belongs to and which club his team belongs to
   const { clubSlug, teamSlug, playerSlug } = props.match.params;
   const [playerData, setPlayerData] = useState({
@@ -31,6 +31,7 @@ const Player = (props) => {
     },
   });
 
+  // Fetching the data to showcase in the component
   const loadPlayer = async () => {
     try {
       const response = await getPlayer(envConfig.apiUrl, playerSlug);

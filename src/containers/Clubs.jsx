@@ -14,7 +14,7 @@ import '@styles/Entities.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Clubs = () => {
-  // Fetching the necessary data to showcase in the component
+  // Fetching the data to showcase in the component
   const clubs = useGetClubs(envConfig.apiUrl);
 
   useEffect(() => {

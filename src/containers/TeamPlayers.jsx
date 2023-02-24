@@ -31,6 +31,7 @@ const TeamPlayers = (props) => {
     club: { slug: '', name: '' },
   });
 
+  // Fetching the data to showcase in the component
   const loadTeam = async () => {
     try {
       const response = await getTeam(envConfig.apiUrl, teamSlug);

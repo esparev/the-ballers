@@ -6,17 +6,17 @@ import crossIcon from '@icons/crossed-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the message component with all its functions 
+ * Creates the message component with all its functions
  * stored inside for its full operation
- * @param {*} props 
+ * @param {*} props
  * @returns JSX code to render to the DOM tree
  */
 const Message = (props) => {
-  // Parameters that the function will receive
+  // Component's props
   const { message, messageStatus } = props;
 
   /**
-   * Closes the message after the X 
+   * Closes the message after the X
    * button has been clicked
    */
   const closeMessage = () => {
@@ -29,30 +29,17 @@ const Message = (props) => {
       <div className='message__card'>
         <div className='message__container'>
           {messageStatus === 'success' && (
-            <img
-              className='message__container--icon success-icon'
-              src={successIcon}
-            />
+            <img className='message__container--icon success-icon' src={successIcon} />
           )}
           {messageStatus === 'upload' && (
-            <img
-              className='message__container--icon upload-icon'
-              src={uploadIcon}
-            />
+            <img className='message__container--icon upload-icon' src={uploadIcon} />
           )}
           {messageStatus === 'error' && (
-            <img
-              className='message__container--icon error-icon'
-              src={crossIcon}
-            />
+            <img className='message__container--icon error-icon' src={crossIcon} />
           )}
           <p className='message__container--message'>{message}</p>
         </div>
-        <a
-          className='message-close-button'
-          id='close-button'
-          onClick={closeMessage}
-        >
+        <a className='message-close-button' id='close-button' onClick={closeMessage}>
           <img className='message--close' src={crossIcon} alt='Cerrar' />
         </a>
       </div>

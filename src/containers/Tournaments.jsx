@@ -19,7 +19,7 @@ const Tournaments = () => {
   // Setting moment.js to english
   moment.locale('en');
 
-  // Fetching the necessary data to showcase in the component
+  // Fetching the data to showcase in the component
   const tournaments = useGetTournaments(envConfig.apiUrl);
 
   // Sorting the tournaments by most recent date

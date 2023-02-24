@@ -10,7 +10,7 @@ import '@styles/Articles.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Articles = (props) => {
-  // Parameters that the function will receive
+  // Component's props
   const { title, cover, date, category, route } = props;
 
   return (

@@ -10,15 +10,14 @@ import '@styles/Actor.scss';
  * @returns JSX code to render to the DOM tree
  */
 const AdminActor = (props) => {
-  // Parameters that the function will receive
-  const { name, image, position, route } = props;
+  // Component's props
+  const { name, image, route } = props;
 
   return (
     <Link className='admin__card' to={route}>
-      <img className='admin__card--image' src={image} alt='Foto de perfil' />
+      <img className='admin__card--image' src={image} alt='Profile picture' />
       <div className='admin__card-info'>
         <h3 className='admin__card-info--name'>{name}</h3>
-        {position ? <p className='admin__card--position'>{position}</p> : null}
       </div>
     </Link>
   );

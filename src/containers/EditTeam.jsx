@@ -21,11 +21,10 @@ import '@styles/CreateEntity.scss';
 const EditTeam = (props) => {
   const { slug } = props.match.params;
 
-  /**
-   * Sets the initial values for the form fields
-   */
+  // Sets the initial values for the form fields
   const [form, setValues] = useState({ name: '', manager: '' });
 
+  // Fetching the data to showcase in the component
   const loadTeam = async () => {
     try {
       const response = await getTeam(envConfig.apiUrl, slug);

@@ -13,27 +13,12 @@ import '@styles/Login.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Recovery = () => {
+  // Sets the initial values for the form fields
+  const [form, setValues] = useState({ email: '' });
+
   useEffect(() => {
     document.title = 'Recover Password • The Ballers';
   }, []);
-
-  /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({
-    email: '',
-  });
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
 
   /**
    * Sends a post request to the URL of the API provided
@@ -58,6 +43,17 @@ const Recovery = () => {
           document.getElementById('message-container')
         );
       });
+  };
+
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const handleSubmit = (event) => {

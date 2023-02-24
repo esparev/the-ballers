@@ -21,11 +21,10 @@ import '@styles/CreateEntity.scss';
 const EditCoach = (props) => {
   const { slug } = props.match.params;
 
-  /**
-   * Sets the initial values for the form fields
-   */
+  // Sets the initial values for the form fields
   const [form, setValues] = useState({ name: '', birthday: '' });
 
+  // Fetching the data to showcase in the component
   const loadCoach = async () => {
     try {
       const response = await getCoach(envConfig.apiUrl, slug);

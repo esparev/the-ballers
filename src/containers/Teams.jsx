@@ -36,6 +36,7 @@ const Teams = (props) => {
     },
   });
 
+  // Fetching the data to showcase in the component
   const loadClub = async () => {
     try {
       const response = await getClub(envConfig.apiUrl, slug);

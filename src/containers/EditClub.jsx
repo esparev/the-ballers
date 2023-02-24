@@ -21,9 +21,7 @@ import '@styles/CreateEntity.scss';
 const EditClub = (props) => {
   const { slug } = props.match.params;
 
-  /**
-   * Sets the initial values for the club fields
-   */
+  // Sets the initial values for the club fields
   const [clubForm, setClubValues] = useState({
     name: '',
     responsable: '',
@@ -40,6 +38,7 @@ const EditClub = (props) => {
   });
   const [addressForm, setAddressValues] = useState({});
 
+  // Fetching the data to showcase in the component
   const loadClub = async () => {
     try {
       const response = await getClub(envConfig.apiUrl, slug);

@@ -4,13 +4,13 @@ import '@styles/FeedbackMessage.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the delete message component with all its functions 
+ * Creates the delete message component with all its functions
  * stored inside for its full operation
- * @param {*} props 
+ * @param {*} props
  * @returns JSX code to render to the DOM tree
  */
 const DeleteMessage = (props) => {
-  // Parameters that the function will receive
+  // Component's props
   const { entity, onClick } = props;
 
   useEffect(() => {
@@ -42,10 +42,10 @@ const DeleteMessage = (props) => {
           Esta acción es permanente y no podrás restaurar esta información
         </p>
         <div className='buttons__container'>
-          <a className='button gray-button' onClick={toggleMessage}>
+          <a className='button secondary-button' onClick={toggleMessage}>
             Cancelar
           </a>
-          <a className='button red-button' onClick={onClick}>
+          <a className='button danger-button' onClick={onClick}>
             Eliminar
           </a>
         </div>

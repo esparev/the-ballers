@@ -10,7 +10,7 @@ import '@styles/Card.scss';
  * @returns JSX code to render to the DOM tree
  */
 const Card = (props) => {
-  // Parameters that the function will receive
+  // Component's props
   const { title, cover, date, category, description, link, route } = props;
 
   return (

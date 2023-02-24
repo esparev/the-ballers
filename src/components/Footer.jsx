@@ -36,7 +36,9 @@ const Footer = () => {
             Accesibility
           </a>
         </div>
-        <p className='footer--copyright'>© Copyright {moment().format('YYYY')} The Ballers. All rights reserved.</p>
+        <p className='footer--copyright'>
+          © Copyright {moment().format('YYYY')} The Ballers. All rights reserved.
+        </p>
         <p className='footer--made-by'>
           Developed and mantained by{' '}
           <a href='https://esparev.com' target='_blank' rel='noreferrer noopener'>

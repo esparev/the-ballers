@@ -8,7 +8,7 @@ import React from 'react';
  * @returns JSX code to render to the DOM tree
  */
 const DangerButton = (props) => {
-  // Parameters that the function will receive
+  // Component's props
   const { name, onClick } = props;
 
   return (

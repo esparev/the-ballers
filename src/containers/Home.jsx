@@ -26,8 +26,8 @@ const Home = () => {
   // Setting moment.js to english
   moment.locale('en');
 
-  // Fetching the necessary data to showcase in the component
-  let leagues = useGetClubs(envConfig.apiUrl);
+  // Fetching the data to showcase in the component
+  let clubs = useGetClubs(envConfig.apiUrl);
   let news = useGetNews(envConfig.apiUrl);
   let tournaments = useGetTournaments(envConfig.apiUrl);
 
@@ -35,8 +35,8 @@ const Home = () => {
   sortByDate(news);
   sortByDate(tournaments);
 
-  // Slicing leagues, news and tournaments to not show all of them
-  leagues = leagues.slice(0, 6);
+  // Slicing clubs, news and tournaments to not show all of them
+  clubs = clubs.slice(0, 6);
   news = news.slice(0, 9);
   tournaments = tournaments.slice(0, 9);
 
@@ -92,7 +92,7 @@ const Home = () => {
       <section className='entities'>
         <h2 className='leagues--title'>Meet our clubs</h2>
         <EntityContainer>
-          {leagues.map((league) => (
+          {clubs.map((league) => (
             <Entity
               league={league}
               key={league.slug}

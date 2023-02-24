@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
  * @returns JSX code to render to the DOM tree
  */
 const SecondaryButton = (props) => {
-  // Parameters that the function will receive
+  // Component's props
   const { name, route, onClick } = props;
 
   /**
