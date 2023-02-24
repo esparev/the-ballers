@@ -11,15 +11,7 @@ import '@styles/Articles.scss';
  */
 const Articles = (props) => {
   // Parameters that the function will receive
-  const { title, cover, date, category, route, onClick } = props;
-
-  /**
-   * Does nothing
-   * Its declared in case the component
-   * is imported but onClick function is
-   * not necessary or is not defined
-   */
-  const nothing = () => {};
+  const { title, cover, date, category, route } = props;
 
   return (
     <div className='article__card'>
@@ -32,7 +24,7 @@ const Articles = (props) => {
           <p>•</p>
           <p className='card--category'>{category}</p>
         </div>
-        <div onClick={onClick ? onClick : nothing}>
+        <div>
           <PrimaryButton name='See more' route={route} />
         </div>
       </div>
