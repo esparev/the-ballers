@@ -6,9 +6,9 @@ import Message from '@components/Message';
 import Article from '@components/Article';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getTournament } from '../api/getTournament';
 import useGetTournament from '@hooks/useGetTournament';
 import useGetTournaments from '@hooks/useGetTournaments';
-import loadComponent from '@functions/loadComponent';
 import sortByDate from '@functions/sortByDate';
 import urlEncode from '@functions/urlEncode';
 import { envConfig } from '@config';
@@ -25,19 +25,41 @@ import twitterIcon from '@icons/twitter-icon.svg';
  * @returns JSX code to render to the DOM tree
  */
 const Tournament = (props) => {
-  const [title, setTitle] = useState('Tournament');
-  // Assigns the tournament's id from the URL to the id props
+  // Assigns the tournament's slug from the URL to the slug props
   const { slug } = props.match.params;
+  const [tournamentData, setTournamentData] = useState({
+    slug: '',
+    title: '',
+    description: '',
+    createdAt: '',
+    author: 'JoseMa Esparev',
+    cover: '',
+  });
+
+  // Fetching the data to showcase in the component
+  const loadTournament = async () => {
+    try {
+      const response = await getTournament(envConfig.apiUrl, slug);
+      setTournamentData({
+        slug: response.slug,
+        title: response.title,
+        description: response.description,
+        createdAt: response.createdAt,
+        author: response.author,
+        cover: response.cover,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Setting moment.js to english
   moment.locale('en');
 
-  // Fetching the necessary data to showcase in the component
-  const tournament = useGetTournament(envConfig.apiUrl, slug);
   let tournaments = useGetTournaments(envConfig.apiUrl);
 
   // Setting the tournament's id to have data persistency only on local storage
-  localStorage.setItem('selected tournament', tournament.id);
+  localStorage.setItem('selected tournament', tournamentData.id);
 
   // Sorting the tournaments by most recent date
   sortByDate(tournaments);
@@ -46,14 +68,15 @@ const Tournament = (props) => {
   tournaments = tournaments.slice(0, 3);
 
   useEffect(() => {
-    if (title) {
-      document.title = `${title} • The Ballers`;
-    }
-  }, [title]);
+    window.scrollTo(0, 0);
+    (async () => {
+      await loadTournament();
+    })();
+  }, [slug]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    document.title = `${tournamentData.title} • The Ballers`;
+  }, [tournamentData]);
 
   /**
    * Copies the URL of the page
@@ -71,9 +94,9 @@ const Tournament = (props) => {
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: tournament.title,
-    image: tournament.cover,
-    author: tournament.author,
+    headline: tournamentData.title,
+    image: tournamentData.cover,
+    author: tournamentData.author,
     genre: 'baseball',
     keywords: 'baseball torneo michoacan',
     publisher: {
@@ -86,10 +109,10 @@ const Tournament = (props) => {
       '@type': 'WebPage',
       '@id': 'https://google.com/article',
     },
-    datePublished: tournament.createdAt,
-    dateCreated: tournament.createdAt,
-    description: tournament.link,
-    articleBody: tournament.link,
+    datePublished: tournamentData.createdAt,
+    dateCreated: tournamentData.createdAt,
+    description: tournamentData.link,
+    articleBody: tournamentData.link,
   };
 
   return (
@@ -98,27 +121,27 @@ const Tournament = (props) => {
 
       <main className='article__container'>
         <section className='article'>
-          {tournament.cover ? (
+          {tournamentData.cover ? (
             <div className='article__cover'>
               <img
                 className='article__cover--image cover-image'
-                src={tournament.cover}
+                src={tournamentData.cover}
                 alt='Imagen del torneo'
               />
             </div>
           ) : null}
 
-          <h1 className='article--title'>{tournament.title}</h1>
+          <h1 className='article--title'>{tournamentData.title}</h1>
 
           <div className='article__info'>
-            <p className='article__info--author'>{tournament.author}</p>
+            <p className='article__info--author'>{tournamentData.author}</p>
             <p>•</p>
-            <p>{moment(tournament.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
+            <p>{moment(tournamentData.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
           </div>
 
           <hr className='article--line' />
 
-          <p className='article--description'>{tournament.description}</p>
+          <p className='article--description'>{tournamentData.description}</p>
 
           <div className='article__share'>
             <p>Compartir:</p>
@@ -159,7 +182,7 @@ const Tournament = (props) => {
             <ButtonContainer>
               <SecondaryButton
                 name='Edit tournament'
-                route={`/edit-tournament/${tournament.slug}`}
+                route={`/edit-tournament/${tournamentData.slug}`}
               />
             </ButtonContainer>
           ) : null}
@@ -176,7 +199,6 @@ const Tournament = (props) => {
               date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
               category='Tournament'
               route={`/tournament/${tournament.slug}`}
-              onClick={loadComponent}
             />
           ))}
         </section>
@@ -186,19 +208,19 @@ const Tournament = (props) => {
         {/* Facebook og tags */}
         <meta property='og:locale' content='en_US' />
         <meta property='og:type' content='article' />
-        <meta property='og:title' content={tournament.title} />
-        <meta property='og:description' content={tournament.link} />
+        <meta property='og:title' content={tournamentData.title} />
+        <meta property='og:description' content={tournamentData.link} />
         <meta property='og:url' content={window.location} />
         <meta property='og:site_name' content='The Ballers' />
-        <meta property='article:author' content={tournament.author} />
+        <meta property='article:author' content={tournamentData.author} />
         <meta property='article:publisher' content='https://esparev.com' />
-        <meta property='og:image' content={tournament.cover} />
+        <meta property='og:image' content={tournamentData.cover} />
         {/* Twitter cards */}
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:title' content={tournament.title} />
-        <meta name='twitter:description' content={tournament.description} />
+        <meta name='twitter:title' content={tournamentData.title} />
+        <meta name='twitter:description' content={tournamentData.description} />
         <meta name='twitter:domain' content='The Ballers' />
-        <meta name='twitter:image:src' content={tournament.cover} />
+        <meta name='twitter:image:src' content={tournamentData.cover} />
         {/* SEO */}
         <script type='application/ld+json'>{JSON.stringify(articleStructuredData)}</script>
       </Helmet>

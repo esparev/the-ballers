@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MoreActors from '@components/MoreActors';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getCoach } from '../api/getCoach';
 import useGetClub from '@hooks/useGetClub';
-import useGetTeam from '@hooks/useGetTeam';
-import useGetCoach from '@hooks/useGetCoach';
 import useGetCoaches from '@hooks/useGetCoaches';
-import loadComponent from '@functions/loadComponent';
 import { envConfig } from '@config';
 import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -19,50 +17,80 @@ import '@styles/ActorContainer.scss';
  */
 const Coach = (props) => {
   // Assigns the coach's id from the URL to the coachId props
-  // as well for its respective league and team id to identify
-  // which team the coach belongs to and which league his team belongs to
+  // as well for its respective club and team id to identify
+  // which team the coach belongs to and which club his team belongs to
   const { clubSlug, teamSlug, coachSlug } = props.match.params;
+  const [coachData, setCoachData] = useState({
+    slug: '',
+    name: '',
+    image: '',
+    birthday: '',
+    team: {
+      name: '',
+    },
+  });
+
+  const loadCoach = async () => {
+    try {
+      const response = await getCoach(envConfig.apiUrl, coachSlug);
+      setCoachData({
+        slug: response.slug,
+        name: response.name,
+        image: response.image,
+        birthday: response.birthday,
+        team: {
+          name: response.team.name,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetClub(envConfig.apiUrl, clubSlug);
-  const team = useGetTeam(envConfig.apiUrl, teamSlug);
-  const coach = useGetCoach(envConfig.apiUrl, coachSlug);
+  const club = useGetClub(envConfig.apiUrl, clubSlug);
   const coaches = useGetCoaches(envConfig.apiUrl, teamSlug);
 
   // Setting the coach's id to have data persistency only on local storage
-  localStorage.setItem('selected coach', coach.id);
+  localStorage.setItem('selected coach', coachData.id);
 
   useEffect(() => {
-    document.title = 'Coach • The Ballers';
     window.scrollTo(0, 0);
-  }, []);
+    (async () => {
+      await loadCoach();
+    })();
+  }, [coachSlug]);
+
+  useEffect(() => {
+    document.title = `${coachData.name} • The Ballers`;
+  }, [coachData]);
 
   return (
     <main className='player-coach__container'>
       <section className='cover'>
-        <img className='cover--image' src={league.logo} alt='Cover' />
+        <img className='cover--image' src={club.logo} alt='Cover' />
       </section>
 
       <section className='actor'>
         <div className='actor__container'>
-          <img className='actor__container--image' src={coach.image} alt='Coach photo' />
+          <img className='actor__container--image' src={coachData.image} alt='Coach photo' />
           <div className='actor__info'>
             <div className='actor__header'>
-              <h1 className='actor__info--name'>{coach.name}</h1>
+              <h1 className='actor__info--name'>{coachData.name}</h1>
               {localStorage.getItem('id') ? (
                 <ButtonContainer>
-                  <SecondaryButton name='Edit coach' route={`/edit-coach/${coach.slug}`} />
+                  <SecondaryButton name='Edit coach' route={`/edit-coach/${coachData.slug}`} />
                 </ButtonContainer>
               ) : null}
             </div>
             <div className='actor__info-about'>
               <p>
                 <strong>Team: </strong>
-                {team.name}
+                {coachData.team.name}
               </p>
               <p>
                 <strong>Birth: </strong>
-                {coach.birthday}
+                {coachData.birthday}
               </p>
             </div>
           </div>
@@ -71,14 +99,14 @@ const Coach = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>More coaches</h2>
-            <div className='more-actors' onClick={loadComponent}>
+            <div className='more-actors'>
               {coaches.map((coach) => (
                 <MoreActors
                   coach={coach}
                   key={coach.slug}
                   name={coach.name}
                   image={coach.image}
-                  route={`/club/${league.slug}/team/${team.slug}/coach/${coach.slug}`}
+                  route={`/club/${club.slug}/team/${coachData.team.slug}/coach/${coach.slug}`}
                 />
               ))}
             </div>

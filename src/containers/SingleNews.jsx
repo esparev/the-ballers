@@ -6,11 +6,10 @@ import Message from '@components/Message';
 import Article from '@components/Article';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetSingleNews from '@hooks/useGetSingleNews';
+import { getSingleNews } from '../api/getSingleNews';
 import useGetNews from '@hooks/useGetNews';
 import sortByDate from '@functions/sortByDate';
 import urlEncode from '@functions/urlEncode';
-import loadComponent from '@functions/loadComponent';
 import { envConfig } from '@config';
 import '@styles/Article.scss';
 import linkIcon from '@icons/link-icon.svg';
@@ -25,33 +24,56 @@ import twitterIcon from '@icons/twitter-icon.svg';
  * @returns JSX code to render to the DOM tree
  */
 const SingleNews = (props) => {
-  const [title, setTitle] = useState('News');
-  // Assigns the news's id from the URL to the id props
+  // Assigns the tournament's slug from the URL to the slug props
   const { slug } = props.match.params;
+  const [newsData, setNewsData] = useState({
+    slug: '',
+    title: '',
+    description: '',
+    createdAt: '',
+    author: 'JoseMa Esparev',
+    cover: '',
+  });
+
+  // Fetching the data to showcase in the component
+  const loadNews = async () => {
+    try {
+      const response = await getSingleNews(envConfig.apiUrl, slug);
+      setNewsData({
+        slug: response.slug,
+        title: response.title,
+        description: response.description,
+        createdAt: response.createdAt,
+        author: response.author,
+        cover: response.cover,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Setting moment.js to english
   moment.locale('en');
 
-  // Fetching the necessary data to showcase in the component
-  const news = useGetSingleNews(envConfig.apiUrl, slug);
   // Slicing the news to not show all of them
   let newsCollection = useGetNews(envConfig.apiUrl).slice(0, 3);
 
   // Setting the news's id to have data persistency only on local storage
-  localStorage.setItem('selected news', news.id);
+  localStorage.setItem('selected news', newsData.id);
 
   // Sorting the news by most recent date
   sortByDate(newsCollection);
 
   useEffect(() => {
-    if (title) {
-      document.title = `${title} • The Ballers`;
-    }
-  }, [title]);
+    window.scrollTo(0, 0);
+    (async () => {
+      await loadNews();
+    })();
+  }, [slug]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    document.title = `${newsData.title} • The Ballers`;
+  }, [newsData]);
 
   /**
    * Copies the URL of the page
@@ -69,9 +91,9 @@ const SingleNews = (props) => {
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: news.title,
-    image: news.cover,
-    author: news.author,
+    headline: newsData.title,
+    image: newsData.cover,
+    author: newsData.author,
     genre: 'baseball',
     keywords: 'baseball tournament',
     publisher: {
@@ -84,10 +106,10 @@ const SingleNews = (props) => {
       '@type': 'WebPage',
       '@id': 'https://google.com/article',
     },
-    datePublished: news.createdAt,
-    dateCreated: news.createdAt,
-    description: news.description,
-    articleBody: news.description,
+    datePublished: newsData.createdAt,
+    dateCreated: newsData.createdAt,
+    description: newsData.description,
+    articleBody: newsData.description,
   };
 
   return (
@@ -96,29 +118,27 @@ const SingleNews = (props) => {
 
       <main className='article__container'>
         <section className='article'>
-          {news.cover ? (
+          {newsData.cover ? (
             <div className='article__cover'>
               <img
                 className='article__cover--image cover-image'
-                src={news.cover}
+                src={newsData.cover}
                 alt='News cover'
               />
             </div>
           ) : null}
 
-          <h1 className='article--title' onClick={() => setTitle(news.title)}>
-            {news.title}
-          </h1>
+          <h1 className='article--title'>{newsData.title}</h1>
 
           <div className='article__info'>
-            <p className='article__info--author'>{news.author}</p>
+            <p className='article__info--author'>{newsData.author}</p>
             <p>•</p>
-            <p>{moment(news.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
+            <p>{moment(newsData.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
           </div>
 
           <hr className='article--line' />
 
-          <p className='article--description'>{news.description}</p>
+          <p className='article--description'>{newsData.description}</p>
 
           <div className='article__share'>
             <p>Share on</p>
@@ -157,7 +177,7 @@ const SingleNews = (props) => {
 
           {localStorage.getItem('id') ? (
             <ButtonContainer>
-              <SecondaryButton name='Edit news' route={`/edit-news/${news.slug}`} />
+              <SecondaryButton name='Edit news' route={`/edit-news/${newsData.slug}`} />
             </ButtonContainer>
           ) : null}
         </section>
@@ -173,7 +193,6 @@ const SingleNews = (props) => {
               date={moment(news.createdAt).format('MMMM Do YYYY')}
               category='News'
               route={`/news/${news.slug}`}
-              onClick={loadComponent}
             />
           ))}
         </section>
@@ -183,19 +202,19 @@ const SingleNews = (props) => {
         {/* Facebook og tags */}
         <meta property='og:locale' content='en_US' />
         <meta property='og:type' content='article' />
-        <meta property='og:title' content={news.title} />
-        <meta property='og:description' content={news.description} />
+        <meta property='og:title' content={newsData.title} />
+        <meta property='og:description' content={newsData.description} />
         <meta property='og:url' content={window.location} />
         <meta property='og:site_name' content='The Ballers' />
-        <meta property='article:author' content={news.author} />
+        <meta property='article:author' content={newsData.author} />
         <meta property='article:publisher' content='https://esparev.com' />
-        <meta property='og:image' content={news.cover} />
+        <meta property='og:image' content={newsData.cover} />
         {/* Twitter cards */}
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:title' content={news.title} />
-        <meta name='twitter:description' content={news.description} />
+        <meta name='twitter:title' content={newsData.title} />
+        <meta name='twitter:description' content={newsData.description} />
         <meta name='twitter:domain' content='The Ballers' />
-        <meta name='twitter:image:src' content={news.cover} />
+        <meta name='twitter:image:src' content={newsData.cover} />
         {/* SEO */}
         <script type='application/ld+json'>{JSON.stringify(articleStructuredData)}</script>
       </Helmet>

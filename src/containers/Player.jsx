@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MoreActors from '@components/MoreActors';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
+import { getPlayer } from '../api/getPlayer';
 import useGetClub from '@hooks/useGetClub';
-import useGetTeam from '@hooks/useGetTeam';
-import useGetPlayer from '@hooks/useGetPlayer';
 import useGetPlayers from '@hooks/useGetPlayers';
-import loadComponent from '@functions/loadComponent';
 import { envConfig } from '@config';
 import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -19,58 +17,90 @@ import '@styles/ActorContainer.scss';
  */
 const Player = (props) => {
   // Assigns the player's id from the URL to the playerId props
-  // as well for its respective league and team id to identify
-  // which team the player belongs to and which league his team belongs to
+  // as well for its respective club and team id to identify
+  // which team the player belongs to and which club his team belongs to
   const { clubSlug, teamSlug, playerSlug } = props.match.params;
+  const [playerData, setPlayerData] = useState({
+    slug: '',
+    name: '',
+    image: '',
+    position: '',
+    birthday: '',
+    team: {
+      name: '',
+    },
+  });
+
+  const loadPlayer = async () => {
+    try {
+      const response = await getPlayer(envConfig.apiUrl, playerSlug);
+      setPlayerData({
+        slug: response.slug,
+        name: response.name,
+        image: response.image,
+        position: response.position,
+        birthday: response.birthday,
+        team: {
+          name: response.team.name,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetClub(envConfig.apiUrl, clubSlug);
-  const team = useGetTeam(envConfig.apiUrl, teamSlug);
-  const player = useGetPlayer(envConfig.apiUrl, playerSlug);
+  const club = useGetClub(envConfig.apiUrl, clubSlug);
   const players = useGetPlayers(envConfig.apiUrl, teamSlug);
 
   // Setting the coach's id to have data persistency only on local storage
-  localStorage.setItem('selected player', player.id);
+  localStorage.setItem('selected player', playerData.id);
 
   useEffect(() => {
-    document.title = 'Players • The Ballers';
     window.scrollTo(0, 0);
-  }, []);
+    (async () => {
+      await loadPlayer();
+    })();
+  }, [playerSlug]);
+
+  useEffect(() => {
+    document.title = `${playerData.name} • The Ballers`;
+  }, [playerData]);
 
   return (
     <main className='player-coach__container'>
       <section className='cover'>
-        <img className='cover--image' src={league.logo} alt='Cover' />
+        <img className='cover--image' src={club.logo} alt='Cover' />
       </section>
 
       <section className='actor'>
         <div className='actor__container'>
           <img
             className='actor__container--image'
-            src={player.image}
-            alt={`${player.name} profile`}
+            src={playerData.image}
+            alt={`${playerData.name} profile`}
           />
           <div className='actor__info'>
             <div className='actor__header'>
-              <h1 className='actor__info--name'>{player.name}</h1>
+              <h1 className='actor__info--name'>{playerData.name}</h1>
               {localStorage.getItem('id') ? (
                 <ButtonContainer>
-                  <SecondaryButton name='Edit player' route={`/edit-player/${player.slug}`} />
+                  <SecondaryButton name='Edit player' route={`/edit-player/${playerData.slug}`} />
                 </ButtonContainer>
               ) : null}
             </div>
             <div className='actor__info-about'>
               <p>
                 <strong>Team: </strong>
-                {team.name}
+                {playerData.team.name}
               </p>
               <p>
                 <strong>Position: </strong>
-                {player.position}
+                {playerData.position}
               </p>
               <p>
                 <strong>Birthday: </strong>
-                {player.birthday}
+                {playerData.birthday}
               </p>
             </div>
           </div>
@@ -79,14 +109,14 @@ const Player = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>More players</h2>
-            <div className='more-actors' onClick={loadComponent}>
+            <div className='more-actors'>
               {players.map((player) => (
                 <MoreActors
                   player={player}
                   key={player.slug}
                   name={player.name}
                   image={player.image}
-                  route={`/club/${league.slug}/team/${team.slug}/player/${player.slug}`}
+                  route={`/club/${club.slug}/team/${playerData.team.slug}/player/${player.slug}`}
                 />
               ))}
             </div>

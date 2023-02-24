@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MoreActors from '@components/MoreActors';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetAdmin from '@hooks/useGetAdmin';
+import { getAdmin } from '../api/getAdmin';
 import useGetAdmins from '@hooks/useGetAdmins';
-import loadComponent from '@functions/loadComponent';
 import { envConfig } from '@config';
 import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -18,34 +17,55 @@ import '@styles/ActorContainer.scss';
 const Admin = (props) => {
   // Assigns the admin's id from the URL to the id props
   const { slug } = props.match.params;
+  const [adminData, setAdminData] = useState({
+    slug: '',
+    name: '',
+    email: '',
+    image: '',
+  });
+
+  const loadAdmin = async () => {
+    try {
+      const response = await getAdmin(envConfig.apiUrl, slug);
+      setAdminData({
+        slug: response.slug,
+        name: response.name,
+        email: response.email,
+        image: response.image,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Fetching the necessary data to showcase in the component
-  const admin = useGetAdmin(envConfig.apiUrl, slug);
   const admins = useGetAdmins(envConfig.apiUrl);
 
   // Setting the admin's id to have data persistency only on local storage
-  localStorage.setItem('selected admin', admin.id);
+  localStorage.setItem('selected admin', adminData.id);
 
   useEffect(() => {
-    document.title = 'Admin • The Ballers';
     window.scrollTo(0, 0);
-  }, []);
+    (async () => {
+      await loadAdmin();
+    })();
+  }, [slug]);
+
+  useEffect(() => {
+    document.title = `${adminData.name} • The Ballers`;
+  }, [adminData]);
 
   return (
     <main>
       <section className='actor'>
         <div className='actor__container'>
-          <img
-            className='actor__container--image'
-            src={admin.image}
-            alt='Profile picture'
-          />
+          <img className='actor__container--image' src={adminData.image} alt='Profile picture' />
           <div className='actor__info'>
-            <h1 className='actor__info--name'>{admin.name}</h1>
+            <h1 className='actor__info--name'>{adminData.name}</h1>
             <div className='actor__info-about'>
               <p>
                 <strong>Email: </strong>
-                {admin.email}
+                {adminData.email}
               </p>
             </div>
           </div>
@@ -54,7 +74,7 @@ const Admin = (props) => {
         <section className='actors'>
           <div className='actors__container'>
             <h2 className='actors__container--title'>More Admins</h2>
-            <div className='more-actors' onClick={loadComponent}>
+            <div className='more-actors'>
               {admins.map((admin) => (
                 <MoreActors
                   admin={admin}
@@ -70,10 +90,7 @@ const Admin = (props) => {
 
         <ButtonContainer>
           {localStorage.getItem('role') === 'hero' ? (
-            <SecondaryButton
-              name='Edit Admin'
-              route={`/edit-admin/${admin.slug}`}
-            />
+            <SecondaryButton name='Edit Admin' route={`/edit-admin/${adminData.slug}`} />
           ) : null}
         </ButtonContainer>
       </section>
