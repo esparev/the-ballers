@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Entity from '@components/Entity';
 import PrimaryButton from '@components/PrimaryButton';
 import SecondaryButton from '@components/SecondaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetClub from '@hooks/useGetClub';
-import useGetAddress from '@hooks/useGetAddress';
+import { getClub } from '../api/getClub';
 import useGetTeams from '@hooks/useGetTeams';
 import { envConfig } from '@config';
 import '@styles/Teams.scss';
@@ -20,19 +19,63 @@ import '@styles/Teams.scss';
 const Teams = (props) => {
   // Assigns the league's id from the URL to the id props
   const { slug } = props.match.params;
+  const [clubData, setClubData] = useState({
+    slug: '',
+    name: '',
+    logo: '',
+    responsible: '',
+    phone: '',
+    ageStart: 0,
+    ageEnd: 0,
+    address: {
+      streetName: '',
+      streetNumber: '',
+      zipCode: '',
+      suburb: '',
+      location: '',
+    },
+  });
+
+  const loadClub = async () => {
+    try {
+      const response = await getClub(envConfig.apiUrl, slug);
+      setClubData({
+        slug: response.slug,
+        name: response.name,
+        logo: response.logo,
+        responsible: response.responsible,
+        phone: response.phone,
+        ageStart: response.ageStart,
+        ageEnd: response.ageEnd,
+        address: {
+          streetName: response.address.streetName,
+          streetNumber: response.address.streetNumber,
+          zipCode: response.address.zipCode,
+          suburb: response.address.suburb,
+          location: response.address.location,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetClub(envConfig.apiUrl, slug);
-  const address = useGetAddress(envConfig.apiUrl, slug);
   const teams = useGetTeams(envConfig.apiUrl, slug);
 
   // Setting the admin's id to have data persistency only on local storage
-  localStorage.setItem('selected league', league.id);
+  localStorage.setItem('selected league', clubData.id);
 
   useEffect(() => {
-    document.title = 'Club • The Ballers';
     window.scrollTo(0, 0);
-  }, []);
+    (async () => {
+      await loadClub();
+    })();
+  }, [slug]);
+
+  useEffect(() => {
+    document.title = `${clubData.name} • The Ballers`;
+  }, [clubData]);
 
   return (
     <>
@@ -41,13 +84,13 @@ const Teams = (props) => {
       <main className='club-teams'>
         <section className='club'>
           <div className='club__main'>
-            <img className='club--image' src={league.logo} alt={`Logo de ${league.logo}`} />
+            <img className='club--image' src={clubData.logo} alt={`Logo de ${clubData.logo}`} />
             <div className='club__main-info'>
-              <h1 className='club--title'>{league.name}</h1>
+              <h1 className='club--title'>{clubData.name}</h1>
               {localStorage.getItem('id') ? (
                 <ButtonContainer>
                   <PrimaryButton name='Create team' route={`/new-team`} />
-                  <SecondaryButton name='Edit club' route={`/edit-club/${league.slug}`} />
+                  <SecondaryButton name='Edit club' route={`/edit-club/${clubData.slug}`} />
                 </ButtonContainer>
               ) : null}
             </div>
@@ -55,33 +98,27 @@ const Teams = (props) => {
 
           <div className='club__info'>
             <div>
-              {league.responsable ? (
+              {clubData.responsible ? (
                 <p>
                   <strong>Responsible: </strong>
-                  {league.responsable}
+                  {clubData.responsible}
                 </p>
               ) : null}
-              {league.phone ? (
+              {clubData.phone ? (
                 <p>
                   <strong>Phone number: </strong>
-                  {league.phone}
+                  {clubData.phone}
                 </p>
               ) : null}
-            </div>
-            <div>
-              <p>
-                <strong>Location: </strong>
-                {address.location}
-              </p>
-              <p>
-                <strong>Address: </strong>
-                {`${address.streetName} ${address.streetNumber}, ${address.zipCode} ${address.suburb}, Mich.`}
-              </p>
             </div>
             <div>
               <p>
                 <strong>Age range: </strong>
-                {`${league.ageStart} - ${league.ageEnd}`}
+                {`${clubData.ageStart} - ${clubData.ageEnd}`}
+              </p>
+              <p>
+                <strong>Address: </strong>
+                {`${clubData.address.streetName} ${clubData.address.streetNumber}, ${clubData.address.zipCode}, ${clubData.address.suburb}, ${clubData.address.location}`}
               </p>
             </div>
           </div>
@@ -97,7 +134,7 @@ const Teams = (props) => {
                   key={team.slug}
                   name={team.name}
                   logo={team.logo}
-                  route={`/club/${league.slug}/${team.slug}`}
+                  route={`/club/${clubData.slug}/${team.slug}`}
                 />
               ))}
             </EntityContainer>

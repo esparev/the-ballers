@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Actor from '@components/Actor';
 import PrimaryButton from '@components/PrimaryButton';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetClub from '@hooks/useGetClub';
-import useGetTeam from '@hooks/useGetTeam';
+import { getTeam } from '../api/getTeam';
 import useGetPlayers from '@hooks/useGetPlayers';
 import useGetCoaches from '@hooks/useGetCoaches';
 import toggleMessage from '@functions/toggleMessage';
@@ -23,20 +22,42 @@ const TeamPlayers = (props) => {
   // Assigns the team's id from the URL to the teamId props
   // as well for its respective league to identify
   // which league the team belongs to
-  const { clubSlug, teamSlug } = props.match.params;
+  const { teamSlug } = props.match.params;
+  const [teamData, setTeamData] = useState({
+    slug: '',
+    name: '',
+    logo: '',
+    manager: '',
+    club: { slug: '', name: '' },
+  });
+
+  const loadTeam = async () => {
+    try {
+      const response = await getTeam(envConfig.apiUrl, teamSlug);
+      setTeamData({
+        slug: response.slug,
+        name: response.name,
+        logo: response.logo,
+        manager: response.manager,
+        club: { slug: response.club.slug, name: response.club.name },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Fetching the necessary data to showcase in the component
-  const league = useGetClub(envConfig.apiUrl, clubSlug);
-  const team = useGetTeam(envConfig.apiUrl, teamSlug);
   const players = useGetPlayers(envConfig.apiUrl, teamSlug);
   const coaches = useGetCoaches(envConfig.apiUrl, teamSlug);
 
   // Setting the admin's id to have data persistency only on local storage
-  localStorage.setItem('selected team', team.id);
+  localStorage.setItem('selected team', teamData.id);
 
   useEffect(() => {
-    document.title = 'Team • The Ballers';
     window.scrollTo(0, 0);
+    (async () => {
+      await loadTeam();
+    })();
 
     /**
      * Hides the message
@@ -48,7 +69,11 @@ const TeamPlayers = (props) => {
       }
     };
     hideMessage();
-  }, []);
+  }, [teamSlug]);
+
+  useEffect(() => {
+    document.title = `${teamData.name} • The Ballers`;
+  }, [teamData]);
 
   return (
     <>
@@ -73,29 +98,29 @@ const TeamPlayers = (props) => {
       <main className='team-players'>
         <section className='team'>
           <div className='team__main'>
-            <img className='team--image' src={team.logo} alt={`${team.logo}'s logo`} />
+            <img className='team--image' src={teamData.logo} alt={`${teamData.logo}'s logo`} />
             <div className='team__header'>
               <div className='team__title'>
-                <h1 className='team--h1'>{team.name}</h1>
+                <h1 className='team--h1'>{teamData.name}</h1>
                 {localStorage.getItem('id') ? (
                   <ButtonContainer>
                     <a className='button primary-button' onClick={toggleMessage}>
                       Create player/coach
                     </a>
-                    <SecondaryButton name='Edit team' route={`/edit-team/${team.slug}`} />
+                    <SecondaryButton name='Edit team' route={`/edit-team/${teamData.slug}`} />
                   </ButtonContainer>
                 ) : null}
               </div>
               <div className='team__info'>
-                {team.manager ? (
+                {teamData.manager ? (
                   <p>
                     <strong>Manager: </strong>
-                    {team.manager}
+                    {teamData.manager}
                   </p>
                 ) : null}
                 <p>
                   <strong>Club: </strong>
-                  {league.name}
+                  {teamData.club.name}
                 </p>
               </div>
             </div>
@@ -114,7 +139,7 @@ const TeamPlayers = (props) => {
                     name={player.name}
                     image={player.image}
                     position={player.position}
-                    route={`/club/${league.slug}/team/${team.slug}/player/${player.slug}`}
+                    route={`/club/${teamData.club.slug}/team/${teamData.slug}/player/${player.slug}`}
                   />
                 ))}
               </div>
@@ -133,7 +158,7 @@ const TeamPlayers = (props) => {
                     key={coach.slug}
                     name={coach.name}
                     image={coach.image}
-                    route={`/club/${league.slug}/team/${team.slug}/coach/${coach.slug}`}
+                    route={`/club/${teamData.club.slug}/team/${teamData.slug}/coach/${coach.slug}`}
                   />
                 ))}
               </div>

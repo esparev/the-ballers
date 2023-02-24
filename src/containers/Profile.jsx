@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import useGetAdmin from '@hooks/useGetAdmin';
+import { getAdmin } from '../api/getAdmin';
 import { envConfig } from '@config';
 import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS
@@ -14,45 +14,55 @@ import '@styles/ActorContainer.scss';
 const Profile = () => {
   // Assigns the admin's id from the local storage
   // that was defined after a successful login
-  const id = localStorage.getItem('id');
+  const slug = localStorage.getItem('slug');
+  const [profileData, setProfileData] = useState({ slug: '', name: '', image: '', email: '' });
 
-  // Fetching the necessary data to showcase in the component
-  const admin = useGetAdmin(envConfig.apiUrl, id);
+  // Fetching the data to showcase in the component
+  const loadProfile = async () => {
+    try {
+      const response = await getAdmin(envConfig.apiUrl, slug);
+      setProfileData({
+        slug: response.slug,
+        name: response.name,
+        image: response.image,
+        email: response.email,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Setting the admin's id to have data persistency only on local storage
-  localStorage.setItem('selected admin', id);
+  localStorage.setItem('selected admin', profileData.slug);
 
   useEffect(() => {
     document.title = 'Profile • The Ballers';
     window.scrollTo(0, 0);
+    (async () => {
+      await loadProfile();
+    })();
   }, []);
 
   return (
     <main className='profile'>
       <section className='actor'>
         <div className='actor__container'>
-          <img
-            className='actor__container--image'
-            src={admin.image}
-            alt='Foto del administrador'
-          />
+          <img className='actor__container--image' src={profileData.image} alt='Profile picture' />
           <div className='actor__info'>
-            <h1 className='actor__info--name'>{admin.name}</h1>
+            <div className='actor__header'>
+              <h1 className='actor__info--name'>{profileData.name}</h1>
+              <ButtonContainer>
+                <SecondaryButton name='Edit profile' route={`/edit-admin/${profileData.slug}`} />
+              </ButtonContainer>
+            </div>
             <div className='actor__info-about'>
               <p>
-                <strong>Correo electrónico: </strong>
-                {admin.email}
+                <strong>Email: </strong>
+                {profileData.email}
               </p>
             </div>
           </div>
         </div>
-
-        <ButtonContainer>
-          <SecondaryButton
-            name='Editar Perfil'
-            route={`/admin/${id}/editar-admin`}
-          />
-        </ButtonContainer>
       </section>
     </main>
   );
