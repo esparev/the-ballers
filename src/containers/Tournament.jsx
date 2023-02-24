@@ -7,7 +7,6 @@ import Article from '@components/Article';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import { getTournament } from '../api/getTournament';
-import useGetTournament from '@hooks/useGetTournament';
 import useGetTournaments from '@hooks/useGetTournaments';
 import sortByDate from '@functions/sortByDate';
 import urlEncode from '@functions/urlEncode';
