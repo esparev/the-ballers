@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import moment from 'moment';
 import NewsCard from '@components/Card';
 import ButtonContainer from '@containers/ButtonContainer';
+import ServerError from '@containers/ServerError';
 import useGetNews from '@hooks/useGetNews';
 import sortByDate from '@functions/sortByDate';
 import { envConfig } from '@config';
@@ -114,33 +115,35 @@ const News = () => {
 
           {localStorage.getItem('slug') ? (
             <ButtonContainer>
-              <Link
-                className='button primary-button'
-                style={{ marginRight: 0 }}
-                to='/new-news'>
+              <Link className='button primary-button' style={{ marginRight: 0 }} to='/new-news'>
                 Create news
               </Link>
             </ButtonContainer>
           ) : null}
         </div>
+        {news.length > 0 ? (
+          <>
+            <div className='filtered-search' id='filtered-news'></div>
 
-        <div className='filtered-search' id='filtered-news'></div>
-
-        <h1 className='news--title'>News</h1>
-        <div className='news__container'>
-          {news.map((news) => (
-            <NewsCard
-              news={news}
-              key={news.slug}
-              title={news.title}
-              cover={news.cover}
-              date={moment(news.createdAt).format('MMMM Do YYYY')}
-              category='News'
-              description={news.description}
-              route={`/news/${news.slug}`}
-            />
-          ))}
-        </div>
+            <h1 className='news--title'>News</h1>
+            <div className='news__container'>
+              {news.map((news) => (
+                <NewsCard
+                  news={news}
+                  key={news.slug}
+                  title={news.title}
+                  cover={news.cover}
+                  date={moment(news.createdAt).format('MMMM Do YYYY')}
+                  category='News'
+                  description={news.description}
+                  route={`/news/${news.slug}`}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <ServerError />
+        )}
       </div>
     </main>
   );

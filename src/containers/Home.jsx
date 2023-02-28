@@ -5,6 +5,7 @@ import Entity from '@components/Entity';
 import Article from '@components/Article';
 import PrimaryButton from '@components/PrimaryButton';
 import EntityContainer from '@containers/EntityContainer';
+import ServerError from '@containers/ServerError';
 import useGetNews from '@hooks/useGetNews';
 import useGetClubs from '@hooks/useGetClubs';
 import useGetTournaments from '@hooks/useGetTournaments';
@@ -65,79 +66,85 @@ const Home = () => {
 
   return (
     <>
-      <main className='slider__container'>
-        <div className='slider--hide-overflow'>
-          <div
-            className='slider__carousel'
-            style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
-            {news.map((news, index) => (
-              <section className='slider' key={index}>
-                <div className='slider__sidebar'>
-                  <h1 className='slider__sidebar--title'>{news.title}</h1>
-                  <hr className='slider__sidebar--line' />
-                  <p className='slider__sidebar--summary'>{news.description}</p>
-                  <PrimaryButton name='See more' route={`/news/${news.slug}`} />
-                </div>
-                <div className='slider__image'>
-                  {news.cover ? (
-                    <img className='slider__image--img' src={news.cover} alt='News cover' />
-                  ) : null}
-                </div>
-              </section>
-            ))}
-          </div>
-        </div>
-      </main>
+      {news.length > 0 ? (
+        <>
+          <main className='slider__container'>
+            <div className='slider--hide-overflow'>
+              <div
+                className='slider__carousel'
+                style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
+                {news.map((news, index) => (
+                  <section className='slider' key={index}>
+                    <div className='slider__sidebar'>
+                      <h1 className='slider__sidebar--title'>{news.title}</h1>
+                      <hr className='slider__sidebar--line' />
+                      <p className='slider__sidebar--summary'>{news.description}</p>
+                      <PrimaryButton name='See more' route={`/news/${news.slug}`} />
+                    </div>
+                    <div className='slider__image'>
+                      {news.cover ? (
+                        <img className='slider__image--img' src={news.cover} alt='News cover' />
+                      ) : null}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            </div>
+          </main>
 
-      <section className='entities'>
-        <h2 className='leagues--title'>Meet our clubs</h2>
-        <EntityContainer>
-          {clubs.map((league) => (
-            <Entity
-              league={league}
-              key={league.slug}
-              name={league.name}
-              logo={league.logo}
-              route={`/club/${league.slug}`}
-            />
-          ))}
-        </EntityContainer>
-      </section>
+          <section className='entities'>
+            <h2 className='leagues--title'>Meet our clubs</h2>
+            <EntityContainer>
+              {clubs.map((league) => (
+                <Entity
+                  league={league}
+                  key={league.slug}
+                  name={league.name}
+                  logo={league.logo}
+                  route={`/club/${league.slug}`}
+                />
+              ))}
+            </EntityContainer>
+          </section>
 
-      <section className='news-tournaments'>
-        <section className='news'>
-          <h2 className='news--title'>News</h2>
-          <div className='news__container'>
-            {news.map((news) => (
-              <Card
-                news={news}
-                key={news.slug}
-                title={news.title}
-                cover={news.cover}
-                date={moment(news.createdAt).format('DD MMMM, YYYY')}
-                category='News'
-                description={news.description}
-                route={`/news/${news.slug}`}
-              />
-            ))}
-          </div>
-        </section>
+          <section className='news-tournaments'>
+            <section className='news'>
+              <h2 className='news--title'>News</h2>
+              <div className='news__container'>
+                {news.map((news) => (
+                  <Card
+                    news={news}
+                    key={news.slug}
+                    title={news.title}
+                    cover={news.cover}
+                    date={moment(news.createdAt).format('DD MMMM, YYYY')}
+                    category='News'
+                    description={news.description}
+                    route={`/news/${news.slug}`}
+                  />
+                ))}
+              </div>
+            </section>
 
-        <section className='tournaments'>
-          <h2 className='tournaments--title'>Tournaments</h2>
-          {tournaments.map((tournament) => (
-            <Article
-              tournament={tournament}
-              key={tournament.slug}
-              title={tournament.title}
-              cover={tournament.cover}
-              date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
-              category='Tournament'
-              route={`/tournament/${tournament.slug}`}
-            />
-          ))}
-        </section>
-      </section>
+            <section className='tournaments'>
+              <h2 className='tournaments--title'>Tournaments</h2>
+              {tournaments.map((tournament) => (
+                <Article
+                  tournament={tournament}
+                  key={tournament.slug}
+                  title={tournament.title}
+                  cover={tournament.cover}
+                  date={moment(tournament.createdAt).format('DD MMMM, YYYY')}
+                  category='Tournament'
+                  route={`/tournament/${tournament.slug}`}
+                />
+              ))}
+            </section>
+          </section>
+        </>
+      ) : (
+        <ServerError />
+      )}
     </>
   );
 };

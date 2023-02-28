@@ -3,6 +3,7 @@ import Entity from '@components/Entity';
 import PrimaryButton from '@components/PrimaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
+import ServerError from '@containers/ServerError';
 import useGetClubs from '@hooks/useGetClubs';
 import { envConfig } from '@config';
 import '@styles/Entities.scss';
@@ -24,28 +25,32 @@ const Clubs = () => {
 
   return (
     <main>
-      <section className='entities'>
-        <div className='entities__header'>
-          <h1 className='entities--title'>The Ballers's clubs</h1>
-          {localStorage.getItem('slug') ? (
-            <ButtonContainer>
-              <PrimaryButton name='Create club' route='/new-club' />
-            </ButtonContainer>
-          ) : null}
-        </div>
+      {clubs.length > 0 ? (
+        <section className='entities'>
+          <div className='entities__header'>
+            <h1 className='entities--title'>The Ballers's clubs</h1>
+            {localStorage.getItem('slug') ? (
+              <ButtonContainer>
+                <PrimaryButton name='Create club' route='/new-club' />
+              </ButtonContainer>
+            ) : null}
+          </div>
 
-        <EntityContainer>
-          {clubs.map((club) => (
-            <Entity
-              club={club}
-              key={club.slug}
-              name={club.name}
-              logo={club.logo}
-              route={`/club/${club.slug}`}
-            />
-          ))}
-        </EntityContainer>
-      </section>
+          <EntityContainer>
+            {clubs.map((club) => (
+              <Entity
+                club={club}
+                key={club.slug}
+                name={club.name}
+                logo={club.logo}
+                route={`/club/${club.slug}`}
+              />
+            ))}
+          </EntityContainer>
+        </section>
+      ) : (
+        <ServerError />
+      )}
 
       <section className='join-club'>
         <h1 className='join-club__message--title'>Are you interested in being part of a club?</h1>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MoreActors from '@components/MoreActors';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
+import ServerError from '@containers/ServerError';
 import { getPlayer } from '../api/getPlayer';
 import useGetClub from '@hooks/useGetClub';
 import useGetPlayers from '@hooks/useGetPlayers';
@@ -66,62 +67,71 @@ const Player = (props) => {
   }, [playerData]);
 
   return (
-    <main className='player-coach__container'>
-      <section className='cover'>
-        <img className='cover--image' src={club.logo} alt='Cover' />
-      </section>
+    <>
+      {players.length > 0 ? (
+        <main className='player-coach__container'>
+          <section className='cover'>
+            <img className='cover--image' src={club.logo} alt='Cover' />
+          </section>
 
-      <section className='actor'>
-        <div className='actor__container'>
-          <img
-            className='actor__container--image'
-            src={playerData.image}
-            alt={`${playerData.name} profile`}
-          />
-          <div className='actor__info'>
-            <div className='actor__header'>
-              <h1 className='actor__info--name'>{playerData.name}</h1>
-              {localStorage.getItem('slug') ? (
-                <ButtonContainer>
-                  <SecondaryButton name='Edit player' route={`/edit-player/${playerData.slug}`} />
-                </ButtonContainer>
-              ) : null}
+          <section className='actor'>
+            <div className='actor__container'>
+              <img
+                className='actor__container--image'
+                src={playerData.image}
+                alt={`${playerData.name} profile`}
+              />
+              <div className='actor__info'>
+                <div className='actor__header'>
+                  <h1 className='actor__info--name'>{playerData.name}</h1>
+                  {localStorage.getItem('slug') ? (
+                    <ButtonContainer>
+                      <SecondaryButton
+                        name='Edit player'
+                        route={`/edit-player/${playerData.slug}`}
+                      />
+                    </ButtonContainer>
+                  ) : null}
+                </div>
+                <div className='actor__info-about'>
+                  <p>
+                    <strong>Team: </strong>
+                    {playerData.team.name}
+                  </p>
+                  <p>
+                    <strong>Position: </strong>
+                    {playerData.position}
+                  </p>
+                  <p>
+                    <strong>Birthday: </strong>
+                    {playerData.birthday}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className='actor__info-about'>
-              <p>
-                <strong>Team: </strong>
-                {playerData.team.name}
-              </p>
-              <p>
-                <strong>Position: </strong>
-                {playerData.position}
-              </p>
-              <p>
-                <strong>Birthday: </strong>
-                {playerData.birthday}
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <section className='actors'>
-          <div className='actors__container'>
-            <h2 className='actors__container--title'>More players</h2>
-            <div className='more-actors'>
-              {players.map((player) => (
-                <MoreActors
-                  player={player}
-                  key={player.slug}
-                  name={player.name}
-                  image={player.image}
-                  route={`/club/${club.slug}/team/${playerData.team.slug}/player/${player.slug}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      </section>
-    </main>
+            <section className='actors'>
+              <div className='actors__container'>
+                <h2 className='actors__container--title'>More players</h2>
+                <div className='more-actors'>
+                  {players.map((player) => (
+                    <MoreActors
+                      player={player}
+                      key={player.slug}
+                      name={player.name}
+                      image={player.image}
+                      route={`/club/${club.slug}/team/${playerData.team.slug}/player/${player.slug}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+      ) : (
+        <ServerError />
+      )}
+    </>
   );
 };
 

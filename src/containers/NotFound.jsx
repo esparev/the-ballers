@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PrimaryButton from '@components/PrimaryButton';
-import '@styles/NotFound.scss';
+import '@styles/HTTPError.scss';
 import baseballIcon from '@icons/baseball-icon.svg';
 // ---------------------------------------- END OF IMPORTS
 
@@ -15,17 +15,14 @@ const NotFound = () => {
   }, []);
 
   return (
-    <main className='not-found-main'>
-      <div className='not-found__container'>
-        <p className='not-found__container--four'>4</p>
-        <img
-          className='not-found__container--baseball'
-          src={baseballIcon}
-          alt='Baseball Icon'
-        />
-        <p className='not-found__container--four'>4</p>
+    <main className='error-main'>
+      <div className='error__container'>
+        <p className='error__container--four'>4</p>
+        <img className='error__container--baseball' src={baseballIcon} alt='Baseball Icon' />
+        <p className='error__container--four'>4</p>
       </div>
-      <p className='not-found--message'>¡Ups!, Página no encontrada</p>
+      <p className='error--message'>Ups!, Page not found</p>
+      <p className='error--sub-message'>We couldn't find what you were looking for</p>
       <PrimaryButton name='Regresar' route='/' />
     </main>
   );

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AdminActor from '@components/AdminActor';
 import PrimaryButton from '@components/PrimaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
+import ServerError from '@containers/ServerError';
 import useGetAdmins from '@hooks/useGetAdmins';
 import { envConfig } from '@config';
 import '@styles/TeamPlayers.scss';
@@ -22,30 +23,36 @@ const Admins = () => {
   }, []);
 
   return (
-    <main className='admins'>
-      <div className='admins__container-card'>
-        <div className='players-coach'>
-          <section className='admins'>
-            <h2 className='admins--title'>Admins</h2>
-            <div className='admins__container'>
-              {admins.map((admin) => (
-                <AdminActor
-                  admin={admin}
-                  key={admin.slug}
-                  name={admin.name}
-                  image={admin.image}
-                  route={`/admin/${admin.slug}`}
-                />
-              ))}
+    <>
+      {admins.length > 0 ? (
+        <main className='admins'>
+          <div className='admins__container-card'>
+            <div className='players-coach'>
+              <section className='admins'>
+                <h2 className='admins--title'>Admins</h2>
+                <div className='admins__container'>
+                  {admins.map((admin) => (
+                    <AdminActor
+                      admin={admin}
+                      key={admin.slug}
+                      name={admin.name}
+                      image={admin.image}
+                      route={`/admin/${admin.slug}`}
+                    />
+                  ))}
+                </div>
+              </section>
             </div>
-          </section>
-        </div>
 
-        <ButtonContainer>
-          <PrimaryButton name='Create admin' route='/new-admin' />
-        </ButtonContainer>
-      </div>
-    </main>
+            <ButtonContainer>
+              <PrimaryButton name='Create admin' route='/new-admin' />
+            </ButtonContainer>
+          </div>
+        </main>
+      ) : (
+        <ServerError />
+      )}
+    </>
   );
 };
 

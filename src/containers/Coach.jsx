@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MoreActors from '@components/MoreActors';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
+import ServerError from '@containers/ServerError';
 import { getCoach } from '../api/getCoach';
 import useGetClub from '@hooks/useGetClub';
 import useGetCoaches from '@hooks/useGetCoaches';
@@ -63,54 +64,60 @@ const Coach = (props) => {
   }, [coachData]);
 
   return (
-    <main className='player-coach__container'>
-      <section className='cover'>
-        <img className='cover--image' src={club.logo} alt='Cover' />
-      </section>
+    <>
+      {coaches.length > 0 ? (
+        <main className='player-coach__container'>
+          <section className='cover'>
+            <img className='cover--image' src={club.logo} alt='Cover' />
+          </section>
 
-      <section className='actor'>
-        <div className='actor__container'>
-          <img className='actor__container--image' src={coachData.image} alt='Coach photo' />
-          <div className='actor__info'>
-            <div className='actor__header'>
-              <h1 className='actor__info--name'>{coachData.name}</h1>
-              {localStorage.getItem('slug') ? (
-                <ButtonContainer>
-                  <SecondaryButton name='Edit coach' route={`/edit-coach/${coachData.slug}`} />
-                </ButtonContainer>
-              ) : null}
+          <section className='actor'>
+            <div className='actor__container'>
+              <img className='actor__container--image' src={coachData.image} alt='Coach photo' />
+              <div className='actor__info'>
+                <div className='actor__header'>
+                  <h1 className='actor__info--name'>{coachData.name}</h1>
+                  {localStorage.getItem('slug') ? (
+                    <ButtonContainer>
+                      <SecondaryButton name='Edit coach' route={`/edit-coach/${coachData.slug}`} />
+                    </ButtonContainer>
+                  ) : null}
+                </div>
+                <div className='actor__info-about'>
+                  <p>
+                    <strong>Team: </strong>
+                    {coachData.team.name}
+                  </p>
+                  <p>
+                    <strong>Birth: </strong>
+                    {coachData.birthday}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className='actor__info-about'>
-              <p>
-                <strong>Team: </strong>
-                {coachData.team.name}
-              </p>
-              <p>
-                <strong>Birth: </strong>
-                {coachData.birthday}
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <section className='actors'>
-          <div className='actors__container'>
-            <h2 className='actors__container--title'>More coaches</h2>
-            <div className='more-actors'>
-              {coaches.map((coach) => (
-                <MoreActors
-                  coach={coach}
-                  key={coach.slug}
-                  name={coach.name}
-                  image={coach.image}
-                  route={`/club/${club.slug}/team/${coachData.team.slug}/coach/${coach.slug}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      </section>
-    </main>
+            <section className='actors'>
+              <div className='actors__container'>
+                <h2 className='actors__container--title'>More coaches</h2>
+                <div className='more-actors'>
+                  {coaches.map((coach) => (
+                    <MoreActors
+                      coach={coach}
+                      key={coach.slug}
+                      name={coach.name}
+                      image={coach.image}
+                      route={`/club/${club.slug}/team/${coachData.team.slug}/coach/${coach.slug}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+      ) : (
+        <ServerError />
+      )}
+    </>
   );
 };
 

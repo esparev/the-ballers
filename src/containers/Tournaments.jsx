@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import moment from 'moment';
 import TournamentCard from '@components/Card';
 import ButtonContainer from '@containers/ButtonContainer';
+import ServerError from '@containers/ServerError';
 import useGetTournaments from '@hooks/useGetTournaments';
 import sortByDate from '@functions/sortByDate';
 import { envConfig } from '@config';
@@ -125,24 +126,30 @@ const Tournaments = () => {
           ) : null}
         </div>
 
-        <div className='filtered-search' id='filtered-tournaments'></div>
+        {tournaments.length > 0 ? (
+          <>
+            <div className='filtered-search' id='filtered-tournaments'></div>
 
-        <h1 className='tournaments--title'>Tournaments</h1>
+            <h1 className='tournaments--title'>Tournaments</h1>
 
-        <div className='tournaments__container'>
-          {tournaments.map((tournament) => (
-            <TournamentCard
-              tournament={tournament}
-              key={tournament.slug}
-              title={tournament.title}
-              cover={tournament.cover}
-              date={moment(tournament.createdAt).format('MMMM Do YYYY')}
-              category='Tournament'
-              description={tournament.description}
-              route={`/tournament/${tournament.slug}`}
-            />
-          ))}
-        </div>
+            <div className='tournaments__container'>
+              {tournaments.map((tournament) => (
+                <TournamentCard
+                  tournament={tournament}
+                  key={tournament.slug}
+                  title={tournament.title}
+                  cover={tournament.cover}
+                  date={moment(tournament.createdAt).format('MMMM Do YYYY')}
+                  category='Tournament'
+                  description={tournament.description}
+                  route={`/tournament/${tournament.slug}`}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <ServerError />
+        )}
       </div>
     </main>
   );

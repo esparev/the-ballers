@@ -67,7 +67,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/new-club' component={isLogged ? CreateClub : NotFound} />
           <Route exact path='/edit-club/:slug' component={isLogged ? EditClub : NotFound} />
           {/* Teams routes */}
-          <Route exact path='/club/:clubSlug/:teamSlug' component={TeamPlayers} />
+          <Route exact path='/club/:clubSlug/team/:teamSlug' component={TeamPlayers} />
           <Route exact path='/new-team' component={isLogged ? CreateTeam : NotFound} />
           <Route exact path='/edit-team/:slug' component={isLogged ? EditTeam : NotFound} />
           {/* Player routes */}

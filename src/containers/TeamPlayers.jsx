@@ -3,6 +3,7 @@ import Actor from '@components/Actor';
 import PrimaryButton from '@components/PrimaryButton';
 import SecondaryButton from '@components/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
+import ServerError from '@containers/ServerError';
 import { getTeam } from '../api/getTeam';
 import useGetPlayers from '@hooks/useGetPlayers';
 import useGetCoaches from '@hooks/useGetCoaches';
@@ -92,80 +93,85 @@ const TeamPlayers = (props) => {
           </div>
         </div>
       </div>
+      {players.length > 0 ? (
+        <>
+          <main className='team-players'>
+            <section className='team'>
+              <div className='team__main'>
+                <img className='team--image' src={teamData.logo} alt={`${teamData.logo}'s logo`} />
+                <div className='team__header'>
+                  <div className='team__title'>
+                    <h1 className='team--h1'>{teamData.name}</h1>
+                    {localStorage.getItem('slug') ? (
+                      <ButtonContainer>
+                        <a className='button primary-button' onClick={toggleMessage}>
+                          Create player/coach
+                        </a>
+                        <SecondaryButton name='Edit team' route={`/edit-team/${teamData.slug}`} />
+                      </ButtonContainer>
+                    ) : null}
+                  </div>
+                  <div className='team__info'>
+                    {teamData.manager ? (
+                      <p>
+                        <strong>Manager: </strong>
+                        {teamData.manager}
+                      </p>
+                    ) : null}
+                    <p>
+                      <strong>Club: </strong>
+                      {teamData.club.name}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-      <main className='team-players'>
-        <section className='team'>
-          <div className='team__main'>
-            <img className='team--image' src={teamData.logo} alt={`${teamData.logo}'s logo`} />
-            <div className='team__header'>
-              <div className='team__title'>
-                <h1 className='team--h1'>{teamData.name}</h1>
-                {localStorage.getItem('slug') ? (
-                  <ButtonContainer>
-                    <a className='button primary-button' onClick={toggleMessage}>
-                      Create player/coach
-                    </a>
-                    <SecondaryButton name='Edit team' route={`/edit-team/${teamData.slug}`} />
-                  </ButtonContainer>
-                ) : null}
-              </div>
-              <div className='team__info'>
-                {teamData.manager ? (
-                  <p>
-                    <strong>Manager: </strong>
-                    {teamData.manager}
-                  </p>
-                ) : null}
-                <p>
-                  <strong>Club: </strong>
-                  {teamData.club.name}
-                </p>
-              </div>
+            <div className='players-coach'>
+              <section className='actors'>
+                <h2 className='actors--title'>Players</h2>
+                {players.length > 0 ? (
+                  <div className='actors__container'>
+                    {players.map((player) => (
+                      <Actor
+                        player={player}
+                        key={player.slug}
+                        name={player.name}
+                        image={player.image}
+                        position={player.position}
+                        route={`/club/${teamData.club.slug}/team/${teamData.slug}/player/${player.slug}`}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <h2 className='no-teams'>This team doesn't have players yet</h2>
+                )}
+              </section>
+
+              <section className='actors'>
+                <h2 className='actors--title'>Coaches</h2>
+                {coaches.length > 0 ? (
+                  <div className='actors__container'>
+                    {coaches.map((coach) => (
+                      <Actor
+                        coach={coach}
+                        key={coach.slug}
+                        name={coach.name}
+                        image={coach.image}
+                        route={`/club/${teamData.club.slug}/team/${teamData.slug}/coach/${coach.slug}`}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <h2 className='no-teams'>This team doesn't have coaches yet</h2>
+                )}
+              </section>
             </div>
-          </div>
-        </section>
-
-        <div className='players-coach'>
-          <section className='actors'>
-            <h2 className='actors--title'>Players</h2>
-            {players.length > 0 ? (
-              <div className='actors__container'>
-                {players.map((player) => (
-                  <Actor
-                    player={player}
-                    key={player.slug}
-                    name={player.name}
-                    image={player.image}
-                    position={player.position}
-                    route={`/club/${teamData.club.slug}/team/${teamData.slug}/player/${player.slug}`}
-                  />
-                ))}
-              </div>
-            ) : (
-              <h2 className='no-teams'>This team doesn't have players yet</h2>
-            )}
-          </section>
-
-          <section className='actors'>
-            <h2 className='actors--title'>Coaches</h2>
-            {coaches.length > 0 ? (
-              <div className='actors__container'>
-                {coaches.map((coach) => (
-                  <Actor
-                    coach={coach}
-                    key={coach.slug}
-                    name={coach.name}
-                    image={coach.image}
-                    route={`/club/${teamData.club.slug}/team/${teamData.slug}/coach/${coach.slug}`}
-                  />
-                ))}
-              </div>
-            ) : (
-              <h2 className='no-teams'>This team doesn't have coaches yet</h2>
-            )}
-          </section>
-        </div>
-      </main>
+          </main>
+        </>
+      ) : (
+        <ServerError />
+      )}
     </>
   );
 };

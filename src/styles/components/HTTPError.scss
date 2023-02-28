@@ -1,44 +1,54 @@
 @import '../Vars.scss';
 
-.not-found-main {
-  padding: 15vh 60px;
+.error-main {
   display: flex;
+  row-gap: 4px;
   align-items: center;
   flex-direction: column;
 }
-.not-found__container {
+
+.error__container {
   display: flex;
+  column-gap: 20px;
 }
-.not-found__container--four {
+
+.error__container--four {
   font-family: $inter-font;
   font-size: 25rem;
-  font-weight: bold;
+  font-weight: 900;
   color: $white-100;
 }
-.not-found__container--baseball {
+
+.error__container--baseball {
   width: 200px;
-  margin: 0 20px;
 }
-.not-found--message {
-  font-family: $inter-font;
+
+.error--message {
+  font-family: $roboto-font;
   font-size: $primary-desk;
   font-weight: bold;
   text-align: center;
   color: $white-100;
 }
 
+.error--sub-message {
+  font-family: $inter-font;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+  color: $white-300;
+}
+
 @media only screen and (max-width: 836px) {
-  .not-found-main {
-    padding: 30vh 20px;
-  }
-  .not-found__container--four {
+  .error__container--four {
     font-size: 10rem;
   }
-  .not-found__container--baseball {
+
+  .error__container--baseball {
     width: 80px;
-    margin: 0 10px;
   }
-  .not-found--message {
+
+  .error--message {
     font-size: $primary-mob;
   }
 }
