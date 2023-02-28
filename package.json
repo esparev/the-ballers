@@ -20,6 +20,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",
+    "formik": "^2.2.9",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "react": "^17.0.2",
@@ -30,8 +31,10 @@
     "react-router-dom": "^5.2.1",
     "redux": "^4.1.2",
     "sass-loader": "^12.3.0",
+    "slugify": "^1.6.5",
     "webpack": "^5.64.2",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
