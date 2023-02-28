@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
@@ -15,6 +15,14 @@ import '@styles/CreateEntity.scss';
  * @returns JSX code to render to the DOM tree
  */
 const CreatePlayer = () => {
+  // Sets the initial values for the form fields
+  const [form, setValues] = useState({
+    name: '',
+    position: '',
+    birthday: '',
+    teamId: localStorage.getItem('selected team'),
+  });
+
   useEffect(() => {
     document.title = 'New Player • The Ballers';
     window.scrollTo(0, 0);
@@ -95,28 +103,6 @@ const CreatePlayer = () => {
   };
 
   /**
-   * Sets the initial values for the form fields
-   */
-  const [form, setValues] = useState({
-    name: '',
-    position: '',
-    birthday: '',
-    image: localStorage.getItem('actor image'),
-    teamId: localStorage.getItem('selected team'),
-  });
-
-  /**
-   * Sets values after onChange event is triggered on the
-   * indicated inputs
-   */
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  /**
    * Sends a post request to the URL of the API provided
    * with the data entered by the user in a form along
    * with a bearer token included in the headers configuration
@@ -147,6 +133,17 @@ const CreatePlayer = () => {
 
         localStorage.removeItem('uploaded image');
       });
+  };
+
+  /**
+   * Sets values after onChange event is triggered on the
+   * indicated inputs
+   */
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const handleSubmit = (event) => {
