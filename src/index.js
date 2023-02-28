@@ -10,7 +10,7 @@ import App from './routes/App';
 ReactDOM.render(
   <>
     <ImageUploader />
-    <App isLogged={localStorage.getItem('id')} />
+    <App isLogged={localStorage.getItem('slug')} />
   </>,
   document.getElementById('app')
 );
