@@ -12,7 +12,6 @@ import '@styles/CreateEntity.scss';
 /**
  * Creates the create coach page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const CreateCoach = () => {
   useEffect(() => {

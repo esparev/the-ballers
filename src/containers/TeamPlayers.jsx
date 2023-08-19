@@ -16,8 +16,6 @@ import '@styles/FeedbackMessage.scss';
 /**
  * Creates the team players page with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const TeamPlayers = (props) => {
   // Assigns the team's id from the URL to the teamId props

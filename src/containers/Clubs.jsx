@@ -12,7 +12,6 @@ import '@styles/Entities.scss';
 /**
  * Creates the leagues page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Clubs = () => {
   // Fetching the data to showcase in the component

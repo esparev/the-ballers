@@ -10,7 +10,6 @@ import '@styles/Login.scss';
 /**
  * Creates the recover password page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Recovery = () => {
   // Sets the initial values for the form fields

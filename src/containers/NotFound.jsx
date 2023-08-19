@@ -7,7 +7,6 @@ import baseballIcon from '@icons/baseball-icon.svg';
 /**
  * Creates the not found page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const NotFound = () => {
   useEffect(() => {

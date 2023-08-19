@@ -4,7 +4,6 @@ import '@styles/About.scss';
 
 /**
  * Contains the About page
- * @returns JSX code to render to the DOM tree
  */
 const About = () => {
   useEffect(() => {

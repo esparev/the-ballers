@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 /**
  * Creates the gray button component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const SecondaryButton = (props) => {
   // Component's props

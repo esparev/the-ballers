@@ -13,8 +13,6 @@ import '@styles/ActorContainer.scss';
 /**
  * Creates the player page with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Player = (props) => {
   // Assigns the player's slug from the URL to the playerSlug props

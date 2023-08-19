@@ -8,7 +8,6 @@ import burgerMenuIcon from '@icons/burger-menu-icon.svg';
 /**
  * Creates the header component with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Header = () => {
   const [logoutStatus, setLogoutStatus] = useState(false);

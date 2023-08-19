@@ -6,7 +6,6 @@ import '@styles/Login.scss';
 /**
  * Creates the send password recovery mail page with
  * all its functions stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const SendMail = () => {
   useEffect(() => {

@@ -11,7 +11,6 @@ import '@styles/TeamPlayers.scss';
 /**
  * Creates the admins page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Admins = () => {
   // Fetching the necessary data to showcase in the component

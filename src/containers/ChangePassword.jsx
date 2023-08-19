@@ -11,7 +11,6 @@ import '@styles/Login.scss';
 /**
  * Creates the change password page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const ChangePassword = () => {
   // Gets the full URL string

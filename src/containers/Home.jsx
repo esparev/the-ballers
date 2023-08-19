@@ -21,7 +21,6 @@ const delay = 10000;
 /**
  * Creates the home page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Home = () => {
   // Setting moment.js to english

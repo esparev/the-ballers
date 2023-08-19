@@ -6,8 +6,6 @@ import '@styles/FeedbackMessage.scss';
 /**
  * Creates the delete message component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const DeleteMessage = (props) => {
   // Component's props

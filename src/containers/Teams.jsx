@@ -14,8 +14,6 @@ import '@styles/Teams.scss';
 /**
  * Creates the league teams page with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Teams = (props) => {
   // Assigns the league's id from the URL to the id props

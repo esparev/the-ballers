@@ -14,7 +14,6 @@ import '@styles/CardsContainer.scss';
 /**
  * Creates the tournaments page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Tournaments = () => {
   // Setting moment.js to english

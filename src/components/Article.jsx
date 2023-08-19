@@ -6,8 +6,6 @@ import '@styles/Articles.scss';
 /**
  * Creates the articles component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Articles = (props) => {
   // Component's props

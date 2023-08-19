@@ -6,8 +6,6 @@ import '@styles/Actor.scss';
 /**
  * Creates the actor component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Actor = (props) => {
   // Component's props

@@ -13,8 +13,6 @@ import '@styles/ActorContainer.scss';
 /**
  * Creates the coach page with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Coach = (props) => {
   // Assigns the coach's slug from the URL to the coachSlug props

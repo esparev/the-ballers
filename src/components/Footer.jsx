@@ -8,7 +8,6 @@ import facebookIcon from '@icons/facebook-icon.svg';
 /**
  * Creates the footer component with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Footer = () => {
   return (

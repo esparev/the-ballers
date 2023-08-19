@@ -16,7 +16,6 @@ import '@styles/CreateEntity.scss';
 /**
  * Creates the edit team page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const EditTeam = (props) => {
   const { slug } = props.match.params;

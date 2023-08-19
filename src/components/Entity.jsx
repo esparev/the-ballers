@@ -6,8 +6,6 @@ import '@styles/Entity.scss';
 /**
  * Creates the entity component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Entity = (props) => {
   // Component's props

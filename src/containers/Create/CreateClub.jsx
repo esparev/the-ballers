@@ -13,7 +13,6 @@ import '@styles/CreateEntity.scss';
 /**
  * Creates the create club page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const CreateClub = () => {
   useEffect(() => {

@@ -16,7 +16,6 @@ import '@styles/CreateEntity.scss';
 /**
  * Creates the edit coach page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const EditCoach = (props) => {
   const { slug } = props.match.params;

@@ -8,8 +8,6 @@ import crossIcon from '@icons/crossed-icon.svg';
 /**
  * Creates the message component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Message = (props) => {
   // Component's props

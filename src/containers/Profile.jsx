@@ -9,7 +9,6 @@ import '@styles/ActorContainer.scss';
 /**
  * Creates the profile page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Profile = () => {
   // Assigns the admin's id from the local storage

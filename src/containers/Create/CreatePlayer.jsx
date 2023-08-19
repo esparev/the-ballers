@@ -12,7 +12,6 @@ import '@styles/CreateEntity.scss';
 /**
  * Creates the create player page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const CreatePlayer = () => {
   // Sets the initial values for the form fields

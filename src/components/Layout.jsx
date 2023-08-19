@@ -6,8 +6,6 @@ import Footer from '@components/Footer';
 /**
  * Creates the layout component to have consistency
  * across all containers and pages with the header and footer
- * @param {*} param0 - JSX component
- * @returns JSX code to render to the DOM tree
  */
 const Layout = ({ children }) => (
   <div className='App'>

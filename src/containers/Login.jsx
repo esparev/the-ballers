@@ -9,7 +9,6 @@ import '@styles/Login.scss';
 /**
  * Creates the login page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const Login = () => {
   // Sets the initial values for the form fields

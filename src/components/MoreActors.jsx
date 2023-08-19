@@ -6,8 +6,6 @@ import '@styles/MoreActors.scss';
 /**
  * Creates the more actors component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const MoreActors = (props) => {
   // Component's props

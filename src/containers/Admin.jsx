@@ -12,8 +12,6 @@ import '@styles/ActorContainer.scss';
 /**
  * Creates the admin page with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Admin = (props) => {
   // Assigns the admin's id from the URL to the id props

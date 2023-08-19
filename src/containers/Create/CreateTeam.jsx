@@ -12,7 +12,6 @@ import '@styles/CreateEntity.scss';
 /**
  * Creates the create team page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const CreateTeam = () => {
   useEffect(() => {

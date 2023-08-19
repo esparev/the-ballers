@@ -20,8 +20,6 @@ import twitterIcon from '@icons/twitter-icon.svg';
 /**
  * Creates the tournament page with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Tournament = (props) => {
   // Assigns the tournament's slug from the URL to the slug props

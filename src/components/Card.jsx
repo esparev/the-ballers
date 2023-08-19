@@ -6,8 +6,6 @@ import '@styles/Card.scss';
 /**
  * Creates the cards component with all its functions
  * stored inside for its full operation
- * @param {*} props
- * @returns JSX code to render to the DOM tree
  */
 const Card = (props) => {
   // Component's props

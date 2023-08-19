@@ -5,7 +5,6 @@ import baseballIcon from '@icons/baseball-icon.svg';
 
 /**
  * Creates the server error container
- * @returns JSX code to render to the DOM tree
  */
 const ServerError = () => {
   return (

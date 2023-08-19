@@ -14,7 +14,6 @@ import '@styles/CardsContainer.scss';
 /**
  * Creates the news page with all its functions
  * stored inside for its full operation
- * @returns JSX code to render to the DOM tree
  */
 const News = () => {
   // Setting moment.js to english
