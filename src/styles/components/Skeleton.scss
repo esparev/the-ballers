@@ -1,0 +1,93 @@
+@import '../Vars.scss';
+
+.news-card-skeleton {
+  padding-right: 40px;
+}
+
+.skeleton__card {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.skeleton__card--img {
+  height: 240px;
+  width: 100%;
+  min-height: 200px;
+  max-height: 250px;
+  background-color: $gray-light;
+  border-radius: 8px;
+}
+
+.skeleton__card-info {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.skeleton__text--xl {
+  height: 20px;
+  width: 100%;
+  background-color: $gray-light;
+  border-radius: 4px;
+}
+
+.skeleton__text--lg {
+  height: 20px;
+  width: 80%;
+  background-color: $gray-light;
+  border-radius: 4px;
+}
+
+.skeleton__text--md {
+  height: 20px;
+  width: 60%;
+  background-color: $gray-light;
+  border-radius: 4px;
+}
+
+.skeleton__text--sm {
+  width: 40%;
+  height: 20px;
+  background-color: $gray-light;
+  border-radius: 4px;
+}
+
+
+@media only screen and (max-width: 1340px) {
+  .skeleton__card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .skeleton__card--img {
+    width: 35%;
+  }
+
+  .skeleton__card-info {
+    width: 65%;
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width: 836px) {
+  .skeleton__card {
+    flex-direction: column;
+    row-gap: 12px;
+  }
+
+  .skeleton__card--img {
+    height: 200px;
+    width: 100%;
+  }
+
+  .skeleton__card-info {
+    width: 100%;
+    padding: 0;
+  }
+}
