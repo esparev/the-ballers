@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import { getAdmin } from '../api/getAdmin';
+import { getAdmin } from '@api/getAdmin';
 import { envConfig } from '@config';
 import '@styles/ActorContainer.scss';
 // ---------------------------------------- END OF IMPORTS

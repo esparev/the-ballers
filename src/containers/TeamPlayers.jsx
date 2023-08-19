@@ -4,7 +4,7 @@ import PrimaryButton from '@components/Buttons/PrimaryButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import ServerError from '@containers/ServerError';
-import { getTeam } from '../api/getTeam';
+import { getTeam } from '@api/getTeam';
 import useGetPlayers from '@hooks/useGetPlayers';
 import useGetCoaches from '@hooks/useGetCoaches';
 import toggleMessage from '@functions/toggleMessage';

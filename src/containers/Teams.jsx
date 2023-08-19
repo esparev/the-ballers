@@ -5,7 +5,7 @@ import SecondaryButton from '@components/Buttons/SecondaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
 import ServerError from '@containers/ServerError';
-import { getClub } from '../api/getClub';
+import { getClub } from '@api/getClub';
 import useGetTeams from '@hooks/useGetTeams';
 import { envConfig } from '@config';
 import '@styles/Teams.scss';

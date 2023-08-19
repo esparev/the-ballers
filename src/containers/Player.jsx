@@ -3,7 +3,7 @@ import MoreActors from '@components/MoreActors';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import ServerError from '@containers/ServerError';
-import { getPlayer } from '../api/getPlayer';
+import { getPlayer } from '@api/getPlayer';
 import useGetClub from '@hooks/useGetClub';
 import useGetPlayers from '@hooks/useGetPlayers';
 import { envConfig } from '@config';

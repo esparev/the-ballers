@@ -6,7 +6,7 @@ import Message from '@components/Message';
 import Article from '@components/Article';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import { getTournament } from '../api/getTournament';
+import { getTournament } from '@api/getTournament';
 import useGetTournaments from '@hooks/useGetTournaments';
 import sortByDate from '@functions/sortByDate';
 import urlEncode from '@functions/urlEncode';

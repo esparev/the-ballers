@@ -5,7 +5,7 @@ import Message from '@components/Message';
 import DangerButton from '@components/Buttons/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
-import { getPlayer } from '../api/getPlayer';
+import { getPlayer } from '@api/getPlayer';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';

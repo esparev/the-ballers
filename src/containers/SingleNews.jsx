@@ -6,7 +6,7 @@ import Message from '@components/Message';
 import Article from '@components/Article';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
-import { getSingleNews } from '../api/getSingleNews';
+import { getSingleNews } from '@api/getSingleNews';
 import useGetNews from '@hooks/useGetNews';
 import sortByDate from '@functions/sortByDate';
 import urlEncode from '@functions/urlEncode';

@@ -24,6 +24,7 @@ module.exports = {
       '@icons': path.resolve(__dirname, 'src/assets/icons/'),
       '@mainStyles': path.resolve(__dirname, 'src/styles/'),
       '@hooks': path.resolve(__dirname, 'src/hooks/'),
+      '@api': path.resolve(__dirname, 'src/api/'),
     },
   },
   module: {
