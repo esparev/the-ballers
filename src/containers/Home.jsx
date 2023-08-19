@@ -3,7 +3,7 @@ import moment from 'moment';
 import Card from '@components/Card';
 import Entity from '@components/Entity';
 import Article from '@components/Article';
-import PrimaryButton from '@components/PrimaryButton';
+import PrimaryButton from '@components/Buttons/PrimaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import ServerError from '@containers/ServerError';
 import useGetNews from '@hooks/useGetNews';

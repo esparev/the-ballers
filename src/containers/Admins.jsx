@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import AdminActor from '@components/AdminActor';
-import PrimaryButton from '@components/PrimaryButton';
+import PrimaryButton from '@components/Buttons/PrimaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import ServerError from '@containers/ServerError';
 import useGetAdmins from '@hooks/useGetAdmins';

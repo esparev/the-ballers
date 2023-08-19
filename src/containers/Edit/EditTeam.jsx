@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
-import DangerButton from '@components/DangerButton';
+import DangerButton from '@components/Buttons/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
-import { getCoach } from '../api/getCoach';
+import { getTeam } from '../api/getTeam';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -14,32 +14,32 @@ import '@styles/CreateEntity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the edit coach page with all its functions
+ * Creates the edit team page with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditCoach = (props) => {
+const EditTeam = (props) => {
   const { slug } = props.match.params;
 
   // Sets the initial values for the form fields
-  const [form, setValues] = useState({ name: '', birthday: '' });
+  const [form, setValues] = useState({ name: '', manager: '' });
 
   // Fetching the data to showcase in the component
-  const loadCoach = async () => {
+  const loadTeam = async () => {
     try {
-      const response = await getCoach(envConfig.apiUrl, slug);
-      setValues({ name: response.name, birthday: response.birthday });
+      const response = await getTeam(envConfig.apiUrl, slug);
+      setValues({ name: response.name, manager: response.manager });
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    document.title = 'Edit Coach • The Ballers';
+    document.title = 'Edit Team • The Ballers';
     window.scrollTo(0, 0);
 
     (async () => {
-      await loadCoach();
+      await loadTeam();
     })();
 
     // Select closest container for the input
@@ -83,7 +83,7 @@ const EditCoach = (props) => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    form.image = localStorage.getItem('uploaded image');
+    form.logo = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
       <Message message='Uploading image' messageStatus='upload' />,
@@ -91,7 +91,7 @@ const EditCoach = (props) => {
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Image uploading' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -105,12 +105,12 @@ const EditCoach = (props) => {
    * @param {json} data - body data to post
    * @param {json} config - headers configuration
    */
-  const editCoach = async (url, data, config) => {
+  const editTeam = async (url, data, config) => {
     await axios
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message message='Coach edited successfully!' messageStatus='success' />,
+          <Message message='Team edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -119,7 +119,7 @@ const EditCoach = (props) => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`Ups!, There was an error editing the coach. 
+            message={`Ups!, There was an error editing the team. 
             Verify the information filled in the form`}
             messageStatus='error'
           />,
@@ -132,18 +132,18 @@ const EditCoach = (props) => {
 
   /**
    * Sends a delete request to the URL of the API provided
-   * to delete the selected coach according to its id along
+   * to delete the selected team according to its id along
    * with a bearer token included in the headers configuration
    * @param {string} url - API URL
    * @param {json} config - headers configuration
    */
-  const deleteCoach = async (url, config) => {
+  const deleteTeam = async (url, config) => {
     await axios
       .delete(url, config)
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message message='Coach deleted' messageStatus='success' />,
+          <Message message='Team deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -153,7 +153,7 @@ const EditCoach = (props) => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`Ups!, There was an error deleting the coach. 
+            message={`Ups!, There was an error deleting the team. 
             Try again later`}
             messageStatus='error'
           />,
@@ -177,22 +177,22 @@ const EditCoach = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editCoach(`${envConfig.apiUrl}/coaches/${slug}`, form, authConfig);
+    editTeam(`${envConfig.apiUrl}/teams/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteCoach(`${envConfig.apiUrl}/coaches/${slug}`, authConfig);
+    deleteTeam(`${envConfig.apiUrl}/teams/${slug}`, authConfig);
   };
 
   return (
     <>
       <div id='message-container'></div>
 
-      <DeleteMessage entity='entrenador' onClick={handleDelete} />
+      <DeleteMessage entity='equipo' onClick={handleDelete} />
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Edit coach</h1>
+          <h1 className='form--title'>Edit team</h1>
           <div className='form__desktop'>
             <div className='form'>
               <input
@@ -203,22 +203,18 @@ const EditCoach = (props) => {
                 value={form.name}
                 onChange={handleInput}
               />
-              <label className='form--label label label--bold' htmlFor='date'>
-                Birthday
-              </label>
               <input
                 className='input'
-                name='birthday'
-                type='date'
-                id='date'
-                placeholder='Birthday'
-                value={form.birthday}
+                name='manager'
+                type='text'
+                placeholder="Manager's name"
+                value={form.manager}
                 onChange={handleInput}
               />
             </div>
             <div className='form--field'>
               <label className='form--label label' htmlFor='file'>
-                Profile picture
+                Logo
               </label>
               <div className='form__image form__image-square' id='drop-zone'>
                 <input
@@ -231,7 +227,7 @@ const EditCoach = (props) => {
                   <span className='form__image--label form__image-square--label drop-zone--prompt'>
                     Drag an image
                   </span>
-                  <span className='form__image--label-button form__image-square--label-button drop-zone--promp'>
+                  <span className='form__image--label-button form__image-square--label-button drop-zone--prompt'>
                     Or click to upload the image
                   </span>
                 </div>
@@ -251,4 +247,4 @@ const EditCoach = (props) => {
   );
 };
 
-export default EditCoach;
+export default EditTeam;

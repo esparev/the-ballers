@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SecondaryButton from '@components/SecondaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import { getAdmin } from '../api/getAdmin';
 import { envConfig } from '@config';

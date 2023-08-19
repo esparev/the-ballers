@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MoreActors from '@components/MoreActors';
-import SecondaryButton from '@components/SecondaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import ServerError from '@containers/ServerError';
 import { getPlayer } from '../api/getPlayer';

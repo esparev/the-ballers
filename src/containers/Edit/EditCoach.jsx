@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
-import DangerButton from '@components/DangerButton';
+import DangerButton from '@components/Buttons/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
-import { getAdmin } from '../api/getAdmin';
+import { getCoach } from '../api/getCoach';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -14,32 +14,32 @@ import '@styles/CreateEntity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the edit admin page with all its functions
+ * Creates the edit coach page with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditAdmin = (props) => {
+const EditCoach = (props) => {
   const { slug } = props.match.params;
 
   // Sets the initial values for the form fields
-  const [form, setValues] = useState({ name: '', email: '' });
+  const [form, setValues] = useState({ name: '', birthday: '' });
 
   // Fetching the data to showcase in the component
-  const loadAdmin = async () => {
+  const loadCoach = async () => {
     try {
-      const response = await getAdmin(envConfig.apiUrl, slug);
-      setValues({ name: response.name, email: response.email });
+      const response = await getCoach(envConfig.apiUrl, slug);
+      setValues({ name: response.name, birthday: response.birthday });
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    document.title = 'Edit Admin • The Ballers';
+    document.title = 'Edit Coach • The Ballers';
     window.scrollTo(0, 0);
 
     (async () => {
-      await loadAdmin();
+      await loadCoach();
     })();
 
     // Select closest container for the input
@@ -91,7 +91,7 @@ const EditAdmin = (props) => {
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Image uploaded' messageStatus='success' />,
+        <Message message='Image uploading' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -105,12 +105,12 @@ const EditAdmin = (props) => {
    * @param {json} data - body data to post
    * @param {json} config - headers configuration
    */
-  const editAdmin = async (url, data, config) => {
+  const editCoach = async (url, data, config) => {
     await axios
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message message='Admin edited successfully!' messageStatus='success' />,
+          <Message message='Coach edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -119,7 +119,7 @@ const EditAdmin = (props) => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`Ups!, There was an error editing the admin. 
+            message={`Ups!, There was an error editing the coach. 
             Verify the information filled in the form`}
             messageStatus='error'
           />,
@@ -132,18 +132,18 @@ const EditAdmin = (props) => {
 
   /**
    * Sends a delete request to the URL of the API provided
-   * to delete the selected news according to its id along
+   * to delete the selected coach according to its id along
    * with a bearer token included in the headers configuration
    * @param {string} url - API URL
    * @param {json} config - headers configuration
    */
-  const deleteAdmin = async (url, config) => {
+  const deleteCoach = async (url, config) => {
     await axios
       .delete(url, config)
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message message='Admin deleted' messageStatus='success' />,
+          <Message message='Coach deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -153,7 +153,7 @@ const EditAdmin = (props) => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`Ups!, There was an error deleting the admin. 
+            message={`Ups!, There was an error deleting the coach. 
             Try again later`}
             messageStatus='error'
           />,
@@ -177,22 +177,22 @@ const EditAdmin = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editAdmin(`${envConfig.apiUrl}/admins/${slug}`, form, authConfig);
+    editCoach(`${envConfig.apiUrl}/coaches/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deleteAdmin(`${envConfig.apiUrl}/admins/${slug}`, authConfig);
+    deleteCoach(`${envConfig.apiUrl}/coaches/${slug}`, authConfig);
   };
 
   return (
     <>
       <div id='message-container'></div>
 
-      <DeleteMessage entity='administrador' onClick={handleDelete} />
+      <DeleteMessage entity='entrenador' onClick={handleDelete} />
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Edit admin</h1>
+          <h1 className='form--title'>Edit coach</h1>
           <div className='form__desktop'>
             <div className='form'>
               <input
@@ -200,17 +200,19 @@ const EditAdmin = (props) => {
                 name='name'
                 type='text'
                 placeholder='Name'
-                autoComplete='off'
                 value={form.name}
                 onChange={handleInput}
               />
+              <label className='form--label label label--bold' htmlFor='date'>
+                Birthday
+              </label>
               <input
                 className='input'
-                name='email'
-                type='email'
-                placeholder='Email'
-                autoComplete='off'
-                value={form.email}
+                name='birthday'
+                type='date'
+                id='date'
+                placeholder='Birthday'
+                value={form.birthday}
                 onChange={handleInput}
               />
             </div>
@@ -229,7 +231,7 @@ const EditAdmin = (props) => {
                   <span className='form__image--label form__image-square--label drop-zone--prompt'>
                     Drag an image
                   </span>
-                  <span className='form__image--label-button form__image-square--label-button drop-zone--prompt'>
+                  <span className='form__image--label-button form__image-square--label-button drop-zone--promp'>
                     Or click to upload the image
                   </span>
                 </div>
@@ -249,4 +251,4 @@ const EditAdmin = (props) => {
   );
 };
 
-export default EditAdmin;
+export default EditCoach;

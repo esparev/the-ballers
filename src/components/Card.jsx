@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimaryButton from '@components/PrimaryButton';
+import PrimaryButton from '@components/Buttons/PrimaryButton';
 import '@styles/Card.scss';
 // ---------------------------------------- END OF IMPORTS
 

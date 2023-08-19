@@ -4,7 +4,7 @@ import moment from 'moment';
 import Helmet from 'react-helmet';
 import Message from '@components/Message';
 import Article from '@components/Article';
-import SecondaryButton from '@components/SecondaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import { getTournament } from '../api/getTournament';
 import useGetTournaments from '@hooks/useGetTournaments';

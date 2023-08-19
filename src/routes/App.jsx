@@ -1,32 +1,32 @@
 import React from 'react';
-import { Switch, Route, HashRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Layout from '@components/Layout';
 import Home from '@containers/Home';
 import News from '@containers/News';
 import SingleNews from '@containers/SingleNews';
-import CreateNews from '@containers/CreateNews';
-import EditNews from '@containers/EditNews';
+import CreateNews from '@containers/Create/CreateNews';
+import EditNews from '@containers/Edit/EditNews';
 import Tournaments from '@containers/Tournaments';
 import Tournament from '@containers/Tournament';
-import CreateTournament from '@containers/CreateTournament';
-import EditTournament from '@containers/EditTournament';
+import CreateTournament from '@containers/Create/CreateTournament';
+import EditTournament from '@containers/Edit/EditTournament';
 import Clubs from '@containers/Clubs';
-import CreateClub from '@containers/CreateClub';
-import EditClub from '@containers/EditClub';
+import CreateClub from '@containers/Create/CreateClub';
+import EditClub from '@containers/Edit/EditClub';
 import Teams from '@containers/Teams';
-import CreateTeam from '@containers/CreateTeam';
-import EditTeam from '@containers/EditTeam';
+import CreateTeam from '@containers/Create/CreateTeam';
+import EditTeam from '@containers/Edit/EditTeam';
 import TeamPlayers from '@containers/TeamPlayers';
-import CreatePlayer from '@containers/CreatePlayer';
-import EditPlayer from '@containers/EditPlayer';
-import CreateCoach from '@containers/CreateCoach';
-import EditCoach from '@containers/EditCoach';
+import CreatePlayer from '@containers/Create/CreatePlayer';
+import EditPlayer from '@containers/Edit/EditPlayer';
+import CreateCoach from '@containers/Create/CreateCoach';
+import EditCoach from '@containers/Edit/EditCoach';
 import Player from '@containers/Player';
 import Coach from '@containers/Coach';
 import Admins from '@containers/Admins';
 import Admin from '@containers/Admin';
-import CreateAdmin from '@containers/CreateAdmin';
-import EditAdmin from '@containers/EditAdmin';
+import CreateAdmin from '@containers/Create/CreateAdmin';
+import EditAdmin from '@containers/Edit/EditAdmin';
 import Profile from '@containers/Profile';
 import About from '@containers/About';
 import Login from '@containers/Login';
@@ -47,7 +47,7 @@ import NotFound from '@containers/NotFound';
  */
 const App = ({ isLogged }) => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Layout>
         <Switch>
           <Route exact path='/' component={Home} />
@@ -93,7 +93,7 @@ const App = ({ isLogged }) => {
           <Route path='*' component={NotFound} />
         </Switch>
       </Layout>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Entity from '@components/Entity';
-import PrimaryButton from '@components/PrimaryButton';
+import PrimaryButton from '@components/Buttons/PrimaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
 import ServerError from '@containers/ServerError';

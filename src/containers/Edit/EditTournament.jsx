@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Message from '@components/Message';
-import DangerButton from '@components/DangerButton';
+import DangerButton from '@components/Buttons/DangerButton';
 import DeleteMessage from '@components/DeleteMessage';
 import ButtonContainer from '@containers/ButtonContainer';
-import { getPlayer } from '../api/getPlayer';
+import { getTournament } from '../../api/getTournament';
 import toggleMessage from '@functions/toggleMessage';
 import updateThumbnail from '@functions/updateThumbnail';
 import { authConfig } from '@constants';
@@ -14,32 +14,34 @@ import '@styles/CreateEntity.scss';
 // ---------------------------------------- END OF IMPORTS
 
 /**
- * Creates the edit player page with all its functions
+ * Creates the edit tournament page with all its functions
  * stored inside for its full operation
  * @returns JSX code to render to the DOM tree
  */
-const EditPlayer = (props) => {
+const EditTournament = (props) => {
   const { slug } = props.match.params;
 
   // Sets the initial values for the form fields
-  const [form, setValues] = useState({ name: '', position: '', birthday: '' });
+  const [form, setValues] = useState({ title: '', description: '' });
+  const [count, setCounter] = useState({ title: 0, description: 0 });
 
   // Fetching the data to showcase in the component
-  const loadPlayer = async () => {
+  const loadTournament = async () => {
     try {
-      const response = await getPlayer(envConfig.apiUrl, slug);
-      setValues({ name: response.name, position: response.position, birthday: response.birthday });
+      const response = await getTournament(envConfig.apiUrl, slug);
+      setValues({ title: response.title, description: response.description });
+      setCounter({ title: response.title.length, description: response.description.length });
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    document.title = 'Edit Player • The Ballers';
+    document.title = 'Edit Tournament • The Ballers';
     window.scrollTo(0, 0);
 
     (async () => {
-      await loadPlayer();
+      await loadTournament();
     })();
 
     // Select closest container for the input
@@ -83,7 +85,7 @@ const EditPlayer = (props) => {
    * uploaded to the app
    */
   window.onstorage = () => {
-    form.image = localStorage.getItem('uploaded image');
+    form.cover = localStorage.getItem('uploaded image');
 
     ReactDOM.render(
       <Message message='Uploading image' messageStatus='upload' />,
@@ -91,7 +93,7 @@ const EditPlayer = (props) => {
     );
     setTimeout(() => {
       ReactDOM.render(
-        <Message message='Image upladed' messageStatus='success' />,
+        <Message message='Image uploaded' messageStatus='success' />,
         document.getElementById('message-container')
       );
     }, 1500);
@@ -105,12 +107,12 @@ const EditPlayer = (props) => {
    * @param {json} data - body data to post
    * @param {json} config - headers configuration
    */
-  const editPlayer = async (url, data, config) => {
+  const editTournament = async (url, data, config) => {
     await axios
       .patch(url, data, config)
       .then((res) => {
         ReactDOM.render(
-          <Message message='Player edited successfully!' messageStatus='success' />,
+          <Message message='Tournament edited successfully!' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -119,7 +121,7 @@ const EditPlayer = (props) => {
       .catch((error) => {
         ReactDOM.render(
           <Message
-            message={`Ups!, There was an error editing the player. 
+            message={`Ups!, There was an error editing the tournament. 
             Verify the information filled in the form`}
             messageStatus='error'
           />,
@@ -137,13 +139,13 @@ const EditPlayer = (props) => {
    * @param {string} url - API URL
    * @param {json} config - headers configuration
    */
-  const deletePlayer = async (url, config) => {
+  const deleteTournament = async (url, config) => {
     await axios
       .delete(url, config)
       .then((res) => {
         toggleMessage();
         ReactDOM.render(
-          <Message message='Player deleted' messageStatus='success' />,
+          <Message message='Tournament deleted' messageStatus='success' />,
           document.getElementById('message-container')
         );
 
@@ -153,7 +155,7 @@ const EditPlayer = (props) => {
         toggleMessage();
         ReactDOM.render(
           <Message
-            message={`Ups!, There was an error deleting the news. 
+            message={`Ups!, There was an error deleting the tournament. 
             Try again later`}
             messageStatus='error'
           />,
@@ -175,81 +177,80 @@ const EditPlayer = (props) => {
     });
   };
 
+  const handleCounter = (event) => {
+    setCounter({
+      ...count,
+      [event.target.name]: event.target.value.length,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    editPlayer(`${envConfig.apiUrl}/players/${slug}`, form, authConfig);
+    editTournament(`${envConfig.apiUrl}/tournaments/${slug}`, form, authConfig);
   };
 
   const handleDelete = () => {
-    deletePlayer(`${envConfig.apiUrl}/players/${slug}`, authConfig);
+    deleteTournament(`${envConfig.apiUrl}/tournaments/${slug}`, authConfig);
   };
 
   return (
     <>
       <div id='message-container'></div>
 
-      <DeleteMessage entity='jugador' onClick={handleDelete} />
+      <DeleteMessage entity='torneo' onClick={handleDelete} />
 
       <main className='create-container'>
         <form className='form' onSubmit={handleSubmit}>
-          <h1 className='form--title'>Edit player</h1>
-          <div className='form__desktop'>
-            <div className='form'>
-              <input
-                className='input'
-                name='name'
-                type='text'
-                placeholder='Name'
-                value={form.name}
-                onChange={handleInput}
-              />
-              <select className='input' name='position' id='positions' onChange={handleInput}>
-                <option defaultValue value=''>
-                  {form.position}
-                </option>
-                <option value='Pitcher'>Pitcher</option>
-                <option value='Catcher'>Catcher</option>
-                <option value='First Base'>First base</option>
-                <option value='Second Base'>Second base</option>
-                <option value='Third Base'>Third base</option>
-                <option value='Short field'>Short field</option>
-                <option value='Left gardener'>Jardinero izquierdo</option>
-                <option value='Center fielder'>Center fielder</option>
-                <option value='Right gardener'>Right gardener</option>
-                <option value='Batter'>Batter</option>
-              </select>
-              <label className='form--label label label--bold' htmlFor='date'>
-                Birthday
-              </label>
-              <input
-                className='input'
-                name='birthday'
-                type='date'
-                id='date'
-                placeholder='Birthday'
-                value={form.birthday}
-                onChange={handleInput}
-              />
+          <h1 className='form--title'>Edit tournament</h1>
+          <div className='form--field'>
+            <input
+              className='input'
+              name='title'
+              type='text'
+              id='input'
+              placeholder='Title'
+              value={form.title}
+              maxLength='255'
+              onChange={(event) => {
+                handleInput(event);
+                handleCounter(event);
+              }}
+            />
+            <div className='input-count' id='input-count'>
+              <span id='input-current'>{count.title}</span>
+              <span id='input-maximum'>/255</span>
             </div>
-            <div className='form--field'>
-              <label className='form--label label' htmlFor='file'>
-                Profile picture
-              </label>
-              <div className='form__image form__image-square' id='drop-zone'>
-                <input
-                  className='form__image--input form__image-square--input'
-                  type='file'
-                  id='file'
-                  accept='image/*'
-                />
-                <div className='form__image-labels form__image-square-labels'>
-                  <span className='form__image--label form__image-square--label drop-zone--prompt'>
-                    Drag an image
-                  </span>
-                  <span className='form__image--label-button form__image-square--label-button drop-zone--prompt'>
-                    Or click to upload the image
-                  </span>
-                </div>
+          </div>
+          <div className='form--field'>
+            <textarea
+              className='input'
+              name='description'
+              type='text'
+              id='textarea'
+              placeholder='Description'
+              value={form.description}
+              maxLength='1000'
+              onChange={(event) => {
+                handleInput(event);
+                handleCounter(event);
+              }}></textarea>
+            <div className='input-count' id='textarea-count'>
+              <span id='textarea-current'>{count.description}</span>
+              <span id='textarea-maximum'>/1000</span>
+            </div>
+          </div>
+
+          <div className='form--field'>
+            <label className='form--label label' htmlFor='file'>
+              Cover
+            </label>
+            <div className='form__image' id='drop-zone'>
+              <input className='form__image--input' type='file' id='file' accept='image/*' />
+              <div className='form__image-labels'>
+                <span className='form__image--label drop-zone--prompt'>Drag an image</span>
+                <span className='form__image--label-button drop-zone--prompt'>
+                  Or click to upload the image
+                </span>
               </div>
             </div>
           </div>
@@ -266,4 +267,4 @@ const EditPlayer = (props) => {
   );
 };
 
-export default EditPlayer;
+export default EditTournament;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Entity from '@components/Entity';
-import PrimaryButton from '@components/PrimaryButton';
-import SecondaryButton from '@components/SecondaryButton';
+import PrimaryButton from '@components/Buttons/PrimaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 import EntityContainer from '@containers/EntityContainer';
 import ButtonContainer from '@containers/ButtonContainer';
 import ServerError from '@containers/ServerError';

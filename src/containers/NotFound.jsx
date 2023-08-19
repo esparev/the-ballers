@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PrimaryButton from '@components/PrimaryButton';
+import PrimaryButton from '@components/Buttons/PrimaryButton';
 import '@styles/HTTPError.scss';
 import baseballIcon from '@icons/baseball-icon.svg';
 // ---------------------------------------- END OF IMPORTS

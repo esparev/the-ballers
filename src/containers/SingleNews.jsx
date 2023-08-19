@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import moment from 'moment';
 import Message from '@components/Message';
 import Article from '@components/Article';
-import SecondaryButton from '@components/SecondaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 import ButtonContainer from '@containers/ButtonContainer';
 import { getSingleNews } from '../api/getSingleNews';
 import useGetNews from '@hooks/useGetNews';
